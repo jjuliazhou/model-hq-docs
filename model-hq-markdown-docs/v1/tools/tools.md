@@ -1,7 +1,15 @@
 # Exploring tools in Model HQ
 The Tools section provides powerful utilities for managing local setup, development workflows, and system diagnostics within Model HQ. This centralized interface includes backend server controls, CLI access, development SDKs, model management utilities, and system information displays.
 
-After completing the initial setup, users gain access to a comprehensive toolkit that supports both end-user and developer workflows. The Tools interface serves as a control center for advanced operations such as launching headless backend servers for API-based deployments, accessing command-line interfaces for scripted automation, downloading sample documents for testing, managing model installations, and diagnosing system capabilities. These tools enable power users and developers to extend Model HQ beyond its graphical interface, integrate it into larger systems, troubleshoot deployment issues, and optimize performance based on available hardware resources. Understanding the Tools section is essential for advanced configurations, programmatic access, and production deployments where Model HQ serves as a backend AI service rather than an interactive application.
+The Tools section in Model HQ gives you helpful features to set up, manage, and check how the system is working.
+
+In one place, you can control the backend server, use the command line (CLI), connect with developer tools (SDKs), download and manage models, and view system information about your computer.
+
+After setup, these tools help both regular users and developers get more done. You can run Model HQ in the background, automate tasks with commands, download sample files to test, install models, and check that your system is ready.
+
+These features also let you connect Model HQ to bigger systems, fix problems, and make sure everything runs fast and smoothly.
+
+Learning how to use the Tools section is important if you want to do more advanced work, like running Model HQ as a behind-the-scenes AI service instead of just using the app.
 
 ## 1. Launching the tools interface
 To begin, the **Tools** button (🔧) located in the top right side of the main menu can be selected.
@@ -66,7 +74,6 @@ This step configures the Backend API Server for **Headless mode** operation. The
 This configuration defines the server's network location, access method, concurrency limits, and optional security controls.
 
 #### 3.1.2.1 Server Mode: Localhost or External IP
-
 Choose how the backend server should be exposed.
 
 **Options:**
@@ -82,7 +89,6 @@ Choose how the backend server should be exposed.
 * Use **External IP** for shared environments, distributed agents, or production deployments.
 
 #### 3.1.2.2 IP Address
-
 Specifies the IP address on which the backend server will listen.
 
 **Behavior:**
@@ -97,7 +103,6 @@ Specifies the IP address on which the backend server will listen.
 ```
 
 #### 3.1.2.3 Port
-
 Defines the network port used by the backend server.
 
 **Default example:**
@@ -112,7 +117,6 @@ Defines the network port used by the backend server.
 * Ensure the port is open and allowed through firewalls if using an External IP.
 
 #### 3.1.2.4 Workers
-
 Controls the number of lightweight worker processes handling concurrent requests.
 
 **Example:**
@@ -128,7 +132,6 @@ Controls the number of lightweight worker processes handling concurrent requests
 * Higher values may increase memory and CPU usage.
 
 #### 3.1.2.5 Trusted Key
-
 An optional shared secret used to secure API access.
 
 **Behavior:**
@@ -143,7 +146,6 @@ my-secure-backend-key
 ```
 
 #### 3.1.2.6 Require Trusted Key
-
 Controls whether the Trusted Key is mandatory for all API calls.
 
 **Options:**
@@ -159,16 +161,22 @@ Controls whether the Trusted Key is mandatory for all API calls.
 * Use **No Key** only for local development or isolated networks.
 
 #### 3.1.2.7 Result
-
 Once configured, the backend API server will start in headless mode using the defined network settings, concurrency limits, and security rules. This server becomes the primary execution and integration point for agents, MCP services, and external systems.
 
 
 ## 3.2 Demos
-The **Demos** section contains all demonstrations that have been created or pre-existed for bots and agents. Demonstrations can be executed directly from this interface.
+The **Demos** section is designed to make demos of bots and agents easy for users. This section contains all demonstrations that have been created by the user as well as some Model HQ pre-packaged demos for bots and agents. Demos are often packaged with pre-loaded prompts or queries and are designed to run automatically with the pre-loaded prompts to illustrate the bot or agent. 
+
+Demonstrations can be executed directly from this interface.
 
 ![Backend Launch](tools/04_demos.png)
 
 This provides quick access to test workflows and example implementations without navigating through the full bot or agent creation process.
+
+![Note]
+To create Demos to be added to this section, go to Bots > [select the name of bot] > Edit > Demo. In this section you will see either the option to build an input list of prompts OR a list of prompts (if the demo has already been created for the Bot). For a tutorial of how to create a demo for your custom bot, please watch our YouTube video, "One-Click Live Demos for Your AI Chabots": https://youtu.be/il48-IaEfxw
+
+To create Demos of Agents [TBD]
 
 ## 3.3 SDK
 The **Model HQ Client Tools Kit** (or Model HQ SDK) enables Model HQ to be run within an IDE environment and allows the backend server to be operated as described in the Backend section.
@@ -178,7 +186,6 @@ The **Model HQ Client Tools Kit** (or Model HQ SDK) enables Model HQ to be run w
 The SDK provides all necessary libraries, documentation, and code examples for programmatic integration with Model HQ's backend services.
 
 ## 3.4 CLI
-
 The CLI option can be selected to open a separate command-line interface window where commands can be executed directly.
 
 ![tools](tools/06_cli.png)
@@ -246,4 +253,14 @@ The **System Info** option can be selected to view hardware and software configu
 This diagnostic display helps assess whether the environment is suitable for downloading and running specific models. The system information includes details about available memory, processor type, disk space, and GPU availability. For detailed system requirements, the [System Configurations](https://github.com/RS-labhub/ModelHQ-Docs/tree/master/systemConfiguration/SYSTEM_CONFIGURATION.md) documentation can be consulted.
 
 ## Conclusion
-This document described the comprehensive Tools interface in Model HQ, which provides essential utilities for advanced configuration, development, and system management. Key features include the Backend server launcher for headless API-based deployments, the CLI for command-line operations, the SDK for programmatic integration, and the Share function for collaborative access. Diagnostic tools such as System Info and Test Server enable users to verify hardware capabilities and server functionality before deploying models. The Model Downloader and Sample Documents features streamline the setup process by managing model installations and providing test data. The Demos section offers quick access to pre-built examples, while the Updates feature ensures access to the latest agents, templates, and tools. Together, these utilities transform Model HQ from a standalone application into a flexible platform that can be integrated into larger systems, accessed programmatically, and optimized based on available hardware resources. Understanding and utilizing the Tools interface is essential for power users, developers, and organizations deploying Model HQ in production environments or integrating it into existing workflows.
+This document explains the Tools section in Model HQ. The Tools area gives you helpful features for setting up, managing, and running the system more easily.
+
+It includes things like the Backend Server, which lets Model HQ run in the background, the CLI, which lets you use commands instead of buttons, and the SDK, which helps developers connect Model HQ to their own apps or programs. The Share feature also makes it easy to give others access.
+
+There are tools to check that everything works correctly. System Info shows what your computer can handle, and Test Server makes sure the server is running properly before you launch your models.
+
+The Model Downloader helps you install models quickly, and Sample Documents give you test files to practice with. The Demos section includes ready-made examples you can try right away, and Updates keeps your agents, templates, and tools up to date.
+
+All together, these tools make Model HQ more than just a simple app — they turn it into a flexible platform that developers, teams, and organizations can customize and connect to bigger systems.
+
+Learning how to use the Tools section is especially helpful for advanced users and teams running Model HQ in real-world projects.

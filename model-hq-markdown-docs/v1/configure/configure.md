@@ -1,7 +1,17 @@
 # Exploring configuration in Model HQ
 The Configure section provides a centralized interface for managing Model HQ's core settings—ranging from appearance customization and model configuration to database setup, RAG controls, and advanced safety and security options.
 
-After completing the initial setup, users gain access to comprehensive configuration controls that shape how Model HQ behaves, appears, and integrates with external systems. The Configure interface serves as the central control panel for tailoring the application to specific use cases, organizational requirements, and security policies. Settings can be adjusted to control default bot behavior, user interface appearance, RAG performance parameters, database connections, safety controls, and enterprise integrations. These configurations enable organizations to transform Model HQ from a general-purpose AI application into a customized solution that aligns with their unique workflows, branding guidelines, and compliance requirements. Understanding these configuration options is essential for optimizing Model HQ's performance, security posture, and user experience across different deployment scenarios.
+The Configure section is the main place where you control how Model HQ works and looks. You can change things like the design, choose your models, set up databases, manage RAG settings, and turn on safety and security options.
+
+After setup, you get access to all these controls in one spot. Think of it like a control panel for the whole app. You can adjust how bots behave, how the screen looks, how data is stored, and how Model HQ connects to other tools.
+
+These settings help users customize Model HQ to fit their own needs, workflows, and rules. 
+
+After completing the initial setup, users gain access to comprehensive configuration controls that shape how Model HQ behaves, appears, and integrates with external systems. The Configure interface serves as the central control panel for tailoring the application to specific use cases, organizational requirements, and security policies. Settings can be adjusted to control default bot behavior, user interface appearance, RAG performance parameters, database connections, safety controls, and enterprise integrations. 
+
+These configurations enable organizations to transform Model HQ from a general-purpose AI application into a customized solution that aligns with their unique workflows, branding guidelines, and compliance requirements. 
+
+Understanding these configuration options is essential for optimizing Model HQ's performance, security posture, and user experience across different deployment scenarios.
 
 ## 1. Launching the configuration interface
 To begin, the **Configure** button (⚙️) located in the top right side of the main menu can be selected.
@@ -23,7 +33,7 @@ The configuration interface is organized into the following main sections:
 | **DB** | Manages database connections and storage configurations |
 | **Prompts** | Defines system-level prompts and instruction templates |
 | **Server** | Configures backend server settings, ports, and API endpoints |
-| **Controls** | Sets safety controls, content filtering, and security policies |
+| **Controls** | Sets safety controls, content filtering, and security policies (only for users who have **Connected Enterprise Servers** ON in **Config > App**) |
 | **Templates** | Manages pre-built templates for agents, bots, and workflows |
 | **Connections** | Handles external service integrations and API credentials |
 | **Reset** | Provides options to reset configurations to default values |

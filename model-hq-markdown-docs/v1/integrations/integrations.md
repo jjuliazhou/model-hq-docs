@@ -1,5 +1,7 @@
 # Exploring integrations in Model HQ
-The Integrations interface in Model HQ enables seamless connectivity with external services, cloud platforms, search engines, productivity tools, and AI model providers. Integrations transform Model HQ from an isolated application into a connected platform capable of accessing enterprise data sources, leveraging third-party APIs, and orchestrating workflows across multiple systems. By establishing authenticated connections to services such as AWS S3, Azure Blob Storage, Google Workspace, Microsoft 365, Jira, ServiceNow, and leading AI providers, Model HQ agents can retrieve documents, execute searches, access structured data, and invoke external APIs as part of their workflows.
+The Integrations interface in Model HQ enables seamless connectivity with external services, cloud platforms, search engines, productivity tools, and AI model providers. Integrations transform Model HQ into a connected platform capable of accessing enterprise data sources, leveraging third-party APIs, and orchestrating workflows across multiple systems. 
+
+By establishing authenticated connections to services such as AWS S3, Azure Blob Storage, Google Workspace, Microsoft 365, Jira, ServiceNow, and leading AI providers, Model HQ agents can retrieve documents, execute searches, access structured data, and invoke external APIs as part of their workflows.
 
 Credential management for integrations follows a security-first approach where all credentials are encrypted and stored locally on the user's machine. No credential information is transmitted to LLMWare or external parties except when explicitly required to authenticate with the connected service itself. Users maintain full control over their credentials and can review, test, or delete them at any time using the Integrations interface. Most Model HQ features can be utilized without providing any credentials, and integration setup is entirely optional based on specific use case requirements.
 
@@ -55,15 +57,19 @@ Once an integration is added, it can be utilized within agents to automate workf
 
 When integrating any service, options are available to activate or deactivate the integration at any time.
 
+> [!NOTE]
+> Integrations not already listed above can be easily added by the user in **Services**.
+
+
 ## 3. Integrations
 In the sections below, a detailed breakdown of all integrations is provided, including the required credentials needed to connect each service with Model HQ.
 
-When configuring any integration, options are available to activate or deactivate it at any time.
+When configuring any integration, options are available to activate or deactivate it at any time by selecting **Activate Integration** in the integration page.
 
-Once all credentials have been added, the test button can be clicked to verify whether the connection is successful. If the connection fails, there may be issues with the provided credentials. If the credentials are correct but the connection still fails, please [contact support](/support).
+Once all credentials have been added, the **test** button can be clicked to verify whether the connection is successful. If the connection fails, there may be issues with the provided credentials. If the credentials are correct but the connection still fails, please [contact support](/support).
 
 ### 3.1 Model HQ Agent Server
-Model HQ Agent Server provides a scalable deployment environment for custom Agents, semantic RAG and model inferencing - and is integrated seamlessly across the Model HQ App. Once you connect, you will see Library available as an option in RAG Sources.
+Model HQ Agent Server provides a scalable deployment environment for custom Agents, semantic RAG and model inferencing - and is integrated seamlessly across the Model HQ App. Once you connect, you will see Library available as an option in RAG Sources if the server has them, as well as other Model HQ bots, services or agents that have been set up in the server.
 
 **Setup Integration:**
 - IP Address
@@ -71,7 +77,7 @@ Model HQ Agent Server provides a scalable deployment environment for custom Agen
 - Model HQ Trusted API Key
 
 > [!NOTE]
-> Model HQ Trust API Key can be obtained from [?]: NAMEE TO MENTION
+> The Model HQ Trusted API Key provides an additional layer of security for accessing the Model HQ Agent Server. Please obtain this key from your system administrator before connecting.
 
 ### 3.2 AWS S3 Bucket
 Files can be pulled from AWS S3 Buckets to build RAG sources. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the AWS S3 button available as a repository to download and add documents to your source.
@@ -90,8 +96,8 @@ Files can be pulled from AWS S3 Buckets to build RAG sources. After activating a
 > 6. Click **Create Access Key**
 > 7. Click **Show User Security Credentials**
 
-### 3.3 Azure Blog Storage
-Files can be pulled from a selected Azure Blob Container.After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the Azure Blob Storage button available as a repository to download and add documents to your source. Since Blob Storage permissions tend to align at the container level, you should be prepared to name the specific container to access in addition to account credentials.
+### 3.3 Azure Blob Storage
+Files can be pulled from a selected Azure Blob Container. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the Azure Blob Storage button available as a repository to download and add documents to your source. Since Blob Storage permissions tend to align at the container level, you should be prepared to name the specific container to access in addition to account credentials.
 
 **Setup Integration:**
 - Azure Account URL
@@ -169,7 +175,7 @@ Use Finnhub.io API to retrieve updated and time series financial data
 > 6. Copy your **API key** and use it in your application
 
 ### 3.8 Jira API
-Retrieve issues and documentation from Jira tickets. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the Jira button available to search projects for tickets, isssues and associated content and add documents to your source
+Retrieve issues and documentation from Jira tickets. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the Jira button available to search projects for tickets, isssues and associated content and add documents to your source.
 
 **Setup Integration:**
 - Jira Domain
@@ -188,7 +194,7 @@ Retrieve issues and documentation from Jira tickets. After activating and testin
 > 8. Use your **Jira Domain**, **User Email**, and **API Token** for authentication
 
 ### 3.9 ServiceNow
-Retrieve issues and documentation from ServiceNow tables. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the ServiceNow button available to retrieve key tables and associated content and add documents to your source
+Retrieve issues and documentation from ServiceNow tables. After activating and testing credentials, to get started, please go to RAG and start building a source, and you will see the ServiceNow button available to retrieve key tables and associated content and add documents to your source.
 
 **Setup Integration:**
 - ServiceNow Instance
@@ -322,7 +328,7 @@ Google Gemini models are provided in the core model catalog, and can be referenc
 Windows Local Foundry models can be discovered and added to the core model catalog, and can be referenced by model_name.
 
 **Setup Integration:**
-Not needed
+[TBD]
 
 ## Conclusion
 This document provided comprehensive guidance on the Integrations interface in Model HQ, which enables secure connectivity with 19 external services spanning cloud storage providers, search engines, productivity platforms, CRM systems, and AI model providers. The Integrations framework transforms Model HQ from a standalone application into a connected ecosystem capable of accessing enterprise data sources, leveraging third-party APIs, and orchestrating cross-platform workflows. Each integration follows a consistent configuration pattern requiring specific credentials such as API keys, access tokens, or account URLs, with detailed setup instructions provided for obtaining these credentials from each service provider.
