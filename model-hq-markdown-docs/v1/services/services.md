@@ -481,8 +481,24 @@ Allows advanced users to review, validate, and make small corrections directly i
 Once confirmed, the MCP tool is registered as a service and becomes available for agent workflows, chaining, and orchestration.
 
 ## Conclusion
-This document provided comprehensive guidance on creating and configuring services within Model HQ, covering three distinct service types that enable modular, reusable components for agent workflows and system integrations. Agent Services allow existing agents to be exposed as callable building blocks, facilitating the creation of complex multi-layered agent architectures where agents can invoke other agents with well-defined input-output contracts. REST API Endpoint Services integrate external APIs into the agent ecosystem by defining connection details, authentication parameters, input schemas, and output specifications, enabling seamless communication between Model HQ and third-party services. MCP Services bridge Model Context Protocol tools with the agent framework, allowing MCP servers to be invoked as first-class services with structured configuration for inputs, runtime parameters, and endpoint details.
 
-Each service type follows a structured configuration process that standardizes how inputs are collected, how runtime parameters are passed, how authentication is managed, and how outputs are returned to calling agents. This standardization ensures interoperability between agents, external systems, and MCP tools, regardless of their underlying implementation details. The Services interface supports various input context types ranging from simple text inputs to complex file uploads, structured datasets, and custom forms, providing flexibility in how data is collected and passed to services.
+All service types follow the same structured setup process. You define:
+- What inputs the service needs
+- Any runtime settings
+- How authentication works
+- What outputs it returns
 
-By understanding and utilizing the Services interface, developers can build scalable agent systems that leverage reusable components, integrate external data sources and APIs, and create sophisticated workflows that combine multiple agents and tools. Services transform Model HQ from a standalone application into an extensible platform where agents can collaborate, external systems can be seamlessly integrated, and complex business logic can be decomposed into manageable, testable, and reusable units. Properly configured services enable organizations to accelerate development, reduce duplication, standardize integration patterns, and build robust multi-agent systems capable of handling complex real-world use cases.
+Because everything follows the same format, agents, external systems, and MCP tools can work together easily, even if they are built differently underneath.
+
+The Services interface also supports different kinds of inputs. These can range from simple text fields to file uploads, structured datasets, or custom forms. This gives you flexibility in how data is collected and passed to services.
+
+By using Services, developers can build scalable agent systems using reusable components. They can connect outside data sources and APIs, and combine multiple agents and tools into more advanced workflows.
+
+Services turn Model HQ from a standalone tool into a flexible platform where:
+- Agents can collaborate
+- External systems can connect smoothly
+- Complex workflows can be broken into smaller, reusable pieces
+
+When services are set up properly, organizations can develop faster, avoid repeating work, standardize integrations, and build reliable multi-agent systems that handle real-world business use cases.
+
+
