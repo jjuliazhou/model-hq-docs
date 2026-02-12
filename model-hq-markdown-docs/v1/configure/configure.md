@@ -1,5 +1,4 @@
 # Exploring configuration in Model HQ
-The Configure section provides a centralized interface for managing Model HQ's core settings—ranging from appearance customization and model configuration to database setup, RAG controls, and advanced safety and security options.
 
 The Configure section is the main place where you control how Model HQ works and looks. You can change things like the design, choose your models, set up databases, manage RAG settings, and turn on safety and security options.
 
@@ -28,16 +27,18 @@ The configuration interface is organized into the following main sections:
 | Configuration Section | Description |
 |----------------------|-------------|
 | **App** | Controls global application behavior, default bots, feature visibility, and runtime modes |
+| **Services** | Configures service catalog available in Agents |
 | **UI** | Customizes visual appearance including themes, colors, branding, and interface elements |
+| **Models** | Configures model options ranging from type of moodels displayed to users, default model selections and max token output sizes |
 | **RAG** | Configures retrieval-augmented generation parameters for document search and context building |
 | **DB** | Manages database connections and storage configurations |
 | **Prompts** | Defines system-level prompts and instruction templates |
 | **Server** | Configures backend server settings, ports, and API endpoints |
-| **Controls** | Sets safety controls, content filtering, and security policies (only for users who have **Connected Enterprise Servers** ON in **Config > App**) |
+| **Controls** | Sets Model downloading options and safety controls, content filtering, and security policies (only for users who have **Connected Enterprise Servers** ON in **Config > App**) |
 | **Templates** | Manages pre-built templates for agents, bots, and workflows |
 | **Connections** | Handles external service integrations and API credentials |
-| **Reset** | Provides options to reset configurations to default values |
-| **Theme Toggler** | Quick toggle between light and dark display modes |
+| **Reset** | Provides options to reset bots, agents and model configurations to default values |
+| **Display Toggler** | Quick toggle between light and dark display modes |
 
 Each section provides granular control over specific aspects of Model HQ's functionality, enabling customization tailored to organizational needs and deployment environments.
 
@@ -47,10 +48,11 @@ The **App** section controls global application behavior, default experiences, v
 ![tools](configure/03_app.png)
 
 ### 3.1.1 Default Bot
-Defines which bot is launched by default when the application starts.
+Defines which bot is launched by default when the application starts - the listed bots include Bots that are Model HQ template bots as well as any bots the user may have created with Model HQ.
 
 **Available Options:**
 
+* AC Repair Bot
 * Bot with Agents
 * Dataset Bot
 * Demo Bot
@@ -58,8 +60,6 @@ Defines which bot is launched by default when the application starts.
 * Model HQ Embedded Agent Bot
 * Model HQ API Server Bot
 * Model HQ Model Sampler
-* Model HQ API Server Biz Bot
-* Model HQ Biz Bot
 * Persona Bot
 * SQL Bot
 
@@ -254,7 +254,16 @@ Resets all App settings to their default values.
 
 These App settings allow fine-grained control over user experience, security posture, feature exposure, and runtime behavior across development, enterprise, and air-gapped deployments.
 
-## 3.2 UI
+## 3.2 Services
+
+[Insert Screenshot here]
+
+This is a master panel of services that are available to use in creating agents. Making the selection here will ensure that each of these services are displayed as an option in the Nodes in agents. (Note: Services outside of this master list can be selected at time of use in the agent canvas if not pre-selected here.)
+
+ROHAN - when you get the latest version, we need to make a master table of all of the Services as displayed and explain what each does. We then need to link to this section or display again in Agents.
+
+
+## 3.3 UI
 The **UI** section enables fast and comprehensive customization of Model HQ's visual appearance, including bot names, icons, colors, and other interface elements.
 
 ![tools](configure/04_ui.png)
@@ -273,12 +282,12 @@ This configuration panel allows the entire Model HQ appearance to be customized 
 
 These customization options are designed to enable quick and seamless enterprise branding, allowing organizations to align Model HQ with their unique visual identity and corporate standards.
 
-## 3.3 RAG
+## 3.4 RAG
 The **RAG (Retrieval Augmented Generation)** section controls how Model HQ retrieves, ranks, and injects external knowledge into model prompts. These settings directly affect answer quality, relevance, performance, and memory usage when working with documents and sources.
 
 ![tools](configure/05_rag.png)
 
-### 3.3.1 Text Chunk Size
+### 3.4.1 Text Chunk Size
 Defines the target size of text segments created during document parsing.
 
 **Purpose:**
@@ -298,7 +307,7 @@ Defines the target size of text segments created during document parsing.
 * Use smaller values for highly structured or technical documents.
 * Use larger values for narrative or long-form content.
 
-### 3.3.2 Context Top N
+### 3.4.2 Context Top N
 Specifies the number of top-ranked text chunks selected to build the context for the model.
 
 **Purpose:**
@@ -312,7 +321,7 @@ Specifies the number of top-ranked text chunks selected to build the context for
 5
 ```
 
-### 3.3.3 Context Target Size
+### 3.4.3 Context Target Size
 Defines the target token size for the final context passed to the model.
 
 **Behavior:**
@@ -330,7 +339,7 @@ Defines the target token size for the final context passed to the model.
 * Larger values provide more context but increase token usage.
 * Smaller values reduce latency and cost.
 
-### 3.3.4 Reranker Max Samples
+### 3.4.4 Reranker Max Samples
 Sets the maximum number of text chunks evaluated in memory by the reranker.
 
 **Purpose:**
@@ -344,7 +353,7 @@ Sets the maximum number of text chunks evaluated in memory by the reranker.
 1000
 ```
 
-### 3.3.5 Context Comparison Prompt
+### 3.4.5 Context Comparison Prompt
 Adds a system instruction to the prompt when multiple source documents are used.
 
 **Default Example:**
@@ -358,7 +367,7 @@ Here are several sources - please use as the basis for answering questions, and 
 * Ensures answers reference and differentiate between multiple documents.
 * Encourages source-aware responses.
 
-### 3.3.6 RAG Prompt Instruction
+### 3.4.6 RAG Prompt Instruction
 Custom instruction passed directly into the RAG pipeline.
 
 **Purpose:**
@@ -372,7 +381,7 @@ Custom instruction passed directly into the RAG pipeline.
 * Limit answers to retrieved content only.
 * Control summarization vs extraction behavior.
 
-### 3.3.7 RAG Model
+### 3.4.7 RAG Model
 Selects the language model used to generate responses using retrieved context.
 
 **Example:**
@@ -386,7 +395,7 @@ llama-3.2-3b-instruct-ov
 * Use instruction-tuned models for best RAG performance.
 * Smaller models improve speed, larger models improve reasoning.
 
-### 3.3.8 Reranker Model
+### 3.4.8 Reranker Model
 Defines the semantic ranking model used to reorder retrieved text chunks.
 
 **Example:**
@@ -400,7 +409,7 @@ jina-reranker-v1-tiny-en-ov
 * Improves relevance by re-ranking chunks beyond vector similarity.
 * Critical for multi-document or noisy datasets.
 
-### 3.3.9 Embedding Model
+### 3.4.9 Embedding Model
 Selects the model used to convert text into vector embeddings.
 
 **Example:**
@@ -414,7 +423,7 @@ all-mini-lm-l6-v2-ov
 * Affects retrieval accuracy and embedding performance.
 * Smaller models are faster, larger models capture deeper semantics.
 
-### 3.3.10 Use Wikipedia as Source
+### 3.4.10 Use Wikipedia as Source
 Controls whether Wikipedia is included as an external retrieval source.
 
 **Options:**
@@ -429,7 +438,7 @@ Controls whether Wikipedia is included as an external retrieval source.
 * Enable for general knowledge queries.
 * Disable for enterprise or private datasets.
 
-### 3.3.11 Update Behavior
+### 3.4.11 Update Behavior
 RAG settings can be updated at any time.
 
 **Notes:**
@@ -439,26 +448,26 @@ RAG settings can be updated at any time.
 
 These RAG configurations allow fine-tuned control over document retrieval, ranking, and prompt construction, enabling accurate, scalable, and context-aware AI responses across diverse data sources.
 
-## 3.4 DB
+## 3.5 DB
 The **DB** section provides tools for managing resources on the local Model HQ database.
 
 ![tools](configure/06_db.png)
 
 The local Model HQ database can be configured to build, view, delete, and manage resources. This database is utilized for querying SQL tables in Chat and Agents, enabling structured data interactions and query-based workflows. Database management capabilities include schema creation, table configuration, and resource cleanup operations.
 
-## 3.5 Prompts
+## 3.6 Prompts
 The **Prompts** section allows system-level prompts to be added and pre-configured for reuse across sessions.
 
 ![tools](configure/07_prompts.png)
 
 Custom prompt templates can be created and stored for consistent behavior across different workflows. These pre-configured prompts help standardize model interactions, enforce specific response formats, and maintain consistent tone or style requirements throughout the application.
 
-## 3.6 Server
+## 3.7 Server
 The **Server** section configures the Backend API Server when running Model HQ in **Headless mode**. These settings define how external clients, agents, or applications connect to Model HQ without using the built-in UI.
 
 ![tools](configure/08_server.png)
 
-### 3.6.1 Localhost or External IP
+### 3.7.1 Localhost or External IP
 Determines whether the backend server is accessible only on the local machine or exposed over the network.
 
 **Options:**
@@ -473,7 +482,7 @@ Determines whether the backend server is accessible only on the local machine or
 * Use **Localhost** for development and testing.
 * Use **External IP** for production or shared environments.
 
-### 3.6.2 IP Address
+### 3.7.2 IP Address
 Specifies the IP address the backend server binds to.
 
 **Behavior:**
@@ -487,7 +496,7 @@ Specifies the IP address the backend server binds to.
 192.168.29.93
 ```
 
-### 3.6.3 Port
+### 3.7.3 Port
 Defines the port on which the Backend API Server listens.
 
 **Default:**
@@ -501,7 +510,7 @@ Defines the port on which the Backend API Server listens.
 * Change only if the default port is already in use.
 * Ensure the port is open in firewall and security group rules if exposed externally.
 
-### 3.6.4 Workers
+### 3.7.4 Workers
 Controls the number of lightweight worker processes handling incoming requests.
 
 **Purpose:**
@@ -521,7 +530,7 @@ Controls the number of lightweight worker processes handling incoming requests.
 * Increase only if you experience measurable performance bottlenecks.
 
 
-### 3.6.5 Trusted Key
+### 3.7.5 Trusted Key
 Optional shared secret used to authenticate API requests.
 
 **Usage:**
@@ -535,7 +544,7 @@ Optional shared secret used to authenticate API requests.
 my-secure-trusted-key
 ```
 
-### 3.6.6 Require Trusted Key
+### 3.7.6 Require Trusted Key
 Controls whether the Trusted Key is mandatory for API access.
 
 **Options:**
@@ -550,13 +559,13 @@ Controls whether the Trusted Key is mandatory for API access.
 * Enable **Require Key** for any network-exposed or production deployment.
 * Use **No Key** only in isolated or local environments.
 
-### 3.6.7 Access Behavior
+### 3.7.7 Access Behavior
 When enabled and configured correctly:
 
 * Agents and services can communicate with Model HQ via REST APIs.
 * Headless mode allows full automation without the UI.
 
-### 3.6.8 Applying Changes
+### 3.7.8 Applying Changes
 Server configuration updates take effect immediately.
 
 **Notes:**
@@ -566,12 +575,12 @@ Server configuration updates take effect immediately.
 
 This configuration enables secure and flexible deployment of Model HQ as a backend service, supporting both local development and production-grade headless integrations.
 
-## 3.7 Controls
+## 3.8 Controls
 The **Controls** section defines global governance, security, validation, and safety behaviors for model execution and inference. These settings influence how models are loaded, validated, executed, and how sensitive data is handled across the platform.
 
 ![tools](configure/09_controls.png)
 
-### 3.7.1 Inference Persistence
+### 3.8.1 Inference Persistence
 Controls whether inference results are stored locally.
 
 **Options:**
@@ -586,7 +595,7 @@ Controls whether inference results are stored locally.
 * Disable saving for privacy sensitive or transient workloads.
 * Enable saving for debugging, audits, or analytics.
 
-### 3.7.2 Model Repository Source
+### 3.8.2 Model Repository Source
 Specifies the repository used to download models.
 
 **Options:**
@@ -601,7 +610,7 @@ Specifies the repository used to download models.
 * Select **Azure** for enterprise managed environments.
 * Select **Hugging Face** for broader open model access.
 
-### 3.7.3 Model Validation on Download
+### 3.8.3 Model Validation on Download
 Controls hash verification when a model is first downloaded.
 
 **Options:**
@@ -615,7 +624,7 @@ Controls hash verification when a model is first downloaded.
 
 * Keep validation enabled in production environments.
 
-### 3.7.4 Model Validation on Load
+### 3.8.4 Model Validation on Load
 Controls whether integrity checks occur each time a model is loaded from disk.
 
 **Options:**
@@ -630,7 +639,7 @@ Controls whether integrity checks occur each time a model is loaded from disk.
 * Validation improves safety.
 * Skipping improves performance.
 
-### 3.7.5 Cloud API Access
+### 3.8.5 Cloud API Access
 Controls whether public cloud APIs can be used.
 
 **Options:**
@@ -644,7 +653,7 @@ Controls whether public cloud APIs can be used.
 
 * Disable cloud APIs for air gapped or compliance restricted environments.
 
-### 3.7.6 Prompt Preview
+### 3.8.6 Prompt Preview
 Controls visibility of the final prompt before execution.
 
 **Options:**
@@ -659,7 +668,7 @@ Controls visibility of the final prompt before execution.
 * Enable during development and debugging.
 * Disable for streamlined end user experiences.
 
-### 3.7.7 Enforcement Action
+### 3.8.7 Enforcement Action
 Defines how the system responds when sensitive patterns are detected.
 
 **Options:**
@@ -669,7 +678,7 @@ Defines how the system responds when sensitive patterns are detected.
 * **Warn**
   Flags content but allows execution.
 
-### 3.7.8 Pattern Redaction
+### 3.8.8 Pattern Redaction
 Specifies which sensitive data patterns are detected and handled.
 
 **Available Patterns:**
@@ -691,7 +700,7 @@ Specifies which sensitive data patterns are detected and handled.
 
 * Selected patterns are either redacted or warned based on the configured action.
 
-### 3.7.9 Classifier Tests
+### 3.8.9 Classifier Tests
 Enables built in content classifiers for safety and quality.
 
 **Available Tests:**
@@ -706,7 +715,7 @@ Enables built in content classifiers for safety and quality.
 * Detects unsafe, malicious, or policy violating content.
 * Improves trust and governance across model usage.
 
-### 3.7.10 Automated Configuration
+### 3.8.10 Automated Configuration
 **Choose For Me** automatically selects recommended defaults based on environment and use case.
 
 **Use Case:**
@@ -716,53 +725,53 @@ Enables built in content classifiers for safety and quality.
 
 The **Controls** section provides centralized enforcement of security, compliance, and safety policies, ensuring consistent and governed model behavior across all applications and agents.
 
-## 3.8 Templates
+## 3.9 Templates
 The **Templates** section enables custom templates to be created for accelerated bot and agent development.
 
 ![tools](configure/10_templates.png)
 
 Template management provides options to build new templates or edit and view existing ones. Custom templates streamline the creation process by providing pre-configured structures, default settings, and reusable components. This significantly reduces development time when building multiple bots or agents with similar configurations or workflow patterns.
 
-## 3.9 Connections
+## 3.10 Connections
 The **Connections** screen allows backend API endpoints to be configured for Model HQ connectivity.
 
 ![tools](configure/11_connections.png)
 
-### 3.9.1 API Name
+### 3.10.1 API Name
 A descriptive label to identify the connection within the UI can be provided.
 
 **Example:** `Model HQ Server`
 
-### 3.9.2 IP Address
+### 3.10.2 IP Address
 The address of the API server should be specified.
 
 **Example:** `127.0.0.1` for local server
 
-### 3.9.3 Port
+### 3.10.3 Port
 The port where the server is running should be entered.
 
 **Example:** `52640`
 
-### 3.9.4 Secret Key
+### 3.10.4 Secret Key
 An optional key used to authenticate requests between Model HQ and the server can be provided.
 
-### 3.9.5 Protocol
+### 3.10.5 Protocol
 The connection protocol should be selected based on the deployment environment.
 
 * **HTTP** for local or internal setups
 * **HTTPS** for secure or remote connections
 
-### 3.9.6 Transfer local credentials
+### 3.10.6 Transfer local credentials
 If enabled, local app credentials are copied to the server.
 Use only in trusted environments.
 
-### 3.9.7 Activate Connection
+### 3.10.7 Activate Connection
 Turns the connection on or off.
 
 > [!NOTE]
 > Only active connections are used.
 
-## 3.10 Reset
+## 3.11 Reset
 The **Reset** section provides options to reset the application or specific configurations.
 
 ![tools](configure/12_reset.png)
@@ -778,7 +787,7 @@ The following reset options are available:
 > [!CAUTION]
 > Reset operations should be performed with caution. Once reset, models, custom applications, and other Model HQ-related files will be deleted and will need to be re-created or re-downloaded.
 
-## 3.11 Theme toggler
+## 3.12 Theme toggler
 The theme toggler provides a quick switch between light and dark display modes for the interface.
 
 ![tools](configure/13_themeToggler.png)
