@@ -1,7 +1,29 @@
 # Exploring services in Model HQ
-The Services interface in Model HQ enables the creation of modular, reusable components that can be integrated into agent workflows, external systems, and orchestrated processes. Services act as building blocks that transform standalone functionality into composable units, allowing agents to invoke other agents, call external REST APIs, or interact with Model Context Protocol (MCP) servers. This capability supports the development of complex, multi-layered agent architectures where each service maintains a well-defined input-output contract.
 
-There are three primary service types supported in Model HQ: Agent Services, which expose existing agents as callable components; REST API Endpoint Services, which integrate external APIs into agent workflows; and MCP Services, which bridge MCP tools with the agent ecosystem. Each service type follows a structured configuration process that defines inputs, runtime parameters, authentication details, and output contracts. By standardizing these interfaces, services enable seamless interoperability between agents, external systems, and third-party tools.
+The Services section in Model HQ lets you turn useful functions into reusable building blocks. These building blocks can be plugged into agent workflows, connected to outside systems, or used as part of larger automated processes.
+
+Think of a service as a way to take something that works on its own — like an agent or an API — and make it something other agents can call and use. For example, an agent can:
+- Call another agent
+- Connect to an external REST API
+- Use tools through an MCP server
+
+This makes it possible to build more advanced, multi-step agent systems where each service clearly defines what it takes in (inputs) and what it returns (outputs).
+
+Model HQ supports three main types of services:
+1) Agent Services – Turn an existing agent into something other agents can call.
+2) REST API Services – Connect outside APIs into your agent workflows.
+3) MCP Services – Connect MCP tools so agents can use them.
+
+Each service is set up in a structured way where you define:
+
+What inputs it needs
+Any runtime settings
+Authentication details (if required)
+What outputs it produces
+
+Because every service follows the same structure, agents can easily work together and connect smoothly with outside systems and tools.
+
+The Services interface in Model HQ enables the creation of modular, reusable components that can be integrated into agent workflows, external systems, and orchestrated processes. Services act as building blocks that transform standalone functionality into composable units, allowing agents to invoke other agents, call external REST APIs, or interact with Model Context Protocol (MCP) servers. This capability supports the development of complex, multi-layered agent architectures where each service maintains a well-defined input-output contract.
 
 This document provides comprehensive guidance on creating and configuring all three service types within Model HQ. It covers the service interface overview, detailed configuration steps for each service type, and best practices for defining input contexts, runtime parameters, and output structures. Understanding the Services interface is essential for building scalable agent systems, integrating external data sources, and creating reusable components that can be shared across multiple workflows and use cases.
 
