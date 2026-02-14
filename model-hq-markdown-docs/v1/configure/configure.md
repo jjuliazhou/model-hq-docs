@@ -255,13 +255,109 @@ Resets all App settings to their default values.
 These App settings allow fine-grained control over user experience, security posture, feature exposure, and runtime behavior across development, enterprise, and air-gapped deployments.
 
 ## 3.2 Services
-
-[Insert Screenshot here]
-
 This is a master panel of services that are available to use in creating agents. Making the selection here will ensure that each of these services are displayed as an option in the Nodes in agents. (Note: Services outside of this master list can be selected at time of use in the agent canvas if not pre-selected here.)
 
-ROHAN - when you get the latest version, we need to make a master table of all of the Services as displayed and explain what each does. We then need to link to this section or display again in Agents.
+![tools](configure/03_services.png)
 
+## 3.2.1 Core Services
+
+| Service | Description |
+|----------|--------------|
+| `chat` | General conversational interface for interacting with the model. Supports multi-turn dialogue with contextual memory. |
+| `rag_answer` | Retrieval-Augmented Generation service that retrieves relevant knowledge from connected data sources before generating a response. |
+| `vision` | Enables image understanding and visual reasoning from uploaded images. |
+| `generate_word_doc` | Generates structured Microsoft Word documents programmatically with formatting and organized content. |
+| `ocr_vision` | Optical Character Recognition combined with visual reasoning to extract and interpret text from images. |
+| `ocr` | Extracts raw text from images or PDFs without deeper visual reasoning. |
+| `agent_report` | Produces structured reports summarizing agent activities, outputs, and analysis. |
+| `wikipedia_search` | Retrieves structured information directly from Wikipedia. |
+| `prompt_builder` | Assists in constructing optimized and structured prompts for AI workflows. |
+| `embedded_bot` | Deployable chatbot service that can be embedded into applications or websites. |
+| `condition` | Provides conditional logic capabilities to branch workflows dynamically. |
+| `web_search` | Performs real-time web searches to retrieve current and relevant information. |
+| `boolean` | Executes logical operations that return true or false outputs. |
+| `extract` | Extracts structured or key information from unstructured text inputs. |
+| `answer` | Provides direct question answering without maintaining conversational state. |
+
+### 3.2.2 Classifiers
+
+| Service | Description |
+|----------|--------------|
+| `sentiment` | Determines sentiment polarity such as positive, negative, or neutral. |
+| `emotions` | Detects emotional tone within text such as joy, anger, or sadness. |
+| `topics` | Identifies major topics discussed within a text. |
+| `tags` | Generates relevant tags or labels based on content. |
+| `intent` | Identifies user intent from textual input. |
+| `ratings` | Predicts rating scores derived from textual feedback. |
+| `ner` | Performs Named Entity Recognition to identify entities such as people, organizations, and locations. |
+| `xsum` | Generates highly concise summaries optimized for brevity. |
+| `summary` | Produces structured and comprehensive summaries of content. |
+| `category` | Assigns predefined categories to text inputs. |
+| `q_gen` | Generates questions based on provided content. |
+
+### 3.2.3 Datasets
+
+| Service | Description |
+|----------|--------------|
+| `select_keys` | Selects specific keys from structured data objects. |
+| `build_dataset` | Constructs datasets from raw or processed inputs. |
+| `ds_cmd_filter` | Applies command-based filtering logic to datasets. |
+| `ds_column_filter` | Filters datasets by specified columns. |
+| `select_ds_column` | Selects specific columns from a dataset for further processing. |
+| `dataset_rag` | Enables Retrieval-Augmented Generation over structured datasets. |
+| `ds_sem_filter` | Applies semantic similarity filtering to dataset entries. |
+| `ds_text_filter` | Performs keyword or text-based filtering within datasets. |
+| `dataset_plot` | Generates visual plots based on dataset values. |
+| `dataset_stat` | Produces statistical summaries and metrics from datasets. |
+| `load_dataset` | Loads datasets into the execution environment. |
+| `ml_predict` | Applies machine learning prediction models to dataset inputs. |
+| `create_json` | Converts structured data into JSON format. |
+| `stats_analyze` | Performs advanced statistical analysis on datasets. |
+
+### 3.2.4 Specialized Services
+
+| Service | Description |
+|----------|--------------|
+| `build_table` | Constructs structured tables from input data. |
+| `query_custom_table` | Executes queries on custom-defined tables. |
+| `semantic_filter` | Filters content based on semantic similarity. |
+| `text_filter` | Applies keyword-based filtering logic to text. |
+| `document_filter` | Filters documents based on defined criteria. |
+| `table_filter` | Filters table rows using specified conditions. |
+| `transformer` | Applies transformation models for rewriting or modifying text. |
+| `aggregate_context` | Combines multiple context sources into a unified reasoning context. |
+| `create_context` | Builds structured contextual memory for agent workflows. |
+| `parse_document` | Parses structured documents into defined components. |
+| `report_commentary` | Generates commentary and analysis on structured reports. |
+| `speech_gen` | Converts text input into speech output. |
+| `image_gen` | Generates images from text prompts. |
+| `get_stock_summary` | Retrieves summarized financial stock information. |
+| `vision_batch` | Processes multiple images in batch mode. |
+| `parse_batch` | Parses multiple documents or inputs in batch processing. |
+| `extract-tiny` | Lightweight extraction service optimized for speed and efficiency. |
+| `website_scraper` | Extracts structured information from websites. |
+| `extract_table` | Extracts tabular data from documents such as PDFs or scanned files. |
+
+### 3.2.5 Integrations
+
+| Service | Description |
+|----------|--------------|
+| `push_to_s3` | Uploads files or structured data to Amazon S3 storage. |
+| `pull_from_s3` | Retrieves files or data from Amazon S3 storage. |
+| `connect_library` | Connects to external or internal knowledge libraries. |
+| `query_library` | Executes queries against connected knowledge libraries. |
+| `get_quote` | Retrieves financial stock quote data. |
+| `get_company_financials` | Retrieves company financial reports and structured financial data. |
+| `send_email` | Sends automated emails through configured systems. |
+| `openai_chat` | Integrates OpenAI chat-based model capabilities. |
+| `openai_rag` | Integrates OpenAI-powered Retrieval-Augmented Generation. |
+| `openai_rag_batch` | Performs batch Retrieval-Augmented Generation using OpenAI services. |
+| `anthropic_chat` | Integrates Anthropic chat model capabilities. |
+| `gemini_chat` | Integrates Google Gemini chat model capabilities. |
+
+### 3.2.6 Custom Services
+
+Custom services were described as those services that had been created within Model HQ to support domain-specific workflows, specialized automation, or organization-specific requirements. These services extend the standard catalog by incorporating tailored logic, configurations, and business rules.
 
 ## 3.3 UI
 The **UI** section enables fast and comprehensive customization of Model HQ's visual appearance, including bot names, icons, colors, and other interface elements.
