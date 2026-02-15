@@ -9,7 +9,7 @@ import { ArrowRight, Zap, Shield, Cpu, Download, Users, Star, Database, AlertTri
 import { Analytics } from "@vercel/analytics/react"
 
 export default function HomePage() {
-  const [activeVersion, setActiveVersion] = useState<'v0' | 'v1'>('v0')
+  const [activeVersion, setActiveVersion] = useState<'v0' | 'v1'>('v1')
   
   return (
     <>
@@ -334,6 +334,7 @@ export default function HomePage() {
             {/* Version Toggle */}
             <div className="inline-flex items-center gap-2 p-1 bg-background border rounded-lg shadow-sm">
               <button
+                suppressHydrationWarning
                 onClick={() => setActiveVersion('v0')}
                 className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
                   activeVersion === 'v0'
@@ -344,6 +345,7 @@ export default function HomePage() {
                 v0 Docs
               </button>
               <button
+                suppressHydrationWarning
                 onClick={() => setActiveVersion('v1')}
                 className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
                   activeVersion === 'v1'
@@ -624,20 +626,183 @@ export default function HomePage() {
         {/* V1 Documentation */}
         {activeVersion === 'v1' && (
           <div className="max-w-4xl mx-auto">
-            <div className="text-center py-16">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-100 dark:bg-blue-900/50 border border-blue-300 dark:border-blue-700 rounded-full mb-6">
-                <div className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            <div className="space-y-8">
+              {/* Chat */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/chat" className="text-xl font-semibold text-primary hover:underline">
+                    Chat
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Explore chat functionality and model interactions</span>
                 </div>
-                <span className="text-blue-700 dark:text-blue-300 font-semibold">Coming Soon</span>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/chat" className="text-primary hover:underline">
+                      Chat Overview
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/chat/chat-configuration" className="text-primary hover:underline">
+                      Chat Configuration
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/chat/document-parsing-issues" className="text-primary hover:underline">
+                      Document Parsing Issues
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/chat/error-handling" className="text-primary hover:underline">
+                      Error Handling
+                    </a>
+                  </li>
+                </ul>
               </div>
-              <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
-                We're working hard on the next version of Model HQ with exciting new features, improved performance, and enhanced capabilities.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Stay tuned for updates and documentation!
-              </p>
+
+              {/* Bots */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/bots" className="text-xl font-semibold text-primary hover:underline">
+                    Bots
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Build and customize your own bots</span>
+                </div>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/bots" className="text-primary hover:underline">
+                      Bots Overview
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/bots/build-bot" className="text-primary hover:underline">
+                      Building a Bot
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/bots/edit-bot" className="text-primary hover:underline">
+                      Editing a Bot
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Models */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/models" className="text-xl font-semibold text-primary hover:underline">
+                    Models
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Discover and manage AI models</span>
+                </div>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/models" className="text-primary hover:underline">
+                      Models Overview
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/models/model-configuration" className="text-primary hover:underline">
+                      Model Configuration
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/models/custom-test" className="text-primary hover:underline">
+                      Create Custom Test
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Source */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/source" className="text-xl font-semibold text-primary hover:underline">
+                    Source (RAG)
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Retrieval-Augmented Generation workflows</span>
+                </div>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/source" className="text-primary hover:underline">
+                      Source Overview
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/source/parsing-in-source" className="text-primary hover:underline">
+                      Parsing in Source
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/source/error-handling" className="text-primary hover:underline">
+                      Error Handling
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Services */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/services" className="text-xl font-semibold text-primary hover:underline">
+                    Services
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Create reusable service components for agent workflows</span>
+                </div>
+              </div>
+
+              {/* Integrations */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/integrations" className="text-xl font-semibold text-primary hover:underline">
+                    Integrations
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Connect external services, cloud platforms, and AI providers</span>
+                </div>
+              </div>
+
+              {/* Configs & Tools */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/configs-and-tools/configure" className="text-xl font-semibold text-primary hover:underline">
+                    Configs & Tools
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Comprehensive configuration controls and tools</span>
+                </div>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/configs-and-tools/configure" className="text-primary hover:underline">
+                      Configure
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/configs-and-tools/tools" className="text-primary hover:underline">
+                      Tools
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Shutdown */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/shutdown" className="text-xl font-semibold text-primary hover:underline">
+                    Shutdown
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Close the app safely as best practices and highly recommended</span>
+                </div>
+              </div>
+
+              <hr />
+
+              {/* Cookbooks */}
+              <div id="#cookbooks">
+                <div className="text-2xl font-semibold text-primary mb-3">
+                  CookBooks
+                  <span className="text-base text-muted-foreground ml-2">
+                    Coming soon - v1 cookbook are in cooking stage
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         )}

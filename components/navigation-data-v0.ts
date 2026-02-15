@@ -102,43 +102,6 @@ export const v0NavigationData: NavItem[] = [
     url: "/v0/shutdown",
     icon: Power,
   },
-  {
-    title: "Cookbooks",
-    url: "/cookbooks/v0",
-    icon: BookOpen,
-    items: [
-      { 
-        title: "Clinical Trial Screening Automation", 
-        url: "/cookbooks/v0/clinical-trial-screening-autmation",
-        icon: Stethoscope,
-      },
-      { 
-        title: "Document Review and Analysis Tool", 
-        url: "/cookbooks/v0/document-review-and-analysis-tool",
-        icon: FileSearch,
-      },
-      { 
-        title: "Hybrid Inferencing", 
-        url: "/cookbooks/v0/hybrid-inferencing",
-        icon: Server,
-      },
-      { 
-        title: "Personalized Bot", 
-        url: "/cookbooks/v0/personalized-bot",
-        icon: BrainCircuit,
-      },
-      { 
-        title: "Photo to Email Automation", 
-        url: "/cookbooks/v0/photo-to-email-automation",
-        icon: Camera,
-      },
-      { 
-        title: "RAG Bot", 
-        url: "/cookbooks/v0/rag-bot",
-        icon: Library,
-      },
-    ],
-  },
 ]
 
 export const v0CodeDocumentation: NavItem[] = [

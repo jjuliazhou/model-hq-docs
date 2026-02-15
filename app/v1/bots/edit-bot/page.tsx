@@ -180,7 +180,7 @@ export default function EditingABotPage() {
           <blockquote data-type="tip">
             <p>To query a file that has been included with the bot, the user will select the <strong>Source</strong> button under the chat interface then in Loaded Sources, select the desired file that has been appended with the bot.
             </p>
-            <p>!<a href="/v1/bots/editBot/03-source.png">editBot</a></p>
+            <p>!<a href="editBot/03-source.png">editBot</a></p>
           </blockquote>
 
           <h3 id="13-agents">1.3 Agents</h3>
@@ -485,11 +485,10 @@ export default function EditingABotPage() {
             A full bot can also be created from scratch using this editor, but this requires knowledge of the entire schema; therefore, this option is not widely promoted.
           </p>
 
-          <details>
-            <summary>Sample JSON Configuration of `Bots with Agent` bot</summary>
+          <details><summary>Sample JSON Configuration of `Bots with Agent` bot</summary>
 
-            <pre className="overflow-auto rounded bg-gray-100 p-4 dark:bg-gray-900">
-              <code>{`{
+            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
+              <code className="text-sm">{`{
   "name": "bot_with_agents",
   "display_name": "Bot with Agents",
   "model_name": "llama-3.2-1b-instruct-ov",
@@ -565,7 +564,7 @@ export default function EditingABotPage() {
   "bot_document_files": [],
   "bot_source_files": [],
   "bot_dataset_files": [],
-  "rag_compare_instruction": "Here are several sources - please use as the basis for answering questions, and cite the specific source, if used, in generating your answer.\n",
+  "rag_compare_instruction": "Here are several sources - please use as the basis for answering questions, and cite the specific source, if used, in generating your answer.\\n",
   "rag_aggregate_instruction": "",
   "system_instruction": "",
   "use_wikipedia": true,

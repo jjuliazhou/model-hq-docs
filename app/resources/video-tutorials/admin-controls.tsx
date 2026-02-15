@@ -132,7 +132,7 @@ export default function AdminControls({
         .split(",")
         .map((tag) => tag.trim())
         .filter(Boolean),
-      isManuallyAdded: true,
+      isManuallyAdded: false,
       publishedAt: new Date().toISOString(),
     }
 

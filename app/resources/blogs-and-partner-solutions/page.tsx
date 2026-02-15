@@ -201,6 +201,7 @@ export default function BlogsPage() {
         </div>
         <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
           <button
+            suppressHydrationWarning
             onClick={() => window.open(solution.link, "_blank")}
             className={`w-full relative overflow-hidden ${
               partner === "intel"
@@ -249,6 +250,7 @@ export default function BlogsPage() {
             {displayedBlogs.map((blog) => (
               <Card
                 key={blog.id}
+                suppressHydrationWarning
                 className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 rounded-2xl shadow-lg cursor-pointer bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900"
                 onClick={() => window.open(blog.link, "_blank")}
               >
@@ -310,6 +312,7 @@ export default function BlogsPage() {
           {blogPosts.length > 3 && (
             <div className="flex justify-center" ref={blogViewMoreButtonRef}>
               <Button
+                suppressHydrationWarning
                 onClick={handleBlogViewToggle}
                 variant="outline"
                 size="lg"
@@ -369,6 +372,7 @@ export default function BlogsPage() {
             {intelSolutions.length > 3 && (
               <div className="flex justify-center" ref={intelViewMoreButtonRef}>
                 <Button
+                  suppressHydrationWarning
                   onClick={handleIntelViewToggle}
                   variant="outline"
                   size="lg"
@@ -419,6 +423,7 @@ export default function BlogsPage() {
               {qualcommSolutions.length > 3 && (
                 <div className="flex justify-center" ref={qualcommViewMoreButtonRef}>
                   <Button
+                    suppressHydrationWarning
                     onClick={handleQualcommViewToggle}
                     variant="outline"
                     size="lg"

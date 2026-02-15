@@ -100,6 +100,3 @@ If you prefer, you can still use v0 by Vercel:
 - Attach a reference file (copy any existing page.tsx)
 - Prompt: "Convert this markdown according to the reference attached"
 - Copy the code to the respective folder
-
-&nbsp;
-

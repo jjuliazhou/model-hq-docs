@@ -12,8 +12,7 @@ export interface VideoData {
 }
 
 export const playlistVideos: VideoData[] = [
-
-{
+  {
     id: "Dbxb5qfsMaM",
     title: "LLMWare Model HQ Splash Video",
     description:
@@ -24,7 +23,173 @@ export const playlistVideos: VideoData[] = [
     tags: ["Promo", "Launch"],
     isManuallyAdded: true,
   },
+  {
+    id: "fW8_-_EdsrM",
+    title: "Handwriting-Reading Agent with On-Device AI | Prescription Reading Agent (no code, private)",
+    description:
+      "In this video, I will show you something pretty amazing — a vision agent that reads handwritten prescriptions and turns messy handwriting into clean, structured data.",
+    duration: "7:27",
+    views: "0",
+    thumbnail: "/youtube/new/hragent.jpg",
+    tags: ["Handwriting Reading", "Agent"],
+    isManuallyAdded: false,
+  },
 
+  {
+    id: "FGmY9whUkaA",
+    title: "Sharing Agents with No Hardware Lock-In on Model HQ (Intel ↔ Qualcomm, Zero Changes)",
+    description:
+      "You’re about to see something you probably haven’t seen anywhere else. 👀",
+    duration: "10:46",
+    views: "0",
+    thumbnail: "/youtube/new/agent.jpg",
+    tags: ["Intel", "Agent"],
+    isManuallyAdded: false,
+  },
+
+{
+    id: "yBj6wfdCoFc",
+    title: "2 On-Device Agent Demos on Snapdragon X Elite (RAG + Vision) | Model HQ + Microsoft Foundry Models",
+    description:
+      "In this demo for Qualcomm AI PCs (Snapdragon X Elite and X2 Elite), I’m walking through two simple but powerful on-device agent workflows in Model HQ—the same demo Qualcomm showcased at CES Las Vegas (January 2026).",
+    duration: "10:39",
+    views: "0",
+    thumbnail: "/youtube/new/qcagents.jpg",
+    tags: ["Qualcomm", "Agent"],
+    isManuallyAdded: false,
+  },
+
+{
+    id: "qhO-Zlu4nYI",
+    title: "Private On-Device AI on Snapdragon X Elite: Download + Test NPU Models in Model HQ",
+    description:
+      "In this video, I walk through Model HQ’s model catalogue and capabilities — this time running fully on a Qualcomm Snapdragon X Elite device.",
+    duration: "7:02",
+    views: "0",
+    thumbnail: "/youtube/new/qc.jpg",
+    tags: ["Qualcomm", "Snapdragon"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "odTepwd8Xr0",
+    title: "Testing NPU Model Sizes for on-device RAG (3B vs 7B vs 14B) | Model HQ",
+    description:
+      "In this Model HQ demo, I test different NPU-optimized model sizes to answer a key question every on-device AI user asks:",
+    duration: "7:39",
+    views: "0",
+    thumbnail: "/youtube/new/npu.jpg",
+    tags: ["NPU", "RAG"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "Vz48X6SWwrQ",
+    title: "Process 500 PDFs On-Device for RAG and Agents in 30 seconds?! Model HQ Sources Demo (Real-Time)",
+    description:
+      "In this demo, I will show you how to create Sources in Model HQ—bundles or collection of documents (books, PDFs, manuals, handbooks, and more) that become a shared source of truth for your bots and agent workflows, including 500 PDF Documents being ingested real time on-device on Intel Lunar Lake.",
+    duration: "9:44",
+    views: "0",
+    thumbnail: "/youtube/new/pdf.jpg",
+    tags: ["On-Device RAG", "Ingest PDF"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "7EiTHPtjbbU",
+    title: "Model HQ Overview Demo for Intel Devices: 250+ Models + No-Code Agents (Chat, RAG, Vision)",
+    description:
+      "In this demo for Intel devices, I will walk through an overview of Model HQ — a private, local, no-code platform that brings together 250+ models for chat and agent workflows, with no Wi-Fi required once models are downloaded.",
+    duration: "10:25",
+    views: "0",
+    thumbnail: "/youtube/new/intel.jpg",
+    tags: ["intel", "no code", "250 models"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "zP2v8DixQaA",
+    title: "Build a Custom AI Bot in Minutes (No-Code + Offline) | Model HQ Demo",
+    description:
+      "In this demo, I'll show you how to build a custom AI bot in Model HQ in just a few minutes—no code required.",
+    duration: "9:30",
+    views: "0",
+    thumbnail: "/youtube/new/bot.jpg",
+    tags: ["Bot", "No Code"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "R1fAogEIDMc",
+    title: "No-Code Sentiment & Emotion Detection Agent in Model HQ (On-Device + Private AI)",
+    description:
+      "In this Model HQ demo, I’ll show you how to build a no-code agentic workflow for sentiment analysis, emotion detection, ratings, and topic classification—all running locally on your device for fast, private, on-device AI.",
+    duration: "6:41",
+    views: "0",
+    thumbnail: "/youtube/new/sedagent.jpg",
+    tags: ["Sentiment & Motion Detection", "Agent"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "1xE07RNHDM0",
+    title: "Private, Local Image Agents in Model HQ: Describe Images + Extract Numbers (Fast!)",
+    description:
+      "In this video, I’ll show you how to build image-reading agents in Model HQ—fully on-device, private, and no-code. Once your models are downloaded, you can run vision workflows without Wi-Fi, keeping your data secure and local.",
+    duration: "5:02",
+    views: "0",
+    thumbnail: "/youtube/new/iragent.jpg",
+    tags: ["Image Reading", "Agent"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "9n7gXz6knbM",
+    title: "Contract Analyzer Agent in Minutes (No-Code + Offline) | Model HQ Demo",
+    description:
+      "In this Model HQ demo, I’ll show you how to build a no-code contract analyzer agent for real day-to-day work—perfect for reviewing agreements you see over and over again and extracting the same key terms every time.",
+    duration: "10:58",
+    views: "0",
+    thumbnail: "/youtube/new/caagent.jpg",
+    tags: ["Contract Analyzer", "Agent"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "JazySdXT2IE",
+    title: "Build a No-Code Classification Test or Use Custom Test Sets to Test Models (Root Cause Analysis)",
+    description:
+      "In Part 2 of our Models series, I’ll show you how to go beyond “download a model” and start testing models with custom test sets—all no-code and fully on-device in Model HQ.",
+    duration: "10:21",
+    views: "0",
+    thumbnail: "/youtube/new/model2.jpg",
+    tags: ["Models", "Classification", "Custom Test"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "XT5wZ4TAsHM",
+    title: "150+ AI Models Running Offline?! | Model HQ Demo (No Code + Private AI), Part 1",
+    description:
+      "In this Model HQ demo, I’ll walk you through Model HQ’s model capabilities—including how to browse and run 150+ models locally on your laptop or PC with no code and no Wi-Fi needed once models are downloaded.",
+    duration: "10:34",
+    views: "0",
+    thumbnail: "/youtube/new/model1.jpg",
+    tags: ["Models", "No Code", "Private AI"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "yNkcSH73vKc",
+    title: "Chat in Model HQ in Under 5 Minutes - How to use On-Device AI Getting Started with Chat",
+    description:
+      "In this quick walkthrough, I'll show you how to get started with Chat in Model HQ - the fastest and easiest way to begin experimenting with AI on your laptop or PC - all No Code.",
+    duration: "6:40",
+    views: "0",
+    thumbnail: "/youtube/new/chat.jpg",
+    tags: ["RAG", "Chat"],
+    isManuallyAdded: false,
+  },
   {
     id: "g1g9UbAzv9c",
     title: "Will It Run? Testing AI PC App on a 5-Year old Laptop",

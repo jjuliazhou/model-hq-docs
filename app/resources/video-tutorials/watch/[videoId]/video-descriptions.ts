@@ -1,5 +1,373 @@
 // Video descriptions mapping
 export const videoDescriptions: Record<string, string> = {
+  "fW8_-_EdsrM": `
+    In this video, I will show you something pretty amazing — a vision agent that reads handwritten prescriptions and turns messy handwriting into clean, structured data.
+
+Using Model HQ, we build a complete workflow in minutes with no code and fully on device. No Wi-Fi required once models are downloaded. No cloud. Total privacy.
+
+You’ll see how to:
+
+• Input prescription images
+• Use a vision model to read handwriting
+• Extract patient names, drug names, dosages, and dates
+• Convert everything into structured outputs for CSVs or databases
+• Build the entire agent visually in 1 minute
+
+This is real-world AI you can run locally — perfect for healthcare workflows, document processing, and secure environments where data can’t leave the device.
+
+If you’ve ever wondered, “Can AI actually read doctors' handwriting?” — this demo proves it.
+
+The images used in the video can be found in: 
+
+A-sample-prescription-containing-handwritten-texts-over-the-printed-lines.png (850×721)
+
+1000_F_56617167_ZGbrr3mHPUmLoksQmpuY7SPA8ihTI5Dh.jpg (727×1000)
+
+I copied these publicly available sample images to my local folder to use in the demo.
+
+Download Model HQ and try it yourself.
+
+#ModelHQ #LLMWare #OnDeviceAI #EdgeAI #VisionAI #NoCodeAI #PrivateAI #AgenticAI #HealthcareAI #DocumentAI
+  `,
+  "FGmY9whUkaA": `
+    You’re about to see something you probably haven’t seen anywhere else. 👀
+
+In this demo, I build an AI agent on an Intel Lunar Lake device, export it as a zip file, and run that exact same agent instantly on a Qualcomm Snapdragon X Elite device — no rebuilds, no changes, no cloud, and no headaches.
+
+Then I flip it.
+I build a completely different agent on Qualcomm (including vision + emotion + chat models) and run it back on Intel just as easily.
+
+All of this is done locally in each device, inside Model HQ.
+
+From an enterprise IT perspective, this demo solves for a problem that’s traditionally very hard to solve. Qualcomm Snapdragon X Elite systems run on Arm architecture, while Intel Lunar Lake systems run on x86. 
+
+ In this demo, the same AI agent is built once and deployed unchanged across both Arm and x86 devices, entirely on-device, with no cloud dependencies.
+
+For IT teams managing mixed hardware fleets, this approach simplifies deployment, governance, security reviews, and long-term maintenance, while avoiding platform-specific forks or vendor lock-in.
+
+What this video shows:
+
+🔁 Build once, share everywhere — Intel ↔ Qualcomm
+
+📦 Agents exported and shared as simple zip files
+
+⚙️ No cloud calls, no re-compiling, agents run across mixed device fleet
+
+🤖 Text + RAG agents and multi-model vision agents
+
+🧠 Multiple models working together inside one agent
+
+🔒 Fully private, on-device AI
+
+Model HQ turns every AI PC into a portable AI workstation, letting you build agents, workflows, and bots once — and run them across different hardware platforms with ease.
+
+If you’re managing mixed hardware fleets, building enterprise AI workflows, or just want real portability for on-device AI, this demo is for you.
+
+👉 Watch to see how fast it really is to build, export, and run AI agents across devices.
+
+Visit LLMware.ai for more information.
+
+
+#OnDeviceAI #ModelHQ #AIAgents #NoCodeAI #EdgeAI #AIPC #IntelAI #QualcommAI #SnapdragonXElite #LunarLake #PrivateAI #EnterpriseAI #AgenticAI #RAG #VisionAI
+  `,
+  "yBj6wfdCoFc": `
+    
+    In this demo for Qualcomm AI PCs (Snapdragon X Elite and X2 Elite), I’m walking through two simple but powerful on-device agent workflows in Model HQ—the same demo Qualcomm showcased at CES Las Vegas (January 2026).
+
+Everything is built in our no-code, drag-and-drop Visual Builder, and runs locally on device for a private, secure workflow.
+
+✅ Demo #1: Document Agent (RAG + Chat + Calculation)
+
+We start with a music license agreement and build a lightweight RAG workflow to answer:
+
+Who are the parties to the agreement?
+
+What is the royalty rate?
+
+Then we use a Transformer node to bundle the answers into Agent State, and pass it into a final chat step to calculate:
+
+What is the royalty if the artist sells 100 copies at $5 each?
+
+To showcase the Qualcomm NPU, we run the calculation using a Foundry model (Qwen 2.5 7B Instruct).
+
+🖼️ Demo #2: Vision + Classifiers + Storytelling Agent
+
+Next, we build a fun vision workflow using an image input:
+
+Vision model describes the image
+
+Sentiment classifier detects positivity/negativity
+
+Emotion classifier detects emotion 
+
+Transformer bundles outputs → chatbot writes a short story
+
+We run this workflow with a Foundry model (Phi-3) and test it with:
+
+A dog running through a field 🐶
+
+A sports car image 🚗
+
+🔥 Why this matters
+
+In a single workflow, we’re chaining 4 models together (vision + sentiment + emotion + chat) and showing how CPU + NPU can work together seamlessly on Qualcomm hardware.
+
+
+
+📌 Model HQ: Private • Local • No-Code • Built for Agents + Small Models
+
+#Qualcomm #SnapdragonXElite #OnDeviceAI #NPU #Agents #RAG #VisionAI #ModelHQ #FoundryModels #CES2026 #LLMWare #OnDeviceAI #PrivateAI #EdgeAI 
+ #AIDemo
+  
+  `,
+  "qhO-Zlu4nYI": `
+    
+    In this video, I walk through Model HQ’s model catalogue and capabilities — this time running fully on a Qualcomm Snapdragon X Elite device.
+
+Model HQ is a private, local, no-code platform for models, chat, agents, and RAG. Once models are downloaded, no Wi-Fi is needed—everything stays secure and runs on your machine.
+
+What you’ll see in this demo:
+
+✅ How to browse 162 available models on Snapdragon X Elite
+✅ How to identify NPU-optimized models (ONNX QNN) vs CPU models (ONNX / GGUF)
+✅ Popular model families included: Phi, Qwen, Llama, DeepSeek, and more
+✅ LLMWare’s specialist models: BLING (RAG) + SLIM (agent function-calling) + Dragon
+✅ How to download models with one click and start using them immediately
+✅ 3 ways to test any model inside ModelHQ:
+
+Sandbox (quick single prompt test + inference time)
+
+Standard Test (LLMWare benchmark with context passage + gold answer)
+
+Custom Test (bring your own dataset to evaluate model performance)
+
+Why this matters
+
+If you’re trying to decide which model to run on Snapdragon X Elite, this video shows exactly how to compare quality + speed—especially for RAG-style questions where accuracy matters and hallucinations can’t happen.
+
+Everything you see here is running on-device, using the Snapdragon NPU for ONNX QNN models—so you get fast inference while keeping your data private.
+
+🔒 ModelHQ in action: private on-device AI made easy.
+Subscribe for more demos on Qualcomm Snapdragon, RAG workflows, agents, and model testing.
+
+#ModelHQ #LLMWare #Qualcomm #SnapdragonXElite #NPU #ONNX #QNN #OnDeviceAI #PrivateAI #SmallLanguageModels #RAG #NoCodeAI #SLMs
+  
+  `,
+  "odTepwd8Xr0": `
+    In this Model HQ demo, I test different NPU-optimized model sizes to answer a key question every on-device AI user asks:
+
+Which model size is “enough” for real RAG work?
+
+Using an Intel Lunar Lake AI PC, we run the same RAG query against a complex Long-Term Supply Agreement and compare results across multiple NPU models—including 3B, 7B, and 14B parameter models.
+
+You’ll see how:
+✅ Smaller NPU models can handle basic chat tasks
+✅ RAG answers improve as model size increases
+✅ 7B+ models become much more reliable for complex legal queries
+✅ 14B delivers the most complete, polished answer (with strong NPU utilization)
+✅ Model HQ shows the exact source snippets + page references behind each answer
+
+Everything runs locally and privately on-device—no cloud required.
+
+Please subscribe and visit llmware.ai for more details.
+
+#ModelHQ #LLMWare #Intel #IntelAI #LunarLake #MeteorLake 
+#AIPC #OnDeviceAI #PrivateAI 
+#SmallLanguageModels #AIAgents #AIWorkbench
+  `,
+  "Vz48X6SWwrQ": `
+    In this demo, I will show you how to create Sources in Model HQ—bundles or collection of documents (books, PDFs, manuals, handbooks, and more) that become a shared source of truth for your bots and agent workflows, including 500 PDF Documents being ingested real time on-device on Intel Lunar Lake.
+
+You’ll learn how to:
+✅ Create a new Source bundle in seconds
+✅ Add and ingest documents (including sample files included with Model HQ)
+✅ Test your Source with natural-language RAG queries
+✅ Use the same Source inside Chat (and later, bots + agents)
+✅ Scale up fast—watch 500 UN resolutions PDFs ingest in real time on an Intel Lunar Lake AI PC
+
+Model HQ is a private, local, no-code AI platform that brings together hundreds of models for chat + agents, and once models are downloaded, no Wi-Fi is required to use them.
+
+🔒 ModelHQ in action: private on-device AI made easy. Please visit llmware.ai for more information.
+Subscribe for more no-code demos on bots, agents, workflows, and RAG.
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#AIWorkbench #EnterpriseAI #EdgeAI
+  `,
+  "7EiTHPtjbbU": `
+    In this demo for Intel devices, I will walk through an overview of Model HQ — a private, local, no-code platform that brings together 250+ models for chat and agent workflows, with no Wi-Fi required once models are downloaded.
+
+You’ll see how easy it is to:
+
+Browse and download models from the Model HQ catalog (including Llama, Mistral, Gemma, Microsoft Phi, Qwen, and LLMWare SLIM / BLING / Dragon models)
+
+Run fast on-device chat and test model performance on Intel AI PCs
+
+Use RAG with source documents to extract key terms from contracts (salary, vacation days, etc.)
+
+Build drag-and-drop agents in minutes (story generation + headline writing)
+
+Create a vision agent workflow that reads an image and generates outputs like poems, style classifications, and marketing copy
+
+This is a quick end-to-end look at how ModelHQ enables secure, offline-ready AI workflows with small language models on device — and optional integrations for frontier models when needed.
+
+📌 Learn more about Model HQ + LLMWare on our website: llmware.ai
+🔔 Subscribe for more on-device AI demos, agents, and RAG workflows.
+
+#ModelHQ #LLMWare #Intel #IntelAI #LunarLake #MeteorLake 
+#AIPC #OnDeviceAI #PrivateAI 
+#SmallLanguageModels #AIAgents #AIWorkbench
+  `,
+  "zP2v8DixQaA": `
+    In this demo, I'll show you how to build a custom AI bot in Model HQ in just a few minutes—no code required.
+
+Model HQ brings together models, chat, and agents in a private, local platform, so your bot can run fully on-device (and once models are downloaded, no Wi-Fi is needed).
+
+In this walkthrough, we:
+
+Explore built-in sample bots (including a PersonaBot example)
+
+Build a custom AC Repair Bot from scratch
+
+Choose a lightweight model (Qwen 2.5 1.5B) for easy deployment
+
+Customize the bot UI (theme, title, colors, and icon)
+
+Attach technical documents for RAG + source-grounded answers
+
+Share the bot as a downloadable ZIP for others to import and use
+
+Thanks for watching Model HQ in action — private on-device AI made easy.
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#chatbot #EnterpriseAI #EdgeAI
+  `,
+  "R1fAogEIDMc": `
+    In this Model HQ demo, I’ll show you how to build a no-code agentic workflow for sentiment analysis, emotion detection, ratings, and topic classification—all running locally on your device for fast, private, on-device AI.
+
+We start with an image input, use a vision model to describe what’s in the image, then stack sentiment + emotion models to classify the tone and feeling. Next, we pass the results through Agent State and add a chat model to generate a short story based on the vision + sentiment + emotion output.
+
+Then we switch to a text-based workflow and use sentiment + emotions to automatically generate a polite response to an angry customer message—a real-world use case for support teams, operations, and anyone handling inbound feedback.
+
+🚀 Everything runs offline once models are downloaded — no Wi-Fi required.
+🔒 Private, local, and easy to build with Model HQ’s visual agent builder.
+
+Subscribe for more how-to videos and visit llmware.ai for more information!
+  `,
+  "1xE07RNHDM0": `
+    In this video, I’ll show you how to build image-reading agents in Model HQ—fully on-device, private, and no-code. Once your models are downloaded, you can run vision workflows without Wi-Fi, keeping your data secure and local.
+We’ll start with a simple vision agent that can describe an image, then level up to a real-world extraction workflow—pulling a card number/serial-like ID directly from an image so it can be used in a larger enterprise process (like matching against a database).
+
+What you’ll see:
+Creating a new agent with the Visual Builder
+Adding an Image Input Node
+Connecting a Vision Model to answer questions about the image
+Testing with built-in sample images
+Extracting a specific value (e.g., “number only”) for downstream automation
+If you’re looking to build secure, practical AI workflows that combine images + agents, this is a great place to start.
+
+Subscribe for more Model HQ agent demos and enterprise workflows.
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#SLM  #EnterpriseAI #EdgeAI
+  `,
+  "9n7gXz6knbM": `
+    In this Model HQ demo, I’ll show you how to build a no-code contract analyzer agent for real day-to-day work—perfect for reviewing agreements you see over and over again and extracting the same key terms every time.
+
+We’ll create a Music License Agreement agent that can answer questions like:
+
+Who are the parties to the agreement?
+
+What is the effective date?
+
+What is the royalty payment?
+
+Is there an advance payment (and how much)?
+
+You’ll see how Model HQ uses RAG + re-ranking to pull the most relevant text from the document and generate accurate answers—fully on-device, with no data leaving your laptop.
+
+Then we’ll take it one step further and run the agent in batch mode across multiple agreements and download the results.
+
+✅ What you’ll learn:
+
+How to build a no-code contract analyzer agent
+
+How to connect RAG questions to a document
+
+How re-ranking improves answer quality
+
+How to run the agent on multiple contracts in batch
+
+How to export results for review and workflow automation
+
+That’s Model HQ—private, on-device AI made easy. 🚀
+Learn more: https://llmware.ai
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#SLM  #EnterpriseAI #EdgeAI
+  `,
+  "JazySdXT2IE": `
+    In Part 2 of our Models series, I’ll show you how to go beyond “download a model” and start testing models with custom test sets—all no-code and fully on-device in Model HQ.
+
+We’ll generate a quick test set (JSON), run it against different models, compare speed + quality, and then level up to a real enterprise use case of how to use your own custom test set: root-cause / classification with a 200-row dataset using one-shot prompting—all running offline once your models are downloaded.
+
+✅ In this video:
+
+Generate a custom test set in seconds
+
+Run the same test set across different models
+
+Review first-token time + total processing time
+
+Run a 200-row classification dataset for enterprise-style analysis
+
+Compare model responses to gold answers (and refine prompts)
+
+Learn more about Model HQ: https://llmware.ai
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#SLM  #EnterpriseAI #EdgeAI
+  `,
+  "XT5wZ4TAsHM": `
+    In this Model HQ demo, I’ll walk you through Model HQ’s model capabilities—including how to browse and run 150+ models locally on your laptop or PC with no code and no Wi-Fi needed once models are downloaded.
+
+I’m demoing on an Intel Lunar Lake device (NPU + iGPU), and we’ll explore popular model families like Qwen, Phi, Gemma, Mistral, and Llama, plus LLMWare models built for RAG and agent workflows (sentiment, summarization, NER, SQL, intent tagging, and more).
+
+You’ll also see how to test model performance in Model HQ using:
+✅ Quick Sandbox prompts
+✅ A built-in Standard Test (21 queries)
+✅ A Custom Test Set Generator (JSON test sets you can download and reuse)
+
+Everything runs private and secure, directly on-device.
+
+🔔 Subscribe for more on-device AI demos and Model HQ walkthroughs. Please visit llmware.ai for more information.
+
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#SLM  #EnterpriseAI #EdgeAI
+  `,
+  "yNkcSH73vKc": `
+    In this quick walkthrough, I'll show you how to get started with Chat in Model HQ - the fastest and easiest way to begin experimenting with AI on your laptop or PC - all No Code.
+
+You'll learn how to:
+- Open a chat session
+- See which model you're running (and configuration details)
+- Switch between models instantly (including GPU and NPU models)
+- Upload a document and start asking questions (RAG-style)
+
+Best part: everything runs on device, and once your models are downloaded, you don't need Wi-Fi to use them.
+
+Please subscribe for more How-To's and visit llmware.ai for details on Model HQ.
+
+#ModelHQ #LLMWare #OnDeviceAI #PrivateAI #LocalAI 
+#NoCodeAI #AIAgents #RAG #SmallLanguageModels 
+#SLM  #EnterpriseAI #EdgeAI
+  `,
   Dbxb5qfsMaM: `
     Introducing Model HQ for AI PCs powered by Intel
   `,

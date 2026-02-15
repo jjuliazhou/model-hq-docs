@@ -292,7 +292,7 @@ export function Header() {
         className={`sticky top-0 z-40 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-2 sm:px-4 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
       >
-        <SidebarTrigger className="-ml-1 flex-shrink-0" />
+        <SidebarTrigger className="-ml-1 flex-shrink-0" suppressHydrationWarning />
         <Separator orientation="vertical" className="mr-2 h-4 flex-shrink-0" />
         <div className="flex flex-1 items-center justify-between gap-2 min-w-0">
           <div className="flex items-center gap-2 min-w-0 flex-shrink">
@@ -393,6 +393,7 @@ export function Header() {
               }}
               className="h-9 px-3 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors flex items-center gap-2"
               title="AI Search (⌘K or Ctrl+K)"
+              suppressHydrationWarning
             >
               <Sparkles className="h-4 w-4" />
               <span className="hidden sm:inline text-sm">AI</span>

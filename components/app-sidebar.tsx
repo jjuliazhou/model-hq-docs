@@ -121,16 +121,40 @@ const navigationData = {
       icon: BookOpen,
     },
   ],
-  // Cookbooks are now imported from navigation data files
-  // Transform sub-items to NavItems by ensuring they have icons
-  cookbooksV0: (v0NavigationData.find(item => item.title === "Cookbooks")?.items || []).map(item => ({
-    ...item,
-    icon: item.icon || BookOpen // Fallback icon if somehow missing
-  })) as NavItem[],
-  cookbooksV1: (v1NavigationData.find(item => item.title === "Cookbooks")?.items || []).map(item => ({
-    ...item,
-    icon: item.icon || BookOpen // Fallback icon if somehow missing
-  })) as NavItem[],
+  // Cookbooks sections - defined separately from v0/v1 docs
+  cookbooksV0: [
+    { 
+      title: "Clinical Trial Screening Automation", 
+      url: "/cookbooks/v0/clinical-trial-screening-autmation",
+      icon: Stethoscope,
+    },
+    { 
+      title: "Document Review and Analysis Tool", 
+      url: "/cookbooks/v0/document-review-and-analysis-tool",
+      icon: FileSearch,
+    },
+    { 
+      title: "Hybrid Inferencing", 
+      url: "/cookbooks/v0/hybrid-inferencing",
+      icon: Server,
+    },
+    { 
+      title: "Personalized Bot", 
+      url: "/cookbooks/v0/personalized-bot",
+      icon: BrainCircuit,
+    },
+    { 
+      title: "Photo to Email Automation", 
+      url: "/cookbooks/v0/photo-to-email-automation",
+      icon: Camera,
+    },
+    { 
+      title: "RAG Bot", 
+      url: "/cookbooks/v0/rag-bot",
+      icon: Library,
+    },
+  ] as NavItem[],
+  cookbooksV1: [] as NavItem[],
 }
 
 // Helper component for collapsed state with hover menu
@@ -447,7 +471,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <Collapsible defaultOpen={pathname.startsWith('/v0') || pathname.startsWith('/getting-started-with-model-hq-sdk') || pathname.startsWith('/hello-world') || pathname.startsWith('/api-reference')} className="group/v0-collapsible">
           <SidebarGroup>
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors">
+              <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
                 <span className="font-semibold text-sm">Model HQ v0 Docs</span>
                 <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v0-collapsible:rotate-90" />
               </CollapsibleTrigger>
@@ -572,7 +596,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Collapsible defaultOpen={pathname.startsWith('/v1')} className="group/v1-collapsible">
       <SidebarGroup>
         <SidebarGroupLabel asChild>
-          <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors">
+          <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
             <span className="font-semibold text-sm">Model HQ v1 Docs</span>
             <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v1-collapsible:rotate-90" />
           </CollapsibleTrigger>

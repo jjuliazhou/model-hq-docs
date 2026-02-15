@@ -9,6 +9,10 @@ import {
   FileSearch,
   Power,
   FlaskConical,
+  Settings,
+  Wrench,
+  Network,
+  Plug,
 } from "lucide-react"
 
 type NavSubItem = {
@@ -37,16 +41,6 @@ export const v1NavigationData: NavItem[] = [
     ],
   },
   {
-    title: "Models",
-    url: "/v1/models",
-    icon: Database,
-    items: [
-      { title: "Models Overview", url: "/v1/models" },
-      { title: "Model Configuration", url: "/v1/models/model-configuration" },
-      { title: "Create Custom Test", url: "/v1/models/custom-test" },
-    ],
-  },
-  {
     title: "Bots",
     url: "/v1/bots",
     icon: Bot,
@@ -57,6 +51,16 @@ export const v1NavigationData: NavItem[] = [
     ],
   },
   {
+    title: "Models",
+    url: "/v1/models",
+    icon: Database,
+    items: [
+      { title: "Models Overview", url: "/v1/models" },
+      { title: "Model Configuration", url: "/v1/models/model-configuration" },
+      { title: "Create Custom Test", url: "/v1/models/custom-test" },
+    ],
+  },
+  {
     title: "Source",
     url: "/v1/source",
     icon: FileSearch,
@@ -64,6 +68,25 @@ export const v1NavigationData: NavItem[] = [
       { title: "Source Overview", url: "/v1/source" },
       { title: "Parsing in Source", url: "/v1/source/parsing-in-source" },
       { title: "Error Handling", url: "/v1/source/error-handling" },
+    ],
+  },
+  {
+    title: "Services",
+    url: "/v1/services",
+    icon: Network,
+  },
+  {
+    title: "Integrations",
+    url: "/v1/integrations",
+    icon: Plug,
+  },
+  {
+    title: "Configs & Tools",
+    url: "/v1/configs-and-tools",
+    icon: Settings,
+    items: [
+      { title: "Tools", url: "/v1/configs-and-tools/tools" },
+      { title: "Configure", url: "/v1/configs-and-tools/configure" },
     ],
   },
   {

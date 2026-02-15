@@ -15,11 +15,10 @@ Model HQ supports three main types of services:
 3) MCP Services – Connect MCP tools so agents can use them.
 
 Each service is set up in a structured way where you define:
-
-What inputs it needs
-Any runtime settings
-Authentication details (if required)
-What outputs it produces
+- What inputs it needs
+- Any runtime settings
+- Authentication details (if required)
+- What outputs it produces
 
 Because every service follows the same structure, agents can easily work together and connect smoothly with outside systems and tools.
 
@@ -365,6 +364,25 @@ This workflow allows an MCP tool to be exposed as a first-class service that can
 ### 3.3.1 Add New MCP Tool as Service
 
 This section defines the full service configuration for exposing an MCP tool.
+
+| Field Name | Description | Example |
+|------------|-------------|---------|
+| MCP Service Name | Unique, system-friendly identifier for the service | `customer_lookup` |
+| Display Name | Human-readable name shown to users | `Customer Lookup Service` |
+| Description | Brief explanation of what the service does | `Fetches customer details using the MCP customer lookup tool` |
+| MCP Tool Name | Exact name of the MCP tool to be invoked | `getCustomerInfo` |
+| Input Instruction | Variable name for the main text input | `customer_id`, `query` |
+| Input Hint Placeholder | Hint text shown in the input field | `Enter customer ID` |
+| Input Context | Optional context object name | `user_profile`, `support_ticket` |
+| Input Context Type | Defines how input/context is collected | Text Input, Document File, JSON File |
+| Kwargs | Optional JSON key-value pairs for runtime configuration | `{"source": "agent", "env": "prod"}` |
+| Global Vars | Output variable shared globally across workflows | `customer_status` |
+| Output Context | Name of output context for other services | `customer_details` |
+| Output Context Type | Specifies how output is structured | Text Output, JSON Output, Document Output |
+| IP Address | Base IP address or hostname of MCP server | `mcp.example.com`, `192.168.1.16` |
+| IP Port | Optional port used by the MCP server | `443`, `8080` |
+| Protocol | Specifies HTTP or HTTPS access | HTTPS (recommended), HTTP |
+| MCP Route | Route on MCP server used to invoke tools | `/mcp` |
 
 #### 3.3.1.1 MCP service name
 A unique, system-friendly identifier for the service.

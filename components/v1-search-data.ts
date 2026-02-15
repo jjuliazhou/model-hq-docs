@@ -1056,6 +1056,427 @@ export const v1SearchData: SearchResult[] = [
     parentPage: "Shutdown (v1)",
   },
 
+  // ==================== SERVICES SECTION ====================
+  // V1 Services Documentation - Page
+  {
+    title: "Services (v1)",
+    url: "/v1/services",
+    type: "page",
+    description: "Create reusable service components for agent workflows in Model HQ v1",
+  },
+
+  // V1 Services - Main Headings
+  {
+    title: "Launching the Services Interface (v1)",
+    url: "/v1/services#1-launching-the-services-interface",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Services Interface Overview (v1)",
+    url: "/v1/services#2-services-interface-overview",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Agents as Service (v1)",
+    url: "/v1/services#31-agents-as-service",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Agent as Service Setup (v1)",
+    url: "/v1/services#311-agent-as-service-setup",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Configure Service from Agent (v1)",
+    url: "/v1/services#3111-configure-service-from-agent",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Input Context (Agent Service) (v1)",
+    url: "/v1/services#3112-input-context",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Kwargs (Agent Service) (v1)",
+    url: "/v1/services#3113-kwargs",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Global Variables (Agent Service) (v1)",
+    url: "/v1/services#3114-global-variables",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Output Contexts (Agent Service) (v1)",
+    url: "/v1/services#3115-output-contexts",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Confirm Agent Service Configuration (v1)",
+    url: "/v1/services#3116-confirm-agent-service-configuration",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "JSON Service Configuration (v1)",
+    url: "/v1/services#312-json-service-configuration",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "REST API Endpoint as Service (v1)",
+    url: "/v1/services#32-rest-api-endpoint-as-service",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Service Description (REST API) (v1)",
+    url: "/v1/services#step-1-of-4---service-description",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "IP Endpoint Setup (REST API) (v1)",
+    url: "/v1/services#step-2-of-4-ip-endpoint-setup",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Service Input Setup (REST API) (v1)",
+    url: "/v1/services#step-3-of-4-service-input-setup",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Service Output Setup (REST API) (v1)",
+    url: "/v1/services#step-4-of-4---service-output-setup",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "MCP as Service (Beta) (v1)",
+    url: "/v1/services#33-mcp-as-service-beta",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+  {
+    title: "Add New MCP Tool as Service (v1)",
+    url: "/v1/services#331-add-new-mcp-tool-as-service",
+    type: "heading",
+    parentPage: "Services (v1)",
+  },
+
+  // ==================== INTEGRATIONS SECTION ====================
+  // V1 Integrations Documentation - Page
+  {
+    title: "Integrations (v1)",
+    url: "/v1/integrations",
+    type: "page",
+    description: "Connect external services, cloud platforms, and AI providers to Model HQ v1",
+  },
+
+  // V1 Integrations - Main Headings
+  {
+    title: "Launching the Integrations Interface (v1)",
+    url: "/v1/integrations#1-launching-the-integrations-interface",
+    type: "heading",
+    parentPage: "Integrations (v1)",
+  },
+  {
+    title: "Integrations Interface Overview (v1)",
+    url: "/v1/integrations#2-integrations-interface-overview",
+    type: "heading",
+    parentPage: "Integrations (v1)",
+  },
+  {
+    title: "Integrations (v1)",
+    url: "/v1/integrations#3-integrations",
+    type: "heading",
+    parentPage: "Integrations (v1)",
+  },
+  {
+    title: "Conclusion (Integrations) (v1)",
+    url: "/v1/integrations#conclusion",
+    type: "heading",
+    parentPage: "Integrations (v1)",
+  },
+
+  // ==================== CONFIGS & TOOLS SECTION ====================
+  // V1 Configure Documentation - Page
+  {
+    title: "Configure (v1)",
+    url: "/v1/configs-and-tools/configure",
+    type: "page",
+    description: "Comprehensive configuration controls for Model HQ behavior, appearance, and integrations in v1",
+  },
+
+  // V1 Configure - Main Headings
+  {
+    title: "Launching the Configuration Interface (v1)",
+    url: "/v1/configs-and-tools/configure#1-launching-the-configuration-interface",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Configuration Interface Overview (v1)",
+    url: "/v1/configs-and-tools/configure#2-configuration-interface-overview",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "App Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#31-app",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Default Bot (v1)",
+    url: "/v1/configs-and-tools/configure#311-default-bot",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Agent Process Run Mode (v1)",
+    url: "/v1/configs-and-tools/configure#312-agent-process-run-mode",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Dev Mode (v1)",
+    url: "/v1/configs-and-tools/configure#313-dev-mode",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Air Gap Mode (v1)",
+    url: "/v1/configs-and-tools/configure#316-air-gap-mode",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Services Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#32-services",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Core Services (v1)",
+    url: "/v1/configs-and-tools/configure#321-core-services",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Classifiers (v1)",
+    url: "/v1/configs-and-tools/configure#322-classifiers",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Datasets (v1)",
+    url: "/v1/configs-and-tools/configure#323-datasets",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "UI Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#33-ui",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "RAG Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#34-rag",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Text Chunk Size (v1)",
+    url: "/v1/configs-and-tools/configure#341-text-chunk-size",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Context Top N (v1)",
+    url: "/v1/configs-and-tools/configure#342-context-top-n",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "RAG Model (v1)",
+    url: "/v1/configs-and-tools/configure#347-rag-model",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Embedding Model (v1)",
+    url: "/v1/configs-and-tools/configure#349-embedding-model",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "DB Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#35-db",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Prompts Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#36-prompts",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Server Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#37-server",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Controls Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#38-controls",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Templates Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#39-templates",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Connections Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#310-connections",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Reset Configuration (v1)",
+    url: "/v1/configs-and-tools/configure#311-reset",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+  {
+    title: "Theme Toggler (v1)",
+    url: "/v1/configs-and-tools/configure#312-theme-toggler",
+    type: "heading",
+    parentPage: "Configure (v1)",
+  },
+
+  // V1 Tools Documentation - Page
+  {
+    title: "Tools (v1)",
+    url: "/v1/configs-and-tools/tools",
+    type: "page",
+    description: "Powerful utilities for managing local setup, development workflows, and system diagnostics in Model HQ v1",
+  },
+
+  // V1 Tools - Main Headings
+  {
+    title: "Launching the Tools Interface (v1)",
+    url: "/v1/configs-and-tools/tools#1-launching-the-tools-interface",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Tools Interface Overview (v1)",
+    url: "/v1/configs-and-tools/tools#2-tools-interface-overview",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Backend (v1)",
+    url: "/v1/configs-and-tools/tools#31-backend",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Launching Backend Server (v1)",
+    url: "/v1/configs-and-tools/tools#311-launching-backend-server",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Configuring Backend Server (v1)",
+    url: "/v1/configs-and-tools/tools#312-configuring-backend-server",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Server Mode: Localhost or External IP (v1)",
+    url: "/v1/configs-and-tools/tools#3121-server-mode-localhost-or-external-ip",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Demos (v1)",
+    url: "/v1/configs-and-tools/tools#32-demos",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "SDK (v1)",
+    url: "/v1/configs-and-tools/tools#33-sdk",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "CLI (v1)",
+    url: "/v1/configs-and-tools/tools#34-cli",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Share Connection (v1)",
+    url: "/v1/configs-and-tools/tools#35-share",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Updates (v1)",
+    url: "/v1/configs-and-tools/tools#36-updates",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Test Server (v1)",
+    url: "/v1/configs-and-tools/tools#37-test-server",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Model Downloader (v1)",
+    url: "/v1/configs-and-tools/tools#38-model-downloader",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Inference Logs (v1)",
+    url: "/v1/configs-and-tools/tools#39-inference-logs",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "Sample Documents (v1)",
+    url: "/v1/configs-and-tools/tools#310-sample-documents",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+  {
+    title: "System Information (v1)",
+    url: "/v1/configs-and-tools/tools#311-system-information",
+    type: "heading",
+    parentPage: "Tools (v1)",
+  },
+
   // ==================== COOKBOOKS ====================
   // Cookbooks V1 (placeholder for future content)
   {

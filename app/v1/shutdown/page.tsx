@@ -20,7 +20,7 @@ export default function ShuttingDownModelHqPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Shut Down</BreadcrumbPage>
+            <BreadcrumbPage>Shutting Down Model HQ</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

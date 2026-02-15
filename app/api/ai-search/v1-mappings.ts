@@ -71,6 +71,28 @@ export const V1_EXACT_MAPPINGS: Record<string, string> = {
   'shutdown/v1/README.md': '/v1/shutdown',
   'shutdown/v1/shutdown.md': '/v1/shutdown',
   
+  // Services - V1
+  'services/v1/': '/v1/services',
+  'services/v1/README.md': '/v1/services',
+  'services/v1/services.md': '/v1/services',
+  
+  // Integrations - V1
+  'integrations/v1/': '/v1/integrations',
+  'integrations/v1/README.md': '/v1/integrations',
+  'integrations/v1/integrations.md': '/v1/integrations',
+  
+  // Configure - V1
+  'configure/v1/': '/v1/configs-and-tools/configure',
+  'configure/v1/README.md': '/v1/configs-and-tools/configure',
+  'configure/v1/configure.md': '/v1/configs-and-tools/configure',
+  'configs-and-tools/configure': '/v1/configs-and-tools/configure',
+  
+  // Tools - V1
+  'tools/v1/': '/v1/configs-and-tools/tools',
+  'tools/v1/README.md': '/v1/configs-and-tools/tools',
+  'tools/v1/tools.md': '/v1/configs-and-tools/tools',
+  'configs-and-tools/tools': '/v1/configs-and-tools/tools',
+  
   // Cookbooks V1 (TODO: Add V1 cookbooks when available)
   'cookbooks/v1/': '/cookbooks/v1',
   'cookbooks/v1/personalized-bot': '/cookbooks/v1/personalized-bot',
@@ -94,6 +116,10 @@ export const V1_FOLDER_MAPPINGS: Record<string, string> = {
   'source': '/v1/source',
   'rag': '/v1/source',
   'shutdown': '/v1/shutdown',
+  'services': '/v1/services',
+  'configure': '/v1/configs-and-tools/configure',
+  'tools': '/v1/configs-and-tools/tools',
+  'configs-and-tools': '/v1/configs-and-tools',
   'cookbooks': '/cookbooks',
   'video-tutorials': '/resources/video-tutorials',
   'blogs-and-partner-solutions': '/resources/blogs-and-partner-solutions',
@@ -145,6 +171,16 @@ Source / RAG (V1):
 
 Shutdown (V1):
 - Shutdown (Proper shutdown procedures, preventing background processes): ${V1_BASE_URL}/v1/shutdown
+
+Services (V1):
+- Services Overview (Agent services, REST API services, MCP services): ${V1_BASE_URL}/v1/services
+- Agents as Service (Convert agents into reusable service components): ${V1_BASE_URL}/v1/services#31-agents-as-service
+- REST API Endpoint as Service (External API integration): ${V1_BASE_URL}/v1/services#32-rest-api-endpoint-as-service
+- MCP as Service (Model Context Protocol tool integration): ${V1_BASE_URL}/v1/services#33-mcp-as-service-beta
+
+Configs & Tools (V1):
+- Configure (App settings, services, UI, RAG, DB, server, controls): ${V1_BASE_URL}/v1/configs-and-tools/configure
+- Tools (Backend server, CLI, SDK, demos, share, updates, system info): ${V1_BASE_URL}/v1/configs-and-tools/tools
 
 Cookbooks (V1):
 - Personalized Bot: ${V1_BASE_URL}/cookbooks/v1/personalized-bot
@@ -219,6 +255,43 @@ Source / RAG Knowledge Base (V1):
 Shutdown & System Control (V1):
 - Shutdown Power Button Location: ![Shutdown Button Interface](/v1/shutdown/01_shutdown.png)
 - Auto-Restart Configuration: ![Unintended Shutdown Settings](/v1/shutdown/02_unintended.png)
+
+Services Integration (V1):
+- Services Interface: ![Services Dashboard](/v1/services/servicesInterface.png)
+- Agent Services Configuration: ![Agent Services Panel](/v1/services/agentServices.png)
+- REST API Services Setup: ![REST API Services](/v1/services/restServices.png)
+- MCP Services Integration: ![MCP Services](/v1/services/mcpServices.png)
+
+Configure Settings (V1):
+- Configure Main Interface: ![Configure Dashboard](/v1/configs/configureInterface.png)
+- Configuration Menu: ![Configuration Menu](/v1/configs/configure.png)
+- App Configuration Settings: ![App Settings](/v1/configs/app.png)
+- Services Configuration Panel: ![Services Config](/v1/configs/services.png)
+- UI Customization Settings: ![UI Settings](/v1/configs/ui.png)
+- RAG Configuration: ![RAG Settings](/v1/configs/rag.png)
+- Database Configuration: ![DB Settings](/v1/configs/db.png)
+- Server Configuration: ![Server Settings](/v1/configs/server.png)
+- Controls & Permissions: ![Controls Panel](/v1/configs/controls.png)
+- Templates Management: ![Templates Editor](/v1/configs/templates.png)
+- Templates Navigation: ![Templates Next](/v1/configs/templatesNext.png)
+- Connections Management: ![Connections Panel](/v1/configs/connections.png)
+- Reset Configuration: ![Reset Settings](/v1/configs/reset.png)
+- Theme Toggle: ![Theme Toggler](/v1/configs/themeToggler.png)
+
+Tools & Utilities (V1):
+- Tools Main Interface: ![Tools Dashboard](/v1/tools/toolsInterface.png)
+- Tools Menu: ![Tools Menu](/v1/tools/tools.png)
+- Backend Server Panel: ![Backend Server](/v1/tools/backend.png)
+- CLI Interface: ![Command Line Interface](/v1/tools/cli.png)
+- SDK Integration: ![SDK Tools](/v1/tools/sdk.png)
+- Demo Applications: ![Demos Panel](/v1/tools/demos.png)
+- Share Connection: ![Share Settings](/v1/tools/share.png)
+- Share Confirmation: ![Share Confirm](/v1/tools/shareConform.png)
+- Updates Management: ![Updates Panel](/v1/tools/updates.png)
+- Model Downloader: ![Model Download Tool](/v1/tools/modelDownloader.png)
+- Sample Documents: ![Sample Docs](/v1/tools/sampleDocs.png)
+- Text Parser: ![Text Parser Tool](/v1/tools/textParser.png)
+- System Information: ![System Info](/v1/tools/systemInfo.png)
 
 Model HQ SDK & Code Documentation (V1):
 - Tools Menu Location: ![SDK Tools Menu Location](${V1_BASE_IMAGE_URL}/getting-started-with-sdk/v1/menu.png)
