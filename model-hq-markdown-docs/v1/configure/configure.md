@@ -257,6 +257,8 @@ These App settings allow fine-grained control over user experience, security pos
 ## 3.2 Services
 This is a master panel of services that are available to use in creating agents. Making the selection here will ensure that each of these services are displayed as an option in the Nodes in agents. (Note: Services outside of this master list can be selected at time of use in the agent canvas if not pre-selected here.)
 
+[ROHAN - replace this screenshot with the one I sent you]
+
 ![tools](configure/03_services.png)
 
 ## 3.2.1 Core Services
@@ -267,8 +269,8 @@ This is a master panel of services that are available to use in creating agents.
 | `rag_answer` | Retrieval-Augmented Generation service that retrieves relevant knowledge from connected data sources before generating a response. |
 | `vision` | Enables image understanding and visual reasoning from uploaded images. |
 | `generate_word_doc` | Generates structured Microsoft Word documents programmatically with formatting and organized content. |
-| `ocr_vision` | Optical Character Recognition combined with visual reasoning to extract and interpret text from images. |
-| `ocr` | Extracts raw text from images or PDFs without deeper visual reasoning. |
+| `ocr_vision` | Visual reasoning to extract and interpret text or images from PDFs. Use for multi-page PDFs with images or handwriting. |
+| `ocr` | Optical Character Recognition Extracts raw text from PDFs without deeper visual reasoning. Recommended for multi-page PDF documents with mostly text.|
 | `agent_report` | Produces structured reports summarizing agent activities, outputs, and analysis. |
 | `wikipedia_search` | Retrieves structured information directly from Wikipedia. |
 | `prompt_builder` | Assists in constructing optimized and structured prompts for AI workflows. |
@@ -288,7 +290,7 @@ This is a master panel of services that are available to use in creating agents.
 | `topics` | Identifies major topics discussed within a text. |
 | `tags` | Generates relevant tags or labels based on content. |
 | `intent` | Identifies user intent from textual input. |
-| `ratings` | Predicts rating scores derived from textual feedback. |
+| `ratings` | Predicts rating scores derived from textual feedback from 1-5. |
 | `ner` | Performs Named Entity Recognition to identify entities such as people, organizations, and locations. |
 | `xsum` | Generates highly concise summaries optimized for brevity. |
 | `summary` | Produces structured and comprehensive summaries of content. |
@@ -299,20 +301,22 @@ This is a master panel of services that are available to use in creating agents.
 
 | Service | Description |
 |----------|--------------|
-| `select_keys` | Selects specific keys from structured data objects. |
-| `build_dataset` | Constructs datasets from raw or processed inputs. |
-| `ds_cmd_filter` | Applies command-based filtering logic to datasets. |
-| `ds_column_filter` | Filters datasets by specified columns. |
-| `select_ds_column` | Selects specific columns from a dataset for further processing. |
-| `dataset_rag` | Enables Retrieval-Augmented Generation over structured datasets. |
-| `ds_sem_filter` | Applies semantic similarity filtering to dataset entries. |
-| `ds_text_filter` | Performs keyword or text-based filtering within datasets. |
-| `dataset_plot` | Generates visual plots based on dataset values. |
-| `dataset_stat` | Produces statistical summaries and metrics from datasets. |
-| `load_dataset` | Loads datasets into the execution environment. |
-| `ml_predict` | Applies machine learning prediction models to dataset inputs. |
+| `select_keys` | Selects specific keys from structured data objects such as a larger JSON dictionary. |
+| `build_dataset` | Converts a selected input JSON dictionary into a dataset. |
+| `ds_command_filter` | Applies command-based filtering logic to datasets. |
+| `ds_column_filter` | Keep rows where a selected column meets your condition. |
+| `ds_column_analysis` | Generates a detailed report based on selected column. |
+| `ds_report` | Generates a report of the dataset and the workflow results based on the agent run. |
+| `ds_column_select` | Returns the selected column from the dataset. |
+| `ds_ask_dataset` | Uses a natural language question to retrieve relevant information from the dataset. |
+| `ds_readout` | Displays a selection from the dataset for display. |
+| `ds_smart_filter` | Find rows that match the meaning of your query. |
+| `ds_keyword_filter` | Filter rows based on exact text matches in the selected column. |
+| `ds_plot` | Generates a visual plot chart from the selected dataset. |
+| `ds_statistics` | Perform deeper statistical analysis and generate insights. |
+| `load_dataset` | Loads datasets into Agent state. |
 | `create_json` | Converts structured data into JSON format. |
-| `stats_analyze` | Performs advanced statistical analysis on datasets. |
+| `ds_stats_analysis` | Performs advanced statistical analysis on datasets. |
 
 ### 3.2.4 Specialized Services
 
