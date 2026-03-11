@@ -27,7 +27,7 @@ Model HQ is the fastest, easiest way to deploy and run **AI models directly on y
 * ⬇️ **<30 minutes** – Download **24 models** onto device
 * 📦 **150+ models** – Optimized for AI PCs
 * ⚡ **Up to 32B parameters** – On Intel AI PCs
-* 💸 **\$0 per-token cost** – When running models locally
+* 💸 **$0 per-token cost** – When running models locally
 
 &nbsp;
 
@@ -77,6 +77,12 @@ Choose models that are fine-tuned for your device:
 
 ## Documentation Overview
 
+> [!IMPORTANT]
+> **V1 Documentation Coming Soon!**
+
+<details>
+<summary><strong> V0 Documentation Will be deprecated soon! </summary></strong>
+
 * [System Configuration](https://model-hq-docs.vercel.app/system-configuration) – Configure your environment and system requirements
 
 * [Getting Started](https://model-hq-docs.vercel.app/getting-started) – Begin your Model HQ journey with setup guides
@@ -122,6 +128,7 @@ Choose models that are fine-tuned for your device:
 * [Hybrid Inferencing (AI PC + API Server)](https://model-hq-docs.vercel.app/cookbooks/hybrid-inferencing)
 * [Photo to Email Automation](https://model-hq-docs.vercel.app/cookbooks/photo-to-email-automation)
 * [Clinical Trial Screening Automation](https://model-hq-docs.vercel.app/cookbooks/clinical-trial-screening-autmation)
+</details>
 
 &nbsp;
 

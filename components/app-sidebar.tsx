@@ -4,14 +4,9 @@ import type * as React from "react"
 import { usePathname } from "next/navigation"
 import {
   Bot,
-  MessageSquare,
   Play,
-  Database,
-  Search,
-  Settings,
   ChevronRight,
-  Cog,
-  Mail,
+  Settings,
   PanelLeft,
   Cpu,
   Video,
@@ -21,14 +16,13 @@ import {
   Library,
   FileSearch,
   Server,
-  Share,
-  Power,
-  Code,
-  Terminal,
-  Code2,
   Camera,
   Stethoscope,
-  FlaskConical,
+  Info,
+  Mail,
+  Rocket,
+  BookMarked,
+  BookCopy,
 } from "lucide-react"
 
 import {
@@ -50,105 +44,59 @@ import {
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "./theme-toggle"
+import { v0NavigationData, v0CodeDocumentation } from "./navigation-data-v0"
+import { v1NavigationData, v1CodeDocumentation } from "./navigation-data-v1"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+
+// Custom V0 and V1 icons
+const V0Icon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="currentColor" fillOpacity="0.1"/>
+    <text x="12" y="17" fontSize="14" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif">v0</text>
+  </svg>
+)
+
+const V1Icon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="currentColor" fillOpacity="0.1"/>
+    <text x="12" y="17" fontSize="14" fontWeight="bold" fill="currentColor" textAnchor="middle" fontFamily="system-ui, -apple-system, sans-serif">v1</text>
+  </svg>
+)
+
+type NavItem = {
+  title: string
+  url: string
+  icon: React.ComponentType<{ className?: string }>
+  items?: { 
+    title: string; 
+    url: string; 
+    icon?: React.ComponentType<{ className?: string }> 
+  }[]
+}
 
 const navigationData = {
-  main: [
+  startHere: [
     {
-      title: "System Configuration",
-      url: "/system-configuration",
-      icon: Settings,
+      title: "About Model HQ",
+      url: "/start-here/about-model-hq",
+      icon: Info,
     },
     {
       title: "Getting Started",
-      url: "/getting-started",
+      url: "/start-here/getting-started",
       icon: Play,
     },
     {
-      title: "Chat",
-      url: "/chat",
-      icon: MessageSquare,
-      items: [
-        { title: "Chat Overview", url: "/chat" },
-        { title: "Changing Chat Model", url: "/chat/changing-chat-model" },
-        { title: "Error Handling", url: "/chat/error-handling" },
-      ],
-    },
-    {
-      title: "Agents",
-      url: "/agent",
-      icon: Bot,
-      items: [
-        { title: "Agent Overview", url: "/agent" },
-        { title: "Create New Agent", url: "/agent/create-new-agent" },
-        { title: "Agent Builder Menu", url: "/agent/agent-builder-menu" },
-        { title: "Edit Agent", url: "/agent/edit-agent" },
-        { title: "Batch Run", url: "/agent/multi-docs-agent" },
-        { title: "OpenAI and Anthropic", url: "/agent/openAI-and-anthropic" },
-      ],
-    },
-    {
-      title: "Bots",
-      url: "/bots",
-      icon: Bot,
-    },
-    {
-      title: "RAG",
-      url: "/rag",
-      icon: Search,
-      items: [
-        { title: "RAG Overview", url: "/rag" },
-        { title: "RAG Parsing", url: "/rag/rag-parsing" },
-        { title: "Document Parsing Issues", url: "/rag/document-parsing-issues" },
-        { title: "Error Handling", url: "/rag/error-handling" },
-      ],
-    },
-    {
-      title: "Models",
-      url: "/models",
-      icon: Database,
-    },
-    {
-      title: "Testing Models",
-      url: "/testing-models",
-      icon: FlaskConical,
-    },
-    {
-      title: "Configs & Tools",
-      url: "/configs-tools",
-      icon: Cog,
-      items: [
-        { title: "🔧 Tools", url: "/tools" },
-        { title: "⚙️ Configs", url: "/configs" },
-      ],
-    },
-    {
-      title: "Share Your App",
-      url: "/share-your-app",
-      icon: Share,
-    },
-    {
-      title: "Shutdown",
-      url: "/shutdown",
-      icon: Power,
+      title: "System Configuration",
+      url: "/start-here/system-configuration",
+      icon: Settings,
     },
   ],
-  codeDocumentation: [
-    {
-      title: "Getting Started with SDK",
-      url: "/getting-started-with-model-hq-sdk",
-      icon: Terminal,
-    },
-    {
-      title: "Hello World",
-      url: "/hello-world",
-      icon: Code2,
-    },
-    {
-      title: "API Reference",
-      url: "/api-reference",
-      icon: Code,
-    },
-  ],
+  v0: v0NavigationData,
+  v1: v1NavigationData as NavItem[],
+  codeDocumentation: v0CodeDocumentation,
+  v1CodeDocumentation: v1CodeDocumentation,
   supportedModels: [
     {
       title: "Intel Supported Models",
@@ -164,47 +112,179 @@ const navigationData = {
   resources: [
     {
       title: "Video Tutorials",
-      url: "/video-tutorials",
+      url: "/resources/video-tutorials",
       icon: Video,
     },
     {
       title: "Blogs and Partner Solutions",
-      url: "/blogs-and-partner-solutions",
+      url: "/resources/blogs-and-partner-solutions",
       icon: BookOpen,
     },
   ],
-  cookbooks: [
-    {
-      title: "Personalized Bot",
-      url: "/cookbooks/personalized-bot",
-      icon: BrainCircuit,
+  // Cookbooks sections - defined separately from v0/v1 docs
+  cookbooksV0: [
+    { 
+      title: "Clinical Trial Screening Automation", 
+      url: "/cookbooks/v0/clinical-trial-screening-autmation",
+      icon: Stethoscope,
     },
-    {
-      title: "RAG Bot",
-      url: "/cookbooks/rag-bot",
-      icon: Library,
-    },
-    {
-      title: "Document Review and Analysis Tool",
-      url: "/cookbooks/document-review-and-analysis-tool",
+    { 
+      title: "Document Review and Analysis Tool", 
+      url: "/cookbooks/v0/document-review-and-analysis-tool",
       icon: FileSearch,
     },
-    {
-      title: "Hybrid Inferencing",
-      url: "/cookbooks/hybrid-inferencing",
+    { 
+      title: "Hybrid Inferencing", 
+      url: "/cookbooks/v0/hybrid-inferencing",
       icon: Server,
     },
-    {
-      title: "Photo to Email Automation",
-      url: "/cookbooks/photo-to-email-automation",
+    { 
+      title: "Personalized Bot", 
+      url: "/cookbooks/v0/personalized-bot",
+      icon: BrainCircuit,
+    },
+    { 
+      title: "Photo to Email Automation", 
+      url: "/cookbooks/v0/photo-to-email-automation",
       icon: Camera,
     },
-    {
-      title: "Clinical Trial Screening Autmation",
-      url: "/cookbooks/clinical-trial-screening-autmation",
-      icon: Stethoscope ,
-    }
-  ],
+    { 
+      title: "RAG Bot", 
+      url: "/cookbooks/v0/rag-bot",
+      icon: Library,
+    },
+  ] as NavItem[],
+  cookbooksV1: [] as NavItem[],
+}
+
+// Helper component for collapsed state with hover menu
+function CollapsedNavItem({ 
+  item, 
+  pathname, 
+  hasSubItems = false 
+}: { 
+  item: NavItem
+  pathname: string
+  hasSubItems?: boolean
+}) {
+  const isActive = pathname === item.url || (item.items && item.items.some(sub => pathname === sub.url))
+  
+  if (hasSubItems && item.items) {
+    return (
+      <HoverCard openDelay={100} closeDelay={100}>
+        <HoverCardTrigger asChild>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              tooltip={item.title}
+              isActive={isActive}
+              suppressHydrationWarning
+              className="justify-center"
+            >
+              <a href={item.url}>
+                {item.icon && <item.icon className="size-4" />}
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </HoverCardTrigger>
+        <HoverCardContent side="right" align="start" className="w-56 p-2">
+          <div className="font-semibold text-sm mb-2 px-2">{item.title}</div>
+          <div className="space-y-1">
+            {item.items.map((subItem) => (
+              <a
+                key={subItem.url}
+                href={subItem.url}
+                className={`block px-2 py-1.5 text-sm rounded-md hover:bg-accent transition-colors ${
+                  pathname === subItem.url ? 'bg-accent text-accent-foreground font-medium' : ''
+                }`}
+              >
+                {subItem.title}
+              </a>
+            ))}
+          </div>
+        </HoverCardContent>
+      </HoverCard>
+    )
+  }
+
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        asChild
+        tooltip={item.title}
+        isActive={pathname === item.url}
+        suppressHydrationWarning
+        className="justify-center"
+      >
+        <a href={item.url}>
+          {item.icon && <item.icon className="size-4" />}
+        </a>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  )
+}
+
+// Helper component for collapsed section header with hover menu
+function CollapsedSectionWithHover({ 
+  icon: Icon, 
+  title, 
+  items, 
+  pathname 
+}: { 
+  icon: React.ComponentType<{ className?: string }>
+  title: string
+  items: NavItem[]
+  pathname: string
+}) {
+  return (
+    <HoverCard openDelay={100} closeDelay={100}>
+      <HoverCardTrigger asChild>
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            tooltip={title}
+            suppressHydrationWarning
+            className="justify-center"
+            isActive={items.some(item => pathname === item.url || (item.items && item.items.some(sub => pathname === sub.url)))}
+          >
+            <Icon className="size-4" />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </HoverCardTrigger>
+      <HoverCardContent side="right" align="start" className="w-64 p-2 max-h-80 overflow-y-auto">
+        <div className="font-semibold text-sm mb-2 px-2">{title}</div>
+        <div className="space-y-1">
+          {items.map((item) => (
+            <div key={item.url}>
+              <a
+                href={item.url}
+                className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md hover:bg-accent transition-colors ${
+                  pathname === item.url ? 'bg-accent text-accent-foreground font-medium' : ''
+                }`}
+              >
+                {item.icon && <item.icon className="size-4 shrink-0" />}
+                <span className="truncate">{item.title}</span>
+              </a>
+              {item.items && (
+                <div className="ml-6 space-y-1 mt-1">
+                  {item.items.map((subItem) => (
+                    <a
+                      key={subItem.url}
+                      href={subItem.url}
+                      className={`block px-2 py-1 text-xs rounded-md hover:bg-accent transition-colors ${
+                        pathname === subItem.url ? 'bg-accent text-accent-foreground font-medium' : ''
+                      }`}
+                    >
+                      {subItem.title}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  )
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -213,25 +293,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const isCollapsed = state === "collapsed"
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="[&_[data-sidebar=content]]:scrollbar-thin [&_[data-sidebar=content]]:scrollbar-thumb-border [&_[data-sidebar=content]]:scrollbar-track-transparent">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild className={`h-16 ${isCollapsed ? "px-0 justify-center" : "px-3"}`}>
-              <a href="/">
-                <div
-                  className={`flex aspect-square ${isCollapsed ? "size-10" : "size-12"} items-center justify-center rounded-lg bg-white p-2 shadow-sm mx-auto`}
-                >
-                  <img src="/images/llmware-logo.png" alt="Model HQ" className="size-full object-contain" />
-                </div>
-                {!isCollapsed && (
-                  <div className="grid flex-1 text-left leading-tight ml-3">
-                    <span className="truncate text-lg font-bold">Model HQ</span>
-                    <span className="truncate text-sm text-muted-foreground">Documentation</span>
+            <div className="flex items-center justify-between w-full gap-2">
+              <SidebarMenuButton size="lg" asChild className={`h-16 flex-1 ${isCollapsed ? "px-0 justify-center" : "px-3"}`}>
+                <a href="/">
+                  <div
+                    className={`flex aspect-square ${isCollapsed ? "size-10" : "size-12"} items-center justify-center rounded-lg bg-white p-2 shadow-sm mx-auto`}
+                  >
+                    <img src="/images/llmware-logo.png" alt="Model HQ" className="size-full object-contain" />
                   </div>
-                )}
-              </a>
-            </SidebarMenuButton>
+                  {!isCollapsed && (
+                    <div className="grid flex-1 text-left leading-tight ml-3">
+                      <span className="truncate text-lg font-bold">Model HQ</span>
+                      <span className="truncate text-sm text-muted-foreground">Documentation</span>
+                    </div>
+                  )}
+                </a>
+              </SidebarMenuButton>
+              {/* Theme Toggle - only visible on mobile in sidebar */}
+              {!isCollapsed && (
+                <div className="md:hidden pr-3">
+                  <div className="rounded-md p-1 border border-border dark:border-border">
+                    <ThemeToggle />
+                  </div>
+                </div>
+              )}
+            </div>
           </SidebarMenuItem>
           {state === "collapsed" && (
             <SidebarMenuItem>
@@ -246,11 +336,152 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
+        {isCollapsed ? (
+          // COLLAPSED STATE - Show icons with hover menus
+          <>
+            {/* Start Here - Icons */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigationData.startHere.map((item) => (
+                    <CollapsedNavItem key={item.title} item={item} pathname={pathname} />
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Separator */}
+            <div className="mx-2 my-1 h-px bg-border" />
+
+            {/* Model HQ v0 - Single icon with hover menu */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <CollapsedSectionWithHover
+                    icon={V0Icon}
+                    title="Model HQ v0 Docs"
+                    items={[...navigationData.v0, ...navigationData.codeDocumentation] as NavItem[]}
+                    pathname={pathname}
+                  />
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Model HQ v1 - Single icon with hover menu */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <CollapsedSectionWithHover
+                    icon={V1Icon}
+                    title="Model HQ v1 Docs"
+                    items={navigationData.v1}
+                    pathname={pathname}
+                  />
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Separator */}
+            <div className="mx-2 my-1 h-px bg-border" />
+
+            {/* Supported Models - Icons */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigationData.supportedModels.map((item) => (
+                    <CollapsedNavItem key={item.title} item={item} pathname={pathname} />
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Separator */}
+            <div className="mx-2 my-1 h-px bg-border" />
+
+            {/* Resources - Icons */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigationData.resources.map((item) => (
+                    <CollapsedNavItem key={item.title} item={item} pathname={pathname} />
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Separator */}
+            <div className="mx-2 my-1 h-px bg-border" />
+
+            {/* Cookbooks v0 - Single icon with hover menu */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <CollapsedSectionWithHover
+                    icon={BookMarked}
+                    title="Cookbooks v0"
+                    items={navigationData.cookbooksV0}
+                    pathname={pathname}
+                  />
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Cookbooks v1 - Single icon with hover menu */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <CollapsedSectionWithHover
+                    icon={BookCopy}
+                    title="Cookbooks v1"
+                    items={navigationData.cookbooksV1.length > 0 ? navigationData.cookbooksV1 : [{ title: "Coming soon...", url: "#", icon: Info }]}
+                    pathname={pathname}
+                  />
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </>
+        ) : (
+          // EXPANDED STATE - Full navigation
+          <>
+        {/* Start Here - Always visible at top */}
         <SidebarGroup>
-          <SidebarGroupLabel>Documentation</SidebarGroupLabel>
+          <SidebarGroupLabel>Start Here</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navigationData.main.map((item) => {
+              {navigationData.startHere.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={item.title}
+                    isActive={pathname === item.url}
+                    suppressHydrationWarning
+                  >
+                    <a href={item.url}>
+                      {item.icon && <item.icon className="size-4" />}
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Model HQ v0 Documentation - Collapsible */}
+        <Collapsible defaultOpen={pathname.startsWith('/v0') || pathname.startsWith('/getting-started-with-model-hq-sdk') || pathname.startsWith('/hello-world') || pathname.startsWith('/api-reference')} className="group/v0-collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
+                <span className="font-semibold text-sm">Model HQ v0 Docs</span>
+                <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v0-collapsible:rotate-90" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent className="relative ml-3 overflow-visible">
+                {/* Vertical line for tree structure */}
+                <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+                <SidebarMenu className="space-y-1 overflow-visible">
+              {navigationData.v0.map((item) => {
                 // If item has sub-items, render as collapsible
                 if (item.items) {
                   return (
@@ -260,29 +491,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       defaultOpen={pathname.startsWith(item.url)}
                       className="group/collapsible"
                     >
-                      <SidebarMenuItem>
+                      <SidebarMenuItem className="relative overflow-visible">
+                        {/* Horizontal branch line */}
+                        <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
                         <CollapsibleTrigger asChild>
                           <SidebarMenuButton
                             tooltip={item.title}
                             isActive={pathname === item.url}
                             suppressHydrationWarning
+                            className="pl-4 overflow-visible"
                           >
-                            {item.icon && <item.icon className="size-4" />}
-                            <span>{item.title}</span>
-                            <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            {item.icon && <item.icon className="size-4 shrink-0" />}
+                            <span className="truncate">{item.title}</span>
+                            <ChevronRight className="ml-auto size-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                           </SidebarMenuButton>
                         </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <SidebarMenuSub>
-                            {item.items.map((subItem) => (
-                              <SidebarMenuSubItem key={subItem.title}>
+                        <CollapsibleContent className="overflow-visible">
+                          <SidebarMenuSub className="relative ml-3 border-l border-border pl-3 overflow-visible">
+                            {item.items.map((subItem, index) => (
+                              <SidebarMenuSubItem key={subItem.title} className="relative overflow-visible">
+                                {/* Horizontal branch line for sub-items */}
+                                <div className="absolute left-0 top-1/2 w-3 h-px bg-border -translate-y-1/2 -ml-3" />
                                 <SidebarMenuSubButton
                                   asChild
                                   isActive={pathname === subItem.url}
                                   suppressHydrationWarning
+                                  className="overflow-visible"
                                 >
-                                  <a href={subItem.url}>
-                                    <span>{subItem.title}</span>
+                                  <a href={subItem.url} className="truncate">
+                                    <span className="truncate">{subItem.title}</span>
                                   </a>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
@@ -296,16 +533,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
                 // If item has no sub-items, render as simple link
                 return (
-                  <SidebarMenuItem key={item.title}>
+                  <SidebarMenuItem key={item.title} className="relative overflow-visible">
+                    {/* Horizontal branch line */}
+                    <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
                     <SidebarMenuButton
                       asChild
                       tooltip={item.title}
                       isActive={pathname === item.url}
                       suppressHydrationWarning
+                      className="pl-4 overflow-visible"
                     >
-                      <a href={item.url}>
-                        {item.icon && <item.icon className="size-4" />}
-                        <span>{item.title}</span>
+                      <a href={item.url} className="truncate flex items-center gap-2">
+                        {item.icon && <item.icon className="size-4 shrink-0" />}
+                        <span className="truncate">{item.title}</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -313,34 +553,146 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               })}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
 
-        {/* Model HQ SDK Documentation */}
-        <SidebarGroup>
-          <SidebarGroupLabel>SDK Documentation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {navigationData.codeDocumentation.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={item.title}
-                    isActive={pathname === item.url}
-                    suppressHydrationWarning
-                  >
-                    <a href={item.url}>
-                      {item.icon && <item.icon className="size-4" />}
-                      <span className="text-sm">{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+          {/* SDK Documentation Subsection within v0 */}
+          <SidebarGroup className="relative ml-3 mt-2 overflow-visible">
+            {/* Vertical line continuation */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+            <div className="relative overflow-visible">
+              {/* Horizontal branch for SDK section */}
+              <div className="absolute left-0 top-4 w-3 h-px bg-border" />
+              <SidebarGroupLabel className="pl-4">SDK Documentation</SidebarGroupLabel>
+            </div>
+            <SidebarGroupContent className="relative ml-3 overflow-visible">
+              {/* Vertical line for SDK items */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+              <SidebarMenu className="space-y-1 overflow-visible">
+                {navigationData.codeDocumentation.map((item) => (
+                  <SidebarMenuItem key={item.title} className="relative overflow-visible">
+                    {/* Horizontal branch line */}
+                    <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.title}
+                      isActive={pathname === item.url}
+                      suppressHydrationWarning
+                      className="pl-4 overflow-visible"
+                    >
+                      <a href={item.url} className="truncate flex items-center gap-2">
+                        {item.icon && <item.icon className="size-4 shrink-0" />}
+                        <span className="text-sm truncate">{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
+
+    {/* Model HQ v1 Documentation - Collapsible */}
+    <Collapsible defaultOpen={pathname.startsWith('/v1')} className="group/v1-collapsible">
+      <SidebarGroup>
+        <SidebarGroupLabel asChild>
+          <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
+            <span className="font-semibold text-sm">Model HQ v1 Docs</span>
+            <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v1-collapsible:rotate-90" />
+          </CollapsibleTrigger>
+        </SidebarGroupLabel>
+        <CollapsibleContent>
+          <SidebarGroupContent className="relative ml-3 overflow-visible">
+            {/* Vertical line for tree structure */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+            <SidebarMenu className="space-y-1 overflow-visible">
+              {navigationData.v1.length === 0 ? (
+                <SidebarMenuItem className="relative overflow-visible">
+                  {/* Horizontal branch line */}
+                  <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                  <div className="px-6 py-1 text-sm text-muted-foreground italic">
+                    Coming soon...
+                  </div>
                 </SidebarMenuItem>
-              ))}
+              ) : (
+                navigationData.v1.map((item) => {
+                  // Same rendering logic as v0
+                  if (item.items) {
+                    return (
+                      <Collapsible
+                        key={item.title}
+                        asChild
+                        defaultOpen={pathname.startsWith(item.url)}
+                        className="group/collapsible"
+                      >
+                        <SidebarMenuItem className="relative overflow-visible">
+                          {/* Horizontal branch line */}
+                          <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                          <CollapsibleTrigger asChild>
+                            <SidebarMenuButton
+                              tooltip={item.title}
+                              isActive={pathname === item.url}
+                              suppressHydrationWarning
+                              className="pl-4 overflow-visible"
+                            >
+                              {item.icon && <item.icon className="size-4 shrink-0" />}
+                              <span className="truncate">{item.title}</span>
+                              <ChevronRight className="ml-auto size-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            </SidebarMenuButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent className="overflow-visible">
+                            <SidebarMenuSub className="relative ml-3 border-l border-border pl-3 overflow-visible">
+                              {item.items.map((subItem) => (
+                                <SidebarMenuSubItem key={subItem.title} className="relative overflow-visible">
+                                  {/* Horizontal branch line for sub-items */}
+                                  <div className="absolute left-0 top-1/2 w-3 h-px bg-border -translate-y-1/2 -ml-3" />
+                                  <SidebarMenuSubButton
+                                    asChild
+                                    isActive={pathname === subItem.url}
+                                    suppressHydrationWarning
+                                    className="overflow-visible"
+                                  >
+                                    <a href={subItem.url} className="truncate">
+                                      <span className="truncate">{subItem.title}</span>
+                                    </a>
+                                  </SidebarMenuSubButton>
+                                </SidebarMenuSubItem>
+                              ))}
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </SidebarMenuItem>
+                      </Collapsible>
+                    )
+                  }
+
+                  return (
+                    <SidebarMenuItem key={item.title} className="relative overflow-visible">
+                      {/* Horizontal branch line */}
+                      <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                      <SidebarMenuButton
+                        asChild
+                        tooltip={item.title}
+                        isActive={pathname === item.url}
+                        suppressHydrationWarning
+                        className="pl-4 overflow-visible"
+                      >
+                        <a href={item.url} className="truncate flex items-center gap-2">
+                          {item.icon && <item.icon className="size-4 shrink-0" />}
+                          <span className="truncate">{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
 
-        {/* Supported Models Section */}
-        <SidebarGroup>
+    {/* Supported Models Section */}
+    <SidebarGroup>
           <SidebarGroupLabel>Supported Models</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -391,25 +743,89 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarGroupLabel>Cookbooks</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {navigationData.cookbooks.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={item.title}
-                    isActive={pathname === item.url}
-                    suppressHydrationWarning
-                  >
-                    <a href={item.url}>
-                      {item.icon && <item.icon className="size-4" />}
-                      <span className="text-sm">{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+            {/* Cookbooks v0 - Collapsible */}
+            <Collapsible defaultOpen={pathname.startsWith('/cookbooks')} className="group/cookbooks-v0">
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton
+                      tooltip="Cookbooks v0"
+                      suppressHydrationWarning
+                      className="font-medium"
+                    >
+                      <span className="text-sm">Cookbooks v0</span>
+                      <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/cookbooks-v0:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {navigationData.cookbooksV0.map((item) => (
+                        <SidebarMenuSubItem key={item.title}>
+                          <SidebarMenuSubButton
+                            asChild
+                            isActive={pathname === item.url}
+                            suppressHydrationWarning
+                          >
+                            <a href={item.url}>
+                              {item.icon && <item.icon className="size-4 mr-2" />}
+                              <span className="text-sm">{item.title}</span>
+                            </a>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
                 </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+              </SidebarMenu>
+            </Collapsible>
+
+            {/* Cookbooks v1 - Collapsible */}
+            <Collapsible defaultOpen={false} className="group/cookbooks-v1">
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton
+                      tooltip="Cookbooks v1"
+                      suppressHydrationWarning
+                      className="font-medium"
+                    >
+                      <span className="text-sm">Cookbooks v1</span>
+                      <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/cookbooks-v1:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {navigationData.cookbooksV1.length === 0 ? (
+                        <SidebarMenuSubItem>
+                          <div className="px-2 py-1 text-xs text-muted-foreground italic">
+                            Coming soon...
+                          </div>
+                        </SidebarMenuSubItem>
+                      ) : (
+                        navigationData.cookbooksV1.map((item) => (
+                          <SidebarMenuSubItem key={item.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={pathname === item.url}
+                              suppressHydrationWarning
+                            >
+                              <a href={item.url}>
+                                {item.icon && <item.icon className="size-4 mr-2" />}
+                                <span className="text-sm">{item.title}</span>
+                              </a>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))
+                      )}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </Collapsible>
           </SidebarGroupContent>
         </SidebarGroup>
+          </>
+        )}
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
@@ -417,10 +833,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton asChild tooltip="Contact Support" suppressHydrationWarning>
               <a
                 href="/support"
-                className="w-full flex gap-2 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md py-6 transition-colors"
+                className={`w-full flex gap-2 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md transition-colors ${isCollapsed ? 'py-2 justify-center' : 'py-6'}`}
               >
-                <Mail className="size-6" />
-                <span>Contact Support</span>
+                <Mail className={isCollapsed ? "size-4" : "size-6"} />
+                {!isCollapsed && <span>Contact Support</span>}
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

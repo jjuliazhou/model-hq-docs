@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Open_Sans } from "next/font/google"
 import "./globals.css"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
@@ -8,13 +8,24 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { NavigationLoading } from "@/components/navigation-loading"
 import { ThemeProvider } from "@/components/theme-provider"
+import { HeaderVisibilityProvider } from "@/contexts/header-visibility-context"
+import { DeprecationBanner } from "@/components/deprecation-banner"
 
 const openSans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
 })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://model-hq-docs.vercel.app'),
   title: "Model HQ Documentation",
   description: "Complete documentation for Model HQ platform",
   icons: {
@@ -54,22 +65,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={openSans.className}>
+      <body className={openSans.className} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <NavigationLoading />
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <Header />
-              <main className="flex-1 p-6">{children}</main>
-              <Footer />
-            </SidebarInset>
-          </SidebarProvider>
+          <HeaderVisibilityProvider>
+            <NavigationLoading />
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <Header />
+                <DeprecationBanner />
+                <main className="flex-1 p-6">{children}</main>
+                <Footer />
+              </SidebarInset>
+            </SidebarProvider>
+          </HeaderVisibilityProvider>
         </ThemeProvider>
       </body>
     </html>

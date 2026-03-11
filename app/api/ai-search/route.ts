@@ -3,6 +3,20 @@ import Groq from "groq-sdk";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from "fs";
 import path from "path";
+import { 
+  V0_BASE_URL, 
+  V0_EXACT_MAPPINGS, 
+  V0_FOLDER_MAPPINGS, 
+  V0_AVAILABLE_PAGES, 
+  V0_AVAILABLE_IMAGES 
+} from "./v0-mappings";
+import { 
+  V1_BASE_URL, 
+  V1_EXACT_MAPPINGS, 
+  V1_FOLDER_MAPPINGS, 
+  V1_AVAILABLE_PAGES, 
+  V1_AVAILABLE_IMAGES 
+} from "./v1-mappings";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -10,82 +24,12 @@ const groq = new Groq({
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
-// Map file paths to documentation URLs
-function getDocUrlFromPath(filePath: string): string {
-  const baseUrl = 'https://model-hq-docs.vercel.app';
+// Map file paths to documentation URLs based on version
+function getDocUrlFromPath(filePath: string, version: 'v0' | 'v1' = 'v0'): string {
+  const baseUrl = version === 'v0' ? V0_BASE_URL : V1_BASE_URL;
+  const exactMappings = version === 'v0' ? V0_EXACT_MAPPINGS : V1_EXACT_MAPPINGS;
+  const folderMappings = version === 'v0' ? V0_FOLDER_MAPPINGS : V1_FOLDER_MAPPINGS;
   const relativePath = filePath.replace(/\\/g, '/').split('model-hq-markdown-docs/')[1] || '';
-  
-  // Detailed page-level mappings for all documentation routes
-  const exactMappings: Record<string, string> = {
-    // Code Documentation
-    'model-hq-code-documentation/api-reference/API.md': '/api-reference',
-    'model-hq-code-documentation/getting-started-with-SDK/GETTING_STARTED.md': '/getting-started-with-model-hq-sdk',
-    'model-hq-code-documentation/hello-world/HELLO_WORD.md': '/hello-world',
-    
-    // System & Setup
-    'systemConfiguration/': '/system-configuration',
-    'gettingStarted/': '/getting-started',
-    'gettingStarted/README.md': '/getting-started',
-    
-    // Supported Models
-    'supported-models/INTEL_MODELS.md': '/supported-models/intel',
-    'supported-models/QUALCOMM_MODELS.md': '/supported-models/qualcomm',
-    'models/intel/': '/supported-models/intel',
-    'models/qualcomm/': '/supported-models/qualcomm',
-    
-    // Learning Resources
-    'video-tutorials/': '/video-tutorials',
-    'blogs-and-partner-solutions/': '/blogs-and-partner-solutions',
-    
-    // Chat
-    'chat/': '/chat',
-    'chat/README.md': '/chat',
-    'chat/changing-chat-model': '/chat/changing-chat-model',
-    'chat/error-handling': '/chat/error-handling',
-    
-    // Agents
-    'agent/': '/agent',
-    'agent/README.md': '/agent',
-    'agent/SERVICE.md': '/agent/create-new-agent#service-table',
-    'agent/create-new-agent': '/agent/create-new-agent',
-    'agent/agent-builder-menu': '/agent/agent-builder-menu',
-    'agent/edit-agent': '/agent/edit-agent',
-    'agent/multi-docs-agent': '/agent/multi-docs-agent',
-    'agent/openAI-and-anthropic': '/agent/openAI-and-anthropic',
-    
-    // Bots
-    'bots/': '/bots',
-    
-    // RAG
-    'rag/': '/rag',
-    'rag/PARSING.md': '/rag/rag-parsing',
-    'rag/rag-parsing': '/rag/rag-parsing',
-    'rag/document-parsing-issues': '/rag/document-parsing-issues',
-    'rag/error-handling': '/rag/error-handling',
-    
-    // Models & Testing
-    'models/': '/models',
-    'test/': '/testing-models',
-    
-    // Configs & Tools
-    'tools/': '/tools',
-    'configure/': '/configs',
-    
-    // Share & Shutdown
-    'share/': '/share-your-app',
-    'shutdown/': '/shutdown',
-    
-    // Cookbooks
-    'cookbooks/personalized-bot': '/cookbooks/personalized-bot',
-    'cookbooks/rag-bot': '/cookbooks/rag-bot',
-    'cookbooks/document-review-and-analysis-tool': '/cookbooks/document-review-and-analysis-tool',
-    'cookbooks/hybrid-inferencing': '/cookbooks/hybrid-inferencing',
-    'cookbooks/photo-to-email-automation': '/cookbooks/photo-to-email-automation',
-    'cookbooks/clinical-trial-screening-autmation': '/cookbooks/clinical-trial-screening-autmation',
-    
-    // About / Home
-    'about/': '/',
-  };
   
   // Try exact match first
   for (const [mdPath, urlPath] of Object.entries(exactMappings)) {
@@ -108,23 +52,6 @@ function getDocUrlFromPath(filePath: string): string {
   }
   
   // Fallback: general folder mappings
-  const folderMappings: Record<string, string> = {
-    'gettingStarted': '/getting-started',
-    'agent': '/agent',
-    'bots': '/bots',
-    'chat': '/chat',
-    'configure': '/configs',
-    'models': '/models',
-    'rag': '/rag',
-    'share': '/share-your-app',
-    'shutdown': '/shutdown',
-    'systemConfiguration': '/system-configuration',
-    'test': '/testing-models',
-    'tools': '/tools',
-    'cookbooks': '/cookbooks',
-    'about': '/',
-  };
-  
   const firstFolder = relativePath.split('/')[0];
   if (folderMappings[firstFolder]) {
     const subPath = relativePath
@@ -147,14 +74,34 @@ function getDocUrlFromPath(filePath: string): string {
   return urlPath ? `${baseUrl}/${urlPath}` : baseUrl;
 }
 
+// Code documentation file names (large files that should be loaded conditionally)
+const CODE_DOC_FILES = ['API.md', 'HELLO_WORD.md', 'GETTING_STARTED.md'];
+
+// Keywords that indicate a code/API-related question
+const CODE_KEYWORDS = [
+  'api', 'code', 'sdk', 'hello world', 'getting started', 'inference', 'stream',
+  'function', 'method', 'example', 'programming', 'client', 'endpoint', 'request',
+  'response', 'parameter', 'import', 'install', 'setup', 'configure', 'backend',
+  'llmware', 'python', 'javascript', 'typescript', 'curl', 'http', 'rest',
+  'get_url_string', 'list_all_models', 'max_output', 'prompt', 'token'
+];
+
+// Check if a question is code/API related
+function isCodeRelatedQuestion(question: string): boolean {
+  const lowerQuestion = question.toLowerCase();
+  return CODE_KEYWORDS.some(keyword => lowerQuestion.includes(keyword));
+}
+
 // Function to read markdown documentation files with metadata
-function getDocumentationContent(): { content: string; fileMap: Map<string, string> } {
+// Now supports conditional loading of code documentation based on query type
+function getDocumentationContent(
+  version: 'v0' | 'v1' = 'v0', 
+  includeCodeDocs: boolean = false
+): { content: string; fileMap: Map<string, string>; codeDocsIncluded: boolean } {
   const docsPath = path.join(process.cwd(), "model-hq-markdown-docs");
-  let allContent = "";
+  let generalContent = "";
+  let codeContent = "";
   const fileMap = new Map<string, string>();
-  
-  // Priority files that should be read first (for better AI context)
-  const priorityFiles: string[] = [];
 
   function readDirectory(dirPath: string) {
     const items = fs.readdirSync(dirPath);
@@ -168,22 +115,20 @@ function getDocumentationContent(): { content: string; fileMap: Map<string, stri
       } else if (item.endsWith(".md")) {
         const content = fs.readFileSync(fullPath, "utf-8");
         const relativePath = fullPath.replace(docsPath, '').replace(/\\/g, '/');
-        const docUrl = getDocUrlFromPath(fullPath);
+        const docUrl = getDocUrlFromPath(fullPath, version);
         
         fileMap.set(item, docUrl);
         
-        // Check if this is a priority file (code documentation)
-        const isPriorityFile = relativePath.includes('model-hq-code-documentation/') ||
-                               item === 'API.md' || 
-                               item === 'HELLO_WORD.md' || 
-                               item === 'GETTING_STARTED.md';
+        // Check if this is a code documentation file
+        const isCodeDoc = relativePath.includes('model-hq-code-documentation/') ||
+                          CODE_DOC_FILES.includes(item);
         
-        const fileContent = `\n\n--- File: ${item} (URL: ${docUrl}) ${isPriorityFile ? '[CODE DOCUMENTATION]' : ''} ---\n${content}`;
+        const fileContent = `\n\n--- File: ${item} (URL: ${docUrl}) ${isCodeDoc ? '[CODE DOCUMENTATION]' : ''} ---\n${content}`;
         
-        if (isPriorityFile) {
-          priorityFiles.push(fileContent);
+        if (isCodeDoc) {
+          codeContent += fileContent;
         } else {
-          allContent += fileContent;
+          generalContent += fileContent;
         }
       }
     }
@@ -191,18 +136,47 @@ function getDocumentationContent(): { content: string; fileMap: Map<string, stri
 
   try {
     readDirectory(docsPath);
-    // Prepend priority files (code documentation) to ensure they appear early in context
-    allContent = priorityFiles.join('') + allContent;
-    return { content: allContent, fileMap };
+    
+    // Combine content based on whether code docs should be included
+    let allContent = generalContent;
+    if (includeCodeDocs && codeContent) {
+      // Prepend code documentation when included
+      allContent = codeContent + generalContent;
+    }
+    
+    return { 
+      content: allContent, 
+      fileMap, 
+      codeDocsIncluded: includeCodeDocs && codeContent.length > 0 
+    };
   } catch (error) {
     console.error("Error reading documentation:", error);
-    return { content: "", fileMap: new Map() };
+    return { content: "", fileMap: new Map(), codeDocsIncluded: false };
   }
+}
+
+// Get a summary of code documentation (for non-code queries)
+function getCodeDocsSummary(version: 'v0' | 'v1' = 'v0'): string {
+  const baseUrl = version === 'v0' ? V0_BASE_URL : V1_BASE_URL;
+  const versionPath = version === 'v0' ? '/v0' : '/v1';
+  
+  return `
+📚 CODE & API DOCUMENTATION AVAILABLE (not loaded - ask specifically for code examples):
+- API Reference: Complete API documentation with all endpoints, parameters, and examples → ${baseUrl}${versionPath}/api-reference
+- Getting Started with SDK: Backend setup, configuration, and initial code examples → ${baseUrl}${versionPath}/getting-started-with-model-hq-sdk
+- Hello World: Basic inference() and stream() method examples → ${baseUrl}${versionPath}/hello-world
+
+💡 To get code examples, API details, or SDK usage, please ask specifically about:
+- How to use inference() or stream() methods
+- API endpoints and parameters
+- SDK setup and configuration
+- Code examples for specific features
+`;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { question, conversationHistory } = await request.json();
+    const { question, conversationHistory, version = 'v0' } = await request.json();
 
     if (!question) {
       return NextResponse.json(
@@ -211,8 +185,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get documentation content
-    const { content: docsContent, fileMap } = getDocumentationContent();
+    // Determine if this is a code-related question
+    const isCodeQuery = isCodeRelatedQuestion(question);
+    console.log(`Query type: ${isCodeQuery ? 'CODE-RELATED' : 'GENERAL'} - "${question.substring(0, 50)}..."`);
+
+    // Get documentation content for the specified version
+    // Only include code docs for code-related questions to optimize context usage
+    const { content: docsContent, fileMap, codeDocsIncluded } = getDocumentationContent(
+      version as 'v0' | 'v1',
+      isCodeQuery
+    );
 
     if (!docsContent) {
       return NextResponse.json(
@@ -221,29 +203,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get code docs summary for non-code queries
+    const codeDocsSummary = !isCodeQuery ? getCodeDocsSummary(version as 'v0' | 'v1') : '';
+
+    // Get version-specific mappings
+    const availablePages = version === 'v0' ? V0_AVAILABLE_PAGES : V1_AVAILABLE_PAGES;
+    const availableImages = version === 'v0' ? V0_AVAILABLE_IMAGES : V1_AVAILABLE_IMAGES;
+
     // Build conversation messages
     const messages: any[] = [
       {
         role: "system",
-        content: `You are a documentation assistant for Model HQ. Your ONLY job is to answer questions using the provided Model HQ documentation below.
+        content: `You are a documentation assistant for Model HQ ${version.toUpperCase()}. Your ONLY job is to answer questions using the provided Model HQ documentation below.
 
 ⚠️ CRITICAL RULES - YOU MUST FOLLOW THESE:
 1. ONLY use information from the documentation provided below
 2. DO NOT use your general knowledge about LLMs, agents, or AI
 3. DO NOT make up information or provide generic advice
 4. The documentation is comprehensive - search thoroughly before saying "not available"
-5. Look for keywords, file names (e.g., SERVICE.md, PARSING.md, API.md, HELLO_WORD.md, GETTING_STARTED.md), tables, and lists
+5. Look for keywords, file names (e.g., SERVICE.md, PARSING.md${codeDocsIncluded ? ', API.md, HELLO_WORD.md, GETTING_STARTED.md' : ''}), tables, and lists
 6. If you truly cannot find the answer after searching, say: "This information is not available in the Model HQ documentation. Please refer to [relevant page link] for related information."
 7. Always cite specific documentation pages with links
 
-SPECIAL FOCUS ON CODE DOCUMENTATION:
+${codeDocsIncluded ? `SPECIAL FOCUS ON CODE DOCUMENTATION (CODE DOCS ARE LOADED):
 - The documentation includes extensive CODE EXAMPLES and API REFERENCES in files like API.md, HELLO_WORD.md, and GETTING_STARTED.md
 - When users ask about APIs, SDK usage, code examples, or programming, search these files FIRST
 - API.md contains ALL API endpoint details, parameters, request/response formats, and code examples
 - HELLO_WORD.md contains basic usage examples for inference() and stream() methods
 - GETTING_STARTED.md contains setup instructions, configuration, and initial code examples
 - Always include complete code snippets when available in the documentation
-- Provide function signatures, parameters, and return values when answering API questions
+- Provide function signatures, parameters, and return values when answering API questions` : `CODE DOCUMENTATION NOTE:
+- Code documentation (API.md, HELLO_WORD.md, GETTING_STARTED.md) is NOT loaded for this query to optimize performance
+- If the user asks about code, APIs, or SDK usage, direct them to ask specifically about those topics
+- Provide links to the API Reference, Hello World, and Getting Started pages for code-related questions`}
 
 FORMATTING RULES:
 - Format your responses in clean, readable Markdown
@@ -257,50 +249,10 @@ FORMATTING RULES:
 IMAGE USAGE - IMPORTANT:
 - Include relevant images when they help explain concepts or show UI elements
 - Use markdown image syntax: ![Alt Text](URL)
-- Images are available at: https://model-hq-docs.vercel.app/[path]/[image-name].png
 - ONLY use images from the list below - DO NOT invent image URLs
 
 AVAILABLE IMAGES BY TOPIC:
-Main Interface:
-- Main Menu: ![Main Menu](https://model-hq-docs.vercel.app/main_menu.png)
-- Landing Interface or setup options or entry page or getting started: ![Landing Interface](https://model-hq-docs.vercel.app/getting-started/landing_interface.png)
-- System Config: ![Laptop Config](https://model-hq-docs.vercel.app/laptop_config.png)
-
-Agents:
-- Agent Builder: ![Agent Builder](https://model-hq-docs.vercel.app/agent/agentBuilder.png)
-- Agent Interface: ![Agent Interface](https://model-hq-docs.vercel.app/agent/agentInterface.png)
-- Create New Agent: ![New Agent](https://model-hq-docs.vercel.app/agent/agentNew.png)
-- Agent Process: ![Agent Process](https://model-hq-docs.vercel.app/agent/agentProcess.png)
-- Service Examples: ![Service 1](https://model-hq-docs.vercel.app/agent/service1.png)
-
-Chat:
-- Chat Interface: ![Chat Interface](https://model-hq-docs.vercel.app/chat/chatInterface.png)
-- Change Models: ![Change Models](https://model-hq-docs.vercel.app/chat/changeModels.png)
-- Model Config: ![Model Config](https://model-hq-docs.vercel.app/chat/modelConfig.png)
-
-Bots:
-- Bots Interface: ![Bots](https://model-hq-docs.vercel.app/bots.png)
-
-RAG:
-- RAG Interface: ![RAG](https://model-hq-docs.vercel.app/rag.png)
-- PDF Parsing: ![PDF Parsing](https://model-hq-docs.vercel.app/chat/pdfParsing.png)
-- OCR: ![OCR](https://model-hq-docs.vercel.app/chat/ocr.png)
-
-Models:
-- Models Interface: ![Models](https://model-hq-docs.vercel.app/models.png)
-
-Shutdown:
-- Shutdown: ![Shutdown](https://model-hq-docs.vercel.app/shutdown.png)
-
-Model HQ SDK Or Code Documentation or Getting Started with SDK:
-- ![Tools Location](https://model-hq-docs.vercel.app/getting-started-with-sdk/menu.png)
-- ![Tools Interface](https://model-hq-docs.vercel.app/getting-started-with-sdk/tools.png)
-- ![Initiate Backend](https://model-hq-docs.vercel.app/getting-started-with-sdk/backend.png)
-- ![Launching Backend](https://model-hq-docs.vercel.app/getting-started-with-sdk/launch.png)
-- ![Backend Configure](https://model-hq-docs.vercel.app/getting-started-with-sdk/backend.png)
-- ![Download SDK](https://model-hq-docs.vercel.app/getting-started-with-sdk/download.png)
-- ![Inside Downloaded SDK Files](https://model-hq-docs.vercel.app/getting-started-with-sdk/files.png)
-- ![Closing Backend](https://model-hq-docs.vercel.app/getting-started-with-sdk/close.png)
+${availableImages}
 
 WHEN TO INCLUDE IMAGES:
 - Include 1-2 relevant images when explaining UI features
@@ -316,78 +268,9 @@ LINK GUIDELINES - CRITICAL:
 - Format links as: [Descriptive Text](URL)
 - The URLs are provided in the documentation content as "(URL: ...)"
 - Extract and use these URLs in your responses
-- If a user asks "What is Model HQ?" or about Model HQ in general, use: https://model-hq-docs.vercel.app/
-- If a user asks about parsing, RAG parsing, or document parsing, use: https://model-hq-docs.vercel.app/rag/rag-parsing
-- If a user asks about available services or list of services, use: https://model-hq-docs.vercel.app/agent/create-new-agent#service-table
-- If a user asks about Intel models or best models for Intel, use: https://model-hq-docs.vercel.app/supported-models/intel
-- If a user asks about Qualcomm models or best models for Qualcomm, use: https://model-hq-docs.vercel.app/supported-models/qualcomm
-- If a user asks about a specific topic (e.g., "How do I create an agent?"), include the link to that specific page (e.g., [Create New Agent](https://model-hq-docs.vercel.app/agent/create-new-agent))
-- Provide the most relevant and specific documentation link(s) for each question
-- When giving an overview answer, link to the main topic page; when answering specific questions, link to the specific sub-page
 
 AVAILABLE DOCUMENTATION PAGES (use these URLs):
-About & Overview:
-- About Model HQ (What is Model HQ, Features, Overview): https://model-hq-docs.vercel.app/
-- Getting Started: https://model-hq-docs.vercel.app/getting-started
-
-Code & API Documentation:
-- API Reference (Complete API documentation with all endpoints): https://model-hq-docs.vercel.app/api-reference
-- Getting Started with SDK (Backend setup, configuration, code examples): https://model-hq-docs.vercel.app/getting-started-with-model-hq-sdk
-- Hello World (Basic inference and stream examples): https://model-hq-docs.vercel.app/hello-world
-
-System & Setup:
-- System Configuration: https://model-hq-docs.vercel.app/system-configuration
-
-Supported Models:
-- Intel Supported Models: https://model-hq-docs.vercel.app/supported-models/intel
-- Qualcomm Supported Models: https://model-hq-docs.vercel.app/supported-models/qualcomm
-
-Learning Resources:
-- Video Tutorials: https://model-hq-docs.vercel.app/video-tutorials
-- Blogs & Partner Solutions: https://model-hq-docs.vercel.app/blogs-and-partner-solutions
-
-Chat:
-- Chat Overview: https://model-hq-docs.vercel.app/chat
-- Changing Chat Models: https://model-hq-docs.vercel.app/chat/changing-chat-model
-- Chat Error Handling: https://model-hq-docs.vercel.app/chat/error-handling
-
-Agents:
-- Agents Overview (includes list of all available services): https://model-hq-docs.vercel.app/agent
-- Available Services List: https://model-hq-docs.vercel.app/agent/create-new-agent#service-table
-- Create New Agent: https://model-hq-docs.vercel.app/agent/create-new-agent
-- Agent Builder Menu: https://model-hq-docs.vercel.app/agent/agent-builder-menu
-- Edit Agents: https://model-hq-docs.vercel.app/agent/edit-agent
-- Batch Run (Multi-Docs): https://model-hq-docs.vercel.app/agent/multi-docs-agent
-- OpenAI/Anthropic Models: https://model-hq-docs.vercel.app/agent/openAI-and-anthropic
-
-Bots:
-- Bots: https://model-hq-docs.vercel.app/bots
-
-RAG:
-- RAG Overview: https://model-hq-docs.vercel.app/rag
-- RAG Parsing: https://model-hq-docs.vercel.app/rag/rag-parsing
-- Document Parsing Issues: https://model-hq-docs.vercel.app/rag/document-parsing-issues
-- RAG Error Handling: https://model-hq-docs.vercel.app/rag/error-handling
-
-Models & Testing:
-- Models: https://model-hq-docs.vercel.app/models
-- Testing Models: https://model-hq-docs.vercel.app/testing-models
-
-Configs & Tools:
-- Tools: https://model-hq-docs.vercel.app/tools
-- Configs: https://model-hq-docs.vercel.app/configs
-
-Share & Shutdown:
-- Share Your App: https://model-hq-docs.vercel.app/share-your-app
-- Shutdown: https://model-hq-docs.vercel.app/shutdown
-
-Cookbooks:
-- Personalized Bot: https://model-hq-docs.vercel.app/cookbooks/personalized-bot
-- RAG Bot: https://model-hq-docs.vercel.app/cookbooks/rag-bot
-- Document Review Tool: https://model-hq-docs.vercel.app/cookbooks/document-review-and-analysis-tool
-- Hybrid Inferencing: https://model-hq-docs.vercel.app/cookbooks/hybrid-inferencing
-- Photo to Email Automation: https://model-hq-docs.vercel.app/cookbooks/photo-to-email-automation
-- Clinical Trial Screening: https://model-hq-docs.vercel.app/cookbooks/clinical-trial-screening-autmation
+${availablePages}
 
 CONTENT GUIDELINES - STRICTLY ENFORCE:
 - ✅ ONLY answer using information from the Model HQ documentation below
@@ -493,13 +376,15 @@ For more examples, see [Hello World](https://model-hq-docs.vercel.app/hello-worl
 
 WRONG Answer: "You can use the inference method to call the model." ❌ (No code example or details!)
 
-📚 MODEL HQ DOCUMENTATION (YOUR ONLY SOURCE):
+${codeDocsIncluded ? '📚 MODEL HQ DOCUMENTATION - CODE & API DOCS INCLUDED (YOUR ONLY SOURCE):' : '📚 MODEL HQ DOCUMENTATION (YOUR ONLY SOURCE):'}
+${!codeDocsIncluded ? codeDocsSummary : ''}
 ${docsContent.slice(0, 150000)}
 
 🚨 CRITICAL REMINDER: 
 - Extract and summarize ONLY relevant information
 - DO NOT copy-paste entire documentation pages
 - Keep responses concise (2-5 paragraphs)
+${!codeDocsIncluded ? '- For code/API questions, direct users to the API Reference, Hello World, or Getting Started pages' : '- Code documentation is included - provide complete code examples when relevant'}
 - You are a Model HQ documentation assistant - only use the documentation above`,
       },
     ];
@@ -509,10 +394,9 @@ ${docsContent.slice(0, 150000)}
       messages.push(...conversationHistory);
     }
 
-    // Add current question with emphasis on code documentation
-    const isCodeQuestion = question.toLowerCase().match(/\b(api|code|sdk|hello world|getting started|inference|stream|function|method|example|programming|client)\b/);
-    const enhancedQuestion = isCodeQuestion 
-      ? `${question}\n\n(Note: If this question is about code, APIs, SDK usage, or programming examples, please search thoroughly in the API Reference, Getting Started with SDK, and Hello World documentation sections.)`
+    // Add current question - enhance only if code docs are loaded
+    const enhancedQuestion = codeDocsIncluded
+      ? `${question}\n\n(Note: Code documentation is loaded. If this question is about code, APIs, SDK usage, or programming examples, please search thoroughly in the API Reference, Getting Started with SDK, and Hello World documentation sections.)`
       : question;
     
     messages.push({

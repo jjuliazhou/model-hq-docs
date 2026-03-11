@@ -4,17 +4,9 @@ A comprehensive documentation website for Model HQ - an AI platform that allows 
 
 ![Model HQ Documentation](public/images/new-modelhq-logo.png)
 
-## 🌟 Overview
+## Overview
 
 Model HQ Documentation is a modern, responsive documentation site built with Next.js 15 and TypeScript. It provides comprehensive guides for users to understand and utilize the Model HQ platform, from basic setup to advanced AI model management.
-
-### Key Features
-- 🔍 **Advanced Search** - Real-time search with keyboard navigation
-- 📱 **Responsive Design** - Mobile-first approach with collapsible sidebar
-- 🎨 **Modern UI** - Built with shadcn/ui components and Tailwind CSS
-- ⚡ **Fast Performance** - Next.js App Router with optimized loading
-- 🧭 **Easy Navigation** - Breadcrumbs, sidebar navigation, and search
-- 📖 **Rich Content** - Comprehensive documentation with images and examples
 
 ## 🚀 Tech Stack
 
@@ -36,7 +28,7 @@ Model HQ Documentation is a modern, responsive documentation site built with Nex
 - **PostCSS** - CSS processing
 - **CSS Variables** - Dynamic theming
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 model-hq-docs/
@@ -120,7 +112,7 @@ model-hq-docs/
 └── README.md                   # This file
 ```
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -175,7 +167,7 @@ npm run lint:fix     # Fix ESLint issues
 npm run type-check   # Run TypeScript type checking
 ```
 
-## 📝 Adding New Documentation
+## Adding New Documentation
 
 ### Creating a New Page
 
@@ -468,7 +460,7 @@ console.log(example);
 </div>
 ```
 
-## 🎥 Managing Video Tutorials
+## Managing Video Tutorials
 
 ### Video Data Structure
 
@@ -687,7 +679,7 @@ console.log('YouTube URL:', `https://www.youtube.com/watch?v=${videoData.id}`)
 console.log('Thumbnail path:', videoData.thumbnail)
 ````
 
-## 🎨 Design System
+## Design System
 
 ### Color Palette
 
@@ -743,7 +735,7 @@ console.log('Thumbnail path:', videoData.thumbnail)
 <Button variant="outline" size="lg">
 ```
 
-## 🔍 Search System
+## Search System
 
 ### How Search Works
 
@@ -782,7 +774,7 @@ const searchData: SearchResult[] = [
 <h3 id="subsection-title">Subsection Title</h3>
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Manual Testing Checklist
 
@@ -798,7 +790,7 @@ Before submitting changes, test:
 - [ ] **Code blocks render properly** with syntax highlighting
 - [ ] **Blockquotes display correctly** with proper styling
 
-## 🤝 Contributing
+## Contributing
 
 ### Development Workflow
 
@@ -941,7 +933,7 @@ Any additional context or considerations.
 ```
 
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Build
 
@@ -981,19 +973,7 @@ npm run build
 npm run start
 ```
 
-## 📊 Analytics & Monitoring
-
-### Performance Monitoring
-- Monitor Core Web Vitals
-- Track page load times
-- Monitor search usage
-
-### Content Analytics
-- Track popular pages
-- Monitor search queries
-- Identify content gaps
-
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -1031,11 +1011,11 @@ npm run dev
 3. **Create detailed issue** with reproduction steps
 4. **Ask in discussions** for general questions
 
-## 📄 License
+## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/RS-labhub/model-hq-docs/blob/master/LICENSE) file for details.
 
 
-## 📞 Support
+## Support
 
 - **Documentation Issues**: Create an issue in this repository
 - **Model HQ Support**: Contact `support@aibloks.com`

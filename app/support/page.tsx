@@ -26,6 +26,7 @@ export default function SupportPage() {
 
     const issueTypes = [
         { value: "general", label: "General Inquiry" },
+        { value: "trial", label: "Free Trial Access Code Request" },
         { value: "technical", label: "Technical Issue" },
         { value: "bug", label: "Bug Report" },
         { value: "feature", label: "Feature Request" },

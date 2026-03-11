@@ -4,6 +4,9 @@ export function Footer() {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
         <p className="text-center sm:text-left">&copy; 2025 Model HQ. All rights reserved.</p>
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <a href="/license" className="hover:text-foreground transition-colors">
+            License
+          </a>
           <a href="/privacy-policies" className="hover:text-foreground transition-colors">
             Privacy Policies
           </a>

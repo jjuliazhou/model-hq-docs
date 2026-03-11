@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
       bug: "Bug Report",
       feature: "Feature Request",
       documentation: "Documentation Feedback",
+      trial: "Free Trial Access Code Request",
       general: "General Inquiry",
       other: "Other",
     }

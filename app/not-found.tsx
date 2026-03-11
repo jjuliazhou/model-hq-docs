@@ -6,8 +6,8 @@ import { Home, BookOpen, Mail } from "lucide-react"
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-2xl text-center">
+    <div className="min-h-screen flex items-center justify-center bg-transparent px-4">
+      <Card className="w-full max-w-2xl text-center bg-transparent">
         <CardContent className="p-8 space-y-6">
           {/* Logo */}
           <div className="flex justify-center mb-6">
@@ -16,11 +16,11 @@ export default function NotFound() {
 
           {/* 404 Text */}
           <div className="space-y-4">
-            <h1 className="text-8xl font-bold bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
+            <h1 className="text-8xl font-bold bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
               404
             </h1>
-            <h2 className="text-2xl font-semibold text-gray-900">Page Not Found</h2>
-            <p className="text-gray-600 max-w-md mx-auto">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Page Not Found</h2>
+            <p className="text-gray-600 max-w-md mx-auto dark:text-gray-300">
               Sorry, we couldn't find the page you're looking for. The page might have been moved, deleted, or the URL
               might be incorrect.
             </p>
@@ -54,9 +54,9 @@ export default function NotFound() {
           </div>
 
           {/* Helpful Suggestions */}
-          <div className="pt-6 border-t border-gray-200">
-            <h3 className="text-sm font-medium text-gray-900 mb-3">What you can do:</h3>
-            <ul className="text-sm text-gray-600 space-y-1">
+          <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+            <h3 className="text-sm font-medium text-gray-900 mb-3 dark:text-gray-100">What you can do:</h3>
+            <ul className="text-sm text-gray-600 space-y-1 dark:text-gray-300">
               <li>• Check the URL for any typos</li>
               <li>• Use the search function to find what you're looking for</li>
               <li>• Browse our documentation from the home page</li>

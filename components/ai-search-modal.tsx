@@ -22,6 +22,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
   const [query, setQuery] = useState(initialQuery)
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [version, setVersion] = useState<'v0' | 'v1'>('v1')
   const inputRef = useRef<HTMLInputElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -75,6 +76,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
         body: JSON.stringify({
           question: searchQuery,
           conversationHistory: messages,
+          version: version,
         }),
       })
 
@@ -138,22 +140,47 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-semibold">AI Search</h2>
-              <span className="text-xs text-muted-foreground">
-                Ask anything about Model HQ
-              </span>
+          <div className="p-4 border-b">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                <h2 className="text-lg font-semibold">AI Search</h2>
+                <span className="text-xs text-muted-foreground">
+                  Ask anything about Model HQ
+                </span>
+              </div>
+
+              <div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleClose}
+                  className="h-8 w-8"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleClose}
-              className="h-8 w-8"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+            <div className="mt-2 flex items-center gap-2">
+              <div className="flex items-center gap-1 border rounded-md p-1">
+                <Button
+                  variant={version === 'v0' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setVersion('v0')}
+                  className="h-7 px-3 text-xs"
+                >
+                  v0
+                </Button>
+                <Button
+                  variant={version === 'v1' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setVersion('v1')}
+                  className="h-7 px-3 text-xs"
+                >
+                  v1
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Messages */}
@@ -269,15 +296,15 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
           {/* Input */}
           <div className="p-4 border-t">
             <div className="flex gap-2">
-              <Input
-                ref={inputRef}
-                placeholder="Ask a question..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={isLoading}
-                className="flex-1"
-              />
+                <Input
+                  ref={inputRef}
+                  placeholder="Ask a question..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={isLoading}
+                  className="flex-1 !border-blue-200 focus-visible:!ring-blue-200 focus-visible:!border-blue-200"
+                />
               <Button
                 onClick={() => handleSearch()}
                 disabled={isLoading || !query.trim()}
