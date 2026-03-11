@@ -77,11 +77,48 @@ Choose models that are fine-tuned for your device:
 
 ## Documentation Overview
 
-> [!IMPORTANT]
-> **V1 Documentation Coming Soon!**
+### V1 Documentation
+
+* Chat
+  * [Chat Overview](https://model-hq-docs.vercel.app/v1/chat) – Explore chat functionality and model interactions
+  * [Chat Configuration](https://model-hq-docs.vercel.app/v1/chat/chat-configuration) – Configure chat settings and preferences
+  * [Document Parsing Issues](https://model-hq-docs.vercel.app/v1/chat/document-parsing-issues) – Possible solutions for document parsing issues
+  * [Error Handling](https://model-hq-docs.vercel.app/v1/chat/error-handling) – Handle chat errors gracefully
+
+* Bots
+  * [Bots Overview](https://model-hq-docs.vercel.app/v1/bots) – Build and customize your own bots
+  * [Building a Bot](https://model-hq-docs.vercel.app/v1/bots/build-bot) – Create a new bot from scratch
+  * [Editing a Bot](https://model-hq-docs.vercel.app/v1/bots/edit-bot) – Modify existing bots
+
+* Models
+  * [Models Overview](https://model-hq-docs.vercel.app/v1/models) – Discover and manage AI models
+  * [Model Configuration](https://model-hq-docs.vercel.app/v1/models/model-configuration) – Configure model settings and parameters
+  * [Create Custom Test](https://model-hq-docs.vercel.app/v1/models/custom-test) – Build custom model evaluations
+
+* Source (RAG)
+  * [Source Overview](https://model-hq-docs.vercel.app/v1/source) – Retrieval-Augmented Generation workflows
+  * [Parsing in Source](https://model-hq-docs.vercel.app/v1/source/parsing-in-source) – Parse and index your documents
+  * [Error Handling](https://model-hq-docs.vercel.app/v1/source/error-handling) – Handle source errors gracefully
+
+* [Dataset](https://model-hq-docs.vercel.app/v1/dataset) – Work with structured CSV, XLSX, and JSON data in AI agent workflows
+
+* [Services](https://model-hq-docs.vercel.app/v1/services) – Create reusable service components for agent workflows
+
+* [Integrations](https://model-hq-docs.vercel.app/v1/integrations) – Connect external services, cloud platforms, and AI providers
+
+* Configs & Tools
+  * [Configure](https://model-hq-docs.vercel.app/v1/configs-and-tools/configure) – Comprehensive configuration controls
+  * [Tools](https://model-hq-docs.vercel.app/v1/configs-and-tools/tools) – Powerful utilities for managing your local setup
+
+* [Shutdown](https://model-hq-docs.vercel.app/v1/shutdown) – Close the app safely as best practices and highly recommended
+
+&nbsp;
 
 <details>
 <summary><strong> V0 Documentation Will be deprecated soon! </summary></strong>
+
+> [!WARNING]
+> **v0 will be deprecated soon. Please migrate to v1 for continued support and new features.**
 
 * [System Configuration](https://model-hq-docs.vercel.app/system-configuration) – Configure your environment and system requirements
 
@@ -95,18 +132,18 @@ Choose models that are fine-tuned for your device:
 * Agents
   * [Agents Overview](https://model-hq-docs.vercel.app/agent) – Build new AI agents
   * [Create New Agent](https://model-hq-docs.vercel.app/agent/create-new-agent) – Create your own agent
-  * [Agent Builder Menu](https://model-hq-docs.vercel.app/agent/agent-builder-menu) – Understand the interface 
+  * [Agent Builder Menu](https://model-hq-docs.vercel.app/agent/agent-builder-menu) – Understand the interface
   * [Edit Agents](https://model-hq-docs.vercel.app/agent/edit-agent) – Modify existing agents
   * [Batch Run](https://model-hq-docs.vercel.app/agent/multi-docs-agent) – Process multiple documents simultaneously
   * [Using OpenAI or Anthropic Models](https://model-hq-docs.vercel.app/agent/openAI-and-anthropic) – Building Agent workflows using OpenAI and Anthropic models
 
-* [Bots](https://model-hq-docs.vercel.app/bots) - uild and customize your own bots
+* [Bots](https://model-hq-docs.vercel.app/bots) – Build and customize your own bots
 
 * RAG
-  * [RAG Overview](https://model-hq-docs.vercel.app/rag/) – Build and customize your own bots
-  * [RAG Parsing](https://model-hq-docs.vercel.app/rag/rag-parsing) – Turn your documents into a structured information
+  * [RAG Overview](https://model-hq-docs.vercel.app/rag/) – Retrieval-Augmented Generation workflows
+  * [RAG Parsing](https://model-hq-docs.vercel.app/rag/rag-parsing) – Turn your documents into structured information
   * [Document Parsing Issues](https://model-hq-docs.vercel.app/rag/document-parsing-issues) – Possible solutions for document parsing issues
-  * [Error Handling](https://model-hq-docs.vercel.app/rag/error-handling) – Handle chat errors gracefully
+  * [Error Handling](https://model-hq-docs.vercel.app/rag/error-handling) – Handle RAG errors gracefully
 
 * [Models](https://model-hq-docs.vercel.app/models) – Discover and manage AI models
 
