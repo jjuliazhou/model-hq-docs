@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { MessageSquare, Bot, Database, Wrench, Settings, Power, BookOpen, FileSearch, Network, Plug, Sparkles } from "lucide-react"
+import { MessageSquare, Bot, Database, Wrench, Settings, Power, BookOpen, FileSearch, Network, Plug, Sparkles, TableProperties } from "lucide-react"
 import Link from "next/link"
 
 export default function V1OverviewPage() {
@@ -40,6 +40,13 @@ export default function V1OverviewPage() {
       icon: FileSearch,
       href: "/v1/source",
       topics: ["Source Overview", "Parsing in Source", "Error Handling"]
+    },
+    {
+      title: "Dataset",
+      description: "Work with structured CSV, XLSX, and JSON data — enabling AI agents to search, classify, analyze, and predict across table-based data.",
+      icon: TableProperties,
+      href: "/v1/dataset",
+      topics: ["Creating a Dataset", "Field Mapping", "RAG Columns", "ID Column", "KPI Definition", "Analyze"]
     },
     {
       title: "Services",

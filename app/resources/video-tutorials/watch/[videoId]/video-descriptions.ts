@@ -1,5 +1,192 @@
 // Video descriptions mapping
 export const videoDescriptions: Record<string, string> = {
+  "9YP-nDhXRJY": `
+    What happens when you run generative AI on a 33,000-row dataset — with zero code?
+
+In this demo, we show how Model HQ turns a large CSV into an AI-powered analytics engine using:
+
+• Semantic search (search by meaning, not keywords)
+• Sentiment analysis at scale
+• AI-driven data exploration
+• No scripts. No pipelines. No data science required.
+
+Everything runs locally on an AI PC — no cloud dependency, no token pricing, and no external data exposure.
+
+This is structured data + generative AI running privately on enterprise hardware.
+
+If you're looking for:
+
+AI for CSV files
+No-code AI analytics
+Local LLM workflows
+AI on AI PCs
+Semantic search on structured data
+
+This video shows exactly how to do it.
+
+Model HQ makes advanced AI data analysis simple, private, and scalable.
+Note: CSV capability supported on Model HQ version 10119 and newer - Version info can be found in Tools / System Info and expand System Info Auto Detected.
+  `,
+  "K1JaG9AwORE": `
+    Getting insights from CSV files for work can be painful.
+
+Thousands of rows. Endless filtering. Sorting columns. Manually summarizing text. And eventually… sending it to a data scientist just to get real answers.
+
+In this video, I show you how to take a 2,200-row airline review dataset and turn it into a live dataset inside Model HQ — where you can:
+
+✅ Build and configure a dataset properly
+✅ Run keyword filters 
+✅ Apply column filters (like ratings ≥ 9 or 10)
+✅ Create clean filtered CSV outputs automatically
+✅ Use AI to summarize long text reviews in seconds
+
+All completely no code.
+
+This is the beginning of our new series about Supercharged CSVs where 
+Data Science meets Generative AI for CSVs.
+
+If you work with spreadsheets, reports, or structured business data, this series will show you how to interact with your CSVs like an AI expert — without needing Python, SQL, or a data science degree.
+
+Let’s make CSVs work for you instead of the other way around. 🚀
+
+Link to Dataset: https://www.kaggle.com/datasets/jagat...
+
+Note: CSV capability supported on Model HQ version 10119 and newer - Version info can be found in Tools / System Info and expand System Info Auto Detected.
+  `,
+  "D3cZyenzelY": `
+    In this video, I show you how to build, template, and demo complex AI agents inside Model HQ — completely private, fully local, and 100% no-code.
+
+But here’s what makes this different 👇
+
+Model HQ doesn’t just let you build agents.
+
+It ships with *pre-configured AI agents* that serve as:
+
+✅ Working production-ready examples
+✅ Reusable workflow templates
+✅ One-click live demos
+✅ Starting points for your own custom agents
+
+That means you can:
+
+Instantly demo sophisticated workflows
+Study how they’re built
+Modify them for your own use case
+Or create your own agent and turn it into a demo in seconds
+
+---
+
+ What I Show in This Video
+
+1️⃣ AC Field Tech Agent (Pre-Configured Template + Demo)
+
+A multimodal workflow that:
+
+• Reads an equipment label from an image
+• Extracts model & serial numbers
+• Queries structured tables
+• Runs RAG against documents
+• Answers technical questions
+• Shows inference timing
+• Generates outputs
+
+And it runs live — not canned.
+
+You can:
+
+Demo it instantly
+Replace the image
+Swap datasets
+Use it as your own workflow foundation
+
+ 2️⃣ Financial Research Agent (16-Step Workflow Template)
+
+A research workflow that:
+
+• Extracts financial details from an article
+• Identifies ticker + company
+• Performs Wikipedia lookup
+• Synthesizes structured insights
+• Generates a formatted Word report
+
+Again — fully demo-ready and fully editable.
+
+ 3️⃣ Build Your Own Handwritten Notes Reading Agent → Turn It Into a Demo
+
+Then I build a brand-new agent live:
+
+• Upload multi-page handwritten PDFs
+• Use OCR Vision for transcription
+• Correct spelling
+• Organize notes into structured format
+• Output a Word document
+• Convert the entire workflow into a reusable one-click demo
+
+All by simply adding metadata.
+
+---
+ Why This Matters
+
+If you’ve ever tried to demo complex AI workflows live — you know how stressful it can be.
+
+Multi-step agents with:
+
+Vision
+RAG
+Datasets
+Table lookups
+Document parsing
+Structured outputs
+
+One mistake and the demo breaks.
+
+With Model HQ:
+
+Pre-configured agents act as live demo flows
+You can create demo mode for any custom agent
+Everything runs locally
+No Wi-Fi required once models are downloaded
+No cloud dependency
+No token pricing
+
+This is how you reliably showcase sophisticated AI — without stress.
+
+---
+
+ 🔐 What Makes Model HQ Different
+
+• 250+ models running locally
+• Visual no-code agent builder
+• Multimodal workflows
+• RAG + structured datasets
+• Private AI on AI PCs
+• Pre-configured demo-ready agent templates
+• One-click demo mode for your own agents
+  `,
+  "il48-IaEfxw": `
+    In this video, I will go through Model HQ’s Demo Mode for Bots, a one-click feature that lets you run polished, repeatable chatbot demos automatically — no typing, no guesswork, and no internet required once models are downloaded. Perfect for Sales Professionals or anyone who loves to create and show off your bots.
+
+You’ll see how Demo Mode:
+
+Runs a preloaded sequence of questions automatically
+Showcases speed, response quality, and RAG accuracy
+Works entirely on-device (perfect for secure or offline environments)
+Supports multiple languages (English, Spanish, French, and more)
+
+This Makes live demos calm, predictable, and professional.
+
+We’ll start with the built-in DemoBot template, then show how easy it is to:
+
+-Customize demo questions
+-Switch languages with a single prompt
+-Turn any custom bot into a one-click demo in minutes
+
+If you’ve ever been nervous about demoing AI live in front of customers, partners, or executives — this feature is for you.
+
+🔹 ModelHQ is a private, on-device, no-code AI platform where hundreds of models, bots, and agents run locally on your machine — no Wi-Fi required.
+
+👍 Like, subscribe, and comment if you want to see more Model HQ demos or have ideas for future features.
+  `,
   "fW8_-_EdsrM": `
     In this video, I will show you something pretty amazing — a vision agent that reads handwritten prescriptions and turns messy handwriting into clean, structured data.
 

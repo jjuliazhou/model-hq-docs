@@ -24,6 +24,53 @@ export const playlistVideos: VideoData[] = [
     isManuallyAdded: true,
   },
   {
+    id: "9YP-nDhXRJY",
+    title: "I Ran Semantic Search on 33k Reviews in CSV… with No Code - Model HQ Demo",
+    description:
+      "What happens when you run generative AI on a 33,000-row dataset — with zero code?",
+    duration: "7:58",
+    views: "0",
+    thumbnail: "/youtube/new/semantic.jpg",
+    tags: ["Semantic", "CSV", "No Code"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "K1JaG9AwORE",
+    title: "Stop Struggling with CSVs 🚀 Filter, Analyze & Use AI Like a Data Scientist (No Code!) with Model HQ",
+    description:
+      "Getting insights from CSV files for work can be painful.",
+    duration: "13:31",
+    views: "0",
+    thumbnail: "/youtube/new/csv.jpg",
+    tags: ["CSV", "Filter", "Analyze"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "D3cZyenzelY",
+    title: "Build Live Demos for AI Agents | Model HQ Agent Demo Mode",
+    description:
+      "In this video, I show you how to build, template, and demo complex AI agents inside Model HQ — completely private, fully local, and 100% no-code.",
+    duration: "11:45",
+    views: "0",
+    thumbnail: "/youtube/new/liveDemo.jpg",
+    tags: ["AI Agents", "Live Demo"],
+    isManuallyAdded: false,
+  },
+
+  {
+    id: "il48-IaEfxw",
+    title: "One-Click Live Demos for AI Chatbots — No Wi-Fi, No Stress | Model HQ Demo Mode",
+    description:
+      "Live demos are hard. Prompts go sideways, Wi-Fi fails, and it’s tough to consistently show your chatbot at its best.",
+    duration: "9:30",
+    views: "0",
+    thumbnail: "/youtube/new/oneClick.jpg",
+    tags: ["Chatbot", "Wifi-less"],
+    isManuallyAdded: false,
+  },
+  {
     id: "fW8_-_EdsrM",
     title: "Handwriting-Reading Agent with On-Device AI | Prescription Reading Agent (no code, private)",
     description:

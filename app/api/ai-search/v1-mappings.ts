@@ -93,6 +93,13 @@ export const V1_EXACT_MAPPINGS: Record<string, string> = {
   'tools/v1/tools.md': '/v1/configs-and-tools/tools',
   'configs-and-tools/tools': '/v1/configs-and-tools/tools',
   
+  // Dataset - V1
+  'dataset/v1/': '/v1/dataset',
+  'dataset/v1/README.md': '/v1/dataset',
+  'dataset/v1/dataset.md': '/v1/dataset',
+  'dataset/dataset.md': '/v1/dataset',
+  'v1/dataset': '/v1/dataset',
+  
   // Cookbooks V1 (TODO: Add V1 cookbooks when available)
   'cookbooks/v1/': '/cookbooks/v1',
   'cookbooks/v1/personalized-bot': '/cookbooks/v1/personalized-bot',
@@ -120,6 +127,7 @@ export const V1_FOLDER_MAPPINGS: Record<string, string> = {
   'configure': '/v1/configs-and-tools/configure',
   'tools': '/v1/configs-and-tools/tools',
   'configs-and-tools': '/v1/configs-and-tools',
+  'dataset': '/v1/dataset',
   'cookbooks': '/cookbooks',
   'video-tutorials': '/resources/video-tutorials',
   'blogs-and-partner-solutions': '/resources/blogs-and-partner-solutions',
@@ -181,6 +189,14 @@ Services (V1):
 Configs & Tools (V1):
 - Configure (App settings, services, UI, RAG, DB, server, controls): ${V1_BASE_URL}/v1/configs-and-tools/configure
 - Tools (Backend server, CLI, SDK, demos, share, updates, system info): ${V1_BASE_URL}/v1/configs-and-tools/tools
+
+Dataset (V1):
+- Dataset Overview (Structured CSV, XLSX, JSON data in AI agent workflows, four-step index setup): ${V1_BASE_URL}/v1/dataset
+- Creating a Dataset (Build new, field mapping, schema confirmation, configuration): ${V1_BASE_URL}/v1/dataset#2-creating-a-dataset
+- Dataset Configuration Setup (RAG columns, ID column, KPI definition, agent input): ${V1_BASE_URL}/v1/dataset#24-dataset-configuration-setup
+- Dataset Search (Semantic, keyword, exact-phrase queries on structured data): ${V1_BASE_URL}/v1/dataset#25-search
+- Test Set / ML Training (Predictive model training on dataset columns): ${V1_BASE_URL}/v1/dataset#26-test-set-beta-may-not-be-available-in-all-versions
+- Analyze Dataset (Statistical overview, mean, std dev, KPI summaries): ${V1_BASE_URL}/v1/dataset#27-analyze
 
 Cookbooks (V1):
 - Personalized Bot: ${V1_BASE_URL}/cookbooks/v1/personalized-bot
@@ -292,6 +308,23 @@ Tools & Utilities (V1):
 - Sample Documents: ![Sample Docs](/v1/tools/sampleDocs.png)
 - Text Parser: ![Text Parser Tool](/v1/tools/textParser.png)
 - System Information: ![System Info](/v1/tools/systemInfo.png)
+
+Dataset (V1):
+- Dataset Setup Animation: ![Dataset Setup Overview](/v1/dataset/dataset.gif)
+- Dataset Menu Button: ![Dataset Interface](/v1/dataset/01_dataset.png)
+- Dataset Source Selection: ![Dataset Source](/v1/dataset/01_datasetSource.png)
+- Dataset Create Interface: ![Create Dataset](/v1/dataset/02_datasetCreate.png)
+- Dataset Build / File Upload: ![Build Dataset](/v1/dataset/02_datasetBuild.png)
+- Dataset Schema Mapping: ![Dataset Source Mapping](/v1/dataset/04_datasetSourceMapping.png)
+- Confirm Dataset Schema: ![Confirm Dataset Schema](/v1/dataset/05_datasetSourceConfirm.png)
+- Dataset Configuration Step 1 (RAG Columns): ![Dataset Config RAG](/v1/dataset/06_datasetConfig.png)
+- Dataset Configuration RAG Column Selection: ![Dataset Config RAG 2](/v1/dataset/06_datasetConfig2.png)
+- Dataset ID Column Selection: ![Dataset ID Column](/v1/dataset/06_datasetId.png)
+- Dataset KPI Definition: ![Dataset KPI](/v1/dataset/06_datasetKPI.png)
+- Dataset Configuration Confirmation: ![Confirm Dataset Config](/v1/dataset/06_datasetSourceConfirmConfig.png)
+- Dataset Final Configuration: ![Dataset Config Complete](/v1/dataset/10_datasetConfig.png)
+- Dataset ML Training Interface: ![Dataset Train](/v1/dataset/08_datasetSourceTrain.png)
+- Dataset Analysis Overview: ![Dataset Analysis](/v1/dataset/09_datasetAnalysis.png)
 
 Model HQ SDK & Code Documentation (V1):
 - Tools Menu Location: ![SDK Tools Menu Location](${V1_BASE_IMAGE_URL}/getting-started-with-sdk/v1/menu.png)

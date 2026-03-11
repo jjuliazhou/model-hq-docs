@@ -740,6 +740,16 @@ export default function HomePage() {
                 </ul>
               </div>
 
+              {/* Dataset */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/dataset" className="text-xl font-semibold text-primary hover:underline">
+                    Dataset
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Work with structured CSV, XLSX, and JSON data in AI agent workflows</span>
+                </div>
+              </div>
+
               {/* Services */}
               <div>
                 <div className="mb-3">

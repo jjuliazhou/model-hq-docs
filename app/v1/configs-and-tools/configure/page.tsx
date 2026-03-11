@@ -685,11 +685,11 @@ export default function ExploringConfigurationInModelHqPage() {
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>ocr_vision</code></td>
-              <td className="border border-border px-4 py-2">Optical Character Recognition combined with visual reasoning to extract and interpret text from images.</td>
+              <td className="border border-border px-4 py-2">Visual reasoning to extract and interpret text or images from PDFs. Use for multi-page PDFs with images or handwriting.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>ocr</code></td>
-              <td className="border border-border px-4 py-2">Extracts raw text from images or PDFs without deeper visual reasoning.</td>
+              <td className="border border-border px-4 py-2">Optical Character Recognition Extracts raw text from PDFs without deeper visual reasoning. Recommended for multi-page PDF documents with mostly text.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>agent_report</code></td>
@@ -788,7 +788,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Optical Character Recognition combined with visual reasoning to extract and interpret text from images.</p>
+                <p className="text-sm mt-1 break-words">Visual reasoning to extract and interpret text or images from PDFs. Use for multi-page PDFs with images or handwriting.</p>
               </div>
             </div>
           </div>
@@ -800,7 +800,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Extracts raw text from images or PDFs without deeper visual reasoning.</p>
+                <p className="text-sm mt-1 break-words">Optical Character Recognition Extracts raw text from PDFs without deeper visual reasoning. Recommended for multi-page PDF documents with mostly text.</p>
               </div>
             </div>
           </div>
@@ -949,7 +949,7 @@ export default function ExploringConfigurationInModelHqPage() {
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>ratings</code></td>
-              <td className="border border-border px-4 py-2">Predicts rating scores derived from textual feedback.</td>
+              <td className="border border-border px-4 py-2">Predicts rating scores derived from textual feedback from 1-5.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>ner</code></td>
@@ -1044,7 +1044,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Predicts rating scores derived from textual feedback.</p>
+                <p className="text-sm mt-1 break-words">Predicts rating scores derived from textual feedback from 1-5.</p>
               </div>
             </div>
           </div>
@@ -1125,58 +1125,66 @@ export default function ExploringConfigurationInModelHqPage() {
           <tbody>
             <tr>
               <td className="border border-border px-4 py-2"><code>select_keys</code></td>
-              <td className="border border-border px-4 py-2">Selects specific keys from structured data objects.</td>
+              <td className="border border-border px-4 py-2">Selects specific keys from structured data objects such as a larger JSON dictionary.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>build_dataset</code></td>
-              <td className="border border-border px-4 py-2">Constructs datasets from raw or processed inputs.</td>
+              <td className="border border-border px-4 py-2">Converts a selected input JSON dictionary into a dataset.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>ds_cmd_filter</code></td>
+              <td className="border border-border px-4 py-2"><code>ds_command_filter</code></td>
               <td className="border border-border px-4 py-2">Applies command-based filtering logic to datasets.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>ds_column_filter</code></td>
-              <td className="border border-border px-4 py-2">Filters datasets by specified columns.</td>
+              <td className="border border-border px-4 py-2">Keep rows where a selected column meets your condition.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>select_ds_column</code></td>
-              <td className="border border-border px-4 py-2">Selects specific columns from a dataset for further processing.</td>
+              <td className="border border-border px-4 py-2"><code>ds_column_analysis</code></td>
+              <td className="border border-border px-4 py-2">Generates a detailed report based on selected column.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>dataset_rag</code></td>
-              <td className="border border-border px-4 py-2">Enables Retrieval-Augmented Generation over structured datasets.</td>
+              <td className="border border-border px-4 py-2"><code>ds_report</code></td>
+              <td className="border border-border px-4 py-2">Generates a report of the dataset and the workflow results based on the agent run.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>ds_sem_filter</code></td>
-              <td className="border border-border px-4 py-2">Applies semantic similarity filtering to dataset entries.</td>
+              <td className="border border-border px-4 py-2"><code>ds_column_select</code></td>
+              <td className="border border-border px-4 py-2">Returns the selected column from the dataset.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>ds_text_filter</code></td>
-              <td className="border border-border px-4 py-2">Performs keyword or text-based filtering within datasets.</td>
+              <td className="border border-border px-4 py-2"><code>ds_ask_dataset</code></td>
+              <td className="border border-border px-4 py-2">Uses a natural language question to retrieve relevant information from the dataset.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>dataset_plot</code></td>
-              <td className="border border-border px-4 py-2">Generates visual plots based on dataset values.</td>
+              <td className="border border-border px-4 py-2"><code>ds_readout</code></td>
+              <td className="border border-border px-4 py-2">Displays a selection from the dataset for display.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>dataset_stat</code></td>
-              <td className="border border-border px-4 py-2">Produces statistical summaries and metrics from datasets.</td>
+              <td className="border border-border px-4 py-2"><code>ds_smart_filter</code></td>
+              <td className="border border-border px-4 py-2">Find rows that match the meaning of your query.</td>
+            </tr>
+            <tr>
+              <td className="border border-border px-4 py-2"><code>ds_keyword_filter</code></td>
+              <td className="border border-border px-4 py-2">Filter rows based on exact text matches in the selected column.</td>
+            </tr>
+            <tr>
+              <td className="border border-border px-4 py-2"><code>ds_plot</code></td>
+              <td className="border border-border px-4 py-2">Generates a visual plot chart from the selected dataset.</td>
+            </tr>
+            <tr>
+              <td className="border border-border px-4 py-2"><code>ds_statistics</code></td>
+              <td className="border border-border px-4 py-2">Perform deeper statistical analysis and generate insights.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>load_dataset</code></td>
-              <td className="border border-border px-4 py-2">Loads datasets into the execution environment.</td>
-            </tr>
-            <tr>
-              <td className="border border-border px-4 py-2"><code>ml_predict</code></td>
-              <td className="border border-border px-4 py-2">Applies machine learning prediction models to dataset inputs.</td>
+              <td className="border border-border px-4 py-2">Loads datasets into Agent state.</td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2"><code>create_json</code></td>
               <td className="border border-border px-4 py-2">Converts structured data into JSON format.</td>
             </tr>
             <tr>
-              <td className="border border-border px-4 py-2"><code>stats_analyze</code></td>
+              <td className="border border-border px-4 py-2"><code>ds_stats_analysis</code></td>
               <td className="border border-border px-4 py-2">Performs advanced statistical analysis on datasets.</td>
             </tr>
           </tbody>
@@ -1192,7 +1200,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Selects specific keys from structured data objects.</p>
+                <p className="text-sm mt-1 break-words">Selects specific keys from structured data objects such as a larger JSON dictionary.</p>
               </div>
             </div>
           </div>
@@ -1204,7 +1212,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Constructs datasets from raw or processed inputs.</p>
+                <p className="text-sm mt-1 break-words">Converts a selected input JSON dictionary into a dataset.</p>
               </div>
             </div>
           </div>
@@ -1212,7 +1220,7 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>ds_cmd_filter</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_command_filter</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
@@ -1228,7 +1236,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Filters datasets by specified columns.</p>
+                <p className="text-sm mt-1 break-words">Keep rows where a selected column meets your condition.</p>
               </div>
             </div>
           </div>
@@ -1236,11 +1244,11 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>select_ds_column</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_column_analysis</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Selects specific columns from a dataset for further processing.</p>
+                <p className="text-sm mt-1 break-words">Generates a detailed report based on selected column.</p>
               </div>
             </div>
           </div>
@@ -1248,11 +1256,11 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>dataset_rag</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_report</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Enables Retrieval-Augmented Generation over structured datasets.</p>
+                <p className="text-sm mt-1 break-words">Generates a report of the dataset and the workflow results based on the agent run.</p>
               </div>
             </div>
           </div>
@@ -1260,11 +1268,11 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>ds_sem_filter</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_column_select</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Applies semantic similarity filtering to dataset entries.</p>
+                <p className="text-sm mt-1 break-words">Returns the selected column from the dataset.</p>
               </div>
             </div>
           </div>
@@ -1272,11 +1280,11 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>ds_text_filter</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_ask_dataset</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Performs keyword or text-based filtering within datasets.</p>
+                <p className="text-sm mt-1 break-words">Uses a natural language question to retrieve relevant information from the dataset.</p>
               </div>
             </div>
           </div>
@@ -1284,11 +1292,11 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>dataset_plot</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_readout</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Generates visual plots based on dataset values.</p>
+                <p className="text-sm mt-1 break-words">Displays a selection from the dataset for display.</p>
               </div>
             </div>
           </div>
@@ -1296,11 +1304,47 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>dataset_stat</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_smart_filter</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Produces statistical summaries and metrics from datasets.</p>
+                <p className="text-sm mt-1 break-words">Find rows that match the meaning of your query.</p>
+              </div>
+            </div>
+          </div>
+          <div className="border border-border rounded-lg p-4 bg-card">
+            <div className="space-y-3">
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
+                <p className="text-sm mt-1 break-words"><code>ds_keyword_filter</code></p>
+              </div>
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
+                <p className="text-sm mt-1 break-words">Filter rows based on exact text matches in the selected column.</p>
+              </div>
+            </div>
+          </div>
+          <div className="border border-border rounded-lg p-4 bg-card">
+            <div className="space-y-3">
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
+                <p className="text-sm mt-1 break-words"><code>ds_plot</code></p>
+              </div>
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
+                <p className="text-sm mt-1 break-words">Generates a visual plot chart from the selected dataset.</p>
+              </div>
+            </div>
+          </div>
+          <div className="border border-border rounded-lg p-4 bg-card">
+            <div className="space-y-3">
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
+                <p className="text-sm mt-1 break-words"><code>ds_statistics</code></p>
+              </div>
+              <div>
+                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
+                <p className="text-sm mt-1 break-words">Perform deeper statistical analysis and generate insights.</p>
               </div>
             </div>
           </div>
@@ -1312,19 +1356,7 @@ export default function ExploringConfigurationInModelHqPage() {
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Loads datasets into the execution environment.</p>
-              </div>
-            </div>
-          </div>
-          <div className="border border-border rounded-lg p-4 bg-card">
-            <div className="space-y-3">
-              <div>
-                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>ml_predict</code></p>
-              </div>
-              <div>
-                <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>
-                <p className="text-sm mt-1 break-words">Applies machine learning prediction models to dataset inputs.</p>
+                <p className="text-sm mt-1 break-words">Loads datasets into Agent state.</p>
               </div>
             </div>
           </div>
@@ -1344,7 +1376,7 @@ export default function ExploringConfigurationInModelHqPage() {
             <div className="space-y-3">
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Service</h5>
-                <p className="text-sm mt-1 break-words"><code>stats_analyze</code></p>
+                <p className="text-sm mt-1 break-words"><code>ds_stats_analysis</code></p>
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Description</h5>

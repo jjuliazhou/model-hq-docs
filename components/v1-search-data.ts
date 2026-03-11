@@ -1477,6 +1477,107 @@ export const v1SearchData: SearchResult[] = [
     parentPage: "Tools (v1)",
   },
 
+  // ==================== DATASET SECTION ====================
+  // V1 Dataset Documentation - Page
+  {
+    title: "Dataset (v1)",
+    url: "/v1/dataset",
+    type: "page",
+    description: "Work with structured CSV, XLSX, and JSON data in AI agent workflows in Model HQ v1",
+  },
+
+  // V1 Dataset - Headings
+  {
+    title: "Quick Setup - Dataset (v1)",
+    url: "/v1/dataset#quick-setup",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Launching the Dataset Interface (v1)",
+    url: "/v1/dataset#1-launching-the-dataset-interface",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Creating a Dataset (v1)",
+    url: "/v1/dataset#2-creating-a-dataset",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Adding a Dataset (v1)",
+    url: "/v1/dataset#21-adding-a-dataset",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Master Schema (v1)",
+    url: "/v1/dataset#211-master-schema",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Dataset Mapping (v1)",
+    url: "/v1/dataset#22-mapping",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Confirm the Dataset Schema (v1)",
+    url: "/v1/dataset#23-confirm-the-dataset-schema",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Dataset Configuration Setup (v1)",
+    url: "/v1/dataset#24-dataset-configuration-setup",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Dataset Search (v1)",
+    url: "/v1/dataset#25-search",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Test Set BETA (v1)",
+    url: "/v1/dataset#26-test-set-beta-may-not-be-available-in-all-versions",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Analyze Dataset (v1)",
+    url: "/v1/dataset#27-analyze",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Download Dataset (v1)",
+    url: "/v1/dataset#download-dataset",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Dataset Information (v1)",
+    url: "/v1/dataset#dataset-information",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Delete Dataset (v1)",
+    url: "/v1/dataset#delete-dataset",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+  {
+    title: "Dataset Conclusion (v1)",
+    url: "/v1/dataset#conclusion",
+    type: "heading",
+    parentPage: "Dataset (v1)",
+  },
+
   // ==================== COOKBOOKS ====================
   // Cookbooks V1 (placeholder for future content)
   {

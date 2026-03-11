@@ -13,6 +13,7 @@ import {
   Wrench,
   Network,
   Plug,
+  TableProperties,
 } from "lucide-react"
 
 type NavSubItem = {
@@ -69,6 +70,11 @@ export const v1NavigationData: NavItem[] = [
       { title: "Parsing in Source", url: "/v1/source/parsing-in-source" },
       { title: "Error Handling", url: "/v1/source/error-handling" },
     ],
+  },
+  {
+    title: "Dataset",
+    url: "/v1/dataset",
+    icon: TableProperties,
   },
   {
     title: "Services",

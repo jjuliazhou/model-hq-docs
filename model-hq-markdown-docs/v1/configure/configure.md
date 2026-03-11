@@ -257,8 +257,6 @@ These App settings allow fine-grained control over user experience, security pos
 ## 3.2 Services
 This is a master panel of services that are available to use in creating agents. Making the selection here will ensure that each of these services are displayed as an option in the Nodes in agents. (Note: Services outside of this master list can be selected at time of use in the agent canvas if not pre-selected here.)
 
-[ROHAN - replace this screenshot with the one I sent you]
-
 ![tools](configure/03_services.png)
 
 ## 3.2.1 Core Services

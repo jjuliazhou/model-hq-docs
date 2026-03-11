@@ -1,29 +1,34 @@
-# Exploring datasets in Model HQ
-After setup is complete, you’ll land on the **Main Menu**, where you can access all of Model HQ’s features.
+﻿# Exploring datasets in Model HQ
+After the initial setup is complete, the **Main Menu** will be presented, from which all of Model HQ's features — including **Datasets** — can be accessed.
 
-One important feature is **Datasets**. This allows you to upload and use structured data files like **CSV** or **JSON** inside your Agents.
+**Datasets** is a feature designed for working with structured data files such as **CSV**, **XLSX**, and **JSON** directly within AI agent workflows. Unlike regular document sources — which handle unstructured content such as PDFs or text files — datasets are built for **structured, table-based data**, meaning rows and columns with clearly defined fields.
 
-Datasets are different from regular document sources. Documents (like PDFs or text files) contain unstructured content. Datasets are built for **structured, table-based data** — meaning rows and columns with clearly defined fields.
+When a dataset is created in Model HQ, the following configuration steps are completed:
 
-When you create a Dataset in Model HQ, you can:
+- Structured data (CSV, XLSX, or JSON) is uploaded as the dataset source.
+- The columns containing searchable text are identified for RAG/retrieval indexing.
+- A unique ID column is designated for precise record referencing.
+- Key performance indicator (KPI) fields are marked for analytical and predictive tasks.
+- The columns most relevant to agent workflows are selected to streamline interaction.
 
-* Upload structured data (CSV or JSON)
-* Tell the system which columns contain searchable text
-* Identify unique ID columns
-* Mark important metrics or key fields
-* Identify the key columns that will be used in future agent workflows (i.e., what are the columns you want to interact with or extract information from)
+Once configured, datasets enable AI agents to perform a wide range of data-driven operations:
 
-This setup allows your AI agents to:
+- Structured data can be searched across rows using semantic, keyword, or exact-phrase queries.
+- Results can be filtered by row number, keyword match, or natural language query.
+- Classification tasks — such as sentiment, emotion, topic, or ratings analysis — can be applied to selected rows, with output exported in CSV format.
+- Questions can be answered and summaries generated from filtered results.
+- Trend and pattern analysis can be performed on selected columns, with detailed reports produced in Word format.
+- Data-driven insights and predictions can be generated from designated KPI fields.
 
-* Search across structured data
-* Filter based on row numbers, keyword, natural langauge query
-* Provide classification tasks for each selected or filtered row such as sentiment, emotion, topic or ratings analysis and output in CSV format
-* Answer questions, provide summaries of selected results, etc.
-* Analyze trends or patterns for a selected column and provide a detailed report in Word format
-* Perform data-driven insights and predictions
+In summary, the Datasets feature transforms spreadsheets and structured data files into intelligent, searchable knowledge bases that AI agents can reason over with accuracy and efficiency.
 
-In short, Datasets let you turn spreadsheets and structured data into intelligent, searchable knowledge bases that your Agents can reason over accurately and efficiently.
+## Quick setup
 
+The following animation provides an overview of the full dataset creation and configuration workflow — from launching the interface to completing the four-step index configuration.
+
+![dataset setup overview](dataset/dataset.gif)
+
+For a detailed walkthrough of each step, refer to the sections below.
 
 ## 1. Launching the dataset interface
 To begin, the **Dataset** button in the main menu sidebar can be selected.
@@ -31,159 +36,148 @@ To begin, the **Dataset** button in the main menu sidebar can be selected.
 ![dataset](dataset/01_dataset.png)
 
 ## 2. Creating a dataset
-To create a dataset, the **build new** button can be selected. If previous datasets have been created, both **load existing** and **build new** options will be visible; otherwise, only **build new** will be available.
+To create a dataset, the **Build New** button can be selected. If datasets have been created previously, both **Load Existing** and **Build New** options will be visible; otherwise, only **Build New** will be available.
 
-When `build new` is selected, an interface will be presented where the user can pick the dataset name and the encryption type.
-
+When **Build New** is selected, a creation interface will be presented in which a dataset name and encryption type can be specified.
 
 ![source](dataset/01_datasetSource.png)
 
-[Rohan, Add screenshot of Create Dataset Dataset Name here after the previous picture]
+![source](dataset/02_datasetCreate.png)
 
+### 2.1 Adding a dataset
+Once the creation form is completed, a file upload prompt will be presented. The file should have a well-defined row-column structure and will serve as the dataset source. Supported file types include `.csv`, `.xlsx`, and `.json`.
 
-### 2.1 Adding a Dataset
-Once the form is completed, a file upload prompt will be presented. The file should have a well-defined row-column structure and will serve as the dataset source. Supported file types include `.csv`, `xlsx` and `.json`.
-
-[Rohan, add screenshot of Build Dataset Source here]
-
+![source](dataset/02_datasetBuild.png)
 
 ### 2.1.1 Master schema
-If a previous dataset source exists, that dataset can be leveraged to establish a master schema for the current dataset being created. This enables consistency across multiple datasets with similar structures.
-
+If a previous dataset source exists, it can be leveraged to establish a master schema for the dataset currently being created. This enables structural consistency across multiple datasets with similar field layouts.
 
 ### 2.2 Mapping
-Once a file is added, the schema will be automatically fetched and mapping will be performed automatically. The mapping can be cross-checked for accuracy and updated as needed to ensure proper field alignment and data type classification.
+Once a file has been added, the schema will be automatically fetched and field mapping will be performed. The mapping can be reviewed for accuracy and updated as needed to ensure proper field alignment and data type classification.
 
-[Rohan, update screenshot as emailed]
+![source](dataset/04_datasetSourceMapping.png)
 
-The *Remove Empty Columns* button can be used to remove any columns without data.
+The **Remove Empty Columns** button can be used to remove any columns that contain no data.
 
-The *refresh* icon can be used to restore the dataset to its original state if any changes were made in error.
+The **refresh** icon can be used to restore the dataset to its original state if any changes were made in error.
 
-In addition, by directly making the changes on the custom mapping screen, the user can:
+Additionally, through the custom mapping screen, the following manual adjustments can be made:
 
-1) Remove unnecessary columns or columns that will not be used - especially useful when working with very large datasets; and
-2) Rename columns - especially useful when columns have long names or when the user wants to re-designate a column name
+1. Unnecessary columns — particularly those that will not be used in agent workflows — can be removed. This is especially useful when working with large datasets.
+2. Columns can be renamed, which is helpful when original column names are lengthy or when a more descriptive designation is preferred.
 
-Please be careful to preserve the JSON structure (i.e., quotation marks, colons and commas) when making changes or the dataset will not save properly.
+> [!NOTE]
+> Care should be taken to preserve the JSON structure (i.e., quotation marks, colons, and commas) when making manual edits to the mapping. Malformed JSON will prevent the dataset from saving correctly.
 
-Once the changes are made, the user can select > to proceed to the next step.
+Once the mapping has been reviewed and adjusted, the **>** button can be selected to proceed to the next step.
 
 ### 2.3 Confirm the dataset schema
-In this window, confirmation of the dataset schema will be requested. Comprehensive dataset details—including dataset analysis and instructions for dataset setup—will be provided for review.
+In this step, confirmation of the dataset schema will be requested. Comprehensive dataset details — including an automated dataset analysis and instructions for dataset setup — will be provided for review before proceeding.
 
-[Rohan, update screenshot]
+![source](dataset/05_datasetSourceConfirm.png)
 
 ### 2.4 Dataset configuration setup
-This is a four-step configuration process in which three essential questions will be presented. One or multiple fields from the provided dataset should be selected for each step to define how the dataset will be indexed and queried.
+This is a four-step configuration process in which three foundational questions will be presented. One or more fields from the dataset should be selected at each step to define how the dataset will be indexed and queried.
 
-[Rohan, add screenshot]
+![source](dataset/06_datasetConfig.png)
 
-**Step 1: RAG/Retrieval Columns**
-"Which columns have the text to be used for RAG/Retrieval processes?"
+**Step 1: RAG/retrieval columns**
+*"Which columns have the text to be used for RAG/Retrieval processes?"*
 
-Model HQ automatically identifies and checks the column(s) with text data that can be used for text or language queries or analysis. These columns form the basis of semantic search and retrieval in the dataset and can also be used as the basis for analyzing topics, intent, emotion, sentiment, ratings, etc. based on the *text* provided in each row of that column. 
+Model HQ automatically identifies and pre-selects column(s) containing text data suitable for language queries and analysis. These columns form the basis of semantic search and retrieval within the dataset, and can also serve as the foundation for AI-driven classification tasks such as topic detection, intent recognition, sentiment analysis, emotion detection, and ratings evaluation — applied to the text content of each row.
 
-Please make check any additional columns that are suitable for these types of tasks.
+Any additional columns suitable for these types of tasks should be checked before proceeding.
 
-[Rohan, add screenshot]
+![source](dataset/06_datasetConfig2.png)
 
 **Selection guidance:**
-- **Purpose**: Columns selected here will be indexed for keyword filtering, semantic similarity search, or other AI analyses such as determining topic, sentiment, emotion, ratings, and other classification tasks based on text. When users ask questions, the AI model will also search these columns to find relevant information.
-- **Examples**: In a product dataset, columns like "Product Description", "Features", or "Customer Reviews" would be RAG columns. In an HR dataset, columns like "Job Description", "Requirements", or "Responsibilities" would be appropriate for RAG.
-- **Multiple selections**: Multiple columns can be selected if textual information is distributed across several fields. For example, a dataset might have both "Title" and "Content" columns that should both be searchable.
-- **Impact**: Only columns selected here will be included in the semantic search index. Unselected columns can still be used for filtering or display but won't contribute to relevance ranking.
+- **Purpose**: Columns selected here will be indexed for keyword filtering, semantic similarity search, and AI analyses such as topic classification, sentiment, emotion, and ratings evaluation. These columns are also searched when natural language questions are posed to the dataset.
+- **Examples**: In a product dataset, columns such as "Product Description", "Features", or "Customer Reviews" would be appropriate RAG columns. In an HR dataset, columns like "Job Description", "Requirements", or "Responsibilities" would be suitable.
+- **Multiple selections**: Multiple columns can be selected when textual information is distributed across several fields — for example, a dataset may contain both "Title" and "Content" columns that should both be indexed.
+- **Impact**: Only columns selected here will be included in the semantic search index. Unselected columns can still be used for filtering or display purposes, but will not contribute to relevance ranking.
 
-**Step 2: ID Column**
-"Which column(s), if any, represent a unique identifier for each row, e.g., reference number?"
+**Step 2: ID column**
+*"Which column(s), if any, represent a unique identifier for each row, e.g., reference number?"*
 
-This is for clarifying which ID column is important in identifying the unique records for each row. ID columns establish unique identifiers for each record in the dataset, enabling precise referencing and tracking of individual records during retrieval and analysis.
+An ID column serves as the primary key for each record in the dataset, enabling precise referencing and tracking of individual rows during retrieval and analysis.
 
-[Rohan, add screenshot]
+![source](dataset/06_datasetId.png)
 
 **Selection guidance:**
 - **Purpose**: ID columns uniquely identify each row in the dataset. They serve as primary keys that distinguish one record from all others.
-- **Examples**: In a product dataset, "Product ID" or "SKU" would be ID columns. In a customer database, "Customer ID" or "Email" might serve as identifiers. In a document collection, "Document ID" or "Reference Number" would be appropriate.
-- **Single or multiple**: While typically one ID column is preferred, some datasets might use composite IDs (multiple columns together form the unique identifier).
-- **Impact**: When results are returned from a query, the ID column helps users identify exactly which records were retrieved. This is crucial for data integrity and tracking.
-- **Optional**: If no clear identifier exists, this field can be left empty. The system will still function, but individual record tracking will be less precise.
+- **Examples**: In a product dataset, "Product ID" or "SKU" would serve as ID columns. In a customer database, "Customer ID" or "Email" might function as identifiers. In a document collection, "Document ID" or "Reference Number" would be appropriate.
+- **Single or multiple**: While a single ID column is typically preferred, some datasets may use composite identifiers in which multiple columns together form a unique key.
+- **Impact**: When query results are returned, the ID column allows users to identify exactly which records were retrieved — a critical factor for data integrity and downstream processing.
+- **Optional**: If no clear identifier exists in the dataset, this field can be left empty. The system will still function, though individual record tracking will be less precise.
 
-**Step 3: KPI Definition**
-"Define the main performance indicators for the dataset"
+**Step 3: KPI definition**
+*"Define the main performance indicators for the dataset"*
 
-Key Performance Indicators (KPIs) are quantifiable metrics that represent important business or analytical values within the dataset. These fields are often used for aggregation, analysis, and prediction tasks.
+Key Performance Indicators (KPIs) are quantifiable metrics that represent important business or analytical values within the dataset. These fields are typically used for aggregation, trend analysis, predictive modeling, and performance evaluation tasks.
 
-[Rohan, add screenshot]
+![source](dataset/06_datasetKPI.png)
 
 **Selection guidance:**
-- **Purpose**: KPIs are numerical or categorical fields that represent important metrics or outcomes being tracked. These columns are often used for predictive modeling, trend analysis, and performance evaluation.
-- **Examples**: In a sales or marketing dataset, KPIs might include "Ratings", "Revenue", "Sales Amount", "Conversion Rate", or "Customer Lifetime Value". In a healthcare dataset, KPIs could be "Patient Recovery Time", "Treatment Success Rate", or "Cost per Treatment". In an analytics dataset, "Click-Through Rate", "Engagement Score", or "User Growth" would be KPIs.
-- **Multiple indicators**: Several KPI columns can be defined if the dataset tracks multiple important metrics. For instance, an e-commerce dataset might have both "Sales" and "Customer Satisfaction Score" as KPIs.
-- **Numerical vs. Categorical**: KPIs are typically numerical (like revenue or count), but categorical KPIs (like "Status: Active/Inactive") can also be important for analysis.
-- **Impact**: Designated KPIs enable the AI model to focus analysis and predictions on the most business-critical fields. They also facilitate comparative analysis and trend tracking over time.
+- **Purpose**: KPIs are numerical or categorical fields that represent important metrics or measurable outcomes. These columns are prioritized for predictive modeling, trend detection, and performance benchmarking.
+- **Examples**: In a sales or marketing dataset, KPIs might include "Ratings", "Revenue", "Sales Amount", "Conversion Rate", or "Customer Lifetime Value". In a healthcare dataset, relevant KPIs could be "Patient Recovery Time", "Treatment Success Rate", or "Cost per Treatment". In an analytics dataset, "Click-Through Rate", "Engagement Score", or "User Growth" would be appropriate KPIs.
+- **Multiple indicators**: Several KPI columns can be designated when the dataset tracks more than one important metric — for example, an e-commerce dataset might define both "Sales" and "Customer Satisfaction Score" as KPIs.
+- **Numerical vs. categorical**: KPIs are typically numerical (such as revenue or count), but categorical KPIs (such as "Status: Active/Inactive") can also be meaningful for classification and analysis.
+- **Impact**: Designated KPIs allow the AI model to focus analytical and predictive operations on the most business-critical fields, enabling more targeted insights and comparative trend tracking.
 
-Once these three steps are completed, confirmation of the dataset configuration will be requested again.
+Once the three configuration steps are completed, a final review of the dataset configuration will be presented for confirmation.
 
 ![source](dataset/06_datasetSourceConfirmConfig.png)
 
-**Step 4: Agent Input**
-"Define the key columns that should be shared in Agent processes"
+**Step 4: Agent input**
+*"Define the key columns that should be shared in Agent processes"*
 
-This selection is critical for identifying the columns that will be shared as actionable data in the Agent process for this dataset. Only the selected columns will be displayed as an option in Agents when this dataset is attached to agent processes as a file source. It is highly recommended that you select only those columns you will actively work with to query, analyze or interact with in agents, as a bulky column structure can be cumbersome when creating workflows.
+This step identifies the columns that will be exposed as actionable data within agent workflows. Only the columns selected here will be available when the dataset is attached to an agent as a file source. It is recommended that only the columns intended for active querying, analysis, or interaction in agents be selected — a leaner column structure results in more focused and manageable agent workflows.
 
-[Rohan, add screenshot]
+**Confirm build index**
 
-**Confirm Build Index**
+Once the dataset index has been configured and reviewed, confirmation can be submitted by selecting **Yes**. If further edits to any previous step are required, **No** can be selected to return and make adjustments.
 
-Once the Dataset Index has been configured and verified, confirm the *Yes* or Select *No* if you wish to make any edits to the previous selection. 
+Upon confirming by selecting **Yes**, the Dataset Configuration screen for the newly created dataset will be displayed.
 
-[Rohan add screenshot]
-
-Once you confirm the Dataset Index by selecting *Yes*, you will see a Dataset Configuration Screen for the dataset.
-
-[Rohan add screenshot]
-
+![source](dataset/10_datasetConfig.png)
 
 ### 2.5 Search
-The search functionality for dataset sources operates identically to the standard source search described in the [Source documentation](). Queries can be formulated using semantic search (returns the top 20 matches), keyword-based matching, or exact phrase matching to retrieve relevant records from the dataset.
+The search functionality for dataset sources operates identically to the standard source search described in the [Source documentation](). Queries can be formulated using semantic search (which returns the top 20 matches), keyword-based matching, or exact phrase matching to retrieve relevant records from the dataset.
 
-### 2.6 Test Set (BETA) (may not be in some versions)
-The **Train** option enables a target variable to be defined that will be predicted or fitted using a machine learning model. This feature allows predictive models to be built on dataset columns. 
+### 2.6 Test set (BETA) (may not be available in all versions)
+The **Test** option enables a target variable to be defined that will be predicted or fitted using a machine learning model. This feature allows predictive models to be built and evaluated against dataset columns.
 
 ![source](dataset/08_datasetSourceTrain.png)
 
-In this step, the **train variable** (for example, a target outcome column) that represents the output the model should learn to predict can be specified.
+In this step, the **train variable** — for example, a target outcome column — that represents the output the model should learn to predict can be specified.
 
-* **Train Variable**
-  The name of the column to be used as the training target should be entered. This is the variable that the ML model will attempt to predict based on other features in the dataset.
-
-  * If the column already exists in the dataset, it will be used directly.
-  * If the column name does not exist in the current schema, it will be added.
-  * If the field is left blank, the training configuration will be ignored and no ML model will be trained.
+- **Train variable**: The name of the column to be used as the training target should be entered. This is the variable the ML model will attempt to predict based on the other features present in the dataset.
+  - If the column already exists in the dataset, it will be used directly.
+  - If the column name does not exist in the current schema, it will be added.
+  - If the field is left blank, the training configuration will be ignored and no ML model will be trained.
 
 > [!NOTE]
-> The train variable should be a column that has clear, well-defined values. Sparse or incomplete columns may result in poor model performance.
+> The train variable should correspond to a column with clear, well-defined values. Sparse or incomplete columns may result in degraded model performance.
 
-After clicking next, confirmation will be requested to finalize and begin training an ML model on this dataset with the specified target variable.
+Once the target variable has been specified, confirmation will be requested to finalize and begin training an ML model on the dataset.
 
 ### 2.7 Analyze
+The **Analyze** tab provides an overview analysis of the dataset. By expanding the *Analysis* section, statistical information can be reviewed — including mean, standard deviation, minimum and maximum values, average text length, KPI column summaries, and other analytical metadata about the dataset.
 
-This provides an overview analysis of the Dataset. By expanding the *Analysis* tab, users can find analysis of various mean, standard deviation, min and max information, avg length, KPI column information and other analytical information about the dataset.
+![source](dataset/09_datasetAnalysis.png)
 
-[Rohan add screenshot]
+### Download dataset
+The CSV of the configured dataset can be downloaded by selecting the download icon in the dataset interface.
 
-### Dataset Download Icon
+### Dataset information
+Detailed information about the original dataset — including row count, column count, and the full schema — can be reviewed by selecting the **i** icon.
 
-Downloads the CSV of the newly configured dataset.
-
-### Dataset Information Icon
-
-Provides detailed information on the original dataset such as the row count, column count and schema.
-
-### Dataset Trash Icon
-
-Allows user to delete a specific dataset from Model HQ.
+### Delete dataset
+A specific dataset can be permanently removed from Model HQ by selecting the delete option associated with that dataset in the interface.
 
 ## Conclusion
+This document described how to work with the Datasets feature in Model HQ — a specialized capability designed for structured data sources such as CSV, XLSX, and JSON files. Once a dataset has been created and configured through the four-step index setup, it becomes a queryable, AI-ready knowledge base that can be attached to agent workflows for search, classification, analysis, and prediction tasks.
 
-This document described how to work with datasets in Model HQ, a specialized feature designed for structured data sources such as CSV and JSON files. Once configured, datasets provide a complete workflow from data ingestion through search, analysis, classification and use in agent workflows. 
+The configuration process — covering RAG/retrieval columns, ID columns, KPI definitions, and agent input columns — ensures that the AI model has the structural context needed to reason over the data accurately. It is recommended to invest care in the initial mapping and column selection steps, as these decisions directly influence retrieval quality and agent performance.
+
+For information on how datasets can be used within agent workflows, refer to the [WILL BE ADDED SOON].
