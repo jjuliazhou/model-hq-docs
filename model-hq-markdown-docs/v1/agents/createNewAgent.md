@@ -5,9 +5,6 @@ This guide provides a comprehensive walkthrough for creating new agents using th
 
 The documentation covers three primary agent building approaches: the Visual Builder for interactive node-based design, the Multi-Step Agent builder for structured sequential workflows, and the Prompting Agent builder for conversational AI implementations. Each mode has distinct advantages depending on the complexity of the workflow, the technical background of the user, and the specific use case requirements. Additional information on advanced topics such as service selection, context management, and output configuration will be covered in subsequent sections of the agent development documentation series.
 
-> [!NOTE]
-> This document represents the initial foundation for agent creation. Advanced configuration options, detailed service descriptions, workflow optimization techniques, and production deployment best practices will be covered in dedicated follow-up documentation. **To be continued.**
-
 ## 1. Launching the interface
 To begin creating a new agent, the following steps should be performed:
 
@@ -53,12 +50,8 @@ Basic information about the agent should be configured:
 * **Start process from scratch or derive from existing process**
   The agent can be built from scratch (default) with a blank workflow, or it can be derived from an existing agent template to leverage pre-built logic and structure.
 
-> [!NOTE]
-> **To be continued.** Detailed step-by-step instructions for configuring services, defining execution order, managing contexts, setting up outputs, and finalizing multi-step agent creation will be provided in the continuation of this documentation.
 
 ## 3.3 Build prompting agent
 
 The **Prompting Agent** builder is designed for creating conversational AI workflows that focus on natural language interactions and prompt-based model invocations.
 
-> [!NOTE]
-> **To be continued.** Comprehensive guidance on creating prompting agents, including prompt engineering best practices, model selection, context management, and conversation flow design will be provided in the continuation of this documentation.

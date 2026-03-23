@@ -20,13 +20,13 @@ Here is a breakdown of the key components:
    - **Build New**: Creates a new agent from scratch.
    - **Load Existing**: Loads an existing agent, either a pre-created template included in Model HQ or one previously built by the user.
 
-2. **Edit**: Modifies or deletes an existing agent.
+2. **Visual**: Builds agents with an open visual builder by connecting nodes and wires (low-effort agent creation mode, enabling quick workflow creation or diagrammatic understanding of agent workflows).
 
-3. **Share**: Shares an agent with others.
+3. **Edit**: Modifies or deletes an existing agent.
 
-4. **Upload**: Quickly builds an agent by uploading a pre-built file.
+4. **Share**: Shares an agent with others.
 
-5. **Visual**: Builds agents with an open visual builder by connecting nodes and wires (low-effort agent creation mode, enabling quick workflow creation or diagrammatic understanding of agent workflows).
+5. **Upload**: Quickly builds an agent by uploading a pre-built file.
 
 6. **Delete**: Deletes an agent.
 
