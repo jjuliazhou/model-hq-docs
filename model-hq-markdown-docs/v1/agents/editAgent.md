@@ -1,9 +1,43 @@
 # Editing agents in Model HQ
-The Edit Agent interface in Model HQ enables existing agents to be modified, extended, and optimized after they have been created. Editing capabilities range from simple parameter adjustments to complete workflow restructuring, supporting both step-based editors and visual drag-and-drop interfaces. Agents can be refined by adding or removing processing steps, adjusting service configurations, modifying input requirements, changing output formats, and applying safety controls or content filters. This flexibility allows agents to evolve alongside changing business requirements, new data sources, or emerging use cases without requiring complete reconstruction.
 
-Model HQ provides two primary editing modes: a structured step-based editor that presents the agent as a linear sequence of services and instructions, and a Visual Builder that displays the workflow as an interactive node graph. The step-based editor is recommended for quick edits and precise control over execution order, while the Visual Builder is ideal for understanding complex workflows, visualizing data flow, and making structural changes to branching or conditional logic. Both modes operate on the same underlying agent definition, ensuring consistency regardless of which interface is used for editing.
+The **Edit Agent** feature in Model HQ lets you change and improve agents after they’ve been created. You can make simple updates or completely redesign how the workflow works.
 
-This document provides comprehensive guidance on launching the Edit interface, understanding the step-based editor components (Details view, Agent Legend, service configurations), configuring action buttons (Inputs, Files, Run, Meta, Outputs, Reports, Controls, Services, Plan), and utilizing the Visual Builder for workflow modifications. Each section explains how specific editing capabilities can be used to refine agent behavior, improve performance, add safety controls, and integrate with external systems. Understanding the Edit interface is essential for maintaining production agents, adapting workflows to new requirements, and building reusable agent templates that can be customized for specific deployment scenarios.
+You can:
+
+* Add or remove steps
+* Change settings (such as models) and inputs
+* Update outputs and formats
+* Adjust safety rules or filters
+
+This makes it easy to update agents as your needs change, without starting from scratch.
+
+---
+
+There are two ways to edit an agent:
+
+1. **Step-by-step editor**
+
+   * Shows the workflow as a simple list of steps
+   * Best for quick changes and precise control
+
+2. **Visual Builder**
+
+   * Shows the workflow as a diagram
+   * Best for visual understanding of the workflow
+
+Both views work on the same agent, so you can switch between them anytime.
+
+---
+
+This guide will show you how to:
+
+* Open and use the Edit interface
+* Understand key sections like inputs, outputs, and settings
+* Use action buttons (like Run, Files, Reports, and Controls)
+* Edit workflows using the Visual Builder
+
+Learning how to edit agents is important for keeping them up to date, improving performance, and reusing them for different use cases.
+
 
 ## 1. Launching the edit interface
 Editing an existing agent process is straightforward in Model HQ.
@@ -16,7 +50,11 @@ Once clicked, an option to use the Visual Builder for editing the agent will be 
 
 ![edit](agents/editAgent/02_visualBuilder.png)
 
-The Visual Builder provides an interactive node-and-wire interface that visualizes the agent's workflow structure, making it easier to understand data flow, identify dependencies, and make structural changes. However, even when an agent is edited using the Visual Builder, users will be prompted to a confirmation screen that displays the step-based representation. This ensures that all edits can be reviewed in a linear format before being saved. The step-based editor remains the most efficient option for users who want to make quick, targeted edits without navigating the visual interface. The Visual Builder is particularly effective for understanding complex workflows with branching logic, multiple data sources, or conditional execution paths, as it provides a clear graphical representation of how nodes connect and interact.
+The Visual Builder shows your agent as a node-and-connection diagram, making it easy to see how steps are linked and how data flows through the workflow.
+
+When you make changes in the Visual Builder, you’ll still review everything in a step-by-step format before saving, so you can clearly confirm the final sequence.
+
+For editing, the step-based editor can be the easiest and fastest option—it makes it simple to add, remove, or adjust individual steps (by adding or deleting rows) without navigating a visual layout.
 
 The choice between the two editing modes is entirely optional. If detailed information about the Visual Builder is required, the [Agent Visual Builder Mode]() documentation should be consulted.
 
@@ -52,16 +90,18 @@ Named variables must be referenced inside instructions using `{{variable_name}}`
 This section helps track how data moves through the agent.
 
 ### 2.3 Editing steps
-Each row in the Agent Builder represents a single step.
+Each row in the Agent Builder represents a single step. Each step can be deleted by clicking on the "-" in the same row. A step or a row will be created directly **after** the current row by clicking "+" to add a step.
+
+The number next to the context column connotes the numbered order of the agent step. This is helpful when referencing that particular step in the agent process in a future agentic step.
 
 Every step is composed of:
 
 * **Service**
-  Selects the capability used in that step.
+  Selects the capability used in that step. There is an extensive list of supported services. The services displayed in Service Name depends on the selection in the *services* button at the bottom of the Step-Based editor or the side nav of the Visual Editor. User must check the service name in order for that particular service to be displayed as an option.
 
 * **Instruction**
-  A natural language instruction describing what the service should do.
-  Instructions may reference named variables `{{variable_name}}`.
+  A natural language instruction describing what the service should do. (note: some services do not require any input and will be denoted as such)
+  Instructions may also reference named variables `{{variable_name}}` (i.e., the result of an earlier step in an agent process).
 
 * **Context**
   Defines the input source used by the service.
