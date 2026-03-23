@@ -120,7 +120,6 @@ After selecting an agent, the following interface will be displayed:
 
 Once the user selects and agent and clicks ">", details about the agent will be provided along with the complete process flow from input to output by expanding the top bar with the agent name and the number of steps.
 
-[Rohan: Add screenshot]
 
 In the Run agent section, 2-3 options will typically be available:
 - Run (Details)
