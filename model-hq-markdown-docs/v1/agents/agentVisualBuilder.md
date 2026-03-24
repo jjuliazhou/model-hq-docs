@@ -1,5 +1,11 @@
 ## Building/Editing Agents with Visual Builder
-The **Visual Builder** provides an interactive drag-and-drop interface for creating agents using a node-and-wire paradigm. This mode is particularly useful for users who prefer visual workflow design over text-based configuration. The Visual Builder allows nodes representing different services (such as document parsing, RAG retrieval, data extraction, or model inference) to be placed on a canvas and connected to define execution flow and data dependencies. Each node can be configured with specific instructions, input contexts, and output mappings through intuitive forms and dropdowns.
+The **Visual Builder** lets you create agents using a drag-and-drop interface. Instead of working step-by-step in text, you can place and connect nodes on a canvas to define how your workflow runs.
+
+Each node represents a task — such as document parsing, RAG question answering, data extraction, or running a model. You can easily configure each step using simple forms, set inputs, and control what outputs are passed to the next step.
+
+The Visual Builder makes it easy to see how everything is connected and how data moves through your workflow. You can rearrange steps, zoom in and out, and quickly adjust connections as needed.
+
+Once your workflow is ready, you can run it directly, export it, or switch to the step-based editor for further edits.
 
 The Visual Builder excels at creating complex workflows with branching logic, conditional execution, and parallel processing paths, as these structures are more easily understood and modified in graphical form. The interface includes features for zooming, panning, rearranging nodes, and validating connections to ensure data flows correctly between steps. Once the visual workflow is complete, it can be executed directly from the builder, exported as a JSON configuration file, or further refined using the step-based editor.
 
@@ -8,7 +14,7 @@ The canvas represents the full execution flow of an agent, from input to final o
 
 ![edit](agents/editAgent/04_visualBuilder.png)
 
-Up to **Transformers**, all components are fully visual and configurable directly in the builder.
+All components are fully visual and configurable directly in the builder.
 
 ### 3.2 Left panel (node types)
 The left sidebar contains the core building blocks that can be dragged onto the canvas:
@@ -23,17 +29,17 @@ The left sidebar contains the core building blocks that can be dragged onto the 
   Routes execution based on intent or classification logic.
 
 * **Bot**
-  Handles LLM-powered reasoning or responses.
+  Allows user to include a Bot interface in the agent.
 
 * **Condition**
   Adds branching logic based on rules or outputs.
 
 * **Transformer**
-  Transforms or enriches data before it moves to the next step.
+  Allows user to specify which data to use in the agent process as it moves to the next step.
 
 ### 3.3 Agent Configurations:
 - **Files**:
-  This section is used to upload, manage, and associate assets with the agent.
+  This section is used to upload, manage, and associate data assets with the agent.
 
 - **Services**:
   It serves as a service catalog for the agent. It determines which capabilities are available when building workflows.
@@ -80,7 +86,7 @@ Each Input Node can be configured by selecting an **input type** and adding a sh
 | Input Type | Description                                                                                            |
 | ---------- | ------------------------------------------------------------------------------------------------------ |
 | text       | Accepts plain text input. Useful for prompts, queries, or instructions provided directly by the user.  |
-| document   | Accepts uploaded documents such as PDFs, Word files, or similar formats for parsing or analysis.       |
+| document   | Accepts uploaded documents such as PDFs, Word files, PPTx or similar formats for parsing or analysis.  |
 | dataset    | Used for structured datasets, typically containing multiple records for batch processing or analytics. |
 | table      | Accepts tabular data with rows and columns, suitable for structured data operations.                   |
 | image      | Accepts image files for tasks like OCR, visual analysis, or classification.                            |
@@ -95,7 +101,6 @@ Each Input Node can be configured by selecting an **input type** and adding a sh
 
 * The selected input type directly impacts how downstream nodes interpret and process data.
 * Clear descriptions improve usability, especially when agents are shared or reused.
-* Multiple Input Nodes can be used if the workflow requires different types of inputs.
 
 ## 5. Node
 
@@ -125,9 +130,11 @@ Each Node provides an **Instruction** field where you define how the selected se
 
 In addition to predefined services, custom datasets can also be used within a Node:
 
-* Datasets must first be added and configured in the **Services** section
-* Once listed, they become selectable just like any other service
-* This allows workflows to directly interact with structured or domain-specific data
+* Datasets must first be configured in the main Datasets section  ** [ROHAN: Add link here to Datasets] **
+* Once created, datasets must then be added as a file in the agent process in the **Files** section
+* Once listed, the dataset and each of the columns specified in the Dataset creation become selectable in the transformer node
+* To use dataset-related Agent workflow services, select *All-Datasets* in the Services catalog (left side nav in visual editor)
+* This allows workflows to directly interact with structured or domain-specific data with dataset-related services
 
 ### Key Characteristics
 
@@ -155,6 +162,8 @@ Each Classifier Node includes a **“Choose classifier”** dropdown with a fixe
 * These classifiers are **not dynamically generated** from the Services section
 * However, corresponding capabilities may still be configured or supported through Services if needed
 * The dropdown provides a consistent and standardized set of classification options
+* Select the Classifier you wish to choose in the Service Catalog (left side nav in visual editor) and click ">"
+* This enables the Classifier node to update when you select and place it on the canvas workspace
 
 ### Available Classifiers
 
@@ -203,10 +212,12 @@ This ensures that all bot executions are consistent with their predefined config
 
 ### How It Works
 
-* The Bot Node receives input from previous nodes
+* The Bot Node receives input from previous nodes - user is encouraged to link a transformer with the appropriate data state (i.e. Agent State)
 * It passes the input to the selected bot
 * The bot processes the request based on its internal configuration
 * The output is returned and passed to the next node in the workflow
+* The user is then able to query the bot with the knowledge it has received in the workflow
+* If using the bot in the middle of a workflow, the user must interact with the bot and indicate that they are finished interacting with the bot before the agent workflow will continue to the next steps
 
 ### Key Characteristics
 
@@ -246,17 +257,6 @@ The **“Choose value”** dropdown determines what data the condition will eval
 * **none**
   Used when no predefined value is required
 
-#### Dynamic Values
-
-In addition to defaults, the dropdown can include dynamically generated fields based on previous nodes and the overall workflow. These may include:
-
-* `rag_answer`
-* `rag_sources`
-* `agent_report`
-* `description`
-* Any other output generated earlier in the flow
-
-These dynamic values allow conditions to be tightly coupled with actual execution results.
 
 ### Conditional Operators
 
@@ -328,9 +328,9 @@ The **“Choose input”** dropdown defines which data source the Transformer wi
 * **none**
   Used when no predefined input is required
 
-#### Dynamic Inputs
+#### Dynamic Key Inputs
 
-Additional inputs are automatically generated based on the workflow and outputs of previous nodes. These may include:
+Dynamic Key inputs may include:
 
 * `rag_answer`
 * `rag_sources`
@@ -338,13 +338,13 @@ Additional inputs are automatically generated based on the workflow and outputs 
 * `description`
 * Any other fields produced during execution
 
-These dynamic options allow Transformers to integrate seamlessly with the evolving data flow of the agent.
+These dynamic options are created based on previous agent activity and allow Transformers to integrate seamlessly with the evolving data flow of the agent.
 
 ### How It Works
 
-1. The Transformer selects a specific input (state or output)
+1. The Transformer displays a specific input (state or output)
 2. It extracts or reshapes the data
-3. The transformed result is passed to the next connected node
+3. The transformed result is passed to the next connected node depending on user selection and intent
 
 ### Key Characteristics
 
@@ -358,6 +358,7 @@ These dynamic options allow Transformers to integrate seamlessly with the evolvi
 * When you need to reference outputs from earlier steps
 * When preparing data for another node (e.g., Bot, Classifier, Condition)
 * When working with multi-step or stateful agent flows
+* Extremely useful in dealing with CSVs or other data structures when filtering, sorting, or searching prior to continuing to a next agent state/node of activity
 
 ### Notes
 
@@ -420,31 +421,51 @@ Lightweight text analysis tools for labeling or scoring content.
 ### Datasets
 Tools for preparing, querying, and analyzing structured data.
 
-* build_dataset – create datasets from raw files
-* dataset_query – run queries on datasets
-* dataset_filter – filter rows or records
+* select_keys - selects specified keys from a JSON dictionary
+* build_dataset – create datasets from JSON
+* ds_command_filter - applies filter commands to a dataset
+* ds_column_filter - keep rows where a selected column meets your condition
+* ds_quick_stats – generates a statistical report based on selected column
+* ds_column_analysis - generates a report based on selected column
+* ds_report - generate a report of the dataset and the workflow results based on the agent run
+* ds_column_select - returns the selcted column from the dataset
+* ds_ask_dataset - use a natural language question to retrieve relevant information from the dataset
+* ds_readout - returns the text from a set of rows from the dataset for display
+* ds_smart_filter – find rows that match the meaning of your query
+* ds_keyword_filter - filter rows based on exact text matches in the selected column
 * dataset_plot – visualize data
-* dataset_stat – compute statistics
+* ds_statistics – perform deeper statistical analysis and generate insights
 * load_dataset – load saved datasets
-* ml_predict – run ML predictions
-* stats_analyze – perform analysis
-* create_json – export structured JSON
+* create_json – provide a list of agent keys to consolidate into a new JSON dictionary
+* ds_stat_analysis - generate statistical analysis of input data csv file
 
 ### Specialized services
 Advanced utilities for targeted or complex workflows.
 
+* build_table - create table from CSV data
+* query_custom_table - database look-up in natural language
+* json_extractor - converts a text chunk with embedded json into a structured dataset element
 * semantic_filter – meaning-based filtering
 * text_filter – rule-based text filtering
 * document_filter – document-level filtering
 * table_filter – structured table filtering
+* load_kb - load knowledge base into agent state used in 'ask_kb' calls
+* ds_ask_kb - answers knowledge base questions from a dataset input
 * transformer – text transformation tasks
-* parse_document – convert documents to text
-* create_context – build reusable context blocks
-* report_commentary – add report notes
-* speech_gen – generate audio output
-* image_gen – generate images
-* website_scraper – extract web content
-* extract_table – extract tables from documents
+* aggregate_context - provide a list of context names to consolidate
+* parse_document – convert documents to text files 
+* create_context – build reusable context blocks from the most relevant passages in a source based on query
+* report_commentary – generate commentary of key process results from the agent-state - no input context required
+* speech_gen – generate audio output from text
+* image_gen – generate images from text
+* get_stock_summary - stock ticker look-up (requires internet access)
+* speech - transcribe a speech file
+* speech_batch - transcribe a collection of speec
+* vision_batch - answer question based on a collection of image files
+* parse_batch - create source from document batch
+* extract_tiny - extracts a key-value pair
+* website_scraper – extract web content from allowed websites (note: many websites prevent this)
+* extract_table – extract tables from documents based on query
 
 ### Integrations
 Connect the agent to external systems or hosted models.
