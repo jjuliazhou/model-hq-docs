@@ -477,71 +477,87 @@ Workspace-specific or user-defined services added for specialized use cases.
 
 Below is the list of supported services, their expected instruction formats, descriptions, and applicable context sources.
 
-| **Service Name**           | **Instruction**                            | **Description**                                          | **Context**                                   |
-| -------------------------- | ------------------------------------------ | -------------------------------------------------------- | --------------------------------------------- |
-| **chat**                   | What is your question or instruction?      | Answers a question or performs instruction               | `MAIN-INPUT`, `User-Text`, `None`             |
-| **rag_batch**              | Enter question or instruction              | Performs RAG over batch of documents                     | `User-Document`                               |
-| **rag_answer**             | Ask question to longer document input      | Answers a question based on a longer document input      | `User-Source`, `Provide_instruction_or_query` |
-| **vision**                 | Enter question to image file               | Provides answer/description from image                   | `User-Image`                                  |
-| **ocr_vision**             | Enter instruction                          | Performs OCR + vision-based understanding                | `User-Document`, `User-Image`                 |
-| **ocr**                    | Enter name of new document source          | Extracts content from image-based or protected documents | `User-Document`                               |
-| **agent_report**           | Enter title for agent report               | Prepares report on agent output                          | `-`                                           |
-| **wikipedia_search**       | Add Wikipedia Articles as Research Context | Adds Wikipedia articles as research context              | `None`                                        |
-| **prompt_builder**         | Enter prompt instruction                   | Builds structured prompts                                | `None`                                        |
-| **embedded_bot**           | Optional                                   | Pauses execution for user interaction                    | `None`                                        |
-| **condition**              | Enter expression                           | Evaluates logical condition                              | `None`                                        |
-| **web_search**             | Add query                                  | Performs web search and returns structured results       | `None`                                        |
-| **boolean**                | Provide yes/no question                    | Provides yes/no answer with explanation                  | `MAIN-INPUT`, `User-Text`                     |
-| **extract**                | Enter extraction key                       | Extracts key-value pair                                  | `MAIN-INPUT`, `User-Text`                     |
-| **answer**                 | What is your question?                     | Answers specific question from passage                   | `MAIN-INPUT`, `User-Text`                     |
-| **sentiment**              | No instruction required                    | Analyzes sentiment                                       | `MAIN-INPUT`, `User-Text`                     |
-| **emotions**               | No instruction required                    | Analyzes emotion                                         | `MAIN-INPUT`, `User-Text`                     |
-| **topics**                 | No instruction required                    | Classifies topic                                         | `MAIN-INPUT`, `User-Text`                     |
-| **tags**                   | No instruction required                    | Generates tags                                           | `MAIN-INPUT`, `User-Text`                     |
-| **intent**                 | No instruction required                    | Classifies intent                                        | `MAIN-INPUT`, `User-Text`                     |
-| **ratings**                | No instruction required                    | Rates positivity (1–5)                                   | `MAIN-INPUT`, `User-Text`                     |
-| **ner**                    | No instruction required                    | Named entity recognition                                 | `MAIN-INPUT`, `User-Text`                     |
-| **xsum**                   | No instruction required                    | Generates extreme summary                                | `MAIN-INPUT`, `User-Text`                     |
-| **summary**                | Optional                                   | Summarizes content                                       | `MAIN-INPUT`, `User-Text`                     |
-| **category**               | No instruction required                    | Classifies category                                      | `MAIN-INPUT`, `User-Text`                     |
-| **q_gen**                  | No instruction required                    | Generates questions                                      | `MAIN-INPUT`, `User-Text`                     |
-| **build_table**            | Enter name of table                        | Create table from CSV                                    | `User-Table`                                  |
-| **query_custom_table**     | Enter query                                | Query database table (requires build_table)              | `Table Output`                                |
-| **json_extractor**         | Enter schema                               | Extract structured JSON                                  | `MAIN-INPUT`, `User-Text`                     |
-| **semantic_filter**        | Enter instruction                          | Semantic filtering                                       | `User-Source`                                 |
-| **text_filter**            | Enter keyword/topic                        | Keyword filtering                                        | `User-Source`                                 |
-| **document_filter**        | Enter document name                        | Filter by document                                       | `User-Source`                                 |
-| **table_filter**           | No instruction                             | Filter table content                                     | `User-Source`                                 |
-| **load_kb**                | Enter KB name                              | Loads knowledge base                                     | `None`                                        |
-| **ds_ask_kb**              | Enter query                                | Query dataset KB                                         | `Loaded KB`                                   |
-| **transformer**            | Choose input                               | Access/transform agent state                             | `Agent-State`                                 |
-| **aggregate_context**      | Enter source names                         | Merge multiple contexts                                  | `None`                                        |
-| **create_context**         | Enter instruction                          | Generate answer/context                                  | `User-Source`                                 |
-| **parse_document**         | Enter name                                 | Parse document into source                               | `User-Document`                               |
-| **report_commentary**      | Optional                                   | Generate commentary report                               | `None`                                        |
-| **speech_gen**             | Enter text/topic                           | Generate speech file                                     | `None`                                        |
-| **image_gen**              | Enter description                          | Generate image                                           | `None`                                        |
-| **get_stock_summary**      | Enter ticker                               | Stock lookup                                             | `None`                                        |
-| **speech**                 | Enter text                                 | Convert text to speech                                   | `None`                                        |
-| **speech_batch**           | Enter instruction                          | Batch speech generation                                  | `None`                                        |
-| **vision_batch**           | Enter instruction                          | Batch image processing                                   | `User-Document`                               |
-| **parse_batch**            | Enter instruction                          | Batch document parsing                                   | `User-Document`                               |
-| **extract-tiny**           | Enter key                                  | Lightweight extraction                                   | `MAIN-INPUT`, `User-Text`                     |
-| **website_scraper**        | Enter URL                                  | Scrape website content                                   | `None`                                        |
-| **extract_table**          | Enter query                                | Extract table from document                              | `User-Document`                               |
-| **push_to_s3**             | Enter path                                 | Upload to S3                                             | `None`                                        |
-| **pull_from_s3**           | Enter path                                 | Download from S3                                         | `None`                                        |
-| **connect_library**        | Enter library name                         | Connect semantic library                                 | `None`                                        |
-| **query_library**          | Enter query                                | Query semantic library                                   | `Library Context`                             |
-| **get_quote**              | Enter symbol                               | Retrieve stock quote                                     | `None`                                        |
-| **get_company_financials** | Enter company/ticker                       | Retrieve financials                                      | `None`                                        |
-| **send_email**             | Enter email                                | Send email                                               | `Select context`                              |
-| **openai_chat**            | Enter instruction                          | OpenAI chat                                              | `Text Source`                                 |
-| **openai_rag**             | Enter instruction                          | OpenAI RAG                                               | `Text Source`                                 |
-| **openai_rag_batch**       | Enter instruction                          | OpenAI batch RAG                                         | `Text Source`                                 |
-| **anthropic_chat**         | Enter instruction                          | Anthropic chat                                           | `Text Source`                                 |
-| **gemini_chat**            | Enter instruction                          | Gemini chat                                              | `Text Source`                                 |
-
+| **Service Name**           | **Instruction**                            | **Description**                                            | **Context**                                   |
+| -------------------------- | ------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------- |
+| **chat**                   | What is your question or instruction?      | Answers a question or performs instruction                 | `MAIN-INPUT`, `User-Text`, `None`             |
+| **rag_batch**              | Enter question or instruction              | Performs RAG over batch of documents                       | `User-Document`                               |
+| **rag_answer**             | Ask question to longer document input      | Answers a question based on a longer document input        | `User-Source`, `Provide_instruction_or_query` |
+| **vision**                 | Enter question to image file               | Provides answer/description from image                     | `User-Image`                                  |
+| **ocr_vision**             | Enter instruction                          | Performs OCR + vision-based understanding                  | `User-Document`, `User-Image`                 |
+| **ocr**                    | Enter name of new document source          | Extracts content from image-based or protected documents   | `User-Document`                               |
+| **agent_report**           | Enter title for agent report               | Prepares report on agent output                            | `-`                                           |
+| **wikipedia_search**       | Add Wikipedia Articles as Research Context | Adds Wikipedia articles as research context                | `None`                                        |
+| **prompt_builder**         | Enter prompt instruction                   | Builds structured prompts                                  | `None`                                        |
+| **embedded_bot**           | Optional                                   | Pauses execution for user interaction                      | `None`                                        |
+| **condition**              | Enter expression                           | Evaluates logical condition                                | `None`                                        |
+| **web_search**             | Add query                                  | Performs web search and returns structured results         | `None`                                        |
+| **boolean**                | Provide yes/no question                    | Provides yes/no answer with explanation                    | `MAIN-INPUT`, `User-Text`                     |
+| **extract**                | Enter extraction key                       | Extracts key-value pair                                    | `MAIN-INPUT`, `User-Text`                     |
+| **answer**                 | What is your question?                     | Answers specific question from passage                     | `MAIN-INPUT`, `User-Text`                     |
+| **sentiment**              | No instruction required                    | Analyzes sentiment                                         | `MAIN-INPUT`, `User-Text`                     |
+| **emotions**               | No instruction required                    | Analyzes emotion                                           | `MAIN-INPUT`, `User-Text`                     |
+| **topics**                 | No instruction required                    | Classifies topic                                           | `MAIN-INPUT`, `User-Text`                     |
+| **tags**                   | No instruction required                    | Generates tags                                             | `MAIN-INPUT`, `User-Text`                     |
+| **intent**                 | No instruction required                    | Classifies intent                                          | `MAIN-INPUT`, `User-Text`                     |
+| **ratings**                | No instruction required                    | Rates positivity (1–5)                                     | `MAIN-INPUT`, `User-Text`                     |
+| **ner**                    | No instruction required                    | Named entity recognition                                   | `MAIN-INPUT`, `User-Text`                     |
+| **xsum**                   | No instruction required                    | Generates extreme summary                                  | `MAIN-INPUT`, `User-Text`                     |
+| **summary**                | Optional                                   | Summarizes content                                         | `MAIN-INPUT`, `User-Text`                     |
+| **category**               | No instruction required                    | Classifies category                                        | `MAIN-INPUT`, `User-Text`                     |
+| **q_gen**                  | No instruction required                    | Generates questions                                        | `MAIN-INPUT`, `User-Text`                     |
+| **build_dataset**          | Enter dataset name                         | Create datasets from JSON                                  | `JSON Input`                                  |
+| **select_keys**            | Enter keys                                 | Select specified keys from a JSON dictionary               | `JSON Input`                                  |
+| **dataset_plot**           | Enter visualization instruction            | Visualize dataset                                          | `Dataset`                                     |
+| **load_dataset**           | Enter dataset name                         | Load saved datasets                                        | `Dataset`                                     |
+| **create_json**            | Enter keys list                            | Consolidate agent keys into JSON dictionary                | `Agent-State`                                 |
+| **ds_command_filter**      | Enter filter command                       | Applies filter commands to a dataset                       | `Dataset`                                     |
+| **ds_column_filter**       | Enter column condition                     | Keep rows where a selected column meets condition          | `Dataset`                                     |
+| **ds_quick_stats**         | Select column                              | Generate statistical report based on column                | `Dataset`                                     |
+| **ds_column_analysis**     | Select column                              | Generate report based on selected column                   | `Dataset`                                     |
+| **ds_report**              | No instruction                             | Generate dataset + workflow report                         | `Dataset`                                     |
+| **ds_column_select**       | Select column                              | Return selected column from dataset                        | `Dataset`                                     |
+| **ds_ask_dataset**         | Enter query                                | Query dataset using natural language                       | `Dataset`                                     |
+| **ds_readout**             | Enter row range                            | Return text from selected rows                             | `Dataset`                                     |
+| **ds_smart_filter**        | Enter query                                | Semantic dataset filtering                                 | `Dataset`                                     |
+| **ds_keyword_filter**      | Enter keyword                              | Exact keyword filtering                                    | `Dataset`                                     |
+| **ds_statistics**          | No instruction                             | Perform deeper statistical analysis                        | `Dataset`                                     |
+| **ds_stat_analysis**       | No instruction                             | Statistical analysis of CSV dataset                        | `Dataset`                                     |
+| **build_table**            | Enter table name                           | Create table from CSV data                                 | `User-Table`                                  |
+| **query_custom_table**     | Enter query                                | Database lookup in natural language                        | `Table Output`                                |
+| **json_extractor**         | Enter schema                               | Convert embedded JSON text into structured dataset element | `MAIN-INPUT`, `User-Text`                     |
+| **semantic_filter**        | Enter instruction                          | Meaning-based filtering                                    | `User-Source`                                 |
+| **text_filter**            | Enter keyword/topic                        | Rule-based filtering                                       | `User-Source`                                 |
+| **document_filter**        | Enter document name                        | Document-level filtering                                   | `User-Source`                                 |
+| **table_filter**           | No instruction                             | Structured table filtering                                 | `User-Source`                                 |
+| **load_kb**                | Enter KB name                              | Load knowledge base into agent state                       | `None`                                        |
+| **ds_ask_kb**              | Enter query                                | Answer KB questions from dataset input                     | `Dataset`                                     |
+| **transformer**            | Choose input                               | Text/data transformation tasks                             | `Agent-State`                                 |
+| **aggregate_context**      | Enter context names                        | Consolidate multiple contexts                              | `None`                                        |
+| **parse_document**         | Enter name                                 | Convert documents to text                                  | `User-Document`                               |
+| **create_context**         | Enter instruction                          | Build reusable context blocks from relevant passages       | `User-Source`                                 |
+| **report_commentary**      | Optional                                   | Generate commentary from agent state                       | `None`                                        |
+| **speech_gen**             | Enter text                                 | Generate audio output from text                            | `None`                                        |
+| **image_gen**              | Enter description                          | Generate images from text                                  | `None`                                        |
+| **get_stock_summary**      | Enter ticker                               | Stock lookup                                               | `None`                                        |
+| **speech**                 | Enter input                                | Transcribe a speech file                                   | `Audio Input`                                 |
+| **speech_batch**           | Enter instruction                          | Transcribe collection of speech files                      | `Audio Batch`                                 |
+| **vision_batch**           | Enter instruction                          | Answer questions from multiple images                      | `User-Document`                               |
+| **parse_batch**            | Enter instruction                          | Create source from document batch                          | `User-Document`                               |
+| **extract-tiny**           | Enter key                                  | Extract key-value pair (lightweight)                       | `MAIN-INPUT`, `User-Text`                     |
+| **website_scraper**        | Enter URL                                  | Extract web content from allowed websites                  | `None`                                        |
+| **extract_table**          | Enter query                                | Extract tables from documents                              | `User-Document`                               |
+| **push_to_s3**             | Enter path                                 | Upload data to S3                                          | `None`                                        |
+| **pull_from_s3**           | Enter path                                 | Download data from S3                                      | `None`                                        |
+| **connect_library**        | Enter library name                         | Connect to semantic library                                | `None`                                        |
+| **query_library**          | Enter query                                | Query semantic library                                     | `Library Context`                             |
+| **get_quote**              | Enter symbol                               | Retrieve stock quote                                       | `None`                                        |
+| **get_company_financials** | Enter company/ticker                       | Retrieve financial data                                    | `None`                                        |
+| **send_email**             | Enter email                                | Send email                                                 | `Select context`                              |
+| **openai_chat**            | Enter instruction                          | OpenAI chat completion                                     | `Text Source`                                 |
+| **openai_rag**             | Enter instruction                          | OpenAI RAG query                                           | `Text Source`                                 |
+| **openai_rag_batch**       | Enter instruction                          | OpenAI batch RAG                                           | `Text Source`                                 |
+| **anthropic_chat**         | Enter instruction                          | Anthropic chat completion                                  | `Text Source`                                 |
+| **gemini_chat**            | Enter instruction                          | Gemini chat completion                                     | `Text Source`                                 |
 
 ## Conclusion
 The **Visual Builder** establishes a clear and structured approach to agent design by translating complex workflows into an intuitive visual format. By organizing execution into interconnected nodes—covering inputs, processing, decision-making, and transformation—it enables users to construct both simple and highly sophisticated agents within a single, unified canvas.
