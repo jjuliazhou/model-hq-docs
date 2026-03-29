@@ -110,58 +110,7 @@ Steps are always executed from top to bottom in the order shown.
 
 Below is the list of supported services, their expected instruction formats, descriptions, and applicable context sources.
 
-| **Service Name**         | **Instruction**                                                        | **Description**                                                                               | **Context**                                   |
-| ------------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **build_table**         | Enter name of table (will be built from the selected input table file) | Create Table from CSV data                                                                    | `User-Table`                                  |
-| **query_custom_table** | Enter query for database table                                         | Database lookup in natural language. Requires `build_table` first. Keep table schema in mind. | `Enter_name_of_Table` This table is the result of Build_Table service step.                         |
-| **semantic_filter**     | What is your question or instruction?                                  | Filters an existing source based on question/topic to create new filtered source              | `User-Source`                                 |
-| **text_filter**         | What is the keyword or topic to filter the source?                     | Filters an existing source based on question/topic                                            | `User-Source`, or a 'filtered' query in the agent process.                 |
-| **document_filter**     | Document name                                                          | Filters an existing source by document name                                                   | `User-Source`, or a 'filtered' query in the agent process.                 |
-| **table_filter**        | No instruction required                                                | Filters table type content in User Source                                                     | `User-Source`                                 |
-| **aggregate_context**   | List the names of source contexts to consolidate. Use space-separated names like: `source_1 source_2 source_3`. Do **not** use curly braces (`{{}}`).        | Consolidates multiple source contexts into one. This is used to merge several sources into a unified context.                                                         | `No input context required`                     |
-| **create_context**      | What is your question or instruction?                                  | Answers a question or performs an instruction                                                 | `User-Source`                                 |
-| **parse_document**      | Enter name of new document source                                      | Creates a source from document for further document-related processing                        | `User-Document`                               |
-| **ocr**      | Enter name of new document source                                      | Creates a source from document for further This is the fall-back step to documents that cannot be parsed using the 'parse_document' step because they are image-based PDFs or security-encrypted PDFs. Create Source from Document - a necessary step for handling Document-related workflows such as RAG or Summary. This service must be applied first, prior to using most User-Document related Services.                         | `User-Document`                               |
-| **rag_answer**          | Ask question to longer document input                                  | Answers a question based on a longer document input                                           | `User-Source`, `Provide_instruction_or_query` |
-| **report_commentary**   | (Optional) Guidance to Commentary                                      | Generate report and commentary on key process results from the agent state in Word - no input context required                                  | `-`                                           |
-| **agent_report**        | Enter title for agent report                                           | Prepares report on agent output                                                               | `-`                                           |
-| **wikipedia_search**    | Add Wikipedia Articles as Research Context                             | Adds Wikipedia articles as research context                                                   | `None`                                        |
-| **embedded_bot**    | Optional. None required.                             | Pauses the execution of the agent process to allow the user to interact with the current state of the agent in chat format.                                                    | `None`                                        |
-| **condition**    | Enter expression to evaluate in 'if_true' or 'if_false' format                             | Evaluates the truth value of a condition, which can then be used as a variable in any other process step such that the step will only execute if it meets the selected condition                                                   | `None`                                        |
-| **web_search**    | Add query for a topic or a question                              | Runs websearches returning a summary text as a source and an indexed set of text chunks - needs SERP API or Tavily API                                                   | `None`                                        |
-| **speech_gen**    | Enter a topic or short input to convert to speech file                              | Using a short text input, generates an audio voice wav file based on the input text. (Experimental)                                                   | `None`                                        |
-| **image_gen**    | Enter a topic or description to convert to an image                              | Creates an image using the description or instruction provided by the user                                                   | `None`                                        |
-| **website_scrapper**    | Enter the full website url                             | Scrapes the website in question (some websites are protected against automatic scraping and does not work for all websites) to extract content for a downstream question in the agent process                                                   | `None`                                        |
-| **send_email**    | Enter the email address of the receiver                              | Automatically sends an email (Gmail only with credentials provided in Configuration/Credentials)                                                   | `Select context of the email`                                        |
-| **connect_library**     | Enter library name                                                     | Connects to Semantic Library from Model HQ API                                                | `-`                                           |
-| **query_library**       | Enter query for semantic library                                       | Queries connected semantic library                                                            | `Enter_Library-name`                          |
-| **get_stock_summary**  | Enter stock ticker                                                     | Stock lookup using YFinance                                                                   | `None`                                        |
-| **vision**               | Enter question to image file                                           | Provides answer/description from image                                                        | `User-Image`                                  |
-| **vision_batch**               | Enter question to batch of image files                                           | Takes a collection of user images as an input context, along with a text input of a question or instruction. Returns text output context with the answer based on the set of images.                                                         | `User-Document`                                  |
-| **parse_batch**               | Enter question to batch of documents files that have been parsed                                           | Takes a collection of document files as an input context, and will return a set of text chunks, indexed and packaged as a source, which can then be used as input to a number of other services                                                        | `User-Document`                                  |
-| **sentiment**            | No instruction required                                                | Analyzes sentiment (positive/negative/neutral)                                                | `MAIN-INPUT`, `User-Text`                     |
-| **boolean**              | Provide yes/no question                                                | Provides yes/no answer with explanation                                                       | `MAIN-INPUT`, `User-Text`                     |
-| **emotions**             | No instruction required                                                | Analyzes primary emotion in input                                                             | `MAIN-INPUT`, `User-Text`                     |
-| **topics**               | No instruction required                                                | Classifies topic of input                                                                     | `MAIN-INPUT`, `User-Text`                     |
-| **tags**                 | No instruction required                                                | Generates tags from input                                                                     | `MAIN-INPUT`, `User-Text`                     |
-| **intent**               | No instruction required                                                | Classifies intent of input                                                                    | `MAIN-INPUT`, `User-Text`                     |
-| **ratings**              | No instruction required                                                | Rates positivity from 1 to 5                                                                  | `MAIN-INPUT`, `User-Text`                     |
-| **ner**                  | No instruction required                                                | Identifies named entities (people, places, organizations)                                     | `MAIN-INPUT`, `User-Text`                     |
-| **xsum**                 | No instruction required                                                | Generates extreme summary or headline                                                         | `MAIN-INPUT`, `User-Text`                     |
-| **summary**              | Optional - add input instructions to focus the summarization           | Summarizes source content                                                                     | `MAIN-INPUT`, `User-Text`                     |
-| **category**             | No instruction required                                                | Analyzes category of the input passage                                                        | `MAIN-INPUT`, `User-Text`                     |
-| **q_gen**               | No instruction required                                                | Generates question from passage                                                               | `MAIN-INPUT`, `User-Text`                     |
-| **chat**                 | What is your question or instruction?                                  | Answers a question or performs instruction                                                    | `MAIN-INPUT`, `User-Text`, `None`             |
-| **extract**              | Enter extraction key, e.g., 'customer name'                            | Extracts key-value pair                                                                       | `MAIN-INPUT`, `User-Text`                     |
-| **extract_tiny**        | Enter extraction key, e.g., 'customer name'                            | Extracts key-value pair (tiny version)                                                        | `MAIN-INPUT`, `User-Text`                     |
-| **answer**               | What is your question?                                                 | Answers specific question from passage                                                        | `MAIN-INPUT`, `User-Text`                     |
-| **extract_table**       | Enter query to filter among available tables                           | Extracts table from document                                                                  | `User-Document`                               |
-| **END**                  | End of process                                                         | Marks the end of agent process                                                                | `None`                                        |
-| **openai_chat**                  | Enter input question or instruction                                                         | Chat agent calls OpenAI (requires separate API key in Configuration/Credentials) with an optional text input context. The output provides a context passage that can be used by other services                                                                | `Main Input or other Text Source`                                        |
-| **openai_rag**                  | Enter input question or instruction                                                         | Calls OpenAI (requires separate API key in Configuration/Credentials) with a RAG question. The output provides a context passage that can be used by other services                                                                | `Main Input or other Text Source`                                        |
-| **openai_rag_batch**                  | Enter input question or instruction                                                         | Calls OpenAI (requires separate API key in Configuration/Credentials) with a batch of document sources and generates a response based on the input instruction/question. The output provides a context passage that can be used by other services                                                                | `Main Input or other Text Source`                                        |
-| **anthropic_chat**                  | Enter input question or instruction                                                         | Chat agent calls Anthropic (requires separate API key in Configuration/Credentials) with an optional text input context. The output provides a context passage that can be used by other services                                                                | `Main Input or other Text Source`                                        |
-
+#-- will add service table here --#
 
 ### 2.4 Example: AC field tech support agent
 The example below demonstrates an **AC Field Tech Support** agent configured with **8 sequential steps**.
@@ -180,37 +129,30 @@ Execution order in this example:
 * Answer a question using retrieved context
 * End the process
 
-#### 2.4.2 Steps explained (high level)
-**Step 1: build_table**
-Creates a structured table from CSV data so it can be queried later.
-
-**Step 2: vision**
-Answers a question based on an uploaded image.
-This step is used to identify the AC model number from an image.
-
-**Step 3: extract**
-Extracts a key value from the previous step output.
-The extracted value is stored as a named variable.
-
-**Step 4: query_custom_table**
-Queries structured AC data using natural language.
-
-**Step 5: query_custom_table**
-Performs another query using a variable produced in Step 3.
-
-**Step 6: parse_document**
-Creates a searchable source from a technical document.
-
-**Step 7: rag_answer**
-Answers a question using the parsed document as context.
-
-**Step 8: END**
-Marks completion of the agent execution.
-
 ### 2.5 Action buttons
 The Action Buttons provide quick access to configure inputs, manage files, execute the agent, inspect metadata, review outputs, and control the overall agent lifecycle. Each button opens a focused view related to a specific stage of the agent workflow.
 
-#### 2.5.1 Inputs
+#### 2.5.1 Visual editor
+The **Visual Editor** opens the drag-and-drop canvas used to build and edit the agent workflow.
+
+This interface opens the visual builder, where you can:
+
+* Nodes can be added, connected, and reordered
+* Services and inputs can be configured
+* Execution flow can be visually inspected
+
+#### 2.5.2 Run
+The **Run** action executes a test run of the agent using the currently configured inputs, files, and workflow.
+
+During execution:
+
+* Nodes are executed sequentially from top to bottom
+* Intermediate outputs are generated and stored as named variables
+* Any configuration or logic issues surface immediately during the run
+
+This mode is primarily used for validation, debugging, and iteration before publishing or sharing the agent.
+
+#### 2.5.3 Inputs
 The **Inputs** button can be used to configure or update the user inputs required to run the agent.
 
 Supported input types:
@@ -251,7 +193,7 @@ Input-specific notes:
 * **User-Source**
   Allows users to upload multiple files as a single object. Parsing, table building, and vision processing are handled automatically. For best results, it is recommended to apply `semantic_filter` and `create_context` early in the workflow.
 
-#### 2.5.2 Files
+#### 2.5.4 Files
 The **Files** section is used to upload, manage, and associate assets with the agent.
 
 ![edit](agents/editAgent/03_2files.png)
@@ -264,18 +206,7 @@ Capabilities include:
 
 Uploaded files become available as contexts that can be selected by agent services such as `parse_document`, `build_table`, or `vision`. Multiple files can be added before saving and exiting.
 
-#### 2.5.3 Run
-The **Run** action executes a test run of the agent using the currently configured inputs, files, and workflow.
-
-During execution:
-
-* Nodes are executed sequentially from top to bottom
-* Intermediate outputs are generated and stored as named variables
-* Any configuration or logic issues surface immediately during the run
-
-This mode is primarily used for validation, debugging, and iteration before publishing or sharing the agent.
-
-#### 2.5.4 Meta
+#### 2.5.5 Meta
 The **Meta** section allows descriptive and presentation-related information for the agent to be defined.
 
 ![edit](agents/editAgent/03_4meta.png)
@@ -288,7 +219,7 @@ This typically includes:
 
 Meta information does not affect execution but is used for documentation, discovery, and presentation.
 
-#### 2.5.5 Outputs
+#### 2.5.6 Outputs
 The **Outputs** section controls what the agent returns after execution.
 
 ![edit](agents/editAgent/03_5outputs.png)
@@ -301,7 +232,7 @@ Options include:
 
 This allows fine-grained control over what consumers of the agent actually receive, rather than returning all internal state by default.
 
-#### 2.5.6 Reports
+#### 2.5.7 Reports
 The **Reports** section controls how agent execution results are packaged into structured, downloadable documents for different audiences such as business users, engineers, or compliance reviewers.
 
 ![edit](agents/editAgent/03_6reports.png)
@@ -333,7 +264,7 @@ Output formats:
 
 Reports can be regenerated at any time after a run.
 
-#### 2.5.7 Controls
+#### 2.5.8 Controls
 The **Controls** section applies safety, privacy, and content protections automatically during agent execution. These safeguards help prevent sensitive data exposure, unsafe outputs, and malicious inputs without requiring changes to the workflow itself.
 
 ![edit](agents/editAgent/03_7controls.png)
@@ -369,7 +300,7 @@ Automated content checks are applied:
 **Exclusion list**
 Custom words or phrases (comma-separated) can be specified to be blocked or ignored during execution.
 
-#### 2.5.8 Services
+#### 2.5.9 Services
 The **Services** section is the service catalog for the agent. It determines which capabilities are available when building workflows. Only enabled services can be added as nodes.
 
 ![edit](agents/editAgent/03_8services.png)
@@ -409,31 +340,51 @@ Lightweight text analysis tools for labeling or scoring content.
 **Datasets**
 Tools for preparing, querying, and analyzing structured data.
 
-* build_dataset – create datasets from raw files
-* dataset_query – run queries on datasets
-* dataset_filter – filter rows or records
+* select_keys - selects specified keys from a JSON dictionary
+* build_dataset – create datasets from JSON
+* ds_command_filter - applies filter commands to a dataset
+* ds_column_filter - keep rows where a selected column meets your condition
+* ds_quick_stats – generates a statistical report based on selected column
+* ds_column_analysis - generates a report based on selected column
+* ds_report - generate a report of the dataset and the workflow results based on the agent run
+* ds_column_select - returns the selcted column from the dataset
+* ds_ask_dataset - use a natural language question to retrieve relevant information from the dataset
+* ds_readout - returns the text from a set of rows from the dataset for display
+* ds_smart_filter – find rows that match the meaning of your query
+* ds_keyword_filter - filter rows based on exact text matches in the selected column
 * dataset_plot – visualize data
-* dataset_stat – compute statistics
+* ds_statistics – perform deeper statistical analysis and generate insights
 * load_dataset – load saved datasets
-* ml_predict – run ML predictions
-* stats_analyze – perform analysis
-* create_json – export structured JSON
+* create_json – provide a list of agent keys to consolidate into a new JSON dictionary
+* ds_stat_analysis - generate statistical analysis of input data csv file
 
 **Specialized services**
 Advanced utilities for targeted or complex workflows.
 
+* build_table - create table from CSV data
+* query_custom_table - database look-up in natural language
+* json_extractor - converts a text chunk with embedded json into a structured dataset element
 * semantic_filter – meaning-based filtering
 * text_filter – rule-based text filtering
 * document_filter – document-level filtering
 * table_filter – structured table filtering
+* load_kb - load knowledge base into agent state used in 'ask_kb' calls
+* ds_ask_kb - answers knowledge base questions from a dataset input
 * transformer – text transformation tasks
-* parse_document – convert documents to text
-* create_context – build reusable context blocks
-* report_commentary – add report notes
-* speech_gen – generate audio output
-* image_gen – generate images
-* website_scraper – extract web content
-* extract_table – extract tables from documents
+* aggregate_context - provide a list of context names to consolidate
+* parse_document – convert documents to text files 
+* create_context – build reusable context blocks from the most relevant passages in a source based on query
+* report_commentary – generate commentary of key process results from the agent-state - no input context required
+* speech_gen – generate audio output from text
+* image_gen – generate images from text
+* get_stock_summary - stock ticker look-up (requires internet access)
+* speech - transcribe a speech file
+* speech_batch - transcribe a collection of speec
+* vision_batch - answer question based on a collection of image files
+* parse_batch - create source from document batch
+* extract_tiny - extracts a key-value pair
+* website_scraper – extract web content from allowed websites (note: many websites prevent this)
+* extract_table – extract tables from documents based on query
 
 **Integrations**
 Connect the agent to external systems or hosted models.
@@ -443,30 +394,7 @@ Examples include storage services, email, and external model providers.
 **Custom services**
 Workspace-specific or user-defined services added for specialized use cases.
 
-#### 2.5.9 Plan
-The **Plan** section allows the agent's intended behavior to be described using plain language. The system uses this description to automatically suggest or generate an ordered workflow.
-
-![edit](agents/editAgent/03_9plans.png)
-
-This helps:
-
-* Quickly scaffold new agents
-* Validate logic before building nodes
-* Document intended behavior
-* Speed up initial setup
-
-The description acts as a high-level specification of the agent's goal and execution steps.
-
-#### 2.5.10 Visual editor
-The **Visual Editor** opens the drag-and-drop canvas used to build and edit the agent workflow.
-
-This interface opens the visual builder, where you can:
-
-* Nodes can be added, connected, and reordered
-* Services and inputs can be configured
-* Execution flow can be visually inspected
-
-#### 2.5.11 JSON editor
+#### 2.5.10 JSON editor
 The **JSON Editor** displays the complete agent configuration in raw JSON format.
 
 This view shows the full structure of the agent, including services, nodes, inputs, contexts, and execution settings, allowing precise inspection and modification of how the workflow is defined.
@@ -547,5 +475,3 @@ Additional information about the Visual Builder can be found in the [Agent Visua
 This document provided comprehensive guidance on editing agents in Model HQ using both the step-based editor and the Visual Builder interface. The Edit Agent functionality enables existing workflows to be refined, extended, and optimized by modifying services, adjusting execution order, configuring inputs and outputs, and applying safety controls. The step-based editor offers precise control over linear agent workflows through a structured interface where services, instructions, and contexts can be configured for each execution step. The Visual Builder provides an intuitive drag-and-drop canvas for visualizing complex workflows, making structural changes, and understanding data flow through node-and-wire representations.
 
 Key editing capabilities include configuring input types (text, documents, images, tables, sources), managing files and assets, executing test runs for validation, defining metadata and presentation elements, controlling output formats, generating structured reports for different audiences, and applying automated safety controls such as pattern redaction and content classification. The Services catalog determines which capabilities are available within the agent, ranging from core services like chat and RAG to specialized utilities for web scraping, image generation, and email automation. Advanced features such as the Plan section enable natural language descriptions to be used for workflow generation, while the JSON Editor provides direct access to the underlying agent configuration for precise modifications.
-
-Understanding the Edit Agent interface is essential for maintaining production agents, adapting workflows to changing requirements, implementing safety and compliance controls, and building reusable agent templates that can be customized for specific deployment scenarios. The flexibility to switch between step-based and visual editing modes ensures that both quick targeted edits and complex structural changes can be performed efficiently, making Model HQ a powerful platform for iterative agent development and continuous workflow optimization.
