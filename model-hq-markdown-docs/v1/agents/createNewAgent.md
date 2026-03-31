@@ -1,9 +1,24 @@
 ﻿# Creating a new agent in Model HQ
-The Agent creation interface in Model HQ provides multiple pathways for building custom workflows that automate document processing, data extraction, question answering, and complex multi-step analysis tasks. Agents can be created from scratch using step-by-step configuration, derived from existing agent templates, built visually using a drag-and-drop node editor, or imported from pre-packaged agent files. Each approach serves different use cases: step-based creation offers precise control over execution logic and service configuration, visual building provides intuitive workflow design through graphical interfaces, and template-based creation accelerates development by leveraging pre-built patterns for common scenarios.
+The Agent creation interface in Model HQ gives you several easy ways to build workflows that automate tasks like document processing, data extraction, question answering, and multi-step analysis.
 
-This guide provides a comprehensive walkthrough for creating new agents using the Model HQ platform, covering interface navigation, configuration options, and setup procedures for different agent types. The agent creation interface is essential for translating business requirements into automated, repeatable processes — whether the goal is a simple single-step agent or a complex multi-stage pipeline with branching logic and conditional execution.
+You can create agents in a few different ways:
 
-The documentation covers three primary agent building approaches: the **Visual Builder** for interactive node-based design, the **Multi-Step Agent** builder for structured sequential workflows, and the **Prompting Agent** builder for conversational AI implementations. Each mode carries distinct advantages depending on the complexity of the workflow, the technical background of the user, and the specific use case requirements. Advanced topics such as service selection, context management, and output configuration are covered in subsequent sections of the agent development documentation series.
+- Build from scratch using a step-by-step setup
+- Start from a pre-built template
+- Use the Visual Builder with drag-and-drop blocks
+- Import an existing agent file that is shared by another user (zip file)
+
+Each option is useful in different situations. Step-by-step building gives you precise control, the Visual Builder makes it easy to design workflows visually, and templates help you get started quickly with common use cases.
+
+This guide walks you through how to create agents in Model HQ, including how to navigate the interface, configure settings, and set up different types of workflows. Agents help turn business needs into automated, repeatable processes — whether it’s a simple task or a more complex workflow with multiple steps and decision points.
+
+There are three main ways to build agents:
+
+- Visual Builder – design workflows using a drag-and-drop interface
+- Multi-Step Builder – create structured, step-by-step workflows
+- Prompting Builder – build conversational AI agents with preset prompts
+
+Each approach has its own strengths depending on the complexity of your workflow and your level of technical experience. More advanced topics like selecting services, managing context, and configuring outputs are covered in later sections.
 
 ## 1. Launching the interface
 To begin creating a new agent, the following steps should be performed:
@@ -46,7 +61,17 @@ Basic information about the agent should be configured at this stage:
 
 - **Agent name**: A unique, descriptive name should be provided that clearly indicates the agent's purpose — for example, Contract Analyzer, Invoice Processor, or Research Summarizer.
 
-- **Input definition**: The input types that will be provided when the agent is run should be selected. By default, 	ext is defined as MAIN-INPUT. Additional input types — such as User-Document, User-Table, User-Image, or User-Source — can be enabled as required by the workflow.
+- **Input definition**: The input types that will be provided when the agent is run should be selected. By selecting a user input, this will define the first step in the agent process. By default, text is defined as MAIN-INPUT. Additional input types — such as User-Document, User-Table, User-Image, or User-Source — can be enabled as required by the workflow.
+
+Select the type of input that will kick off the agent process and describe the input that is expected in the Description section so that the user will have a clear indication of what type of file or input is intended to work with the agent.
+
+Note: The Visual Builder only accepts one input node and will not work with multiple input nodes. For workflows needing multiple inputs or input types, it is recommended to work with the *Multi-Step* Agent builder that can be accessed by selecting "Build Multi-Step Agent".
+
+Example 1: For an agent process in which the user is expected to input a document AND an image to run the agent process, use "Build Multi-Step Agent".
+
+Example 2: For an agent process that uses a single input such as a PDF file or an Image for RAG answering or Vision model execution, use "Visual Builder."
+
+Example 3: For agents requiring Batch processing, either type of builder can be used for building the agent itself.
 
 - **Derive Agent**: The agent can be built from scratch with a blank workflow (the default), or an existing agent can be selected as the base to derive from, inheriting its pre-built logic and structure.
 
