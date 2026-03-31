@@ -5,9 +5,10 @@ The **Edit Agent** feature in Model HQ lets you change and improve agents after 
 You can:
 
 * Add or remove steps
-* Change settings (such as models) and inputs
+* Add or remove files used in the agent process
+* Change settings such as models
 * Update outputs and formats
-* Adjust safety rules or filters
+
 
 This makes it easy to update agents as your needs change, without starting from scratch.
 
@@ -54,7 +55,7 @@ The Visual Builder shows your agent as a node-and-connection diagram, making it 
 
 When you make changes in the Visual Builder, you’ll still review everything in a step-by-step format before saving, so you can clearly confirm the final sequence.
 
-For editing, the step-based editor can be the easiest and fastest option—it makes it simple to add, remove, or adjust individual steps (by adding or deleting rows) without navigating a visual layout.
+For editing, the step-based editor can be the easiest and fastest option—it makes it simple to add, remove, or adjust individual steps (by adding or deleting rows) without navigating a visual layout. 
 
 The choice between the two editing modes is entirely optional. If detailed information about the Visual Builder is required, the [Agent Visual Builder Mode]() documentation should be consulted.
 
@@ -414,6 +415,8 @@ Changes made in this editor directly update the agent configuration.
 
 ## 3. Editing an agent (with visual builder)
 The Visual Builder allows agents to be edited using a point-and-click, drag-and-drop interface. This makes it easy to understand, modify, and extend agent logic without writing code.
+
+Note: The number displayed on each node represents the order in which they were placed on the canvas by the user only. The number does not indicate the order in which the nodes will run. The sequence of agent action is determined by the connectors between each node in the process, and not the number on the node.
 
 ![edit](agents/editAgent/04_visualBuilder.png)
 
