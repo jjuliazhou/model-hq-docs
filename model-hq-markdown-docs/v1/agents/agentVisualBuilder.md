@@ -54,6 +54,8 @@ On the canvas, the following actions can be performed:
 * Nodes can be connected to define execution flow
 * Nodes can be selected to edit their instructions and configuration
 
+* Note: The number of the node indicates the order in which the User added that node on the canvas, and does not indicate the order in which the services or the node will be activated. The order of agent execution follows the order of the nodes and how they are linked to each other, rather than the node number.
+
 ### 3.5 Zoom and utility actions
 The bottom-left controls allow the following operations:
 
@@ -507,7 +509,7 @@ Below is the list of supported services, their expected instruction formats, des
 | **q_gen**                  | No instruction required                    | Generates questions                                        | `MAIN-INPUT`, `User-Text`                     |
 | **build_dataset**          | Enter dataset name                         | Create datasets from JSON                                  | `JSON Input`                                  |
 | **select_keys**            | Enter keys                                 | Select specified keys from a JSON dictionary               | `JSON Input`                                  |
-| **dataset_plot**           | Enter visualization instruction            | Visualize dataset                                          | `Dataset`                                     |
+| **ds_plot**                | Enter visualization instruction            | Visualize dataset                                          | `Dataset`                                     |
 | **load_dataset**           | Enter dataset name                         | Load saved datasets                                        | `Dataset`                                     |
 | **create_json**            | Enter keys list                            | Consolidate agent keys into JSON dictionary                | `Agent-State`                                 |
 | **ds_command_filter**      | Enter filter command                       | Applies filter commands to a dataset                       | `Dataset`                                     |
@@ -540,8 +542,8 @@ Below is the list of supported services, their expected instruction formats, des
 | **image_gen**              | Enter description                          | Generate images from text                                  | `None`                                        |
 | **get_stock_summary**      | Enter ticker                               | Stock lookup                                               | `None`                                        |
 | **speech**                 | Enter input                                | Transcribe a speech file                                   | `Audio Input`                                 |
-| **speech_batch**           | Enter instruction                          | Transcribe collection of speech files                      | `Audio Batch`                                 |
-| **vision_batch**           | Enter instruction                          | Answer questions from multiple images                      | `User-Document`                               |
+| **speech_batch**           | Enter instruction                          | Transcribe Collection of speech files (Needs Collection Input)| `Audio Batch`                                 |
+| **vision_batch**           | Enter instruction                          | Reads Collection of images (Needs Collection Input)             | `User-Document`                               |
 | **parse_batch**            | Enter instruction                          | Create source from document batch                          | `User-Document`                               |
 | **extract-tiny**           | Enter key                                  | Extract key-value pair (lightweight)                       | `MAIN-INPUT`, `User-Text`                     |
 | **website_scraper**        | Enter URL                                  | Extract web content from allowed websites                  | `None`                                        |
