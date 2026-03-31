@@ -659,6 +659,48 @@ export default function HomePage() {
                 </ul>
               </div>
 
+              {/* Agents */}
+              <div>
+                <div className="mb-3">
+                  <a href="/v1/agents" className="text-xl font-semibold text-primary hover:underline">
+                    Agents
+                  </a>
+                  <span className="text-muted-foreground ml-2">- Explore agent functionality and model interactions</span>
+                </div>
+                <ul className="ml-6 space-y-1 list-disc">
+                  <li>
+                    <a href="/v1/agents" className="text-primary hover:underline">
+                      Agents Overview
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/agents/create-new-agent" className="text-primary hover:underline">
+                      Create New Agent
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/agents/edit-agent" className="text-primary hover:underline">
+                      Edit Agent
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/agents/agent-visual-builder" className="text-primary hover:underline">
+                      Agent Visual Builder
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/agents/batch-processing" className="text-primary hover:underline">
+                      Batch Processing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/agents/agent-services" className="text-primary hover:underline">
+                      Agent Services
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               {/* Bots */}
               <div>
                 <div className="mb-3">

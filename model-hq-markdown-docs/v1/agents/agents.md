@@ -1,7 +1,54 @@
 # Exploring agents in Model HQ
-After completing the initial setup, users will be directed to the **Main Menu** where they can access the Agents interface. Agents in Model HQ represent automated workflows that combine document parsing, retrieval-augmented generation (RAG), language model inference, and structured output generation into cohesive, repeatable processes. Each agent is designed to solve specific tasks such as contract analysis, customer support automation, research summarization, financial data extraction, or image tagging, among others. Agents can be executed with single inputs or batch-processed across multiple files, and their outputs include structured reports, JSON data, markdown summaries, and visual workflow diagrams.
+After setup, you’ll land on the **Main Menu**, where you can open the **Agents** section.
 
-The Agents interface provides comprehensive capabilities for running pre-built agents, creating custom agents from scratch, editing existing workflows, sharing agents with collaborators, and visualizing agent logic through a drag-and-drop interface. Pre-created agents demonstrate common use cases and serve as templates that can be customized to meet specific requirements. When an agent is executed, it follows a defined sequence of steps that may include document parsing, RAG-based question answering, data extraction, report generation, and file output creation. Each step can be monitored through inference logs that track model responses, token usage, processing time, and confidence scores.
+**Agents** are automated workflows that handle tasks for you. They combine things like reading documents, searching for relevant information (RAG), running AI models, and creating structured outputs — all in one repeatable process.
+
+The user will build each agent for a specific job, such as:
+
+* Analyzing contracts
+* Automating customer support
+* Summarizing research
+* Extracting financial data
+* Tagging images
+
+You can run an agent on a single file or many files at once. The results can include Word reports, CSVs, JSON data, summaries or text files.
+
+The **Agents interface** lets you:
+
+* Buid your own agents from scratch
+* Use a drag and drop interface with no code to build agents
+* Use a multi-step interface (with no code) to build longer or more complex agents
+* Run ready-made agents
+* Edit existing workflows
+* Share agents with others
+* Create demos of existing agents to illustrate the agent use case (handy when sharing agents with others)
+
+Pre-built agents are included as examples and can be customized for your needs.
+
+When you run an agent, it follows a step-by-step process, such as:
+
+* Reading and parsing documents
+* Answering questions using RAG
+* Extracting or filtering key data in CSVs then applying generative AI to the results
+* Auto-Generating reports and outputs from repeatable workflows
+
+You can track what’s happening using logs that show:
+
+* Model responses at each step of the process
+* Token usage
+* Processing time
+* Confidence scores
+
+This guide will show you how to:
+
+* Create your own custom agents
+* Run and use existing agents
+* Understand outputs and logs
+* Process multiple files at once
+* Share and upload agents
+* Build and edit workflows visually
+
+Understanding Agents is key to automating complex tasks, creating custom AI workflows, and using AI effectively in your organization.
 
 This document provides comprehensive guidance on the Agents interface, including how to load and run existing agents, interpret agent outputs and inference logs, utilize batch processing for multiple files, share agents with others, upload custom agents, and leverage the visual builder for workflow creation and editing. Understanding the Agents framework is essential for automating complex document workflows, building custom AI-powered processes, and integrating agent capabilities into broader enterprise systems.
 
@@ -20,15 +67,17 @@ Here is a breakdown of the key components:
    - **Build New**: Creates a new agent from scratch.
    - **Load Existing**: Loads an existing agent, either a pre-created template included in Model HQ or one previously built by the user.
 
-2. **Edit**: Modifies or deletes an existing agent.
+2. **Visual**: Builds agents with an open visual builder by connecting nodes and wires (no-code, easy to use agent creation mode, enabling quick workflow creation or diagrammatic understanding of agent workflows).
 
-3. **Share**: Shares an agent with others.
+3. **Edit**: Modifies an existing agent.
 
-4. **Upload**: Quickly builds an agent by uploading a pre-built file.
+4. **Share**: Shares an agent with others.
 
-5. **Visual**: Builds agents with an open visual builder by connecting nodes and wires (low-effort agent creation mode, enabling quick workflow creation or diagrammatic understanding of agent workflows).
+5. **Upload**: Quickly builds an agent by uploading a pre-built file.
 
 6. **Delete**: Deletes an agent.
+
+7. **Info Icon**: Provides metadata and step-by-step information and process diagram about an agent workflow for users 
 
 > [!NOTE]
 > This documentation does not cover building and editing agents in detail. For creating a new agent, the [Create New Agent](/v1/agents/creating-new-agent) documentation should be consulted, and for editing an agent, the [Edit an Agent](/v1/agents/edit-an-agent) documentation should be followed. The visual builder mode is discussed in [Agent Visual Builder](/v1/agent/agent-visual-builder).
@@ -38,19 +87,21 @@ In this documentation, an existing agent will be run, and other options such as 
 ### 2.1 Loading an existing agent
 To load an existing agent, `load existing` can be selected (if not already selected), and then any of the pre-existing agents can be chosen. 
 
-#### Available Pre-Created Agents in Model HQ
+#### Available Pre-Created Agent Templates in Model HQ
 - **AC Field Tech Support**
 - **Cloud API Agent**
 - **Conditional Agent**
 - **Contract Analyzer**
 - **Customer Support**
-- **Dataset Analysis**
 - **Financial Data Extractor**
+- **Handwriting Reading Agent**
 - **Image Tagger**
 - **Image Generation Agent**
 - **Intake Processing**
+- **Intune Device Risk Agent**
 - **Music License Royalty Agent**
 - **Research Process**
+- **Stock Research Agent**
 - **Summarize Website**
 
 Select any agent from the list and click the `>` button to continue. 
@@ -62,14 +113,24 @@ After selecting an agent, the following interface will be displayed:
 
 ![agents](agents/03_contractAnalyzer.png)
 
-Details about the agent will be provided along with the complete process flow from input to output.
+Once the user selects and agent and clicks ">", details about the agent will be provided along with the complete process flow from input to output by expanding the top bar with the agent name and the number of steps.
+
 
 In the Run agent section, 2-3 options will typically be available:
 - Run (Details)
-- Run (Demo) [OPTIONAL, may not be present]
+- Run (Demo) 
 - Batch Run
 
-### 2.2.1 Run (Details)
+  
+## 2.3 Running the Agent
+
+
+### 2.3.1 Run (Demo)
+Demo mode is available for all of the Pre-Created Agent templates listed above in Section 2.1. When you select this mode, the agent will run automatically from start to finish. You’ll see a clear explanation of the input, watch each step as it runs, and view the final output.
+   - Note: If there is a model required in the Agent process that is not loaded on the user device, the model will be uploaded the very first time the agent is being run on that particular device. This will add to the time to complete the agent for the first time only. Once the model(s) downloads, the agent will resume running and subsequent runs of the agent will proceed normally. 
+
+
+### 2.3.2 Run (Details)
 Run (Details) enables the agent to be executed. 
 
 User input will be requested based on the agent's configuration, such as text input or file upload.
@@ -115,7 +176,7 @@ Once all processes have been completed, a summary report table will be created a
 
 For every output, inference history and created files will also be available.
 
-#### 2.2.1.1 Inference history
+#### 2.3.2.1 Inference history
 The Inference History table provides detailed logs of each inference performed by the language model, enabling transparency, performance tracking, and auditing. This is particularly useful for AI-driven processes such as contract analysis, customer support, and research workflows.
 
 ![agents](agents/04_inference.png)
@@ -123,13 +184,13 @@ The Inference History table provides detailed logs of each inference performed b
 | **Column**            | **Description**                                                                        |
 | --------------------- | -------------------------------------------------------------------------------------- |
 | **inference**         | A sequential identifier for each inference operation.                                  |
-| **llm\_response**     | The text response generated by the language model (LLM) based on the input context.    |
-| **confidence\_score** | The model's confidence level (if available). `NA` indicates not applicable.            |
+| **llm_response**     | The text response generated by the language model (LLM) based on the input context.    |
+| **confidence_score** | The model's confidence level (if available). `NA` indicates not applicable.            |
 | **tokens**            | Token statistics, including input tokens, output tokens, and total tokens processed.   |
 | **first token**       | Time (in seconds) taken to generate the first token of the response.                   |
 | **processing time**   | Total time (in seconds) taken to process and return the complete response.             |
 
-#### 2.2.1.2 Files created
+#### 2.3.2.2 Files created
 This section lists the output files generated by the **Contract Analyzer Agent**. Each file captures a distinct part of the analysis—ranging from visual diagrams to raw metadata and final summaries—making it easier to trace the agent's behavior and audit results.
 
 ![Agent Output](agents/04_createdFiles.png)
@@ -147,35 +208,31 @@ This section lists the output files generated by the **Contract Analyzer Agent**
 > In the screenshots above and below, the name `contract_analyzer` is used (as mentioned before). This is because these outputs were generated while testing the Contract Analyzer Agent.
 
 
-### 2.2.2 Run (Demo)
-Run (Demo) executes the demonstration that was built during agent creation.
-
-It provides a self-explanatory overview and demonstration of how the agent functions.
-
-The presence of this button depends on whether a demo was added to the agent during its creation. However, this option is always available to be added in the edit agent section.
-
-### 2.2.3 Batch run
+### 2.3.3 Batch run
 Batch Run allows multiple files to be selected at once as input to the agent.
 
 ![agents](agents/05_batchRun.png)
 
 More details about this feature are available in the [Batch Processing](/v1/agents/batch-processing) documentation.
 
-## 2.3 Share your agent
+## 2.4 Share your agent
 The Share option in the agents interface allows an agent to be downloaded for sharing purposes.
 
-When this option is clicked, a `.zip` file will be created and made ready for download.
+When this option is clicked, a `.zip` file will be created and made ready for download. The user can download the file and share the ZIP file by email or any file-sharing method. Another Model HQ user can then upload it by following the upload steps.
+
+When sharing agents, it’s recommended to include a Demo mode so others can easily see how the agent works and what it’s designed to do.
+
 
 ![agents](agents/06_share.png)
 
-## 2.4 Uploading an agent
+## 2.5 Uploading an agent
 The Upload option in the agents interface allows agents to be uploaded.
 
 ![agents](agents/07_upload.png)
 
-If a downloaded agent zip file is available, a custom agent can be created directly by uploading the zip file, and it will be automatically installed with the option to edit it further.
+If a downloaded agent zip file is available, a custom agent can be created directly by uploading the zip file, and it will be automatically installed in the list of available agents with the option to edit it further.
 
-## 2.5 Agent visual builder
+## 2.6 Agent visual builder
 The Visual option in the agent interface allows a visual view of an agent to be quickly obtained, along with the ability to edit that agent.
 
 ![agents](agents/08_visual.png)

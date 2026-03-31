@@ -1,12 +1,15 @@
 # Batch processing or multi-doc agent
 This section explores the **Batch Run** capabilities of Model HQ, which enable automated execution of agent processes across multiple documents simultaneously.
 
-**Batch Run** is designed to automate agent execution across multiple documents at once, eliminating the need to load each document individually. This feature significantly accelerates workflows that require consistent analysis or processing across large document sets, such as contract review, invoice processing, research summarization, or compliance audits. Batch processing maintains the same agent logic and output format across all documents while dramatically reducing manual intervention and total processing time.
+**Batch Run** lets you run an agent on many documents at the same time—so you don’t have to upload and process each file one by one. It’s ideal for tasks where you need the same analysis across a large set of documents, like contract reviews, invoice processing, research summaries, or compliance checks. Every document is handled using the same logic and output format, saving time and reducing manual work.
 
-The **Contract Analyzer** example covered in the Agents documentation will be used to demonstrate a Batch Run and illustrate how to utilize this feature effectively. The Batch Run interface provides a streamlined workflow for uploading multiple documents, initiating processing, monitoring progress, and retrieving results in structured formats such as Word documents or JSON files. This capability transforms single-document agents into scalable multi-document processing pipelines suitable for enterprise-scale deployments.
+Batch run is suitable only for agent processes that require the same agent workflow for batches of similar input - i.e., similar contracts or a batch of images.
+
+In this example, we’ll use the **Contract Analyzer** from the Agents documentation to show how Batch Run works. The interface makes it easy to upload multiple files, start processing, track progress, and download results in formats like Word or JSON. This turns a single-document agent into a scalable workflow that can handle large volumes of documents efficiently.
+
 
 ## Batch run workflow
-Once **'Batch Run'** has been selected, the user will be directed to the **Upload Documents for Batch Processing** page.
+Select the desired Agent process then ">". Select **'Batch Run'** and once it has been selected, the user will be directed to the **Upload Documents for Batch Processing** page.
 
 ![batch run](agents/05_batchRun.png)
 

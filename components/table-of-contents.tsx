@@ -96,8 +96,8 @@ export function TableOfContents({ className }: TableOfContentsProps) {
         On This Page
       </h4>
       <ul className="space-y-1 text-[13px]">
-        {headings.map((heading) => (
-          <li key={heading.id}>
+        {headings.map((heading, index) => (
+          <li key={`${heading.id}-${index}`}>
             <a
               href={`#${heading.id}`}
               data-toc-link="true"

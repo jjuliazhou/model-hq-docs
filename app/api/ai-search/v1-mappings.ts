@@ -100,6 +100,22 @@ export const V1_EXACT_MAPPINGS: Record<string, string> = {
   'dataset/dataset.md': '/v1/dataset',
   'v1/dataset': '/v1/dataset',
   
+  // Agents - V1
+  'agents/v1/': '/v1/agents',
+  'agents/v1/README.md': '/v1/agents',
+  'agents/v1/agents.md': '/v1/agents',
+  'agents/v1/create-new-agent': '/v1/agents/create-new-agent',
+  'agents/v1/createNewAgent.md': '/v1/agents/create-new-agent',
+  'agents/v1/edit-agent': '/v1/agents/edit-agent',
+  'agents/v1/editAgent.md': '/v1/agents/edit-agent',
+  'agents/v1/agent-visual-builder': '/v1/agents/agent-visual-builder',
+  'agents/v1/agentVisualBuilder.md': '/v1/agents/agent-visual-builder',
+  'agents/v1/batch-processing': '/v1/agents/batch-processing',
+  'agents/v1/batchProcessing.md': '/v1/agents/batch-processing',
+  'agents/v1/agent-services': '/v1/agents/agent-services',
+  'agents/v1/agentServices.md': '/v1/agents/agent-services',
+  'v1/agents': '/v1/agents',
+  
   // Cookbooks V1 (TODO: Add V1 cookbooks when available)
   'cookbooks/v1/': '/cookbooks/v1',
   'cookbooks/v1/personalized-bot': '/cookbooks/v1/personalized-bot',
@@ -128,6 +144,7 @@ export const V1_FOLDER_MAPPINGS: Record<string, string> = {
   'tools': '/v1/configs-and-tools/tools',
   'configs-and-tools': '/v1/configs-and-tools',
   'dataset': '/v1/dataset',
+  'agents': '/v1/agents',
   'cookbooks': '/cookbooks',
   'video-tutorials': '/resources/video-tutorials',
   'blogs-and-partner-solutions': '/resources/blogs-and-partner-solutions',
@@ -197,6 +214,14 @@ Dataset (V1):
 - Dataset Search (Semantic, keyword, exact-phrase queries on structured data): ${V1_BASE_URL}/v1/dataset#25-search
 - Test Set / ML Training (Predictive model training on dataset columns): ${V1_BASE_URL}/v1/dataset#26-test-set-beta-may-not-be-available-in-all-versions
 - Analyze Dataset (Statistical overview, mean, std dev, KPI summaries): ${V1_BASE_URL}/v1/dataset#27-analyze
+
+Agents (V1):
+- Agents Overview (Launch agents interface, load templates, run demo, batch run, share, upload): ${V1_BASE_URL}/v1/agents
+- Create New Agent (Visual Builder mode, Multi-Step Agent builder, Prompting Agent builder): ${V1_BASE_URL}/v1/agents/create-new-agent
+- Edit Agent (Step-based editor, details view, legend, action buttons, Visual Builder editing): ${V1_BASE_URL}/v1/agents/edit-agent
+- Agent Visual Builder (All node types: Input, Node, Classifier, Bot, Condition, Transformer, Files, Services): ${V1_BASE_URL}/v1/agents/agent-visual-builder
+- Batch Processing (Run agents across multiple documents in a single batch operation): ${V1_BASE_URL}/v1/agents/batch-processing
+- Agent Services (Full reference: core services, classifiers, datasets, specialized, integrations): ${V1_BASE_URL}/v1/agents/agent-services
 
 Cookbooks (V1):
 - Personalized Bot: ${V1_BASE_URL}/cookbooks/v1/personalized-bot
@@ -325,6 +350,27 @@ Dataset (V1):
 - Dataset Final Configuration: ![Dataset Config Complete](/v1/dataset/10_datasetConfig.png)
 - Dataset ML Training Interface: ![Dataset Train](/v1/dataset/08_datasetSourceTrain.png)
 - Dataset Analysis Overview: ![Dataset Analysis](/v1/dataset/09_datasetAnalysis.png)
+
+Agents (V1):
+- Agents Main Menu Button: ![Agents Main Menu](/v1/agents/01_agents.png)
+- Agents Interface Dashboard: ![Agents Interface](/v1/agents/02_agentsInterface.png)
+- Agent Templates List: ![Agent Templates](/v1/agents/03_agentTemplates.png)
+- Agent Confirm Screen: ![Confirm Agent](/v1/agents/04_confirmAgent.png)
+- Agent Run Interface: ![Run Agent](/v1/agents/05_runAgent.png)
+- Agent Run Demo: ![Agent Demo](/v1/agents/06_runDemo.png)
+- Agent Run Details: ![Agent Run Details](/v1/agents/07_runDetails.png)
+- Agent Inference History: ![Inference History](/v1/agents/08_inferenceHistory.png)
+- Agent Files Created: ![Files Created](/v1/agents/09_filesCreated.png)
+- Agent Batch Run: ![Batch Run](/v1/agents/10_batchRun.png)
+- Share Agent: ![Share Agent](/v1/agents/11_shareAgent.png)
+- Upload Agent: ![Upload Agent](/v1/agents/12_uploadAgent.png)
+- Agent Visual Builder Interface: ![Visual Builder](/v1/agents/agentVisualBuilder/01_visualBuilder.png)
+- Create New Agent Interface: ![Create New Agent](/v1/agents/createAgent/01_createAgent.png)
+- Create Multi-Step Agent: ![Multi-Step Agent](/v1/agents/createAgent/02_multiStepAgent.png)
+- Create Prompting Agent: ![Prompting Agent](/v1/agents/createAgent/03_promptingAgent.png)
+- Edit Agent Interface: ![Edit Agent](/v1/agents/editAgent/01_editAgent.png)
+- Edit Agent Steps View: ![Edit Agent Steps](/v1/agents/editAgent/02_editAgentSteps.png)
+- Batch Processing Interface: ![Batch Processing](/v1/agents/batchProcessing/01_batchProcessing.png)
 
 Model HQ SDK & Code Documentation (V1):
 - Tools Menu Location: ![SDK Tools Menu Location](${V1_BASE_IMAGE_URL}/getting-started-with-sdk/v1/menu.png)
