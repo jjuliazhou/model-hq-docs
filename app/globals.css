@@ -124,7 +124,7 @@
 }
 
 .prose img {
-  @apply max-w-full h-auto;
+  @apply max-w-full h-auto my-6;
 }
 
 .prose pre {
@@ -137,7 +137,7 @@
 }
 
 .prose table {
-  @apply w-full;
+  @apply w-full my-6;
   table-layout: fixed;
 }
 
@@ -239,7 +239,7 @@
 }
 
 .prose a {
-  @apply text-primary hover:underline;
+  @apply text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300;
 }
 
 /* Enhanced blockquote styles */

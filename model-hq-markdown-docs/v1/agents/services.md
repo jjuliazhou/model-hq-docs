@@ -674,7 +674,7 @@ Workspace-specific or user-defined services added for specialized use cases.
 
 Below is the list of supported services, their expected instruction formats, descriptions, and applicable context sources.
 
-| **Service Name**           | **Instruction**                            | **Description**                                            | **Context**                                   |
+| Service Name           | Instruction                            | Description                                           | Context                                  |
 | -------------------------- | ------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------- |
 | **chat**                   | What is your question or instruction?      | Answers a question or performs instruction                 | `MAIN-INPUT`, `User-Text`, `None`             |
 | **rag_batch**              | Enter question or instruction              | Performs RAG over batch of documents                       | `User-Document`                               |

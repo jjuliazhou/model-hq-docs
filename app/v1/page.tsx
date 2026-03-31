@@ -21,6 +21,13 @@ export default function V1OverviewPage() {
       topics: ["Chat Overview", "Chat Configuration", "Document Parsing Issues", "Error Handling"]
     },
     {
+      title: "Agents",
+      description: "Build, run, and manage intelligent AI agents with the Visual Builder, Multi-Step, and Prompting modes — including batch processing and 60+ agent services.",
+      icon: Bot,
+      href: "/v1/agents",
+      topics: ["Agents Overview", "Create New Agent", "Edit Agent", "Agent Visual Builder", "Batch Processing", "Agent Services"]
+    },
+    {
       title: "Bots",
       description: "Build and deploy intelligent bots with enhanced capabilities and improved management features.",
       icon: Bot,

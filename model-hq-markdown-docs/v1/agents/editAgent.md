@@ -12,23 +12,17 @@ You can:
 
 This makes it easy to update agents as your needs change, without starting from scratch.
 
----
-
 There are two ways to edit an agent:
 
 1. **Step-by-step editor**
-
-   * Shows the workflow as a simple list of steps
-   * Best for quick changes and precise control
+  * Shows the workflow as a simple list of steps
+  * Best for quick changes and precise control
 
 2. **Visual Builder**
-
-   * Shows the workflow as a diagram
-   * Best for visual understanding of the workflow
+  * Shows the workflow as a diagram
+  * Best for visual understanding of the workflow
 
 Both views work on the same agent, so you can switch between them anytime.
-
----
 
 This guide will show you how to:
 

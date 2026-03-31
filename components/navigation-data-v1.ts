@@ -42,6 +42,19 @@ export const v1NavigationData: NavItem[] = [
     ],
   },
   {
+    title: "Agents",
+    url: "/v1/agents",
+    icon: Bot,
+    items: [
+      { title: "Agents Overview", url: "/v1/agents" },
+      { title: "Create New Agent", url: "/v1/agents/create-new-agent" },
+      { title: "Edit Agent", url: "/v1/agents/edit-agent" },
+      { title: "Agent Visual Builder", url: "/v1/agents/agent-visual-builder" },
+      { title: "Batch Processing", url: "/v1/agents/batch-processing" },
+      { title: "Agent Services", url: "/v1/agents/agent-services" },
+    ],
+  },
+  {
     title: "Bots",
     url: "/v1/bots",
     icon: Bot,
