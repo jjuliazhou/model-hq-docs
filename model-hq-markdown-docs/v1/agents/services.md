@@ -13,7 +13,7 @@ General building blocks for common tasks such as chat, retrieval, extraction, an
 | **Service Name**     | **Instruction**                            | **Description**                                          | **Context**                                   |
 | -------------------- | ------------------------------------------ | -------------------------------------------------------- | --------------------------------------------- |
 | **chat**             | What is your question or instruction?      | Answers a question or performs instruction               | `MAIN-INPUT`, `User-Text`, `None`             |
-| **rag_batch**        | Enter question or instruction              | Performs RAG over batch of documents                     | `User-Document`                               |
+| **rag_batch**        | Enter question or instruction              | Performs RAG over batch of documents                     | `User-collection`                               |
 | **rag_answer**       | Ask question to longer document input      | Answers a question based on a longer document input      | `User-Source`, `Provide_instruction_or_query` |
 | **vision**           | Enter question to image file               | Provides answer/description from image                   | `User-Image`                                  |
 | **ocr_vision**       | Enter instruction                          | Performs OCR + vision-based understanding                | `User-Document`, `User-Image`                 |
@@ -37,7 +37,7 @@ The general-purpose model interaction node. Accepts a question or instruction an
 
 ### 1.2 rag_batch
 
-Answers a question across a collection of documents rather than a single file. It searches the entire `User-Document` batch, retrieves the most relevant passages from each, and constructs a grounded response. Best suited for research pipelines and multi-file document review workflows.
+Answers a question across a collection of documents rather than a single file. It searches the entire `User-Collection` batch, retrieves the most relevant passages from each, and constructs a grounded response. Best suited for research pipelines and multi-file document review workflows.
 
 **Instruction:** Enter question or instruction
 **Context:** `User-Document`
@@ -155,77 +155,77 @@ Lightweight text analysis tools for labeling or scoring content.
 Runs sentiment analysis on the input text and returns a positive, negative, or neutral classification. No instruction is needed — the service operates directly on `MAIN-INPUT` or `User-Text`. Useful for customer feedback pipelines, review analysis, and any workflow where emotional tone needs to be assessed at scale.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.2 emotions
 
 Goes a level deeper than sentiment by identifying the specific emotion present in the text — such as joy, frustration, surprise, or fear. Like all classifiers, it requires no instruction and runs directly on `MAIN-INPUT` or `User-Text`.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.3 topics
 
 Identifies the primary topic or subject area of the input text. No instruction is required. Useful for categorizing incoming content, routing documents to the right downstream nodes, or tagging records in bulk processing workflows.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.4 tags
 
 Generates a set of descriptive tags from the input text. No instruction is required. Tags can be used to index content, enable filtering in later nodes, or surface key themes across a batch of documents.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.5 intent
 
 Classifies the intent behind the input text — for example, whether the user is making a request, asking a question, expressing a complaint, or providing information. No instruction is needed. Particularly useful in customer-facing workflows or message triage pipelines.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.6 ratings
 
 Scores the positivity of the input text on a 1–5 scale. No instruction is required. Provides a numeric signal that can be carried forward in the agent state, used in conditions, or aggregated across a batch for reporting purposes.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.7 ner
 
 Performs Named Entity Recognition on the input text, identifying and labeling entities such as people, organizations, locations, dates, and other proper nouns. No instruction is required. Outputs structured entity data that can be extracted and used in downstream nodes.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.8 xsum
 
 Generates an extreme summary — a single, highly compressed sentence that captures the core meaning of the input. No instruction is required. Use it when you need the most concise possible distillation of a passage, such as for indexing, previews, or high-volume batch summarization.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.9 summary
 
 Produces a standard prose summary of the input text. The instruction field is optional — leaving it empty generates a general summary, while providing a specific instruction can focus the summary on a particular aspect of the content.
 
 **Instruction:** Optional
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.10 category
 
 Assigns the input text to a predefined category. No instruction is required. The category label is returned as a structured output in the agent state, where it can be used in condition nodes, filters, or downstream reporting.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ### 2.11 q_gen
 
 Generates a set of questions based on the input text. No instruction is required. Useful for creating evaluation datasets, populating FAQs, building comprehension assessments, or surfacing potential knowledge gaps in a document.
 
 **Instruction:** No instruction required
-**Context:** `MAIN-INPUT`, `User-Text`
+**Context:** `MAIN-INPUT`, `User-Text`, Transformer Node (with selection of a previous output from an earlier agent step from a chat or vision bot, or dataset column that contains relevant text)
 
 ## 3. Datasets
 Tools for preparing, querying, and analyzing structured data.
