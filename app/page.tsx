@@ -44,7 +44,7 @@ export default function HomePage() {
         {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6 px-4">
           <div className="text-center space-y-2">
-            <div className="text-3xl font-bold text-primary">150+</div>
+            <div className="text-3xl font-bold text-primary">250+</div>
             <div className="text-sm text-muted-foreground">AI Models Available</div>
           </div>
           <div className="text-center space-y-2">
