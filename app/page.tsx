@@ -44,7 +44,7 @@ export default function HomePage() {
         {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-6 px-4">
           <div className="text-center space-y-2">
-            <div className="text-3xl font-bold text-primary">150+</div>
+            <div className="text-3xl font-bold text-primary">250+</div>
             <div className="text-sm text-muted-foreground">AI Models Available</div>
           </div>
           <div className="text-center space-y-2">
@@ -750,6 +750,11 @@ export default function HomePage() {
                   <li>
                     <a href="/v1/models/custom-test" className="text-primary hover:underline">
                       Create Custom Test
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/v1/models/microsoft-foundry" className="text-primary hover:underline">
+                      Microsoft Foundry
                     </a>
                   </li>
                 </ul>

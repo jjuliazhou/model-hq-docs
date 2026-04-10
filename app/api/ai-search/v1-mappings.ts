@@ -43,6 +43,8 @@ export const V1_EXACT_MAPPINGS: Record<string, string> = {
   'models/v1/models.md': '/v1/models',
   'models/v1/modelConfiguration.md': '/v1/models/model-configuration',
   'models/v1/customTest.md': '/v1/models/custom-test',
+  'models/v1/microsoftFoundry.md': '/v1/models/microsoft-foundry',
+  'models/v1/microsoft-foundry': '/v1/models/microsoft-foundry',
   'models/v1/model-configuration': '/v1/models/model-configuration',
   'models/v1/custom-test': '/v1/models/custom-test',
   
@@ -183,6 +185,7 @@ Models (V1):
 - Models Overview (Download, test, my models, all models, refresh, troubleshoot): ${V1_BASE_URL}/v1/models
 - Model Configuration (Visibility, naming, defaults, generation, task-specific, automation): ${V1_BASE_URL}/v1/models/model-configuration
 - Custom Test (Creating custom tests, test types, sample generation, mapper): ${V1_BASE_URL}/v1/models/custom-test
+- Microsoft Foundry (Installing Foundry Local, integration activation, using in Chat and Agents, downloading and testing models): ${V1_BASE_URL}/v1/models/microsoft-foundry
 
 Bots (V1):
 - Bots Overview (Building, loading, demo mode, agents integration): ${V1_BASE_URL}/v1/bots
@@ -263,6 +266,28 @@ Models Management (V1):
 - Complete Model Catalog View: ![All Available Models](/v1/models/06_allModels.png)
 - Troubleshooting Tools Interface: ![Model Troubleshoot Panel](/v1/models/08_troubleshoot.png)
 - Models Storage Information: ![Models Info & Storage](/v1/models/09_info.png)
+
+Microsoft Foundry (V1):
+- Install Foundry Local: ![Install Foundry Local](/v1/models/microsoftFoundry/Picture1.png)
+- Main Menu Integrations: ![Main Menu Integrations](/v1/models/microsoftFoundry/Picture2.png)
+- Integrations Menu: ![Integrations Menu](/v1/models/microsoftFoundry/Picture3.png)
+- Select Windows Foundry Local: ![Select Windows Foundry Local](/v1/models/microsoftFoundry/Picture4.png)
+- Foundry Local Selected: ![Foundry Local Integration Selected](/v1/models/microsoftFoundry/Picture5.png)
+- Test Connection: ![Test Foundry Connection](/v1/models/microsoftFoundry/Picture6.png)
+- Chat Model Selector with Foundry Local: ![Chat Model Selector](/v1/models/microsoftFoundry/Picture7.png)
+- Chat Interface with Foundry Local Active: ![Chat Interface Foundry Local](/v1/models/microsoftFoundry/Picture8.png)
+- Agent Builder Method Selection: ![Agent Builder Method](/v1/models/microsoftFoundry/Picture9.png)
+- Visual Builder Selected: ![Visual Builder Selected](/v1/models/microsoftFoundry/Picture10.png)
+- Name Agent Process: ![Name Agent Process](/v1/models/microsoftFoundry/Picture11.png)
+- Visual Builder Canvas: ![Visual Builder Canvas](/v1/models/microsoftFoundry/Picture12.png)
+- Visual Builder Left Panel: ![Visual Builder Left Panel](/v1/models/microsoftFoundry/Picture13.png)
+- Agent Settings Model Selection: ![Agent Settings Foundry Local](/v1/models/microsoftFoundry/Picture14.png)
+- Agent Settings Model Chosen: ![Agent Model Chosen](/v1/models/microsoftFoundry/Picture15.png)
+- Agent Settings Model Confirmed: ![Agent Model Confirmed](/v1/models/microsoftFoundry/Picture16.png)
+- Test Agent Nodes Connected: ![Test Agent Nodes](/v1/models/microsoftFoundry/Picture17.png)
+- Agent Run Text Input: ![Agent Run Input](/v1/models/microsoftFoundry/Picture18.png)
+- Agent Output Inference Result: ![Agent Output](/v1/models/microsoftFoundry/Picture19.png)
+- Agent Run Completed: ![Agent Run Completed](/v1/models/microsoftFoundry/Picture20.png)
 
 Bots Creation & Management (V1):
 - Main Menu - Bots Section: ![Bots Main Menu Button](/v1/bots/01_bots.png)

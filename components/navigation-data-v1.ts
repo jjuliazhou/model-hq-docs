@@ -6,6 +6,7 @@ import {
   Database,
   BookOpen,
   Bot,
+  Workflow,
   FileSearch,
   Power,
   FlaskConical,
@@ -44,7 +45,7 @@ export const v1NavigationData: NavItem[] = [
   {
     title: "Agents",
     url: "/v1/agents",
-    icon: Bot,
+    icon: Workflow,
     items: [
       { title: "Agents Overview", url: "/v1/agents" },
       { title: "Create New Agent", url: "/v1/agents/create-new-agent" },
@@ -72,6 +73,7 @@ export const v1NavigationData: NavItem[] = [
       { title: "Models Overview", url: "/v1/models" },
       { title: "Model Configuration", url: "/v1/models/model-configuration" },
       { title: "Create Custom Test", url: "/v1/models/custom-test" },
+      { title: "Microsoft Foundry", url: "/v1/models/microsoft-foundry" },
     ],
   },
   {

@@ -142,7 +142,7 @@ export default function AboutModelHQPage() {
         <h2 className='text-2xl font-bold'>Performance at a Glance</h2>
         <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4'>
           <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>10s</p>
+            <p className='text-3xl font-bold text-primary'>30s</p>
             <p className='text-xs text-muted-foreground'>Average download</p>
           </div>
           <div className='text-center space-y-2'>
@@ -150,11 +150,11 @@ export default function AboutModelHQPage() {
             <p className='text-xs text-muted-foreground'>24 AI models</p>
           </div>
           <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>100+</p>
+            <p className='text-3xl font-bold text-primary'>250+</p>
             <p className='text-xs text-muted-foreground'>Optimized models</p>
           </div>
           <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>22B</p>
+            <p className='text-3xl font-bold text-primary'>32B</p>
             <p className='text-xs text-muted-foreground'>Max parameters</p>
           </div>
           <div className='text-center space-y-2'>
@@ -162,7 +162,7 @@ export default function AboutModelHQPage() {
             <p className='text-xs text-muted-foreground'>Per-token cost</p>
           </div>
           <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>30x</p>
+            <p className='text-3xl font-bold text-primary'>upto 30x</p>
             <p className='text-xs text-muted-foreground'>Faster on AI PCs</p>
           </div>
         </div>

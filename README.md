@@ -23,9 +23,9 @@ Model HQ is the fastest, easiest way to deploy and run **AI models directly on y
 
 ## Model HQ Stats
 
-* ⬇️ **10 seconds** – Average time to download a single model
+* ⬇️ **30 seconds** – Average time to download a single model
 * ⬇️ **<30 minutes** – Download **24 models** onto device
-* 📦 **150+ models** – Optimized for AI PCs
+* 📦 **250+ models** – Optimized for AI PCs
 * ⚡ **Up to 32B parameters** – On Intel AI PCs
 * 💸 **$0 per-token cost** – When running models locally
 
@@ -55,7 +55,7 @@ Choose models that are fine-tuned for your device:
 
   * OpenVINO-optimized
   * GPU & NPU acceleration
-  * 100+ optimized models for **Intel Core, Xeon, and Arc GPUs**
+  * 250+ optimized models for **Intel Core, Xeon, and Arc GPUs**
 
 * **[Qualcomm Supported Models](https://model-hq-docs.vercel.app/supported-models/qualcomm)**
 
@@ -90,10 +90,19 @@ Choose models that are fine-tuned for your device:
   * [Building a Bot](https://model-hq-docs.vercel.app/v1/bots/build-bot) – Create a new bot from scratch
   * [Editing a Bot](https://model-hq-docs.vercel.app/v1/bots/edit-bot) – Modify existing bots
 
+* Agents
+  * [Agents Overview](https://model-hq-docs.vercel.app/v1/agents) – Build and manage intelligent AI agents
+  * [Create New Agent](https://model-hq-docs.vercel.app/v1/agents/create-new-agent) – Build agents with Visual Builder, Multi-Step, or Prompting modes
+  * [Edit Agent](https://model-hq-docs.vercel.app/v1/agents/edit-agent) – Modify and refine existing agent workflows
+  * [Agent Visual Builder](https://model-hq-docs.vercel.app/v1/agents/agent-visual-builder) – No-code drag-and-drop agent builder with all node types
+  * [Batch Processing](https://model-hq-docs.vercel.app/v1/agents/batch-processing) – Run agents across multiple documents in a single batch
+  * [Agent Services](https://model-hq-docs.vercel.app/v1/agents/agent-services) – Full reference for all 60+ agent services
+
 * Models
   * [Models Overview](https://model-hq-docs.vercel.app/v1/models) – Discover and manage AI models
   * [Model Configuration](https://model-hq-docs.vercel.app/v1/models/model-configuration) – Configure model settings and parameters
   * [Create Custom Test](https://model-hq-docs.vercel.app/v1/models/custom-test) – Build custom model evaluations
+  * [Microsoft Foundry](https://model-hq-docs.vercel.app/v1/models/microsoft-foundry) – Use Microsoft Foundry Local on-device models in Chat and Agents
 
 * Source (RAG)
   * [Source Overview](https://model-hq-docs.vercel.app/v1/source) – Retrieval-Augmented Generation workflows

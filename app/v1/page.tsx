@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { MessageSquare, Bot, Database, Wrench, Settings, Power, BookOpen, FileSearch, Network, Plug, Sparkles, TableProperties } from "lucide-react"
+import { MessageSquare, Bot, Workflow, Database, Wrench, Settings, Power, BookOpen, FileSearch, Network, Plug, Sparkles, TableProperties } from "lucide-react"
 import Link from "next/link"
 
 export default function V1OverviewPage() {
@@ -23,7 +23,7 @@ export default function V1OverviewPage() {
     {
       title: "Agents",
       description: "Build, run, and manage intelligent AI agents with the Visual Builder, Multi-Step, and Prompting modes — including batch processing and 60+ agent services.",
-      icon: Bot,
+      icon: Workflow,
       href: "/v1/agents",
       topics: ["Agents Overview", "Create New Agent", "Edit Agent", "Agent Visual Builder", "Batch Processing", "Agent Services"]
     },
@@ -39,7 +39,7 @@ export default function V1OverviewPage() {
       description: "Discover, configure, and test AI models optimized for Intel and Qualcomm processors with custom testing capabilities.",
       icon: Database,
       href: "/v1/models",
-      topics: ["Models Overview", "Model Configuration", "Create Custom Test"]
+      topics: ["Models Overview", "Model Configuration", "Create Custom Test", "Microsoft Foundry"]
     },
     {
       title: "Source (RAG)",
