@@ -752,6 +752,11 @@ export default function HomePage() {
                       Create Custom Test
                     </a>
                   </li>
+                  <li>
+                    <a href="/v1/models/microsoft-foundry" className="text-primary hover:underline">
+                      Microsoft Foundry Local
+                    </a>
+                  </li>
                 </ul>
               </div>
 
