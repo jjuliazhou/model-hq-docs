@@ -73,7 +73,7 @@ export const v1NavigationData: NavItem[] = [
       { title: "Models Overview", url: "/v1/models" },
       { title: "Model Configuration", url: "/v1/models/model-configuration" },
       { title: "Create Custom Test", url: "/v1/models/custom-test" },
-      { title: "Microsoft Foundry Local", url: "/v1/models/microsoft-foundry" },
+      { title: "Microsoft Foundry", url: "/v1/models/microsoft-foundry" },
     ],
   },
   {

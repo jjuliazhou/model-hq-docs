@@ -185,7 +185,7 @@ Models (V1):
 - Models Overview (Download, test, my models, all models, refresh, troubleshoot): ${V1_BASE_URL}/v1/models
 - Model Configuration (Visibility, naming, defaults, generation, task-specific, automation): ${V1_BASE_URL}/v1/models/model-configuration
 - Custom Test (Creating custom tests, test types, sample generation, mapper): ${V1_BASE_URL}/v1/models/custom-test
-- Microsoft Foundry Local (Installing Foundry Local, integration activation, using in Chat and Agents, downloading and testing models): ${V1_BASE_URL}/v1/models/microsoft-foundry
+- Microsoft Foundry (Installing Foundry Local, integration activation, using in Chat and Agents, downloading and testing models): ${V1_BASE_URL}/v1/models/microsoft-foundry
 
 Bots (V1):
 - Bots Overview (Building, loading, demo mode, agents integration): ${V1_BASE_URL}/v1/bots
@@ -267,7 +267,7 @@ Models Management (V1):
 - Troubleshooting Tools Interface: ![Model Troubleshoot Panel](/v1/models/08_troubleshoot.png)
 - Models Storage Information: ![Models Info & Storage](/v1/models/09_info.png)
 
-Microsoft Foundry Local (V1):
+Microsoft Foundry (V1):
 - Install Foundry Local: ![Install Foundry Local](/v1/models/microsoftFoundry/Picture1.png)
 - Main Menu Integrations: ![Main Menu Integrations](/v1/models/microsoftFoundry/Picture2.png)
 - Integrations Menu: ![Integrations Menu](/v1/models/microsoftFoundry/Picture3.png)

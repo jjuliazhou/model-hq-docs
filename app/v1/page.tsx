@@ -39,7 +39,7 @@ export default function V1OverviewPage() {
       description: "Discover, configure, and test AI models optimized for Intel and Qualcomm processors with custom testing capabilities.",
       icon: Database,
       href: "/v1/models",
-      topics: ["Models Overview", "Model Configuration", "Create Custom Test", "Microsoft Foundry Local"]
+      topics: ["Models Overview", "Model Configuration", "Create Custom Test", "Microsoft Foundry"]
     },
     {
       title: "Source (RAG)",

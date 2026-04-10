@@ -102,7 +102,7 @@ Choose models that are fine-tuned for your device:
   * [Models Overview](https://model-hq-docs.vercel.app/v1/models) – Discover and manage AI models
   * [Model Configuration](https://model-hq-docs.vercel.app/v1/models/model-configuration) – Configure model settings and parameters
   * [Create Custom Test](https://model-hq-docs.vercel.app/v1/models/custom-test) – Build custom model evaluations
-  * [Microsoft Foundry Local](https://model-hq-docs.vercel.app/v1/models/microsoft-foundry) – Use Microsoft Foundry Local on-device models in Chat and Agents
+  * [Microsoft Foundry](https://model-hq-docs.vercel.app/v1/models/microsoft-foundry) – Use Microsoft Foundry Local on-device models in Chat and Agents
 
 * Source (RAG)
   * [Source Overview](https://model-hq-docs.vercel.app/v1/source) – Retrieval-Augmented Generation workflows

@@ -26,7 +26,7 @@ export const references: Reference[] = [
     description: "Use models in no-code agent workflows",
   },
   {
-    title: "Microsoft Foundry Local Documentation",
+    title: "Microsoft Foundry Local Models Documentation",
     href: "https://learn.microsoft.com/en-us/azure/foundry-local/what-is-foundry-local",
     type: "external",
     description: "Official Microsoft documentation for Foundry Local",

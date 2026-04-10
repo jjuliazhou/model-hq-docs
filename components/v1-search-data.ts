@@ -279,7 +279,7 @@ export const v1SearchData: SearchResult[] = [
     description: "Create and run custom tests for model inferencing in v1",
   },
   {
-    title: "Microsoft Foundry Local (v1)",
+    title: "Microsoft Foundry Local Models (v1)",
     url: "/v1/models/microsoft-foundry",
     type: "page",
     description: "Use Microsoft Foundry Local on-device models in Model HQ for Chat and Agent workflows",
@@ -686,37 +686,37 @@ export const v1SearchData: SearchResult[] = [
     title: "Installing Foundry Local (v1)",
     url: "/v1/models/microsoft-foundry#1-installing-foundry-local",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
   {
     title: "Foundry Local Integration with Model HQ (v1)",
     url: "/v1/models/microsoft-foundry#2-foundry-local-integration-with-model-hq",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
   {
     title: "Using Foundry Local Models in Chat (v1)",
     url: "/v1/models/microsoft-foundry#3-using-foundry-local-models-in-chat",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
   {
     title: "Using Foundry Local Models in Agents (v1)",
     url: "/v1/models/microsoft-foundry#4-using-foundry-local-models-in-agents",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
   {
     title: "Downloading and Testing Foundry Local Models (v1)",
     url: "/v1/models/microsoft-foundry#5-downloading-and-testing-foundry-local-models",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
   {
-    title: "Microsoft Foundry Local Conclusion (v1)",
+    title: "Microsoft Foundry Conclusion (v1)",
     url: "/v1/models/microsoft-foundry#conclusion",
     type: "heading",
-    parentPage: "Microsoft Foundry Local (v1)",
+    parentPage: "Microsoft Foundry (v1)",
   },
 
   // ==================== BOTS SECTION ====================

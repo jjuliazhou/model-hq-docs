@@ -14,7 +14,7 @@ export const references: Reference[] = [
     description: "Create and run custom tests for model validation",
   },
   {
-    title: "Microsoft Foundry Local",
+    title: "Microsoft Foundry",
     href: "/v1/models/microsoft-foundry",
     type: "internal",
     description: "Use Microsoft Foundry Local on-device models in Model HQ",

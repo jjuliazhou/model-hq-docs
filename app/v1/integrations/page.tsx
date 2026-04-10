@@ -637,7 +637,7 @@ export default function ExploringIntegrationsInModelHqPage() {
         <h3 id="319-windows-local-foundry">3.19 Windows Local Foundry</h3>
 
         <p>
-          Windows Local Foundry models can be discovered and added to the core model catalog, and can be referenced by model_name.
+          Windows Local Foundry models can be discovered and added to the core model catalog, and can be referenced by model_name. For a complete guide on installing Foundry Local, activating the integration, and using Foundry Local models in Chat and Agent workflows, see the <a href="/v1/models/microsoft-foundry" className="text-blue-600 dark:text-blue-400 hover:underline">Microsoft Foundry Local Models</a> documentation.
         </p>
 
         <h2 id="conclusion">Conclusion</h2>

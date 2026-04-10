@@ -754,7 +754,7 @@ export default function HomePage() {
                   </li>
                   <li>
                     <a href="/v1/models/microsoft-foundry" className="text-primary hover:underline">
-                      Microsoft Foundry Local
+                      Microsoft Foundry
                     </a>
                   </li>
                 </ul>
