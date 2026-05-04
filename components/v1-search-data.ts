@@ -2625,11 +2625,18 @@ export const v1SearchData: SearchResult[] = [
   },
 
   // ==================== COOKBOOKS ====================
-  // Cookbooks V1 (placeholder for future content)
   {
     title: "V1 Cookbooks",
     url: "/cookbooks/v1",
     type: "page",
-    description: "Cookbooks for Model HQ v1 (Coming soon)",
+    description: "Cookbooks for Model HQ v1",
+  },
+  {
+    title: "Building a Contract Analyzer Agent (v1)",
+    url: "/cookbooks/v1/building-contract-analyzer",
+    type: "cookbook",
+    parentPage: "Cookbooks",
+    description:
+      "Contract Analyzer cookbook — build a no-code Music License Agreement / contract analysis agent in minutes using the Visual Builder, rag_answer, parse_document, agent_report, batch processing and on-device offline RAG. Keywords: contract, contracts, analyzer, analysis, music license, royalty, agreement, document review, RAG, batch run, no-code, visual builder.",
   },
 ];

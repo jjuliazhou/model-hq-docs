@@ -29,7 +29,7 @@ const CONFIG = {
   SOURCE_FOLDER: './model-hq-markdown-docs/v1',
   
   // Destination folder for generated TSX files (relative to project root)
-  DEST_FOLDER: './app/v1',
+  DEST_FOLDER: './app/',
   
   // Default output filename
   OUTPUT_FILENAME: 'page.tsx',
@@ -185,6 +185,11 @@ class MarkdownParser {
           break;
         }
       }
+    }
+
+    // For cookbooks without an explicit breadcrumb trail, default to Home > Cookbooks.
+    if (type === 'cookbook' && breadcrumbs.length === 1) {
+      breadcrumbs.push({ label: 'Cookbooks', href: '/cookbooks/v1' });
     }
 
     return { title, description, breadcrumbs, type, youtubeUrl, videoTitle, version, references };
@@ -914,9 +919,34 @@ ${referencesJson},
 // COOKBOOK GENERATOR
 // ============================================================================
 
+// Sections that should use the prominent CheckCircle bullet style for unordered lists.
+// All sections share a single classy accent (slate-blue) for visual consistency.
+const FANCY_LIST_ACCENT = 'text-blue-600 dark:text-blue-400';
+const FANCY_LIST_SECTIONS: Record<string, string> = {
+  'use case': FANCY_LIST_ACCENT,
+  'who this is for': FANCY_LIST_ACCENT,
+  'what you ll learn': FANCY_LIST_ACCENT,
+  'what youll learn': FANCY_LIST_ACCENT,
+  'ingredients prerequisites': FANCY_LIST_ACCENT,
+  'prerequisites': FANCY_LIST_ACCENT,
+  'ingredients': FANCY_LIST_ACCENT,
+  'why this pattern works': FANCY_LIST_ACCENT,
+  'why model hq builds agents differently': FANCY_LIST_ACCENT,
+};
+
+function normalizeSectionKey(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 class CookbookGenerator {
   private content: ParsedContent;
   private usedIcons: Set<string> = new Set();
+  // Tracks the active major section so list rendering can decide bullet style.
+  private currentSectionAccent: string | null = null;
 
   constructor(content: ParsedContent) {
     this.content = content;
@@ -934,36 +964,12 @@ class CookbookGenerator {
   }
 
   private analyzeContentForIcons(): void {
-    const { sections } = this.content;
-    
-    // Add commonly used icons based on content
-    if (sections.some(s => s.type === 'list' && s.items?.some(i => {
-      const text = typeof i === 'string' ? i : i.content;
-      return text.toLowerCase().includes('check');
-    }))) {
-      this.usedIcons.add('CheckCircle');
-    }
-    if (sections.some(s => s.content?.toLowerCase().includes('download'))) {
-      this.usedIcons.add('Download');
-    }
-    if (sections.some(s => s.content?.toLowerCase().includes('file'))) {
-      this.usedIcons.add('FileText');
-    }
-    if (this.content.meta.youtubeUrl) {
-      this.usedIcons.add('ExternalLink');
-    }
-    
-    // Default icons for cookbook
+    // CheckCircle is used as the bullet marker for unordered lists and as the
+    // copy-feedback indicator inside code blocks.
     this.usedIcons.add('CheckCircle');
-    this.usedIcons.add('FileText');
-    this.usedIcons.add('Settings');
-    this.usedIcons.add('Code');
-    this.usedIcons.add('ExternalLink');
   }
 
   private generateImports(): string {
-    const iconsList = Array.from(this.usedIcons).sort().join(',\n  ');
-    
     let imports = `"use client"
 
 import {
@@ -974,10 +980,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  ${iconsList},
-} from "lucide-react"`;
+import { CheckCircle } from "lucide-react"`;
 
     if (this.content.hasCodeBlocks) {
       imports += `
@@ -996,7 +999,7 @@ function CodeBlock({ children, title, language = "text" }: { children: string; t
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(children)
+      await navigator.clipboard.writeText(children.trim())
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
@@ -1005,22 +1008,24 @@ function CodeBlock({ children, title, language = "text" }: { children: string; t
   }
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-950 shadow-sm">
       {title && (
-        <div className="bg-slate-800 dark:bg-slate-800 text-slate-200 dark:text-slate-200 px-4 py-2 text-sm font-medium rounded-t-lg border-b border-slate-700 dark:border-slate-700">
-          {title}
+        <div className="flex items-center justify-between bg-slate-900 text-slate-300 px-4 py-2 text-xs font-mono border-b border-slate-800">
+          <span className="truncate">{title}</span>
+          <span className="uppercase tracking-wider text-[10px] text-slate-500 ml-3 flex-shrink-0">{language}</span>
         </div>
       )}
-      <div className="relative bg-gray-100 dark:bg-slate-950 text-gray-900 dark:text-slate-100 p-4 rounded-b-lg group w-full">
+      <div className="relative group">
         <button
           onClick={copyToClipboard}
-          className="absolute top-2 right-2 p-2 bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          className="absolute top-2 right-2 p-1.5 bg-slate-800/80 backdrop-blur-sm border border-slate-700 hover:bg-slate-700 rounded-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 z-10"
           title="Copy code"
+          aria-label="Copy code"
         >
-          {copied ? <CheckCircle className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4 text-gray-600 dark:text-slate-400" />}
+          {copied ? <CheckCircle className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5 text-slate-300" />}
         </button>
-        <pre className="text-sm whitespace-pre-wrap break-words w-full">
-          <code className="break-words text-gray-900 dark:text-slate-100">{children}</code>
+        <pre className="text-sm overflow-x-auto p-4 leading-[1.6] whitespace-pre">
+          <code className="text-slate-100 font-mono">{children.replace(/^\\n+|\\n+$/g, "")}</code>
         </pre>
       </div>
     </div>
@@ -1034,20 +1039,21 @@ function CodeBlock({ children, title, language = "text" }: { children: string; t
     const componentName = this.generateComponentName(meta.title);
     
     const breadcrumbsJsx = this.generateBreadcrumbs(meta.breadcrumbs, meta.title);
+    const heroEmbed = meta.youtubeUrl ? this.generateYouTubeEmbed(meta.youtubeUrl, meta.videoTitle) : '';
     const contentJsx = this.generateContent(sections);
     const ctaJsx = this.generateCTA();
 
     return `export default function ${componentName}Page() {
   return (
-    <div className="max-w-5xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8 py-6 bg-white dark:bg-gray-950">
+    <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 text-[17px] leading-relaxed">
       ${breadcrumbsJsx}
 
-      <div className="space-y-4">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">${this.escapeJsx(meta.title)}</h1>
-        ${meta.description ? `<p className="text-lg text-gray-600 dark:text-gray-300">${this.escapeJsx(meta.description)}</p>` : ''}
-      </div>
-
-      <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
+      <header className="space-y-3 sm:space-y-4 border-b border-gray-200 dark:border-gray-800 pb-6 sm:pb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 leading-[1.2] break-words">${this.escapeJsx(meta.title)}</h1>
+        ${meta.description ? `<p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">${this.escapeJsx(meta.description)}</p>` : ''}
+      </header>
+${heroEmbed ? `\n${heroEmbed}\n` : ''}
+      <div className="space-y-10 sm:space-y-12">
 ${contentJsx}
 
 ${ctaJsx}
@@ -1055,6 +1061,38 @@ ${ctaJsx}
     </div>
   )
 }`;
+  }
+
+  private extractYouTubeId(url: string): string | null {
+    if (!url) return null;
+    const patterns = [
+      /youtu\.be\/([\w-]{6,})/,
+      /youtube\.com\/watch\?v=([\w-]{6,})/,
+      /youtube\.com\/embed\/([\w-]{6,})/,
+      /youtube\.com\/shorts\/([\w-]{6,})/,
+    ];
+    for (const p of patterns) {
+      const m = url.match(p);
+      if (m) return m[1];
+    }
+    return null;
+  }
+
+  private generateYouTubeEmbed(url: string, title?: string): string {
+    const id = this.extractYouTubeId(url);
+    if (!id) return '';
+    const safeTitle = (title || 'Tutorial Video').replace(/"/g, '&quot;');
+    return `      <div className="space-y-3">
+        <div className="aspect-video w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm bg-black">
+          <iframe
+            src="https://www.youtube.com/embed/${id}?rel=0"
+            title="${safeTitle}"
+            className="w-full h-full"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>${title ? `\n        <p className="text-sm text-gray-600 dark:text-gray-400 text-center">${this.escapeJsx(title)}</p>` : ''}
+      </div>`;
   }
 
   private generateBreadcrumbs(breadcrumbs: BreadcrumbItem[], currentPage: string): string {
@@ -1082,10 +1120,20 @@ ${ctaJsx}
   private generateContent(sections: Section[]): string {
     const result: string[] = [];
     let stepCounter = 0;
-    let inSection = false;
     
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
+      
+      // Inline YouTube URL paragraphs - skip (already embedded as hero)
+      if (section.type === 'paragraph') {
+        const trimmed = section.content.trim();
+        const isOnlyYoutubeUrl = /^https?:\/\/(www\.)?(youtu\.be|youtube\.com)\/[^\s]+$/.test(trimmed);
+        if (isOnlyYoutubeUrl) {
+          // Inline embed
+          result.push(this.generateInlineYouTubeEmbed(trimmed));
+          continue;
+        }
+      }
       
       // Detect numbered step headings
       const stepMatch = section.type === 'heading' && section.content.match(/^(\d+)\.\s*(.+)/);
@@ -1116,14 +1164,8 @@ ${ctaJsx}
           j++;
         }
         
-        result.push(this.generateMajorSection(section.content, sectionContent));
+        result.push(this.generateMajorSection(section.content, sectionContent, section.id));
         i = j - 1;
-        continue;
-      }
-      
-      // YouTube video card
-      if (section.type === 'paragraph' && section.content.includes('youtube') && section.content.includes('http')) {
-        result.push(this.generateVideoCard(section.content));
         continue;
       }
       
@@ -1140,82 +1182,108 @@ ${ctaJsx}
     return result.filter(r => r.trim()).join('\n\n');
   }
 
-  private generateStepSection(stepNumber: number, title: string, content: Section[]): string {
-    const indent = '        ';
-    const contentJsx = content.map(s => this.sectionToJsx(s, 12)).join('\n');
-    
-    return `${indent}{/* Step ${stepNumber} */}
-        <div className="relative">
-          <div className="flex items-baseline gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
-                ${stepNumber}
-              </div>
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">${this.processInlineMarkdown(title)}</h3>
-              <Card className="bg-gradient-to-br from-gray-50 to-slate-100 dark:from-gray-900 dark:to-slate-800 border dark:border-gray-800">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-${contentJsx}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+  private generateInlineYouTubeEmbed(url: string): string {
+    const id = this.extractYouTubeId(url);
+    if (!id) return '';
+    return `        <div className="aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm bg-black my-4">
+          <iframe
+            src="https://www.youtube.com/embed/${id}?rel=0"
+            title="YouTube video"
+            className="w-full h-full"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>`;
   }
 
-  private generateMajorSection(title: string, content: Section[]): string {
-    const indent = '        ';
+  private generateStepSection(stepNumber: number, title: string, content: Section[]): string {
+    const indent = '      ';
     const contentJsx = content.map(s => this.sectionToJsx(s, 10)).join('\n');
+    const stepId = `step-${stepNumber}`;
     
-    return `${indent}<section>
-          <div className="flex items-center gap-3 mb-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">${this.processInlineMarkdown(title)}</h2>
+    return `${indent}{/* Step ${stepNumber} */}
+      <section id="${stepId}" className="scroll-mt-24">
+        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+          <div className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 dark:bg-blue-500 text-white flex items-center justify-center font-semibold text-sm sm:text-base shadow-sm">
+            ${stepNumber}
           </div>
-          <div className="bg-gradient-to-br from-gray-50 to-slate-100 dark:from-gray-950 dark:to-slate-900 rounded-lg p-6 border dark:border-gray-800">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50">${this.processInlineMarkdown(title)}</h2>
+        </div>
+        <div className="pl-0 sm:pl-[3.25rem] space-y-4">
 ${contentJsx}
-          </div>
-        </section>`;
+        </div>
+      </section>`;
+  }
+
+  private generateMajorSection(title: string, content: Section[], id?: string): string {
+    const indent = '      ';
+    const key = normalizeSectionKey(title);
+    const sectionId = id || title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+
+    // Special-case: Related Documentation → render as a grid of link cards.
+    if (key === 'related documentation' || key === 'related docs' || key === 'see also') {
+      return this.generateRelatedDocsSection(title, content, sectionId, indent);
+    }
+
+    const accent = FANCY_LIST_SECTIONS[key] || null;
+    const previousAccent = this.currentSectionAccent;
+    this.currentSectionAccent = accent;
+    const contentJsx = content.map(s => this.sectionToJsx(s, 8)).join('\n');
+    this.currentSectionAccent = previousAccent;
+    
+    return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
+${contentJsx}
+      </section>`;
+  }
+
+  private generateRelatedDocsSection(title: string, content: Section[], sectionId: string, indent: string): string {
+    // Collect all link items from the first list (markdown rendered them as a list).
+    const links: { label: string; href: string }[] = [];
+    for (const sec of content) {
+      if (sec.type === 'list' && sec.items) {
+        for (const item of sec.items) {
+          const text = typeof item === 'string' ? item : item.content;
+          const m = text.match(/\[([^\]]+)\]\(([^)]+)\)/);
+          if (m) {
+            links.push({ label: m[1], href: m[2] });
+          }
+        }
+      }
+    }
+
+    if (links.length === 0) {
+      // Fallback: render the original content
+      const contentJsx = content.map(s => this.sectionToJsx(s, 8)).join('\n');
+      return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
+${contentJsx}
+      </section>`;
+    }
+
+    const cards = links.map(link => {
+      return `        <a
+          href="${link.href}"
+          className="group flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-blue-950/30 transition-colors"
+        >
+          <span className="text-gray-800 dark:text-gray-200 font-medium">${this.escapeJsx(link.label)}</span>
+          <span className="text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" aria-hidden="true">→</span>
+        </a>`;
+    }).join('\n');
+
+    return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+${cards}
+        </div>
+      </section>`;
   }
 
   private generateIntroSection(content: string): string {
-    const indent = '        ';
-    return `${indent}<div className="bg-gradient-to-br from-gray-50 to-slate-100 dark:from-gray-950 dark:to-slate-900 rounded-lg p-6 border dark:border-gray-800">
-          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
-            ${this.processInlineMarkdown(content)}
-          </p>
-        </div>`;
-  }
-
-  private generateVideoCard(content: string): string {
-    const urlMatch = content.match(/https?:\/\/[^\s]+youtube[^\s]+/);
-    const url = urlMatch ? urlMatch[0] : '';
-    const titleMatch = content.match(/"([^"]+)"/);
-    const title = titleMatch ? titleMatch[1] : 'Video Tutorial';
-    
-    return `        <Card className="border-l-4 border-l-red-500 bg-gradient-to-br from-red-50 to-rose-100 dark:from-red-950 dark:to-rose-900 dark:border-l-red-300">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3">
-              <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-100 mb-2">Video Tutorial Available</h3>
-                <p className="text-red-800 dark:text-red-100 mb-3">
-                  This walkthrough is also demonstrated step-by-step on our YouTube video:
-                </p>
-                <a
-                  href="${url}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-red-600 dark:text-red-200 hover:text-red-700 dark:hover:text-red-100 font-medium"
-                >
-                  "${title}"
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </CardContent>
-        </Card>`;
+    const indent = '      ';
+    return `${indent}<p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+        ${this.processInlineMarkdown(content)}
+      </p>`;
   }
 
   private sectionToJsx(section: Section, baseIndent: number = 8): string {
@@ -1224,16 +1292,33 @@ ${contentJsx}
     switch (section.type) {
       case 'heading':
         return this.headingToJsx(section, indent);
-      case 'paragraph':
-        return `${indent}<p className="text-gray-800 dark:text-gray-200">${this.processInlineMarkdown(section.content)}</p>`;
+      case 'paragraph': {
+        const trimmed = section.content.trim();
+        // Detect a bare YouTube URL paragraph and embed it
+        if (/^https?:\/\/(www\.)?(youtu\.be|youtube\.com)\/[^\s]+$/.test(trimmed)) {
+          const id = this.extractYouTubeId(trimmed);
+          if (id) {
+            return `${indent}<div className="aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm bg-black my-4">
+${indent}  <iframe
+${indent}    src="https://www.youtube.com/embed/${id}?rel=0"
+${indent}    title="YouTube video"
+${indent}    className="w-full h-full"
+${indent}    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+${indent}    allowFullScreen
+${indent}  />
+${indent}</div>`;
+          }
+        }
+        return `${indent}<p className="text-gray-800 dark:text-gray-200 leading-relaxed">${this.processInlineMarkdown(section.content)}</p>`;
+      }
       case 'image':
-        return `${indent}<div className="my-4">
+        return `${indent}<figure className="my-6">
 ${indent}  <img
 ${indent}    src="${section.content}"
 ${indent}    alt="${section.title || ''}"
-${indent}    className="rounded-lg shadow-md border dark:border-gray-800 w-full"
-${indent}  />
-${indent}</div>`;
+${indent}    className="rounded-lg border border-gray-200 dark:border-gray-800 w-full shadow-sm"
+${indent}  />${section.title ? `\n${indent}  <figcaption className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">${this.escapeJsx(section.title)}</figcaption>` : ''}
+${indent}</figure>`;
       case 'raw':
         // Emit raw HTML/JSX blocks like <details> directly
         return `${indent}${section.content}`;
@@ -1253,94 +1338,156 @@ ${indent}</div>`;
   private headingToJsx(section: Section, indent: string): string {
     const level = section.level || 3;
     const content = this.processInlineMarkdown(section.content);
+    const id = section.id ? ` id="${section.id}"` : '';
     
     if (level === 3) {
-      return `${indent}<h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">${content}</h4>`;
+      return `${indent}<h3${id} className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 pt-2 scroll-mt-24">${content}</h3>`;
     }
     if (level === 4) {
-      return `${indent}<h5 className="font-medium text-gray-900 dark:text-gray-100 mb-2">${content}</h5>`;
+      return `${indent}<h4${id} className="text-lg font-semibold text-gray-900 dark:text-gray-100 pt-1 scroll-mt-24">${content}</h4>`;
+    }
+    if (level === 5) {
+      return `${indent}<h5${id} className="text-base font-semibold text-gray-800 dark:text-gray-200 scroll-mt-24">${content}</h5>`;
+    }
+    if (level === 6) {
+      return `${indent}<h6${id} className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300 scroll-mt-24">${content}</h6>`;
     }
     
     const tag = `h${level}`;
-    return `${indent}<${tag} className="font-semibold text-gray-900 dark:text-gray-100">${content}</${tag}>`;
+    return `${indent}<${tag}${id} className="font-semibold text-gray-900 dark:text-gray-100">${content}</${tag}>`;
   }
 
   private codeToJsx(section: Section, indent: string): string {
     const escaped = section.content
+      .replace(/\\/g, '\\\\')
       .replace(/`/g, '\\`')
       .replace(/\$/g, '\\$');
-    
-    if (section.title) {
-      return `${indent}<CodeBlock title="${section.title}" language="${section.language || 'text'}">${'`'}${escaped}${'`'}</CodeBlock>`;
-    }
-    
-    return `${indent}<CodeBlock language="${section.language || 'text'}">${'`'}${escaped}${'`'}</CodeBlock>`;
+
+    const inner = section.title
+      ? `<CodeBlock title="${section.title}" language="${section.language || 'text'}">{${'`'}${escaped}${'`'}}</CodeBlock>`
+      : `<CodeBlock language="${section.language || 'text'}">{${'`'}${escaped}${'`'}}</CodeBlock>`;
+
+    return `${indent}<div className="my-4">
+${indent}  ${inner}
+${indent}</div>`;
   }
 
   private blockquoteToJsx(section: Section, indent: string): string {
     const content = this.processInlineMarkdown(section.content);
     
-    // Map blockquote types to card styles
-    const styleMap: Record<string, { border: string; bg: string; text: string }> = {
-      note: { border: 'border-l-blue-500', bg: 'from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900', text: 'text-blue-900 dark:text-blue-100' },
-      tip: { border: 'border-l-green-500', bg: 'from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900', text: 'text-green-900 dark:text-green-100' },
-      warning: { border: 'border-l-yellow-500', bg: 'from-yellow-50 to-amber-100 dark:from-yellow-950 dark:to-amber-900', text: 'text-yellow-900 dark:text-yellow-100' },
-      important: { border: 'border-l-red-500', bg: 'from-red-50 to-rose-100 dark:from-red-950 dark:to-rose-900', text: 'text-red-900 dark:text-red-100' },
-      caution: { border: 'border-l-orange-500', bg: 'from-orange-50 to-amber-100 dark:from-orange-950 dark:to-amber-900', text: 'text-orange-900 dark:text-orange-100' },
-      default: { border: 'border-l-gray-500', bg: 'from-gray-50 to-slate-100 dark:from-gray-900 dark:to-slate-800', text: 'text-gray-900 dark:text-gray-100' }
+    // Slim callouts with colored left border only — no labels.
+    const styleMap: Record<string, { border: string; bg: string }> = {
+      note:      { border: 'border-l-blue-500',    bg: 'bg-blue-50/60 dark:bg-blue-950/30' },
+      tip:       { border: 'border-l-emerald-500', bg: 'bg-emerald-50/60 dark:bg-emerald-950/30' },
+      warning:   { border: 'border-l-amber-500',   bg: 'bg-amber-50/60 dark:bg-amber-950/30' },
+      important: { border: 'border-l-violet-500',  bg: 'bg-violet-50/60 dark:bg-violet-950/30' },
+      caution:   { border: 'border-l-rose-500',    bg: 'bg-rose-50/60 dark:bg-rose-950/30' },
+      default:   { border: 'border-l-gray-400',    bg: 'bg-gray-50 dark:bg-gray-900/40' },
     };
     
     const type = section.blockquoteType || 'default';
     const style = styleMap[type] || styleMap.default;
     
-    return `${indent}<Card className="border-l-4 ${style.border} bg-gradient-to-br ${style.bg}">
-${indent}  <CardContent className="p-4">
-${indent}    <p className="${style.text}">${content}</p>
-${indent}  </CardContent>
-${indent}</Card>`;
+    return `${indent}<aside className="border-l-4 ${style.border} ${style.bg} rounded-r-md px-4 py-3 my-4">
+${indent}  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">${content}</p>
+${indent}</aside>`;
   }
 
   private listToJsx(section: Section, indent: string): string {
+    const isOrdered = section.listType === 'ordered';
+
+    if (isOrdered) {
+      const items = section.items?.map(item => {
+        const text = typeof item === 'string' ? item : item.content;
+        const processed = this.processInlineMarkdown(text);
+        let result = `
+${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed pl-1">${processed}`;
+        if (typeof item !== 'string' && item.subItems && item.subItems.length > 0) {
+          result += `
+${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-gray-400 dark:marker:text-gray-500">`;
+          for (const subItem of item.subItems) {
+            const processedSub = this.processInlineMarkdown(subItem);
+            result += `
+${indent}      <li className="text-gray-700 dark:text-gray-300 text-[0.95em]">${processedSub}</li>`;
+          }
+          result += `
+${indent}    </ul>`;
+        }
+        result += `</li>`;
+        return result;
+      }).join('') || '';
+      return `${indent}<ol className="list-decimal list-outside pl-6 space-y-2 marker:text-gray-500 dark:marker:text-gray-400 marker:font-semibold">${items}
+${indent}</ol>`;
+    }
+
+    // Unordered: use accented CheckCircle bullets only inside designated sections;
+    // otherwise use a plain disc bullet list for cleaner reading.
+    const accent = this.currentSectionAccent;
+
+    if (!accent) {
+      const items = section.items?.map(item => {
+        if (typeof item === 'string') {
+          const processed = this.processInlineMarkdown(item);
+          return `
+${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed">${processed}</li>`;
+        } else {
+          const processed = this.processInlineMarkdown(item.content);
+          let result = `
+${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed">${processed}`;
+          if (item.subItems && item.subItems.length > 0) {
+            result += `
+${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-gray-400 dark:marker:text-gray-500">`;
+            for (const subItem of item.subItems) {
+              const processedSub = this.processInlineMarkdown(subItem);
+              result += `
+${indent}      <li className="text-gray-700 dark:text-gray-300 text-[0.95em]">${processedSub}</li>`;
+            }
+            result += `
+${indent}    </ul>`;
+          }
+          result += `</li>`;
+          return result;
+        }
+      }).join('') || '';
+      return `${indent}<ul className="list-disc list-outside pl-6 space-y-2 marker:text-gray-400 dark:marker:text-gray-500">${items}
+${indent}</ul>`;
+    }
+
+    // Accented "fancy" bullets for marketing-style sections.
     const items = section.items?.map(item => {
       if (typeof item === 'string') {
         const processed = this.processInlineMarkdown(item);
         return `
 ${indent}  <li className="flex items-start gap-3">
-${indent}    <CheckCircle className="h-5 w-5 text-gray-600 dark:text-gray-300 mt-0.5 flex-shrink-0" />
-${indent}    <span className="text-gray-800 dark:text-gray-200">${processed}</span>
+${indent}    <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 ${accent}" />
+${indent}    <span className="text-gray-800 dark:text-gray-200 leading-relaxed">${processed}</span>
 ${indent}  </li>`;
       } else {
         const processed = this.processInlineMarkdown(item.content);
         let result = `
 ${indent}  <li className="flex items-start gap-3">
-${indent}    <CheckCircle className="h-5 w-5 text-gray-600 dark:text-gray-300 mt-0.5 flex-shrink-0" />
-${indent}    <div className="text-gray-800 dark:text-gray-200">
+${indent}    <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 ${accent}" />
+${indent}    <div className="flex-1 text-gray-800 dark:text-gray-200 leading-relaxed">
 ${indent}      <span>${processed}</span>`;
-        
-        // Add nested list if subItems exist
         if (item.subItems && item.subItems.length > 0) {
           result += `
-${indent}      <ul className="space-y-1 mt-2 ml-4">`;
+${indent}      <ul className="list-[circle] list-outside pl-6 space-y-1 mt-2 marker:text-gray-400 dark:marker:text-gray-500">`;
           for (const subItem of item.subItems) {
             const processedSub = this.processInlineMarkdown(subItem);
             result += `
-${indent}        <li className="flex items-start gap-2">
-${indent}          <CheckCircle className="h-4 w-4 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
-${indent}          <span className="text-sm">${processedSub}</span>
-${indent}        </li>`;
+${indent}        <li className="text-[0.95em] text-gray-700 dark:text-gray-300">${processedSub}</li>`;
           }
           result += `
 ${indent}      </ul>`;
         }
-        
         result += `
 ${indent}    </div>
 ${indent}  </li>`;
         return result;
       }
     }).join('') || '';
-    
-    return `${indent}<ul className="space-y-2">${items}
+
+    return `${indent}<ul className="space-y-2.5">${items}
 ${indent}</ul>`;
   }
 
@@ -1349,27 +1496,27 @@ ${indent}</ul>`;
     
     const { headers, rows } = section.tableData;
     
-    let jsx = `${indent}<Card className="overflow-hidden">
-${indent}  <table className="min-w-full border-collapse">
+    let jsx = `${indent}<div className="my-5 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
+${indent}  <table className="min-w-full text-sm sm:text-base">
 ${indent}    <thead>
-${indent}      <tr className="bg-gray-100 dark:bg-gray-800">`;
+${indent}      <tr className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">`;
     
     for (const header of headers) {
       jsx += `
-${indent}        <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 border-b dark:border-gray-700">${this.escapeJsx(header)}</th>`;
+${indent}        <th className="px-4 py-3 text-left text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300 whitespace-nowrap">${this.escapeJsx(header)}</th>`;
     }
     
     jsx += `
 ${indent}      </tr>
 ${indent}    </thead>
-${indent}    <tbody>`;
+${indent}    <tbody className="divide-y divide-gray-200 dark:divide-gray-800">`;
     
     for (const row of rows) {
       jsx += `
-${indent}      <tr className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">`;
+${indent}      <tr className="hover:bg-gray-50/60 dark:hover:bg-gray-900/40">`;
       for (const cell of row) {
         jsx += `
-${indent}        <td className="px-4 py-3 text-sm text-gray-700 dark:text-gray-200">${this.processInlineMarkdown(cell)}</td>`;
+${indent}        <td className="px-4 py-3 text-gray-800 dark:text-gray-200 align-top leading-relaxed">${this.processInlineMarkdown(cell)}</td>`;
       }
       jsx += `
 ${indent}      </tr>`;
@@ -1378,7 +1525,7 @@ ${indent}      </tr>`;
     jsx += `
 ${indent}    </tbody>
 ${indent}  </table>
-${indent}</Card>`;
+${indent}</div>`;
     
     return jsx;
   }
@@ -1399,10 +1546,10 @@ ${indent}</Card>`;
       const internalUrl = this.convertToInternalLink(url);
       // Process linkText for inline formatting (but not links within links)
       const processedLinkText = linkText
-        .replace(/`([^`]+)`/g, '<code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">$1</code>')
+        .replace(/`([^`]+)`/g, '<code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[0.875em] font-mono text-gray-800 dark:text-gray-200">$1</code>')
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/\*([^*]+)\*/g, '<em>$1</em>');
-      replacements.push({ placeholder, value: `<a href="${internalUrl}" className="text-blue-600 dark:text-blue-400 hover:underline">${processedLinkText}</a>` });
+      replacements.push({ placeholder, value: `<a href="${internalUrl}" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">${processedLinkText}</a>` });
       return placeholder;
     });
     
@@ -1410,7 +1557,7 @@ ${indent}</Card>`;
     result = result.replace(/`([^`]+)`/g, (match, code) => {
       const placeholder = createPlaceholder();
       const escapedCode = code.replace(/>/g, '&gt;').replace(/</g, '&lt;');
-      replacements.push({ placeholder, value: `<code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">${escapedCode}</code>` });
+      replacements.push({ placeholder, value: `<code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[0.875em] font-mono text-gray-800 dark:text-gray-200">${escapedCode}</code>` });
       return placeholder;
     });
     
@@ -1460,15 +1607,15 @@ ${indent}</Card>`;
   }
 
   private generateCTA(): string {
-    const indent = '        ';
-    return `${indent}<div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
-          <p className="text-center text-gray-600 dark:text-gray-400">
-            For further assistance or to share feedback, please contact us at{' '}
-            <a href="mailto:support@aibloks.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-              support@aibloks.com
-            </a>
-          </p>
-        </div>`;
+    const indent = '      ';
+    return `${indent}<div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Need help with this cookbook? Reach out to us at{' '}
+          <a href="mailto:support@aibloks.com" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+            support@aibloks.com
+          </a>
+        </p>
+      </div>`;
   }
 
   private generateComponentName(title: string): string {
