@@ -24,7 +24,7 @@ You can also watch this step-by-step demo on the Model HQ YouTube channel:
 *"Contract Analyzer Agent in Minutes (No-Code + Offline) | Model HQ Demo"*
 
 ---
-The complete no-code set-up for this Agent - 5 steps:
+The complete no-code set-up for this Agent - example used shows 5 steps but can be as few as 2 steps if only 1 question is being asked:
 
 [screenshot of the complete agents]
 
