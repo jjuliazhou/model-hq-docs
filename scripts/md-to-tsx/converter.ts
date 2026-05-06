@@ -312,13 +312,27 @@ class MarkdownParser {
     const alt = match[1];
     let src = match[2];
     
-    // Ensure image paths are absolute (start with /) for proper resolution from /public
-    // Only add leading slash if it's not already an absolute path or external URL
-    if (!src.startsWith('/') && !src.startsWith('http://') && !src.startsWith('https://')) {
-      // Prepend version path for v1/v0 images
-      src = `/${this.version}/${src}`;
+    // Normalize image src so that it resolves correctly from Next.js /public.
+    // Rules:
+    //   - Leave external URLs and already-absolute paths alone.
+    //   - Strip relative path segments and any leading "public/" so paths resolve from /.
+    //   - For bare filenames or version-relative paths (no leading public/), prepend /<version>/.
+    if (!src.startsWith('http://') && !src.startsWith('https://')) {
+      // Drop leading ./ and any number of ../ segments
+      let normalized = src.replace(/^\.\//, '').replace(/^(?:\.\.\/)+/, '');
+
+      // If the path goes through /public/, anchor it at site root
+      const publicIdx = normalized.toLowerCase().indexOf('public/');
+      if (publicIdx !== -1) {
+        normalized = '/' + normalized.slice(publicIdx + 'public/'.length);
+      } else if (!normalized.startsWith('/')) {
+        // No leading slash and not a /public path → assume version-scoped asset
+        normalized = `/${this.version}/${normalized}`;
+      }
+
+      src = normalized;
     }
-    
+
     return { type: 'image', content: src, title: alt };
   }
 
@@ -435,7 +449,27 @@ class MarkdownParser {
         }
         this.currentIndex++;
       }
-      else if (line.trim() === '' || line.startsWith('#') || line.startsWith('```') || line.startsWith('>')) {
+      else if (line.trim() === '') {
+        // Blank line — peek ahead. If the next non-empty line is another list item
+        // of the same kind, treat this as a "loose" list and keep collecting.
+        // Otherwise, the list is done.
+        let lookahead = this.currentIndex + 1;
+        while (lookahead < this.lines.length && this.lines[lookahead].trim() === '') {
+          lookahead++;
+        }
+        const nextLine = this.lines[lookahead];
+        if (nextLine && (
+          nextLine.match(/^[\s]{0,3}[-*+]\s/) ||
+          nextLine.match(/^[\s]{0,3}\d+\.\s/) ||
+          nextLine.match(/^[\s]{2,}[-*+]\s/) ||
+          nextLine.match(/^[\s]{2,}\d+\.\s/)
+        )) {
+          this.currentIndex = lookahead;
+          continue;
+        }
+        break;
+      }
+      else if (line.startsWith('#') || line.startsWith('```') || line.startsWith('>')) {
         break;
       }
       else {
@@ -1387,9 +1421,21 @@ ${indent}</div>`;
     
     const type = section.blockquoteType || 'default';
     const style = styleMap[type] || styleMap.default;
-    
-    return `${indent}<aside className="border-l-4 ${style.border} ${style.bg} rounded-r-md px-4 py-3 my-4">
-${indent}  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">${content}</p>
+
+    // Split into paragraphs on blank lines, and within a paragraph turn hard
+    // newlines into <br /> so multi-line callouts render readably.
+    const paragraphs = content
+      .split(/\n\s*\n/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0)
+      .map(p => p.replace(/\n/g, '<br />'));
+
+    const inner = paragraphs
+      .map(p => `${indent}  <p className="text-gray-800 dark:text-gray-200 leading-relaxed">${p}</p>`)
+      .join('\n');
+
+    return `${indent}<aside className="border-l-4 ${style.border} ${style.bg} rounded-r-md px-4 py-3 my-4 space-y-2">
+${inner}
 ${indent}</aside>`;
   }
 
