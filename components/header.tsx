@@ -304,7 +304,7 @@ export function Header() {
             <div className="hidden md:block">
               <ThemeToggle />
             </div>
-            {/* Version Toggle - hide on very small screens */}
+            {/* Version Toggle commented out - v1 is always selected
             <div className="hidden sm:flex items-center gap-1 border rounded-md p-0.5">
               <Button
                 variant={searchVersion === 'v0' ? 'default' : 'ghost'}
@@ -323,6 +323,7 @@ export function Header() {
                 v1
               </Button>
             </div>
+            */}
             {/* Search Input - responsive width */}
             <div 
               className={`relative transition-all duration-300 ease-in-out ${

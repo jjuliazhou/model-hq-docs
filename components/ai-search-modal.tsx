@@ -161,6 +161,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                 </Button>
               </div>
             </div>
+            {/* Version toggle commented out - v1 is always selected
             <div className="mt-2 flex items-center gap-2">
               <div className="flex items-center gap-1 border rounded-md p-1">
                 <Button
@@ -181,6 +182,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                 </Button>
               </div>
             </div>
+            */}
           </div>
 
           {/* Messages */}
