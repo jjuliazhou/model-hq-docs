@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function EditingAgentsInModelHqPage() {
@@ -87,6 +88,17 @@ export default function EditingAgentsInModelHqPage() {
           <p>
             Learning how to edit agents is important for keeping them up to date, improving performance, and reusing them for different use cases.
           </p>
+
+          <RelatedVideos
+            title="Watch: Editing & Iterating on Agents"
+            description="See how agents are tweaked, iterated on, and shared across devices."
+            videoIds={[
+              "D3cZyenzelY",
+              "FGmY9whUkaA",
+              "UTNQxspDi3I",
+              "9n7gXz6knbM",
+            ]}
+          />
 
           <h2 id="1-launching-the-edit-interface">1. Launching the edit interface</h2>
 

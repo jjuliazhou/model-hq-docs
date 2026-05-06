@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringAgentsInModelHqPage() {
@@ -31,89 +32,36 @@ export default function ExploringAgentsInModelHqPage() {
 
       <div className="prose prose-gray max-w-none">
         <p>
-          After setup, you’ll land on the <strong>Main Menu</strong>, where you can open the <strong>Agents</strong> section.
+          From the <strong>Main Menu</strong>, open the <strong>Agents</strong> section to start building automated workflows. <strong>Agents</strong> chain together document parsing, RAG retrieval, model inference, and structured output generation into a single repeatable process — useful for jobs like contract analysis, customer support, research summarization, financial data extraction, and image tagging.
         </p>
 
         <p>
-          <strong>Agents</strong> are automated workflows that handle tasks for you. They combine things like reading documents, searching for relevant information (RAG), running AI models, and creating structured outputs — all in one repeatable process.
+          You can run an agent on one file or many at once, with results delivered as Word reports, CSVs, JSON, summaries, or plain text. The <strong>Agents interface</strong> lets you build agents from scratch (drag-and-drop visual builder or multi-step no-code editor), run ready-made templates, edit and share workflows, and create demos to illustrate use cases. Pre-built examples are included and fully customizable.
         </p>
 
         <p>
-          The user will build each agent for a specific job, such as:
-        </p>
-
-        <ul>
-          <li>Analyzing contracts</li>
-          <li>Automating customer support</li>
-          <li>Summarizing research</li>
-          <li>Extracting financial data</li>
-          <li>Tagging images</li>
-        </ul>
-
-        <p>
-          You can run an agent on a single file or many files at once. The results can include Word reports, CSVs, JSON data, summaries or text files.
+          Each run executes step-by-step — parsing documents, answering RAG questions, filtering CSV data, and auto-generating reports — while inference logs surface model responses, token usage, processing time, and confidence scores at every step.
         </p>
 
         <p>
-          The <strong>Agents interface</strong> lets you:
+          This guide covers loading and running existing agents, interpreting outputs and logs, batch processing across multiple files, sharing and uploading custom agents, and using the visual builder for workflow creation and editing — everything you need to automate complex document workflows and integrate agents into broader enterprise systems.
         </p>
 
-        <ul>
-          <li>Buid your own agents from scratch</li>
-          <li>Use a drag and drop interface with no code to build agents</li>
-          <li>Use a multi-step interface (with no code) to build longer or more complex agents</li>
-          <li>Run ready-made agents</li>
-          <li>Edit existing workflows</li>
-          <li>Share agents with others</li>
-          <li>Create demos of existing agents to illustrate the agent use case (handy when sharing agents with others)</li>
-        </ul>
-
-        <p>
-          Pre-built agents are included as examples and can be customized for your needs.
-        </p>
-
-        <p>
-          When you run an agent, it follows a step-by-step process, such as:
-        </p>
-
-        <ul>
-          <li>Reading and parsing documents</li>
-          <li>Answering questions using RAG</li>
-          <li>Extracting or filtering key data in CSVs then applying generative AI to the results</li>
-          <li>Auto-Generating reports and outputs from repeatable workflows</li>
-        </ul>
-
-        <p>
-          You can track what’s happening using logs that show:
-        </p>
-
-        <ul>
-          <li>Model responses at each step of the process</li>
-          <li>Token usage</li>
-          <li>Processing time</li>
-          <li>Confidence scores</li>
-        </ul>
-
-        <p>
-          This guide will show you how to:
-        </p>
-
-        <ul>
-          <li>Create your own custom agents</li>
-          <li>Run and use existing agents</li>
-          <li>Understand outputs and logs</li>
-          <li>Process multiple files at once</li>
-          <li>Share and upload agents</li>
-          <li>Build and edit workflows visually</li>
-        </ul>
-
-        <p>
-          Understanding Agents is key to automating complex tasks, creating custom AI workflows, and using AI effectively in your organization.
-        </p>
-
-        <p>
-          This document provides comprehensive guidance on the Agents interface, including how to load and run existing agents, interpret agent outputs and inference logs, utilize batch processing for multiple files, share agents with others, upload custom agents, and leverage the visual builder for workflow creation and editing. Understanding the Agents framework is essential for automating complex document workflows, building custom AI-powered processes, and integrating agent capabilities into broader enterprise systems.
-        </p>
+        <RelatedVideos
+          title="Watch: Build & Run Agents"
+          description="See real-world agent workflows — vision, RAG, classification, contracts, and more."
+          videoIds={[
+            "UTNQxspDi3I",
+            "D3cZyenzelY",
+            "FGmY9whUkaA",
+            "yBj6wfdCoFc",
+            "9n7gXz6knbM",
+            "fW8_-_EdsrM",
+            "R1fAogEIDMc",
+            "1xE07RNHDM0",
+            "FSjpAgIZnPM",
+          ]}
+        />
 
         <h2 id="1-launching-the-agents-interface">1. Launching the agents interface</h2>
 

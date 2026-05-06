@@ -11,6 +11,36 @@ This is an introductory paragraph explaining the feature. You can use **bold tex
 
 &nbsp;
 
+<!--
+  RELATED VIDEOS (optional, but recommended for v1 docs).
+
+  Drop a horizontally-scrollable Related Videos carousel right after the
+  introduction so readers can watch the feature in action before diving in.
+
+  - Use the `RelatedVideos` component from `@/components/related-videos`.
+  - Pick only YouTube IDs that are clearly relevant to this page's topic.
+    The full catalog lives in `app/resources/video-tutorials/video-data.ts`.
+  - 3–7 videos is a good range. Be selective — quality over quantity.
+  - If no videos are clearly relevant, omit the section entirely.
+  - The component is mobile-responsive and identical across all v1 pages.
+
+  Example (paste directly into the generated .tsx page, not into Markdown):
+
+      import { RelatedVideos } from "@/components/related-videos"
+
+      <RelatedVideos
+        title="Watch: Feature Name in Action"
+        description="Short walkthroughs covering this feature end-to-end."
+        videoIds={[
+          "VIDEO_ID_1",
+          "VIDEO_ID_2",
+          "VIDEO_ID_3",
+        ]}
+      />
+-->
+
+&nbsp;
+
 ## 1. Getting Started {#getting-started}
 
 Click on the **Feature** button from the main menu to get started.

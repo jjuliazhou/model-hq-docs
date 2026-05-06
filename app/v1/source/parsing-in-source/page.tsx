@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function WhatIsParsingPage() {
@@ -53,6 +54,17 @@ export default function WhatIsParsingPage() {
         <p>
           In short: <em>Parsing is how Model HQ ensures documents are cleanly understood before any AI tasks—like answering questions, summarizing, or running analysis—are applied.</em>
         </p>
+
+        <RelatedVideos
+          title="Watch: Parsing & Document Ingestion"
+          description="Watch parsing, table extraction, and large-scale ingestion in action."
+          videoIds={[
+            "Vz48X6SWwrQ",
+            "T1AOuUF7oQ8",
+            "FSjpAgIZnPM",
+            "fW8_-_EdsrM",
+          ]}
+        />
 
         <h2 id="1-document-parsing-options">1. Document parsing options</h2>
 

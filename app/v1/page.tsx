@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { MessageSquare, Bot, Workflow, Database, Wrench, Settings, Power, BookOpen, FileSearch, Network, Plug, Sparkles, TableProperties } from "lucide-react"
 import Link from "next/link"
+import { RelatedVideos } from "@/components/related-videos"
 
 export default function V1OverviewPage() {
   const sections = [
@@ -126,6 +127,20 @@ export default function V1OverviewPage() {
           The v1 architecture enables you to create modular, reusable components through the Services interface, connect to external systems via Integrations, and build complex multi-layered agent systems with well-defined input-output contracts.
         </p>
       </div>
+
+      <RelatedVideos
+        title="Featured Model HQ Videos"
+        description="Get a quick tour of Model HQ's capabilities — from chat and RAG to agents, bots, and on-device AI."
+        videoIds={[
+          "Dbxb5qfsMaM",
+          "7EiTHPtjbbU",
+          "qhO-Zlu4nYI",
+          "FGmY9whUkaA",
+          "lMQwcw0TeVM",
+          "g1g9UbAzv9c",
+          "8VTg0a-q_Zo",
+        ]}
+      />
 
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Documentation Sections</h2>

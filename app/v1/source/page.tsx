@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function SourcePage() {
@@ -41,6 +42,19 @@ export default function SourcePage() {
           <p>
             RAG combines retrieval-based techniques with generative AI to enable models to answer questions more accurately by retrieving relevant information from external sources or documents. With RAG in Model HQ, knowledge bases can be created that can be queried in the chat section or via a custom bot (to be used either standalone or in an Agent workflow) by uploading documents or other information that the model can use when searching for information.
           </p>
+
+          <RelatedVideos
+            title="Watch: RAG & Sources"
+            description="See knowledge bases, RAG accuracy, table parsing, and document workflows."
+            videoIds={[
+              "Vz48X6SWwrQ",
+              "odTepwd8Xr0",
+              "T1AOuUF7oQ8",
+              "FSjpAgIZnPM",
+              "yNkcSH73vKc",
+              "9n7gXz6knbM",
+            ]}
+          />
 
           <h2 id="1-launching-the-source-interface">1. Launching the source interface</h2>
 

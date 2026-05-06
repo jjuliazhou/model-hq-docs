@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ModelConfigurationPage() {
@@ -50,6 +51,18 @@ export default function ModelConfigurationPage() {
           <p>
             These settings allow teams to balance quality, performance, and cost while ensuring predictable behavior across workflows. Proper configuration enables Model HQ to automatically select the appropriate model for each task while providing advanced users with full control when needed.
           </p>
+
+          <RelatedVideos
+            title="Watch: Configuring & Testing Models"
+            description="See model selection, NPU/CPU comparisons, and benchmarking workflows."
+            videoIds={[
+              "XT5wZ4TAsHM",
+              "odTepwd8Xr0",
+              "qhO-Zlu4nYI",
+              "JazySdXT2IE",
+              "9eXwW6rKfBk",
+            ]}
+          />
 
           <h2 id="1-opening-the-configuration-panel">1. Opening the configuration panel</h2>
 

@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function HowToUseAndCreateACustomTestForModelInferencingPage() {
@@ -35,6 +36,16 @@ export default function HowToUseAndCreateACustomTestForModelInferencingPage() {
           </p>
 
           <img src="/v1/models/customTest/01_test.png" alt="customTest" />
+
+          <RelatedVideos
+            title="Watch: Custom Tests & Benchmarks"
+            description="Build test sets, classify data, and benchmark models on real workloads."
+            videoIds={[
+              "JazySdXT2IE",
+              "XT5wZ4TAsHM",
+              "odTepwd8Xr0",
+            ]}
+          />
 
           <h2 id="1-overview">1. Overview</h2>
 
