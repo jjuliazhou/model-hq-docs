@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringServicesInModelHqPage() {
@@ -80,6 +81,16 @@ export default function ExploringServicesInModelHqPage() {
         <p>
           This document provides comprehensive guidance on creating and configuring all three service types within Model HQ. It covers the service interface overview, detailed configuration steps for each service type, and best practices for defining input contexts, runtime parameters, and output structures. Understanding the Services interface is essential for building scalable agent systems, integrating external data sources, and creating reusable components that can be shared across multiple workflows and use cases.
         </p>
+
+        <RelatedVideos
+          title="Watch: Services & Hybrid Inferencing"
+          description="See how agents, APIs, and hybrid local + server inferencing fit together."
+          videoIds={[
+            "lMQwcw0TeVM",
+            "FGmY9whUkaA",
+            "UTNQxspDi3I",
+          ]}
+        />
 
         <h2 id="1-launching-the-services-interface">1. Launching the services interface</h2>
 

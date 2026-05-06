@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringBotsInModelHqPage() {
@@ -33,6 +34,19 @@ export default function ExploringBotsInModelHqPage() {
         <p>
           After completing the initial setup, users will be directed to the <strong>Main Menu</strong>. This document describes the Bots feature, which allows users to create custom Chat and RAG bots for either AI PC/edge device use cases (for either standalone or bots to be incorporated into an agent workflow) or via API deployment (Model HQ API Server Biz Bot).
         </p>
+
+        <RelatedVideos
+          title="Watch: Building & Sharing Bots"
+          description="See bots built, demoed, and shared end-to-end — from chat to RAG to tables."
+          videoIds={[
+            "zP2v8DixQaA",
+            "il48-IaEfxw",
+            "uy53WKrMOXc",
+            "evbLEX-eA8o",
+            "T1AOuUF7oQ8",
+            "cd_08qQ5Z2o",
+          ]}
+        />
 
         <h2 id="1-launching-the-bots-interface">1. Launching the bots interface</h2>
 

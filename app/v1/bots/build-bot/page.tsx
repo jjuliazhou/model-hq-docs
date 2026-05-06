@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function BuildingACustomBotPage() {
@@ -33,6 +34,19 @@ export default function BuildingACustomBotPage() {
         <p>
           This document describes the process of creating a custom bot in Model HQ that can be used as a standalone bot or to be used as part of an agent workflow.
         </p>
+
+        <RelatedVideos
+          title="Watch: Build a Custom Bot"
+          description="Step-by-step walkthroughs for building Chat, RAG, and table-based bots."
+          videoIds={[
+            "zP2v8DixQaA",
+            "uy53WKrMOXc",
+            "evbLEX-eA8o",
+            "il48-IaEfxw",
+            "T1AOuUF7oQ8",
+            "cd_08qQ5Z2o",
+          ]}
+        />
 
         <h2 id="1-building-a-custom-bot">1. Building a custom bot</h2>
 

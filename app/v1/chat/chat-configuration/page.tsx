@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ChatConfigurationPage() {
@@ -48,6 +49,16 @@ export default function ChatConfigurationPage() {
           <p>
             These values can be adjusted to control creativity, response length, and the degree to which retrieved context influences output. Understanding these parameters allows users to optimize Model HQ for specific workflows, whether prioritizing accuracy, speed, or contextual richness.
           </p>
+
+          <RelatedVideos
+            title="Watch: Chat & RAG Configuration"
+            description="See chat parameters, RAG, and document Q&A configurations in action."
+            videoIds={[
+              "yNkcSH73vKc",
+              "6z3kyUpsGys",
+              "kov4rvjEBbE",
+            ]}
+          />
 
           <h2 id="1-opening-the-configuration-panel">1. Opening the configuration panel</h2>
 

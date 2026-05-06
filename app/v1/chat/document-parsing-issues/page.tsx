@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function TroubleshootingDocumentParsingAndLimitationsPage() {
@@ -49,6 +50,16 @@ export default function TroubleshootingDocumentParsingAndLimitationsPage() {
           <p>
             When such files are encountered, additional preprocessing steps may be required before they can be ingested and indexed by Model HQ.
           </p>
+
+          <RelatedVideos
+            title="Watch: Document Parsing & RAG"
+            description="See how Model HQ handles documents, tables, and embedded content."
+            videoIds={[
+              "T1AOuUF7oQ8",
+              "Vz48X6SWwrQ",
+              "FSjpAgIZnPM",
+            ]}
+          />
 
           <h2 id="1-handling-documents-that-cannot-be-natively-parsed">1. Handling documents that cannot be natively parsed</h2>
 

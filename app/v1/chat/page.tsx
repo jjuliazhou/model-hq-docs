@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringChatInModelHqPage() {
@@ -43,6 +44,18 @@ export default function ExploringChatInModelHqPage() {
             <li>Medium: ~7–8 billion parameters — intended for a balance between latency and quality.</li>
             <li>Large: 9–32+ billion parameters — recommended for higher-fidelity results and more complex tasks.</li>
           </ul>
+
+          <RelatedVideos
+            title="Watch: Chat in Model HQ"
+            description="Quick walkthroughs covering chat, RAG, SQL, and document Q&A workflows."
+            videoIds={[
+              "yNkcSH73vKc",
+              "6z3kyUpsGys",
+              "kov4rvjEBbE",
+              "cd_08qQ5Z2o",
+              "T1AOuUF7oQ8",
+            ]}
+          />
 
           <h2 id="1-launching-the-chat-interface">1. Launching the chat interface</h2>
 

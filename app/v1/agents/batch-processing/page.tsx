@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function BatchProcessingOrMultidocAgentPage() {
@@ -45,6 +46,17 @@ export default function BatchProcessingOrMultidocAgentPage() {
         <p>
           In this example, we’ll use the <strong>Contract Analyzer</strong> from the Agents documentation to show how Batch Run works. The interface makes it easy to upload multiple files, start processing, track progress, and download results in formats like Word or JSON. This turns a single-document agent into a scalable workflow that can handle large volumes of documents efficiently.
         </p>
+
+        <RelatedVideos
+          title="Watch: Batch & Multi-Doc Workflows"
+          description="See agents process multiple documents and structured data at scale."
+          videoIds={[
+            "9n7gXz6knbM",
+            "FSjpAgIZnPM",
+            "Vz48X6SWwrQ",
+            "K1JaG9AwORE",
+          ]}
+        />
 
         <h2 id="batch-run-workflow">Batch run workflow</h2>
 

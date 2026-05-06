@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function LaunchingTheInterfacePage() {
@@ -33,6 +34,19 @@ export default function LaunchingTheInterfacePage() {
         <p>
           To begin creating a new agent, the following steps should be performed:
         </p>
+
+        <RelatedVideos
+          title="Watch: Creating Agents"
+          description="See how agents are built end-to-end \u2014 vision, RAG, classification, and contracts."
+          videoIds={[
+            "UTNQxspDi3I",
+            "D3cZyenzelY",
+            "9n7gXz6knbM",
+            "fW8_-_EdsrM",
+            "1xE07RNHDM0",
+            "R1fAogEIDMc",
+          ]}
+        />
 
         <ol>
           <li>The <strong>Main Menu</strong> should be navigated to.</li>

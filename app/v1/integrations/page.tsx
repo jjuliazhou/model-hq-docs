@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringIntegrationsInModelHqPage() {
@@ -45,6 +46,16 @@ export default function ExploringIntegrationsInModelHqPage() {
         <p>
           This document provides comprehensive guidance on the Integrations interface, including how to launch it, manage credentials securely, and configure each of the 19 supported integrations. For each integration, detailed setup instructions are provided, including required credentials, configuration parameters, and links to external documentation for obtaining API keys or access tokens. As Model HQ continues to evolve, additional integrations are regularly added to support new services and platforms. Organizations requiring custom integrations can contact support to request new connectivity options tailored to their specific enterprise systems.
         </p>
+
+        <RelatedVideos
+          title="Watch: Integrations & Hybrid Workflows"
+          description="See Model HQ connect on-device AI with cloud APIs, knowledge bases, and Foundry models."
+          videoIds={[
+            "lMQwcw0TeVM",
+            "yBj6wfdCoFc",
+            "FGmY9whUkaA",
+          ]}
+        />
 
         <h2 id="1-launching-the-integrations-interface">1. Launching the integrations interface</h2>
 

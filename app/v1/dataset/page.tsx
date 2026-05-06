@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function DatasetPage() {
@@ -66,6 +67,17 @@ export default function DatasetPage() {
         <p>
           In summary, the Datasets feature transforms spreadsheets and structured data files into intelligent, searchable knowledge bases that AI agents can reason over with accuracy and efficiency.
         </p>
+
+        <RelatedVideos
+          title="Watch: Datasets & Structured Data"
+          description="See CSVs, spreadsheets, and structured data turned into AI-powered workflows."
+          videoIds={[
+            "K1JaG9AwORE",
+            "9YP-nDhXRJY",
+            "cd_08qQ5Z2o",
+            "T1AOuUF7oQ8",
+          ]}
+        />
 
         <h2 id="quick-setup">Quick setup</h2>
 

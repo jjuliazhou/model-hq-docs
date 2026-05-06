@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function EditingABotPage() {
@@ -37,6 +38,18 @@ export default function EditingABotPage() {
           <blockquote data-type="important">
             <p>The configuration process is the same for both existing bots and creating new bots.</p>
           </blockquote>
+
+          <RelatedVideos
+            title="Watch: Configure & Edit Bots"
+            description="See bot configuration, RAG, demos, and sharing in real-world walkthroughs."
+            videoIds={[
+              "zP2v8DixQaA",
+              "il48-IaEfxw",
+              "uy53WKrMOXc",
+              "evbLEX-eA8o",
+              "T1AOuUF7oQ8",
+            ]}
+          />
 
           <h2 id="1-configuring-a-bot">1. Configuring a bot</h2>
 

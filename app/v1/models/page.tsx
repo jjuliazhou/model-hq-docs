@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function ExploringModelsInModelHqPage() {
@@ -45,6 +46,19 @@ export default function ExploringModelsInModelHqPage() {
             <li>Configure model selection preferences</li>
             <li>Troubleshoot model-related issues</li>
           </ul>
+
+          <RelatedVideos
+            title="Watch: Models in Model HQ"
+            description="Browse, download, and benchmark on-device models on Intel and Qualcomm AI PCs."
+            videoIds={[
+              "XT5wZ4TAsHM",
+              "qhO-Zlu4nYI",
+              "odTepwd8Xr0",
+              "JazySdXT2IE",
+              "7EiTHPtjbbU",
+              "9eXwW6rKfBk",
+            ]}
+          />
 
           <h2 id="1-launching-the-models-interface">1. Launching the Models interface</h2>
 

@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function BuildingeditingAgentsWithVisualBuilderPage() {
@@ -49,6 +50,19 @@ export default function BuildingeditingAgentsWithVisualBuilderPage() {
         <p>
           The Visual Builder excels at creating complex workflows with branching logic, conditional execution, and parallel processing paths, as these structures are more easily understood and modified in graphical form. The interface includes features for zooming, panning, rearranging nodes, and validating connections to ensure data flows correctly between steps. Once the visual workflow is complete, it can be executed directly from the builder, exported as a JSON configuration file, or further refined using the step-based editor.
         </p>
+
+        <RelatedVideos
+          title="Watch: Visual Builder in Action"
+          description="Drag-and-drop agent creation with vision, RAG, and multi-model workflows."
+          videoIds={[
+            "UTNQxspDi3I",
+            "D3cZyenzelY",
+            "yBj6wfdCoFc",
+            "R1fAogEIDMc",
+            "1xE07RNHDM0",
+            "fW8_-_EdsrM",
+          ]}
+        />
 
         <h3 id="31-builder-overview">3.1 Builder overview</h3>
 

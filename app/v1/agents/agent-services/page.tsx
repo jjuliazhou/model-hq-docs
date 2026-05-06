@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { DocPageLayout } from "@/components/doc-page-layout"
+import { RelatedVideos } from "@/components/related-videos"
 import { references } from "./references"
 
 export default function AgentServicesPage() {
@@ -43,6 +44,18 @@ export default function AgentServicesPage() {
         </p>
 
         <img src="/v1/agents/editAgent/03_8services.png" alt="edit" />
+
+        <RelatedVideos
+          title="Watch: Services Powering Agents"
+          description="See agent services in action \u2014 RAG, vision, classification, and chained workflows."
+          videoIds={[
+            "yBj6wfdCoFc",
+            "R1fAogEIDMc",
+            "1xE07RNHDM0",
+            "fW8_-_EdsrM",
+            "9n7gXz6knbM",
+          ]}
+        />
 
         <h2 id="1-core-services">1. Core services</h2>
 

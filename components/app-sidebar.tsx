@@ -154,7 +154,13 @@ const navigationData = {
       icon: Library,
     },
   ] as NavItem[],
-  cookbooksV1: [] as NavItem[],
+  cookbooksV1: [
+    {
+      title: "Building a Contract Analyzer",
+      url: "/cookbooks/v1/building-contract-analyzer",
+      icon: FileSearch,
+    },
+  ] as NavItem[],
 }
 
 // Helper component for collapsed state with hover menu
@@ -354,6 +360,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <div className="mx-2 my-1 h-px bg-border" />
 
             {/* Model HQ v0 - Single icon with hover menu */}
+            {/*
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -366,6 +373,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
+            */}
 
             {/* Model HQ v1 - Single icon with hover menu */}
             <SidebarGroup>
@@ -373,7 +381,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                   <CollapsedSectionWithHover
                     icon={V1Icon}
-                    title="Model HQ v1 Docs"
+                    title="Model HQ Core Docs"
                     items={navigationData.v1}
                     pathname={pathname}
                   />
@@ -413,6 +421,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <div className="mx-2 my-1 h-px bg-border" />
 
             {/* Cookbooks v0 - Single icon with hover menu */}
+            {/*
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -425,6 +434,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
+            */}
 
             {/* Cookbooks v1 - Single icon with hover menu */}
             <SidebarGroup>
@@ -432,7 +442,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                   <CollapsedSectionWithHover
                     icon={BookCopy}
-                    title="Cookbooks v1"
+                    title="Cookbooks (new)"
                     items={navigationData.cookbooksV1.length > 0 ? navigationData.cookbooksV1 : [{ title: "Coming soon...", url: "#", icon: Info }]}
                     pathname={pathname}
                   />
@@ -467,7 +477,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Model HQ v0 Documentation - Collapsible */}
+        {/* Model HQ v0 Documentation - Collapsible (commented out) */}
+        {false && (
         <Collapsible defaultOpen={pathname.startsWith('/v0') || pathname.startsWith('/getting-started-with-model-hq-sdk') || pathname.startsWith('/hello-world') || pathname.startsWith('/api-reference')} className="group/v0-collapsible">
           <SidebarGroup>
             <SidebarGroupLabel asChild>
@@ -591,13 +602,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </CollapsibleContent>
       </SidebarGroup>
     </Collapsible>
+    )}
 
     {/* Model HQ v1 Documentation - Collapsible */}
     <Collapsible defaultOpen={pathname.startsWith('/v1')} className="group/v1-collapsible">
       <SidebarGroup>
         <SidebarGroupLabel asChild>
           <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
-            <span className="font-semibold text-sm">Model HQ v1 Docs</span>
+            <span className="font-semibold text-sm">Model HQ Core Docs</span>
             <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v1-collapsible:rotate-90" />
           </CollapsibleTrigger>
         </SidebarGroupLabel>
@@ -743,7 +755,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarGroupLabel>Cookbooks</SidebarGroupLabel>
           <SidebarGroupContent>
-            {/* Cookbooks v0 - Collapsible */}
+            {/* Cookbooks v0 - Collapsible (commented out) */}
+            {false && (
             <Collapsible defaultOpen={pathname.startsWith('/cookbooks')} className="group/cookbooks-v0">
               <SidebarMenu>
                 <SidebarMenuItem>
@@ -778,6 +791,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuItem>
               </SidebarMenu>
             </Collapsible>
+            )}
 
             {/* Cookbooks v1 - Collapsible */}
             <Collapsible defaultOpen={false} className="group/cookbooks-v1">
@@ -785,11 +799,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton
-                      tooltip="Cookbooks v1"
+                      tooltip="Cookbooks (new)"
                       suppressHydrationWarning
                       className="font-medium"
                     >
-                      <span className="text-sm">Cookbooks v1</span>
+                      <span className="text-sm">Cookbooks (new)</span>
                       <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/cookbooks-v1:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
