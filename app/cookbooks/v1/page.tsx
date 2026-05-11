@@ -32,10 +32,9 @@ export default function CookbooksV1OverviewPage() {
 
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <BookOpen className="h-10 w-10 text-primary" />
           <h1 className="text-4xl font-bold tracking-tight">Model HQ v1 Cookbooks</h1>
           <span className="px-3 py-1 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
-            COMING SOON
+            NEW RECIPIES EVERY WEEK
           </span>
         </div>
         <p className="text-lg text-muted-foreground">
@@ -185,7 +184,7 @@ export default function CookbooksV1OverviewPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>In the Meantime: v0 Cookbooks</CardTitle>
           </CardHeader>
@@ -198,10 +197,10 @@ export default function CookbooksV1OverviewPage() {
               Browse v0 Cookbooks
             </Link>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <Card className="border-primary/50">
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
@@ -220,7 +219,7 @@ export default function CookbooksV1OverviewPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
     </div>
   )
 }

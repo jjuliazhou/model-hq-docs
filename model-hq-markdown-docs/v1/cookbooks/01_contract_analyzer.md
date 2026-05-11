@@ -1,310 +1,287 @@
 # Build a No-Code Contract Analyzer Agent in Minutes (Offline, On-Device)
 
-# Build a No-Code Contract Analyzer Agent (Offline, On Your Device)
-
 ## Use Case
 
-Create a **no-code Contract Analyzer agent** that reads contracts and pulls out key details automatically — every time, the same way.
-This runs **fully on your device**, with **no Wi-Fi** and **no data leaving your machine**.
+Build a **no-code Contract Analyzer agent** that reads contracts and pulls out the same key details every time — automatically.
 
-In this example, we build a **Music License Agreement Analyzer** using the **Visual Builder** in Model HQ — no coding needed.
+It runs **fully on your device**. No Wi-Fi. No data leaving your machine.
 
-The agent answers simple but important questions like:
+In this cookbook we build a **Music License Agreement Analyzer** using the **Visual Builder** in Model HQ — no code needed.
 
-* Who are the parties?
-* What is the effective date?
-* What is the royalty payment?
-* Is there an advance payment? If yes, how much?
+The agent answers simple but useful questions like:
 
-It uses **RAG (Retrieval-Augmented Generation)** with re-ranking to find the most relevant parts of each contract and give accurate answers.
+- Who are the parties?
+- What is the effective date?
+- What is the royalty payment?
+- Is there an advance payment? If yes, how much?
 
-Once it works on one document, you can run it on many contracts at once using **Batch Mode**, and export the results for further review or automation.
+Behind the scenes it uses **RAG (Retrieval-Augmented Generation)** with re-ranking to pick the most relevant parts of each contract and give grounded answers.
 
-You can also watch this step-by-step demo on the Model HQ YouTube channel:
-*"Contract Analyzer Agent in Minutes (No-Code + Offline) | Model HQ Demo"*
+Once it works on one document, you can run it on many contracts at once with **Batch Mode** and export the results.
 
----
-The complete no-code set-up for this Agent - example used shows 5 steps but can be as few as 2 steps if only 1 question is being asked:
+The complete no-code set-up for this agent (this example shows 5 nodes — but you can have as few as 2 if you only ask one question):
 
-[screenshot of the complete agents]
+![Contract Analyzer canvas overview](/cookbooks/v1/01_main.png)
 
+&nbsp;
 
 ## Who This Is For
 
 This is useful for:
 
-* **Legal and compliance teams** reviewing contracts (NDAs, licenses, vendor agreements)
-* **Business teams** (HR, Operations, Procurement, Finance)
-* **Analysts** handling repetitive document review
-* **Developers** testing document workflows with RAG
-* Anyone who needs to extract the **same information from many similar documents**
-
----
-
-## What You'll Learn
-
-* How to build a contract analyzer using the **Visual Builder**
-* How to connect a document input to multiple **RAG answer steps**
-* How re-ranking improves accuracy on long documents
-* How to test the agent on a **single document**
-* How to run it on **many documents at once (Batch Mode)**
-* How to export results for reporting or automation
-
----
-
-## Ingredients (What You Need)
-
-* Model HQ installed on your device
-
-* A local AI model that supports chat/RAG (for example: **Llama 3.2 3B**)
-
-* This will download automatically the first time you run it
-
-* Sample contract files (included with Model HQ), located at:
-
-  ```
-  C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\
-  ```
-
-  Example files:
-
-  * Cybele Music License Agreement.pdf
-  * Diana Music License Agreement.pdf
-  * Circe License Agreement for Copyrighted Music.pdf
- 
-    Note: You will not find sample files in your repo if you did not choose the "Full-download" option when you initially set up Model HQ. To download the sample files, go to Tools icon (upper right hand corner) > Sample Docs > Documents.
-
-    The sample files will load to the file path indicated above at C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\
-
-* **No coding required**
-
-> **Note**
-> After the model is downloaded, everything runs locally — including document reading, search, and answers. No internet connection is needed.
->
-> Check out our YT video showing this agent workflow (corresponding time stamps to YT video provided along with directions below):
-
-https://www.youtube.com/watch?v=9n7gXz6knbM
-
-
-
-## Why Model HQ Builds Agents Differently
-
-Most agent builders are designed to execute against a frontier model in the cloud. Model HQ takes a different approach:
-
-* Each task is **broken out discretely** into its own node.
-* **Small, specialized language models** are stacked together to handle each step.
-* The end-to-end workflow runs **on-device** — using the local parser, the ranker model, and a RAG-tuned answering model in coordination.
-
-This produces accurate, reproducible results while preserving privacy and eliminating per-call cloud costs.
-
+- **Legal and compliance teams** reviewing contracts (NDAs, licenses, vendor agreements)
+- **Business teams** (HR, Operations, Procurement, Finance)
+- **Analysts** doing repetitive document review
+- **Developers** prototyping document workflows with RAG
+- Anyone who needs to extract the **same information from many similar documents**
 
 &nbsp;
 
-## Step-by-Step Recipe
+## What You'll Learn
+
+- How to build a contract analyzer using the **Visual Builder**
+- How to connect a document input to multiple **RAG answer steps**
+- How re-ranking improves accuracy on long documents
+- How to test the agent on a **single document**
+- How to run it on **many documents at once (Batch Mode)**
+- How to export results for reporting or automation
+
+&nbsp;
+
+## Ingredients (What You Need)
+
+- Model HQ installed on your device.
+- A local model that supports chat / RAG (we use **Llama 3.2 3B** by default). It downloads automatically the first time you run the agent.
+- A few sample music license agreements (already included with Model HQ), located at: `C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\`. Good ones to try: *Cybele Music License Agreement.pdf*, *Diana Music License Agreement.pdf*, *Circe License Agreement for Copyrighted Music.pdf*.
+- **No coding required.**
+
+> [!NOTE]
+> Don't see the sample files? You probably skipped the **Full-download** option during setup. To get them now: click the **Tools** icon (top-right) → **Sample Docs** → **Documents**. They'll land in `C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\`.
+
+> [!TIP]
+> Once the model is downloaded, **everything runs locally** — parsing, retrieval, ranking, and answering. You can unplug the Wi-Fi and it still works.
+
+&nbsp;
+
+## Watch the Demo
+
+Want to follow along on video? Here's the full walkthrough on the Model HQ YouTube channel — *"Contract Analyzer Agent in Minutes (No-Code + Offline) | Model HQ Demo"*. Useful timestamps are called out in each step below.
+
+https://www.youtube.com/watch?v=9n7gXz6knbM
+
+&nbsp;
+
+## Quick Steps (Build It in 5 Minutes)
+
+If you just want to copy what's in the screenshot, follow this short version. The detailed walkthrough is right after — read it whenever you want the *why*.
+
+1. Open **Agents → Build New → Visual Builder**, click **`>`**.
+2. Name the agent: `Music_License_Agent`.
+3. Drag an **Input** node onto the canvas → set **Choose input type** to `document`.
+4. Drag a **Node**, set service to `rag_answer`, instruction: `Who are the parties to the agreement?`. Wire it back to the Input node.
+5. Repeat step 4 three more times with these questions:
+    - `What is the effective date of the agreement?`
+    - `What is the royalty payment to the licensor?`
+    - `What is the advance payment to the licensor?`
+6. (Optional) Add one more node with service `agent_report` to get a polished Word/JSON summary.
+7. Click **Save Agent**, then **Run**, and upload one of the sample PDFs from `AgreementsLarge\`.
+8. Once it works, go back and click **Batch Run** to process several contracts at once.
+
+That's the whole agent. The rest of this cookbook explains each step in plain English.
+
+&nbsp;
+
+## Why Model HQ Builds Agents Differently
+
+Most agent builders run against a big cloud model. Model HQ takes a different approach:
+
+- Each task is **broken into its own small node**.
+- **Small, specialized models** are stacked together — one to parse, one to rank, one to answer.
+- The whole workflow runs **on your device**.
+
+The result: accurate, repeatable answers, without sending your contracts anywhere.
+
+&nbsp;
+
+## Step-by-Step Walkthrough
 
 ### 1. Open the Agents Interface
 
-**Goal**: Navigate to the agent builder. (YouTube Video - 3:45)
+*Goal: get to the agent builder.* (Min Time Required: ~3:45)
 
-#### Steps:
+1. From the **Home Screen**, click **Agents** in the left sidebar.
+2. In the *Agent Menu*, choose **Build New**.
+3. Click **`>`** to continue.
+4. On the *Build New Agent* screen, pick **Visual Builder**.
 
-1. From the **Main Menu / Home Screen**, select **Agents** in the left sidebar.
-2. In the *Agent Menu*, choose the **Build New** option.
-3. Click **`>`** to proceed.
-4. In the *Build New Agent* screen, select **Visual Builder**.
-
-The Visual Builder canvas opens — this is the drag-and-drop, click-and-connect environment where the agent will be assembled.
+The Visual Builder canvas opens. This is the drag-and-drop space where the agent gets put together.
 
 > [!TIP]
-> The Visual Builder is good for agents that take one input - like a contract. For workflows requiring **multiple input types** (e.g. document **and** image), use **Build Multi-Step Agent** instead. See the [Create New Agent](/v1/agents/creating-new-agent) and [Agent Visual Builder](/v1/agents/agent-visual-builder) documentation.
+> The Visual Builder is great for agents that take **one input** — like a contract. If your agent needs more than one input type at the same time (say, a document **and** an image), use **Build Multi-Step Agent** instead.
 
 &nbsp;
 
 ### 2. Name the Agent
 
-At the top of the canvas, name the agent. We set the agent name to:
+At the top of the canvas, give the agent a name. We'll call ours:
 
 ```
 Music_License_Agent
 ```
 
-A descriptive name makes the agent easy to find later under **Load Existing**, and easy to identify when shared with colleagues.
+A clear name makes it easy to find later under **Load Existing**, and easy to recognize when you share it with a teammate.
 
 &nbsp;
 
-### 3. Add the Input Node (Document) (YouTube Video: 4:19)
+### 3. Add the Input Node (Document)
 
-**Goal**: Define what type of input the agent receives at runtime (ex: is it a document, an image or a collection?).
+*Goal: tell the agent what kind of input it should expect.* (Min Time Required: ~4:19)
 
-#### Steps:
+1. On the left sidebar, click and drag the **Input** option onto the canvas.
+2. Open the node and set:
+    - **Choose input type**: `document`
+    - **Description**: `Music license agreement (PDF, DOCX, PPTX, TXT, or MD).`
 
-1. From the left sidebar, push down with your mouse or keypad on the Input side nav, and drag an **Input** node onto the canvas.
-2. Open the node and configure it:
-   * **Choose input type**: `document`
-   * **Description**: `Music license agreement (PDF, DOCX, PPTX, TXT, or MD).`
-
-This input node tells Model HQ that, at runtime, the user will be prompted to upload a document file. The uploaded file becomes the source of truth for every downstream RAG step.
+Now Model HQ knows that, when this agent runs, it should ask the user to upload a document. That document becomes the source for every question we ask next.
 
 > [!IMPORTANT]
-> The Visual Builder supports **only one input node** per agent. For multi-input workflows, switch to **Build Multi-Step Agent**.
+> The Visual Builder allows **only one input node** per agent. If you need multiple inputs (e.g. a document plus an image), switch to **Build Multi-Step Agent**.
 
-After this step, you can follow the steps below or copy this 5 step node chart:
-
-[same screenshot of the node visualized]
+&nbsp;
 
 ### 4. Add the First RAG Answer Node — *Parties*
 
-**Goal**: Nodes specify what ACTION the model will take from the Input. In this case, ask the first business question against the uploaded document.
-
-#### Steps:
+*Goal: ask the first question — and tell the agent to answer it from the uploaded document.*
 
 1. Drag a **Node** from the left sidebar onto the canvas.
-2. In the node's **Choose service** dropdown, select **`rag_answer`**.
+2. In the node's **Choose service** dropdown, pick `rag_answer`.
+3. In the **Instruction** field (this is where you "prompt" the model), type: `Who are the parties to the agreement?`
+4. **Wire** the **Input node → this RAG answer node** by dragging a line between their connection dots.
 
-   > `rag_answer` is the Model HQ service that retrieves the most relevant passages from a long document and generates a grounded answer. Use it instead of `chat` whenever the answer must come from a specific document rather than the model's general knowledge.
-
-3. In the **Instruction** field, enter:
-   ```
-   Who are the parties to the agreement?
-   ```
-4. **Connect** the **Input node → RAG answer node** by drawing a wire between their connection handles.
-
-> [!IMPORTANT]
-> Every RAG question must be wired **directly to the Input (document) node** — *not* to the previous RAG node. Each `rag_answer` step independently retrieves passages from the source document. Chaining them serially would feed one answer into the next, which is not the intent here.
-
-&nbsp;
-
-### 5. Add Additional RAG Answer Nodes
-
-Repeat **Step 4** for each business question. For the Music License Analyzer, add three more `rag_answer` nodes, each wired back to the **Input node**:
-
-| Node | Service | Instruction |
-| ---- | ------- | ----------- |
-| RAG Answer 2 | `rag_answer` | `What is the effective date of the agreement?` |
-| RAG Answer 3 | `rag_answer` | `What is the royalty payment to the licensor?` |
-| RAG Answer 4 | `rag_answer` | `What is the advance payment to the licensor?` |
-
-The final canvas should look as above: one Input (document) node feeding four parallel RAG answer nodes.
-
-> [!TIP]
-> Add as many or as few questions as needed.
-> 
-&nbsp;
-
-### 6. Confirm the Model Configuration
-
-In the Visual Builder, open any node to verify:
-
-* **Model** — `Llama 3.2 3B` (default chat / RAG model). A check mark next to a model name means it is already cached locally; a download icon means it will be pulled the first time the agent runs.
-* **Services** — confirm `rag_answer` and `parse_document` are enabled in the **Services** catalog (left sidebar → *Services*). For dataset- or table-based variants, also enable `All-Datasets` or `query_custom_table` as needed.
+A quick tip on prompting: keep the instruction short, plain, and direct — like you're asking a colleague. *"Who are the parties to the agreement?"* works far better than a long, formal prompt.
 
 > [!NOTE]
-> Behind the scenes, `rag_answer` automatically invokes:
-> * the **document parser** (chunks the PDF/DOCX into ~100+ text passages),
-> * the **ranker model** (re-orders passages by relevance to the question),
-> * the **answering model** (generates the final response from top-ranked passages).
->
-> All three components run locally.
+> `rag_answer` is the service that pulls the most relevant passages from a long document and writes a grounded answer. Use it instead of `chat` whenever the answer should come from a specific document, not from the model's general knowledge.
+
+> [!IMPORTANT]
+> Every RAG question should wire **directly to the Input (document) node** — *not* to the previous RAG node. Each `rag_answer` step looks at the document on its own. Chaining them serially would feed the answer of one into the next, which isn't what we want here.
 
 &nbsp;
 
-### 7. Save & Run on a Single Document
+### 5. Add Three More RAG Answer Nodes
 
-#### Steps:
+Repeat step 4 for each question. For our Music License Analyzer we add three more `rag_answer` nodes — each wired back to the **Input node**:
 
-1. Click **Save Agent** (left sidebar in the Visual Builder) to persist the workflow as a JSON definition.
+| # | Service | Instruction (the prompt) |
+| - | ------- | ------------------------ |
+| 2 | `rag_answer` | `What is the effective date of the agreement?` |
+| 3 | `rag_answer` | `What is the royalty payment to the licensor?` |
+| 4 | `rag_answer` | `What is the advance payment to the licensor?` |
+
+Your canvas should now look like a fan: one Input node feeding four parallel RAG answer nodes.
+
+> [!TIP]
+> Add as many or as few questions as you like. Common additions for license / contract review: *territory*, *term length*, *renewal*, *termination*, *exclusivity*, *governing law*, *audit rights*.
+
+&nbsp;
+
+### 6. Confirm the Model and Services
+
+Click any node to check:
+
+- **Model** — `Llama 3.2 3B` (the default chat / RAG model). A check mark next to a model name means it's already on your device. A download icon means it'll be downloaded the first time the agent runs.
+- **Services** — make sure `rag_answer` and `parse_document` are turned on in the **Services** catalog (left sidebar → *Services*).
+
+> [!NOTE]
+> Behind the scenes, `rag_answer` quietly does three things, all locally:
+> 1. parses the PDF / DOCX into ~100+ text chunks,
+> 2. re-ranks those chunks by relevance to your question,
+> 3. uses the answering model to write the final response from the top chunks.
+
+&nbsp;
+
+### 7. Save and Run on One Contract
+
+1. Click **Save Agent** (left sidebar).
 2. Click **Run**.
-3. When prompted, upload a sample agreement, e.g.:
-   ```
-   C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\Cybele Music License Agreement.pdf
-   ```
-4. Click **`>`** to start execution.
+3. When prompted, upload a sample agreement, e.g. `C:\Users\<username>\llmware_data\sample_files\AgreementsLarge\Cybele Music License Agreement.pdf`.
+4. Click **`>`** to start.
 
-Model HQ will:
-* Parse the document into text chunks,
-* Run each `rag_answer` node in turn against the parsed source,
-* Display results in a **Summary Report Table**.
+Model HQ will parse the document, run each `rag_answer` step, and show the results in a **Summary Report Table**.
 
 #### Example Output (Cybele Music License Agreement)
 
 | Step | Question | Answer |
 | ---- | -------- | ------ |
-| `rag_answer_1` | Who are the parties to the agreement? | The parties to the agreement are **Cybele** and **Lotus Music Company**. |
-| `rag_answer_2` | What is the effective date of the agreement? | **February 1, 2020.** |
-| `rag_answer_3` | What is the royalty payment to the licensor? | *(royalty payment schedule extracted from contract)* |
-| `rag_answer_4` | What is the advance payment to the licensor? | *(advance payment amount extracted from contract)* |
+| `rag_answer_1` | Who are the parties to the agreement? | The parties are **Cybele** and **Lotus Music Company**. |
+| `rag_answer_2` | What is the effective date? | **February 1, 2020.** |
+| `rag_answer_3` | What is the royalty payment? | *(royalty schedule extracted from the contract)* |
+| `rag_answer_4` | What is the advance payment? | *(advance amount extracted from the contract)* |
 
-Each output is also accompanied by:
-* an **Inference History** table showing tokens used, first-token latency, and total processing time per step,
-* a **Files Created** section with the generated reports and artifacts.
+You also get:
+
+- An **Inference History** table — tokens used, first-token latency, and total time per step.
+- A **Files Created** section — generated reports and artifacts.
 
 > [!TIP]
-> Click **Run Again** to test the same agent against a second document — for example *Diana Music License Agreement.pdf* — to validate consistency. If a question genuinely doesn't apply (e.g. *no advance payment* exists in the Diana agreement), the agent will correctly report that the value is **not mentioned**, rather than hallucinating a number.
+> Click **Run Again** and try a second document, like *Diana Music License Agreement.pdf*. If a question genuinely doesn't apply (e.g. *no advance payment* in Diana), the agent will say so — it won't make up a number.
 
 &nbsp;
 
 ### 8. (Optional) Add an Agent Report Step
 
-To produce a polished, shareable output, add a final reporting node:
+Want a polished output? Add a final reporting node:
 
 1. Drag a new **Node** onto the canvas after the last RAG answer.
-2. Set its service to **`agent_report`**.
-3. Set the instruction to a descriptive title, e.g.:
-   ```
-   Music License Agreement — Summary of Key Terms
-   ```
-4. Wire the previous nodes' outputs into it (via a **Transformer** node set to `Agent-State` if multi-input aggregation is needed).
+2. Set its service to `agent_report`.
+3. Use a clear instruction, e.g. `Music License Agreement — Summary of Key Terms`.
+4. Wire the previous nodes' outputs into it (use a **Transformer** node set to `Agent-State` if you need to pass everything along).
 
-`agent_report` produces a structured Word document, JSON, and Markdown summary, automatically incorporating each `rag_answer` result.
+`agent_report` produces a Word document, a JSON file, and a Markdown summary — automatically pulling in each `rag_answer` result.
 
 &nbsp;
 
-### 9. Run in Batch Mode Across Multiple Contracts
+### 9. Run It in Batch Mode (Many Contracts at Once)
 
-Once validated on a single document, scale the agent across many contracts at once.
+Once it works on one contract, scale it up.
 
-#### Steps:
-
-1. Return to **Agents → Load Existing** and select **Music_License_Agent**.
-2. Click **`>`** to enter the run screen.
+1. Go to **Agents → Load Existing** and pick **Music_License_Agent**.
+2. Click **`>`**.
 3. Choose **Batch Run** (instead of *Run (Details)* or *Run (Demo)*).
-4. In *Upload Documents for Batch Processing*, select multiple files, e.g.:
-   * *Circe License Agreement for Copyrighted Music.pdf*
-   * *Cybele Music License Agreement.pdf*
-   * *Diana Music License Agreement.pdf*
-   * *Eos License Agreement for Copyrighted Music.pdf*
-5. Click **`>`** to start the batch run.
+4. In *Upload Documents for Batch Processing*, select several files, e.g.:
+    - *Circe License Agreement for Copyrighted Music.pdf*
+    - *Cybele Music License Agreement.pdf*
+    - *Diana Music License Agreement.pdf*
+    - *Eos License Agreement for Copyrighted Music.pdf*
+5. Click **`>`** to start.
 
-Model HQ will:
-* Treat each uploaded file as a **separate work item**,
-* Run the full agent workflow on each file independently,
-* Aggregate results into batch output artifacts.
+Model HQ runs the full agent on each file independently and bundles the results.
 
 > [!NOTE]
-> For **file-based** input (as configured here), if **N** files are uploaded, the agent runs **N** times — once per document. For **text-based** inputs, large files are decomposed into chunks and each chunk becomes a separate work item. See the [Batch Processing](/v1/agents/batch-processing) documentation for details.
+> For **file inputs** (like ours), if you upload **N** files the agent runs **N** times — once per document. For **text inputs**, large files get chunked and each chunk is its own work item. See the [Batch Processing](/v1/agents/batch-processing) docs for details.
 
 #### Batch Outputs
 
-When the batch completes, the following files are made available for download:
+When the batch is done, you can download:
 
-| File | Description |
-| ---- | ----------- |
-| `<agent_name>_batch_results.json` | Per-document, per-question answers in structured JSON. Ideal for downstream pipelines, dashboards, and APIs. |
-| `<agent_name>_batch_report.docx` | Consolidated Word document containing all answers, contracts and a per-document summary table. |
-| Per-document artifacts | Each document also produces its own individual report, mermaid chart, and take-aways files. |
+| File | What it is |
+| ---- | ---------- |
+| `<agent_name>_batch_results.json` | Per-document, per-question answers in JSON. Great for dashboards and APIs. |
+| `<agent_name>_batch_report.docx` | One Word doc with all answers and a per-document summary. |
+| Per-document artifacts | Each contract also produces its own report, mermaid chart, and take-aways file. |
 
-These outputs can feed directly into BI tools, ticketing systems, CLM platforms, or audit trails.
+These plug nicely into BI tools, ticketing systems, CLM platforms, or audit trails.
 
 &nbsp;
 
 ### 10. (Optional) Share or Deploy the Agent
 
-Once the agent is working, it can be distributed across the organization without re-building:
+Once it works, share it without rebuilding:
 
-* **Share by ZIP** — From *Agents → Load Existing → Music_License_Agent → Share*, download the agent ZIP file. The ZIP contains **only configuration and documents**, no executable code, making it safe to email or attach in chat.
-* **Upload on another machine** — On a colleague's Model HQ install, choose *Agents → Build New → Upload* (or the Upload button next to *Load Existing*) and select the ZIP. The agent appears in their *Load Existing* list immediately.
-* **Run via the Model HQ API Server** — Expose the agent over a local HTTP endpoint for integration into internal apps, RPA workflows, or backend services.
-* **Add Demo mode** — Before sharing, enable a demo configuration so colleagues can run the agent end-to-end with a sample document and immediately see what it does.
+- **Share by ZIP** — *Agents → Load Existing → Music_License_Agent → Share*. The ZIP contains only configuration and documents (no executable code), so it's safe to email.
+- **Upload on another machine** — On your colleague's Model HQ install: *Agents → Build New → Upload* (or the Upload button next to *Load Existing*) and pick the ZIP. The agent shows up in their *Load Existing* list right away.
+- **Run via the Model HQ API Server** — Expose the agent over a local HTTP endpoint so other apps can use it.
+- **Add a Demo mode** — Before sharing, set up a demo so colleagues can run the agent end-to-end with one click and immediately see what it does.
 
 &nbsp;
 
@@ -324,9 +301,9 @@ Once the agent is working, it can be distributed across the organization without
         └──▶ [ agent_report: Summary of Key Terms ]   (optional)
 ```
 
-* **One input** — the contract under review.
-* **Multiple parallel RAG retrievals** — each independently queries the same source.
-* **One consolidated report** — for human review and downstream automation.
+- **One input** — the contract.
+- **Several parallel RAG answers** — each one looks at the contract on its own.
+- **One optional report** — for a polished, shareable summary.
 
 &nbsp;
 
@@ -335,28 +312,23 @@ Once the agent is working, it can be distributed across the organization without
 | Step | Action | Outcome |
 | ---- | ------ | ------- |
 | 1 | Open Agents → Build New → Visual Builder | New blank canvas |
-| 2 | Name the agent (`Music_License_Agent`) | Agent identifiable in *Load Existing* |
+| 2 | Name the agent (`Music_License_Agent`) | Easy to find later |
 | 3 | Add Input node (`document`) | Defines runtime upload |
-| 4–5 | Add `rag_answer` nodes wired to Input | Each question independently retrieves from the contract |
+| 4–5 | Add `rag_answer` nodes wired to Input | Each question answered from the contract |
 | 6 | Confirm model & services | `Llama 3.2 3B`, `rag_answer`, `parse_document` |
-| 7 | Save & Run on one contract | Validate per-question answers |
-| 8 | (Opt.) Add `agent_report` | Generate polished Word/JSON output |
+| 7 | Save & Run on one contract | Validate the answers |
+| 8 | (Opt.) Add `agent_report` | Polished Word / JSON output |
 | 9 | Batch Run across many contracts | Scaled, repeatable execution |
-| 10 | Share / Deploy | Distribute to colleagues or via API |
+| 10 | Share / Deploy | Send to colleagues or call from an app |
 
 &nbsp;
-
 
 ## Related Documentation
 
-* [Agents Overview](/v1/agents)
-* [Create a New Agent](/v1/agents/create-new-agent)
-* [Agent Visual Builder](/v1/agents/agent-visual-builder)
-* [Editing an Agent](/v1/agents/edit-agent)
-* [Batch Processing](/v1/agents/batch-processing)
-* [Services Catalog](/v1/agents/agent-services)
-
-&nbsp;
-
-If any issues are encountered while building, running, or sharing the Contract Analyzer agent, contact the Model HQ support team at:
-**`support@aibloks.com`**
+- [Agents Overview](/v1/agents)
+- [Create a New Agent](/v1/agents/create-new-agent)
+- [Agent Visual Builder](/v1/agents/agent-visual-builder)
+- [Editing an Agent](/v1/agents/edit-agent)
+- [Batch Processing](/v1/agents/batch-processing)
+- [Services Catalog](/v1/agents/agent-services)
+# Build a No-Code Contract Analyzer Agent in Minutes (Offline, On-Device)

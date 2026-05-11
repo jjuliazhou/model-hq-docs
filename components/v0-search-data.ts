@@ -115,10 +115,28 @@ export const v0SearchData: SearchResult[] = [
 
   // Supported Models pages
   {
+    title: "AMD Supported Models",
+    url: "/supported-models/amd",
+    type: "page",
+    description: "Models optimized for AMD processors and accelerators (coming soon)",
+  },
+  {
+    title: "Apple Supported Models",
+    url: "/supported-models/apple",
+    type: "page",
+    description: "Models optimized for Apple Silicon and Apple Neural Engine",
+  },
+  {
     title: "Intel Supported Models",
     url: "/supported-models/intel",
     type: "page",
     description: "Models optimized for Intel processors using OpenVINO runtime",
+  },
+  {
+    title: "NVIDIA Supported Models",
+    url: "/supported-models/nvidia",
+    type: "page",
+    description: "Models optimized for NVIDIA GPUs and accelerators (coming soon)",
   },
   {
     title: "Qualcomm Supported Models",
@@ -578,6 +596,28 @@ export const v0SearchData: SearchResult[] = [
     parentPage: "Configs",
   },
 
+  // AMD page headings
+  {
+    title: "AMD Supported Models",
+    url: "/supported-models/amd#amd-supported-models",
+    type: "heading",
+    parentPage: "AMD Supported Models",
+  },
+
+  // Apple page headings
+  {
+    title: "Apple Optimization Features",
+    url: "/supported-models/apple#apple-optimization-features",
+    type: "heading",
+    parentPage: "Apple Supported Models",
+  },
+  {
+    title: "Apple Supported Models",
+    url: "/supported-models/apple#apple-supported-models",
+    type: "heading",
+    parentPage: "Apple Supported Models",
+  },
+
   // Intel page headings
   {
     title: "Intel Optimization Features",
@@ -590,6 +630,14 @@ export const v0SearchData: SearchResult[] = [
     url: "/supported-models/intel#intel-supported-models",
     type: "heading",
     parentPage: "Intel Supported Models",
+  },
+
+  // NVIDIA page headings
+  {
+    title: "NVIDIA Supported Models",
+    url: "/supported-models/nvidia#nvidia-supported-models",
+    type: "heading",
+    parentPage: "NVIDIA Supported Models",
   },
 
   // Qualcomm page headings

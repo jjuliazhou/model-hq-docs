@@ -59,8 +59,6 @@ export default function GettingStartedPage() {
 
       <Separator />
 
-      <p>&nbsp;</p>
-
       <div className="prose prose-gray max-w-none">
         <p>
           After installing the <strong>llmware</strong> application and checking the system requirements on your system, launch the application. You will be
@@ -76,8 +74,6 @@ export default function GettingStartedPage() {
           Ensure that your system meets the <a href="/system-configuration">Model HQ System Requirements</a> before
           proceeding.
         </p>
-
-        <p>&nbsp;</p>
 
         <h3 id="setup-options">Setup Options</h3>
 
@@ -117,7 +113,15 @@ export default function GettingStartedPage() {
           </li>
         </ol>
 
-        <p>&nbsp;</p>
+        <div className='aspect-video w-full overflow-hidden rounded-lg border border-border shadow-sm bg-black my-4'>
+          <iframe
+            src='https://www.youtube.com/embed/vLwCyqcXlpI?rel=0&autoplay=1&mute=1&playsinline=1'
+            title='Model HQ Overview'
+            className='w-full h-full'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          />
+        </div>
 
         <h2 id="getting-started-with-full-setup">Getting Started with Full Setup</h2>
         <p>
@@ -162,8 +166,6 @@ export default function GettingStartedPage() {
             <img src="/getting-started/main_menu.png" alt="main-menu" />
           </li>
         </ol>
-
-        <p>&nbsp;</p>
 
         <h2 id="getting-started-with-fast-setup">Getting Started with Fast Setup</h2>
         <p>
@@ -211,8 +213,6 @@ export default function GettingStartedPage() {
           </li>
         </ol>
 
-        <p>&nbsp;</p>
-
         <h2 id="getting-started-with-no-setup">Getting Started with No Setup</h2>
         <p>
           Looking to configure <strong>Model HQ</strong> your way? The <strong>No Setup</strong> option provides
@@ -236,8 +236,6 @@ export default function GettingStartedPage() {
             <img src="/getting-started/main_menu.png" alt="no-setup-next" />
           </li>
         </ol>
-
-        <p>&nbsp;</p>
 
         <h2 id="getting-started-with-enterprise-template">Getting Started with Enterprise Template</h2>
         <p>
