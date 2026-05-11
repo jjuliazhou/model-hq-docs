@@ -55,6 +55,15 @@ export default function AboutModelHQPage() {
           RAG (Retrieval-Augmented Generation), custom chatbots, and AI agents. Model HQ is optimized 
           for Intel and Qualcomm AI PCs, offering up to 30x faster inference on supported hardware.
         </p>
+        <div className='aspect-video w-full overflow-hidden rounded-lg border border-border shadow-sm bg-black my-4'>
+          <iframe
+            src='https://www.youtube.com/embed/vLwCyqcXlpI?rel=0&autoplay=1&mute=1&playsinline=1'
+            title='Model HQ Overview'
+            className='w-full h-full'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          />
+        </div>
       </section>
 
       <Separator />
@@ -162,7 +171,7 @@ export default function AboutModelHQPage() {
             <p className='text-xs text-muted-foreground'>Per-token cost</p>
           </div>
           <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>upto 30x</p>
+            <p className='text-3xl font-bold text-primary'>up to 30x</p>
             <p className='text-xs text-muted-foreground'>Faster on AI PCs</p>
           </div>
         </div>
@@ -405,6 +414,48 @@ export default function AboutModelHQPage() {
           <div>
             <h3 className='font-semibold mb-3 flex items-center gap-2'>
               <Cpu className='h-5 w-5 text-primary' />
+              AMD AI PCs
+            </h3>
+            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
+              <li>• AMD model support coming soon</li>
+            </ul>
+            <a
+              href='/supported-models/amd'
+              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
+            >
+              View AMD supported models <ArrowRight className='h-3 w-3' />
+            </a>
+          </div>
+
+          <div className='my-4'>
+            <Separator />
+          </div>
+
+          <div>
+            <h3 className='font-semibold mb-3 flex items-center gap-2'>
+              <Cpu className='h-5 w-5 text-primary' />
+              Apple Silicon Devices
+            </h3>
+            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
+              <li>• Apple M1, M2, M3, and M4 series processors</li>
+              <li>• Apple Neural Engine (ANE) acceleration</li>
+              <li>• Metal Performance Shaders integration</li>
+            </ul>
+            <a
+              href='/supported-models/apple'
+              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
+            >
+              View Apple supported models <ArrowRight className='h-3 w-3' />
+            </a>
+          </div>
+
+          <div className='my-4'>
+            <Separator />
+          </div>
+
+          <div>
+            <h3 className='font-semibold mb-3 flex items-center gap-2'>
+              <Cpu className='h-5 w-5 text-primary' />
               Intel AI PCs (Recommended)
             </h3>
             <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
@@ -418,6 +469,26 @@ export default function AboutModelHQPage() {
               className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
             >
               View Intel supported models <ArrowRight className='h-3 w-3' />
+            </a>
+          </div>
+
+          <div className='my-4'>
+            <Separator />
+          </div>
+
+          <div>
+            <h3 className='font-semibold mb-3 flex items-center gap-2'>
+              <Cpu className='h-5 w-5 text-primary' />
+              NVIDIA GPUs
+            </h3>
+            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
+              <li>• NVIDIA GPU support coming soon</li>
+            </ul>
+            <a
+              href='/supported-models/nvidia'
+              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
+            >
+              View NVIDIA supported models <ArrowRight className='h-3 w-3' />
             </a>
           </div>
 

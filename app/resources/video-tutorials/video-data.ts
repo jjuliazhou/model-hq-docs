@@ -24,6 +24,28 @@ export const playlistVideos: VideoData[] = [
     isManuallyAdded: true,
   },
   {
+    id: "9h_UkCVXBsA",
+    title: "Stop Losing Conference Pictures - Build this AI Agent Instead",
+    description:
+      "At a recent Microsoft conference, they used this Model HQ demo for building on-device agents - it was such an exciting moment! 🚀",
+    duration: "4:57",
+    views: "237M",
+    thumbnail: "/youtube/new/ph_Notes.jpg",
+    tags: ["On-device", "No Code"],
+    isManuallyAdded: false,
+  },
+  {
+    id: "vLwCyqcXlpI",
+    title: "Intel x Model HQ - Getting Started with a fast overview video.",
+    description:
+      "In this fast overview video, we walk you through the basics of getting started with Model HQ. ",
+    duration: "11:47",
+    views: "50",
+    thumbnail: "/youtube/new/gettingStarted.jpg",
+    tags: ["Getting Started", "Guide"],
+    isManuallyAdded: false,
+  },
+  {
     id: "9YP-nDhXRJY",
     title: "I Ran Semantic Search on 33k Reviews in CSV… with No Code - Model HQ Demo",
     description:

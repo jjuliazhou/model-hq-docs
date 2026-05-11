@@ -1,5 +1,37 @@
 // Video descriptions mapping
 export const videoDescriptions: Record<string, string> = {
+  "9h_UkCVXBsA": `
+    At a recent Microsoft conference, they used this Model HQ demo for building on-device agents - it was such an exciting moment! 🚀
+
+This is the agent - 
+We all do this at conferences:
+Take photos of slides. Save them. Never look at them again.
+So this AI agent was built to fix that.
+Using Model HQ, the workflow takes conference photos and automatically turns them into clean, structured Word notes you can actually use and share with your team.
+
+- What makes this even more interesting:
+- Built with no code in 1 minute
+- Runs fully on-device
+- No Wi-Fi required
+- No token costs
+
+This is the kind of practical AI workflow that business users can actually use every day.
+  `,
+  "vLwCyqcXlpI": `
+    In this fast overview video, we walk you through the basics of getting started with Model HQ. 
+Learn about:
+
+Downloading the product and getting a license key;
+Device settings;
+Model downloads;
+Model testing;
+Agents;
+Chat;
+Bots; and
+Documentation and support.
+
+Please visit llmware.ai for more information.
+  `,
   "9YP-nDhXRJY": `
     What happens when you run generative AI on a 33,000-row dataset — with zero code?
 

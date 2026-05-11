@@ -17,9 +17,15 @@ export const V1_EXACT_MAPPINGS: Record<string, string> = {
   'gettingStarted/README.md': '/start-here/getting-started',
   
   // Supported Models (shared - not in v1 folder)
+  'supported-models/AMD_MODELS.md': '/supported-models/amd',
+  'supported-models/APPLE_MODELS.md': '/supported-models/apple',
   'supported-models/INTEL_MODELS.md': '/supported-models/intel',
+  'supported-models/NVIDIA_MODELS.md': '/supported-models/nvidia',
   'supported-models/QUALCOMM_MODELS.md': '/supported-models/qualcomm',
+  'models/amd/': '/supported-models/amd',
+  'models/apple/': '/supported-models/apple',
   'models/intel/': '/supported-models/intel',
+  'models/nvidia/': '/supported-models/nvidia',
   'models/qualcomm/': '/supported-models/qualcomm',
   
   // Learning Resources (in resources folder)
@@ -168,7 +174,10 @@ System & Setup:
 - System Configuration: /start-here/system-configuration
 
 Supported Models:
+- AMD Supported Models: /supported-models/amd
+- Apple Supported Models: /supported-models/apple
 - Intel Supported Models: /supported-models/intel
+- NVIDIA Supported Models: /supported-models/nvidia
 - Qualcomm Supported Models: /supported-models/qualcomm
 
 Learning Resources:

@@ -99,8 +99,23 @@ const navigationData = {
   v1CodeDocumentation: v1CodeDocumentation,
   supportedModels: [
     {
+      title: "AMD Supported Models",
+      url: "/supported-models/amd",
+      icon: Cpu,
+    },
+    {
+      title: "Apple Supported Models",
+      url: "/supported-models/apple",
+      icon: Cpu,
+    },
+    {
       title: "Intel Supported Models",
       url: "/supported-models/intel",
+      icon: Cpu,
+    },
+    {
+      title: "NVIDIA Supported Models",
+      url: "/supported-models/nvidia",
       icon: Cpu,
     },
     {

@@ -245,7 +245,7 @@ export default function V1OverviewPage() {
             </p>
             <Link href="/cookbooks/v1" className="inline-flex items-center gap-2 text-primary hover:underline">
               <BookOpen className="h-4 w-4" />
-              Browse v1 Cookbooks (Coming Soon)
+              Browse v1 Cookbooks
             </Link>
           </CardContent>
         </Card>
