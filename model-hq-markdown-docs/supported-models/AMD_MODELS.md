@@ -36,15 +36,7 @@
 | industry-bert-insurance-ov |
 | industry-bert-loans-ov |
 | industry-bert-sec-ov |
-| malicious-url-detector-ov |
 | paraphrase-multilingual-MiniLM-L12-v2-ov |
-| protectai-prompt-injection-onnx |
-| protectai-prompt-injection-ov |
-| unitary-toxic-roberta-onnx |
-| unitary-toxic-roberta-ov |
-| valurank-bias-onnx |
-| valurank-bias-ov |
-| xlm-roberta-language-detector-ov |
 
 ---
 
@@ -68,6 +60,9 @@
 | gpt-5-mini |
 | gpt-5-nano |
 | gpt-4.1 |
+| gpt-oss-20b-generic-cpu:1-foundry |
+| gpt-oss-20b-generic-gpu:1-foundry |
+| gpt-oss-20b-gguf |
 
 ---
 
@@ -231,6 +226,7 @@
 | tiny-llama-chat-gguf |
 | tiny-llama-chat-onnx |
 | tiny-llama-chat-ov |
+
 ---
 
 ## Phi Models
@@ -287,6 +283,7 @@
 | slim-summary-phi-3-ov |
 | slim-xsum-phi-3-gguf |
 | slim-xsum-phi-3-ov |
+
 ---
 
 ## Mistral Models
@@ -316,6 +313,7 @@
 | teknium-open-hermes-2.5-mistral-ov |
 | zephyr-7b-beta-gguf |
 | zephyr-mistral-7b-chat-ov |
+
 ---
 
 ## Yi Models
@@ -330,6 +328,7 @@
 | yi-6b-1.5v-chat-ov |
 | yi-9b-chat-ov |
 | yi-9b-npu-ov |
+
 ---
 
 ## Gemma Models
@@ -348,6 +347,7 @@
 | gemma-4-2b-gguf |
 | gemma-4-4b-gguf |
 | gemma-7b-it-ov |
+
 ---
 
 ## StableLM Models
@@ -358,6 +358,7 @@
 | stablelm-2-12b-chat-ov |
 | stablelm-2-zephyr-1_6b-ov |
 | stablelm-zephyr-3b-ov |
+
 ---
 
 ## DRAGON Models
@@ -378,13 +379,85 @@
 | dragon-yi-9b-gguf |
 | dragon-yi-9b-ov |
 | dragon-yi-answer-tool |
+
+---
+
+## Foundry Models
+
+| Model Name |
+|------------|
+| DeepSeek-R1-Distill-Qwen-7B-vitis-npu:2-foundry |
+| deepseek-r1-distill-qwen-7b-generic-cpu:4-foundry |
+| deepseek-r1-distill-qwen-7b-generic-gpu:4-foundry |
+| deepseek-r1-distill-qwen-14b-generic-cpu:4-foundry |
+| deepseek-r1-distill-qwen-14b-generic-gpu:4-foundry |
+| gpt-oss-20b-generic-cpu:1-foundry |
+| gpt-oss-20b-generic-gpu:1-foundry |
+| Mistral-7B-Instruct-v0-2-vitis-npu:2-foundry |
+| mistralai-Mistral-7B-Instruct-v0-2-generic-cpu:3-foundry |
+| mistralai-Mistral-7B-Instruct-v0-2-generic-gpu:2-foundry |
+| Phi-3-mini-128k-instruct-generic-cpu:3-foundry |
+| Phi-3-mini-128k-instruct-generic-gpu:2-foundry |
+| phi-3-mini-128k-instruct-vitis-npu:2-foundry |
+| Phi-3-mini-4k-instruct-generic-cpu:3-foundry |
+| Phi-3-mini-4k-instruct-generic-gpu:2-foundry |
+| Phi-3-mini-4k-instruct-vitis-npu:2-foundry |
+| Phi-3.5-mini-instruct-generic-cpu:2-foundry |
+| Phi-3.5-mini-instruct-generic-gpu:2-foundry |
+| Phi-4-generic-cpu:2-foundry |
+| Phi-4-generic-gpu:2-foundry |
+| Phi-4-mini-instruct-generic-cpu:5-foundry |
+| Phi-4-mini-instruct-generic-gpu:5-foundry |
+| phi-4-mini-instruct-vitis-npu:2-foundry |
+| Phi-4-mini-reasoning-generic-cpu:3-foundry |
+| Phi-4-mini-reasoning-generic-gpu:3-foundry |
+| Phi-4-mini-reasoning-vitis-npu:2-foundry |
+| qwen2.5-0.5b-instruct-generic-cpu:4-foundry |
+| qwen2.5-0.5b-instruct-generic-gpu:4-foundry |
+| qwen2.5-0.5b-instruct-vitis-npu:3-foundry |
+| qwen2.5-1.5b-instruct-generic-cpu:4-foundry |
+| qwen2.5-1.5b-instruct-generic-gpu:4-foundry |
+| qwen2.5-14b-instruct-generic-cpu:4-foundry |
+| qwen2.5-14b-instruct-generic-gpu:4-foundry |
+| qwen2.5-7b-instruct-generic-cpu:4-foundry |
+| qwen2.5-7b-instruct-generic-gpu:4-foundry |
+| qwen2.5-7b-instruct-vitis-npu:2-foundry |
+| qwen2.5-coder-0.5b-instruct-generic-cpu:4-foundry |
+| qwen2.5-coder-0.5b-instruct-generic-gpu:4-foundry |
+| qwen2.5-coder-0.5b-instruct-vitis-npu:2-foundry |
+| qwen2.5-coder-1.5b-instruct-generic-cpu:4-foundry |
+| qwen2.5-coder-1.5b-instruct-generic-gpu:4-foundry |
+| qwen2.5-coder-1.5b-instruct-vitis-npu:2-foundry |
+| qwen2.5-coder-14b-instruct-generic-cpu:4-foundry |
+| qwen2.5-coder-14b-instruct-generic-gpu:4-foundry |
+| qwen2.5-coder-7b-instruct-generic-cpu:4-foundry |
+| qwen2.5-coder-7b-instruct-generic-gpu:4-foundry |
+| qwen2.5-coder-7b-instruct-vitis-npu:2-foundry |
+| qwen3-0.6b-generic-cpu:4-foundry |
+| qwen3-0.6b-generic-gpu:2-foundry |
+| qwen3-1.7b-generic-cpu:2-foundry |
+| qwen3-1.7b-generic-gpu:2-foundry |
+| qwen3-14b-generic-cpu:2-foundry |
+| qwen3-14b-generic-gpu:2-foundry |
+| qwen3-4b-generic-cpu:3-foundry |
+| qwen3-4b-generic-gpu:2-foundry |
+| qwen3-8b-generic-cpu:2-foundry |
+| qwen3-8b-generic-gpu:2-foundry |
+| qwen3.5-0.8b-generic-cpu:2-foundry |
+| qwen3.5-0.8b-generic-gpu:2-foundry |
+| qwen3.5-2b-generic-cpu:2-foundry |
+| qwen3.5-2b-generic-gpu:2-foundry |
+| qwen3.5-4b-generic-cpu:2-foundry |
+| qwen3.5-4b-generic-gpu:2-foundry |
+| qwen3.5-9b-generic-cpu:2-foundry |
+| qwen3.5-9b-generic-gpu:2-foundry |
+
 ---
 
 ## Slim Models
 
 | Model Name |
 |------------|
-| bling-answer-tool |
 | slim-boolean-phi-3-gguf |
 | slim-boolean-phi-3-onnx |
 | slim-boolean-phi-3-ov |
@@ -460,12 +533,14 @@
 | slim-xsum-phi-3-gguf |
 | slim-xsum-phi-3-ov |
 | slim-xsum-tool |
+
 ---
 
 ## Specialized Models
 
 | Model Name |
 |------------|
+| bling-answer-tool |
 | dreamgen-wizardlm-2-7b-ov |
 | gpt-oss-20b-generic-cpu:1-foundry |
 | gpt-oss-20b-generic-gpu:1-foundry |
@@ -474,12 +549,21 @@
 | granite-4-micro-ov |
 | intel-neural-chat-7b-v3-2-ov |
 | liquidai-lfm2-2.6b-gguf |
+| malicious-url-detector-ov |
 | mathstral-7b-ov |
 | minicpm-2.6-gguf |
 | olmo-13b-gguf |
 | openchat-3.6-8b-20240522-ov |
+| protectai-prompt-injection-onnx |
+| protectai-prompt-injection-ov |
 | tiny-dolphin-2.8-1.1b-ov |
+| unitary-toxic-roberta-onnx |
+| unitary-toxic-roberta-ov |
+| valurank-bias-onnx |
+| valurank-bias-ov |
 | whisper-cpp-base-english |
+| xlm-roberta-language-detector-ov |
+
 ---
 
 ## Multimodal Models
@@ -488,4 +572,5 @@
 |------------|
 | speech-t5-tts-ov |
 | lcm-dreamshaper-ov |
+
 ---
