@@ -1,9 +1,10 @@
 "use client"
 
 import { useParams, useSearchParams } from "next/navigation"
-import { ArrowLeft, ExternalLink, Youtube } from "lucide-react"
+import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { videoDescriptions } from "./video-descriptions"
+import { PageFrame, FrameSection } from "@/components/page-frame"
 
 export default function VideoWatchPage() {
   const params = useParams()
@@ -39,85 +40,77 @@ export default function VideoWatchPage() {
   `
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="space-y-6">
-        {/* Back Button */}
-        <Button variant="outline" asChild className="mb-4 w-full sm:w-auto">
-          <a href="/resources/video-tutorials" className="flex items-center justify-center sm:justify-start gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Video Tutorials
-          </a>
-        </Button>
+    <PageFrame>
+      <FrameSection last>
+        <div className="px-6 py-12 md:py-16">
+          {/* Back */}
+          <Button asChild variant="outline" className="rounded-none">
+            <a href="/resources/video-tutorials" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to video tutorials
+            </a>
+          </Button>
 
-        <div className="space-y-6 sm:space-y-8">
-          {/* Main Video Section */}
-          <div className="space-y-4 sm:space-y-6">
-            {/* Video Player */}
-            <div className="aspect-video bg-black rounded-lg overflow-hidden">
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                title={title}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+          {/* Player */}
+          <div className="mt-8 aspect-video overflow-hidden border border-border bg-black">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+              title={title}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
 
-            {/* Video Info */}
-            <div className="space-y-4 px-2 sm:px-0">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
-                {decodeURIComponent(title)}
-              </h1>
-
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b dark:border-gray-700">
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-red-600 rounded-full flex items-center justify-center">
-                      <Youtube className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">LLMWare</p>
-                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">AI & ML Tutorials</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                  <Button variant="outline" size="sm" asChild className="w-full sm:w-auto">
-                    <a
-                      href={`https://www.youtube.com/watch?v=${videoId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Watch on YouTube
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild className="w-full sm:w-auto">
-                    <a
-                      href="https://www.youtube.com/@llmware"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Youtube className="h-4 w-4" />
-                      Subscribe
-                    </a>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Full Description */}
-              <div className="prose dark:prose-invert max-w-none">
-                <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-                  {fullDescription}
-                </div>
-              </div>
-            </div>
+          {/* Info */}
+          <div className="mt-8 max-w-3xl">
+            <span className="font-mono text-xs uppercase tracking-widest text-red-600">
+              LLMWare · AI &amp; ML Tutorials
+            </span>
+            <h1 className="mt-3 text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+              {decodeURIComponent(title)}
+            </h1>
           </div>
         </div>
-      </div>
-    </div>
+
+        {/* Channel bar — full width, lines connect to the frame */}
+        <div className="flex flex-col items-start justify-between gap-4 border-y border-border px-6 py-6 sm:flex-row sm:items-center">
+          <div>
+            <p className="font-semibold">Subscribe to the LLMWare channel</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Stay updated with the latest tutorials, walkthroughs, and product news.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button asChild variant="outline" className="group rounded-none">
+              <a
+                href={`https://www.youtube.com/watch?v=${videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch on YouTube
+                <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Button>
+            <Button asChild className="group rounded-none bg-red-600 text-white hover:bg-red-700">
+              <a
+                href="https://www.youtube.com/@llmware"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Subscribe
+                <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        <div className="px-6 py-12 md:py-16">
+          <div className="prose prose-neutral max-w-3xl whitespace-pre-line dark:prose-invert">
+            {fullDescription}
+          </div>
+        </div>
+      </FrameSection>
+    </PageFrame>
   )
 }

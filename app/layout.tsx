@@ -78,7 +78,7 @@ export default function RootLayout({
               <AppSidebar />
               <SidebarInset>
                 <Header />
-                <DeprecationBanner />
+                {/* <DeprecationBanner /> */}
                 <main className="flex-1 p-6">{children}</main>
                 <Footer />
               </SidebarInset>

@@ -1,225 +1,135 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { BookOpen, Sparkles, Construction } from "lucide-react"
-import Link from "next/link"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { PageFrame, FrameSection } from "@/components/page-frame"
+
+const recipes = [
+  {
+    title: "Build a No-Code Contract Analyzer Agent",
+    description:
+      "Build an agent that reads contracts and extracts the same key details every time — fully on-device, no code needed.",
+    href: "/cookbooks/v1/building-contract-analyzer",
+    tags: ["Agents", "RAG", "Visual Builder"],
+  },
+  {
+    title: "Process 500 PDFs On-Device for RAG",
+    description:
+      "Create a reusable Source in minutes that runs RAG over hundreds of documents at once — private and offline.",
+    href: "/cookbooks/v1/sources-for-rag",
+    tags: ["Source", "RAG", "Batch"],
+  },
+]
+
+const docs = [
+  { title: "Services", description: "Reusable service components", href: "/v1/services" },
+  { title: "Integrations", description: "External connections", href: "/v1/integrations" },
+  { title: "Source (RAG)", description: "Enhanced document processing", href: "/v1/source" },
+  { title: "Bots", description: "Build intelligent bots", href: "/v1/bots" },
+  { title: "Chat", description: "Enhanced chat interface", href: "/v1/chat" },
+  { title: "Models", description: "Model configuration & testing", href: "/v1/models" },
+]
 
 export default function CookbooksV1OverviewPage() {
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/cookbooks/v1">Cookbooks</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Version 1</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
-      <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <h1 className="text-4xl font-bold tracking-tight">Model HQ v1 Cookbooks</h1>
-          <span className="px-3 py-1 text-xs font-semibold bg-primary text-primary-foreground rounded-full">
-            NEW RECIPIES EVERY WEEK
+    <PageFrame>
+      {/* Hero */}
+      <FrameSection>
+        <div className="px-6 py-16 md:py-24">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">
+            Cookbooks · v1
           </span>
+          <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">
+            Model HQ v1 cookbooks
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            Next-generation recipes and tutorials for building advanced AI applications with Model HQ v1.
+          </p>
         </div>
-        <p className="text-lg text-muted-foreground">
-          Next-generation recipes and tutorials for building advanced AI applications
-        </p>
-      </div>
+      </FrameSection>
 
-      <Alert>
-        <AlertDescription>
-          <strong>New v1 Cookbooks Coming Soon!</strong> We're creating comprehensive tutorials showcasing the powerful new features of Model HQ v1, including Services, Integrations, and enhanced RAG workflows.
-        </AlertDescription>
-      </Alert>
+      {/* Available recipes */}
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">
+            Recipes
+          </span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">
+            Available cookbooks
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            Step-by-step, real-world walkthroughs you can follow today.
+          </p>
+        </div>
 
-      <div className="prose prose-gray max-w-none">
-        <p>
-          Model HQ v1 brings exciting new capabilities that enable more sophisticated AI applications. Our upcoming cookbooks will demonstrate how to leverage these features in real-world scenarios, including:
-        </p>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">Service-Based Architecture</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Build modular AI applications using Agent Services, REST APIs, and MCP integrations
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">Enterprise Integrations</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Connect to cloud services, productivity tools, and external APIs in your workflows
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">Advanced RAG Patterns</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Implement sophisticated document retrieval and knowledge management systems
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">Multi-Agent Workflows</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Orchestrate complex tasks using multiple specialized agents working together
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">MCP Tool Integration</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Leverage Model Context Protocol servers to extend agent capabilities
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="border-dashed">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Construction className="h-6 w-6 text-muted-foreground" />
-              <CardTitle className="text-lg">Production Deployment</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Best practices for deploying and scaling v1 applications in enterprise environments
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="mt-8 space-y-4">
-        <Card className="bg-muted/50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5" />
-              Explore v1 Documentation
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-muted-foreground">
-              While we prepare the v1 cookbooks, explore the comprehensive v1 documentation to learn about all the new features:
-            </p>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              <Link href="/v1/services" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Services</h3>
-                <p className="text-sm text-muted-foreground mt-1">Reusable service components</p>
-              </Link>
-              <Link href="/v1/integrations" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Integrations</h3>
-                <p className="text-sm text-muted-foreground mt-1">External connections</p>
-              </Link>
-              <Link href="/v1/source" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Source (RAG)</h3>
-                <p className="text-sm text-muted-foreground mt-1">Enhanced document processing</p>
-              </Link>
-              <Link href="/v1/bots" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Bots</h3>
-                <p className="text-sm text-muted-foreground mt-1">Build intelligent bots</p>
-              </Link>
-              <Link href="/v1/chat" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Chat</h3>
-                <p className="text-sm text-muted-foreground mt-1">Enhanced chat interface</p>
-              </Link>
-              <Link href="/v1/models" className="block p-4 border rounded-lg hover:bg-background transition-colors">
-                <h3 className="font-semibold">Models</h3>
-                <p className="text-sm text-muted-foreground mt-1">Model configuration & testing</p>
-              </Link>
-            </div>
-            <Link href="/v1" className="inline-flex items-center gap-2 text-primary hover:underline text-sm">
-              View Complete v1 Documentation →
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* <Card>
-          <CardHeader>
-            <CardTitle>In the Meantime: v0 Cookbooks</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground mb-4">
-              Many patterns from v0 cookbooks are still relevant and can be adapted for v1. Check out the existing recipes:
-            </p>
-            <Link href="/cookbooks/v0" className="inline-flex items-center gap-2 text-primary hover:underline">
-              <BookOpen className="h-4 w-4" />
-              Browse v0 Cookbooks
-            </Link>
-          </CardContent>
-        </Card> */}
-      </div>
-
-      {/* <div className="mt-8">
-        <Card className="border-primary/50">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Sparkles className="h-5 w-5 text-primary" />
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-2">
+          {recipes.map((recipe, index) => (
+            <a
+              key={recipe.href}
+              href={recipe.href}
+              className="group flex flex-col bg-background p-8 transition-colors hover:bg-muted/30"
+            >
+              <span className="font-mono text-sm text-brand">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-lg font-semibold tracking-tight">{recipe.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {recipe.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                {recipe.tags.map((tag) => (
+                  <span key={tag} className="border border-border px-2 py-0.5">
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div>
-                <h3 className="font-semibold mb-1">Stay Updated</h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Want to be notified when new v1 cookbooks are released? Reach out to our support team.
-                </p>
-                <Link href="/support" className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
-                  Contact Support →
-                </Link>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div> */}
-    </div>
+              <span className="mt-auto inline-flex items-center pt-6 text-sm font-medium text-brand">
+                Open cookbook
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </FrameSection>
+
+      {/* Explore docs */}
+      <FrameSection last>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">
+            Documentation
+          </span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">
+            Explore v1 documentation
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            While we prepare the cookbooks, dive into the full v1 docs.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-px border-y border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {docs.map((doc) => (
+            <a
+              key={doc.title}
+              href={doc.href}
+              className="group flex flex-col bg-background p-8 transition-colors hover:bg-muted/30"
+            >
+              <h3 className="text-lg font-semibold tracking-tight">{doc.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{doc.description}</p>
+              <span className="mt-6 inline-flex items-center text-sm font-medium text-brand">
+                View docs
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <div className="px-6 py-8">
+          <a
+            href="/v1"
+            className="group inline-flex items-center text-sm font-medium text-brand"
+          >
+            View complete v1 documentation
+            <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
+      </FrameSection>
+    </PageFrame>
   )
 }

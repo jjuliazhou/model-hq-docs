@@ -6,776 +6,298 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { Separator } from '@/components/ui/separator'
-import { Badge } from '@/components/ui/badge'
-import { 
-  Zap, 
-  Cpu, 
-  Shield, 
-  Users, 
-  CheckCircle, 
-  Download, 
-  MessageSquare, 
-  Search, 
-  Bot, 
-  FileText, 
-  ExternalLink,
-  Mail,
-  ArrowRight
-} from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { PageFrame, FrameSection } from '@/components/page-frame'
+
+const features = [
+  { title: 'Lightning-Fast Inference', description: 'Optimized for Intel and Qualcomm AI PCs. Download and run models in seconds.' },
+  { title: 'No-Code Interface', description: 'Build RAG chatbots, AI agents, and workflows without programming.' },
+  { title: '100% Private & Secure', description: 'Models run completely offline. No data leaves your device.' },
+  { title: 'Enterprise Control', description: 'Monitor and update models across thousands of endpoints.' },
+  { title: 'Built-in Safety Tools', description: 'PII filtering, toxicity monitoring, and hallucination detection.' },
+  { title: 'Seamless Deployment', description: 'Push AI workflows to end-user PCs with a lightweight client app.' },
+]
+
+const stats = [
+  { value: '30s', label: 'Average download' },
+  { value: '<30min', label: '24 AI models' },
+  { value: '250+', label: 'Optimized models' },
+  { value: '32B', label: 'Max parameters' },
+  { value: '$0', label: 'Per-token cost' },
+  { value: 'up to 30x', label: 'Faster on AI PCs' },
+]
+
+const capabilities = [
+  { title: 'Chat Interface', description: 'Interactive conversations with AI models for Q&A, brainstorming, and general assistance.', href: '/v0/chat' },
+  { title: 'RAG (Retrieval-Augmented Generation)', description: 'Upload documents and chat with your data. Perfect for document analysis and research.', href: '/v0/rag' },
+  { title: 'AI Agents', description: 'Create custom AI agents for automated document processing workflows.', href: '/v0/agent' },
+  { title: 'Custom Bots', description: 'Design personalized chatbots with custom personalities and RAG sources.', href: '/v0/bots' },
+  { title: 'Model Testing & Evaluation', description: 'Test model performance before deployment with comprehensive testing options.', href: '/v0/testing-models' },
+]
+
+const whyChoose = [
+  { title: 'Privacy First', description: 'Your data never leaves your device. Complete control over sensitive information.' },
+  { title: 'Easy to Use', description: 'Intuitive no-code interface. Create AI workflows in minutes, not days.' },
+  { title: 'Cost-Effective', description: 'Run AI models locally without API costs. Pay once, use unlimited.' },
+  { title: 'Hardware Optimized', description: 'Up to 30x faster inference on Intel and Qualcomm AI PCs.' },
+  { title: 'Developer-Friendly', description: 'SDK available for programmatic access and custom applications.' },
+  { title: 'Enterprise Ready', description: 'Deploy across thousands of endpoints with centralized management.' },
+]
+
+const useCases = [
+  { title: 'Document Analysis', description: 'Extract information from PDFs, contracts, and research papers with AI-powered analysis.' },
+  { title: 'Customer Support', description: 'Build AI assistants for helpdesks with domain-specific knowledge.' },
+  { title: 'Research & Education', description: 'Analyze papers, generate summaries, and create study materials.' },
+  { title: 'Content Creation', description: 'Draft emails, articles, marketing copy, and documentation with AI.' },
+  { title: 'Data Privacy & Compliance', description: 'Process sensitive documents without cloud exposure — perfect for regulated industries.' },
+  { title: 'Enterprise Workflows', description: 'Automate document processing, data extraction, and report generation.' },
+]
+
+const setupOptions = [
+  { label: 'Option 1', title: 'Full Setup', description: 'Complete installation with all features and development tools.' },
+  { label: 'Option 2', title: 'Fast Setup', description: 'Quick start with essential components — get running in minutes.' },
+  { label: 'Option 3', title: 'No Setup (Portable)', description: 'Run directly without installation — perfect for testing.' },
+]
+
+const hardware = [
+  { name: 'AMD AI PCs', items: ['AMD model support coming soon'], href: '/supported-models/amd' },
+  { name: 'Apple Silicon Devices', items: ['Apple M1, M2, M3, and M4 series processors', 'Apple Neural Engine (ANE) acceleration', 'Metal Performance Shaders integration'], href: '/supported-models/apple' },
+  { name: 'Intel AI PCs (Recommended)', items: ['Arrow Lake, Meteor Lake, Lunar Lake processors', 'Most Intel laptops/PCs less than 5 years old', 'Intel Xeon processors for enterprise servers', 'OpenVINO runtime optimization'], href: '/supported-models/intel' },
+  { name: 'NVIDIA GPUs', items: ['NVIDIA GPU support coming soon'], href: '/supported-models/nvidia' },
+  { name: 'Qualcomm Snapdragon AI PCs', items: ['Snapdragon X series with NPU acceleration', 'QNN (Qualcomm Neural Network) runtime', 'CPU + NPU hybrid execution'], href: '/supported-models/qualcomm' },
+]
+
+const importantLinks = [
+  { label: 'Official Website', href: 'https://llmware.ai' },
+  { label: 'GitHub Repository', href: 'https://github.com/llmware-ai/llmware' },
+  { label: 'YouTube Channel', href: 'https://www.youtube.com/@llmware/playlists' },
+  { label: 'Discord Community', href: 'https://discord.gg/quUZHRCV8n' },
+]
 
 export default function AboutModelHQPage() {
   return (
-    <div className='container max-w-5xl mx-auto px-4 py-6 space-y-12'>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/start-here/about-model-hq'>Start Here</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>About Model HQ</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+    <PageFrame>
+      <FrameSection>
+        <div className="px-6 py-16 md:py-20">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/start-here/about-model-hq">Start Here</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>About Model HQ</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
-      <div className='space-y-4'>
-        <h1 className='text-3xl md:text-4xl font-bold tracking-tight'>Model HQ Overview</h1>
-        <p className='text-lg text-muted-foreground max-w-3xl'>
-          Enterprise-grade local AI platform for privacy-first document intelligence
-        </p>
-      </div>
-
-      <section className='space-y-4'>
-        <h2 className='text-2xl font-bold'>What is Model HQ?</h2>
-        <p className='text-muted-foreground leading-relaxed'>
-          <strong className='text-foreground'>Model HQ</strong> is a production-ready platform for deploying 
-          large language models (LLMs) locally on personal computers and edge devices. It eliminates the 
-          need for cloud dependencies while delivering powerful AI capabilities for document analysis, 
-          RAG (Retrieval-Augmented Generation), custom chatbots, and AI agents. Model HQ is optimized 
-          for Intel and Qualcomm AI PCs, offering up to 30x faster inference on supported hardware.
-        </p>
-        <div className='aspect-video w-full overflow-hidden rounded-lg border border-border shadow-sm bg-black my-4'>
-          <iframe
-            src='https://www.youtube.com/embed/vLwCyqcXlpI?rel=0&autoplay=1&mute=1&playsinline=1'
-            title='Model HQ Overview'
-            className='w-full h-full'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-          />
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl font-bold'>Key Features</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-8'>
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <Zap className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>Lightning-Fast Inference</h3>
-              <p className='text-sm text-muted-foreground'>
-                Optimized for Intel and Qualcomm AI PCs. Download and run models in seconds.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <Cpu className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>No-Code Interface</h3>
-              <p className='text-sm text-muted-foreground'>
-                Build RAG chatbots, AI agents, and workflows without programming.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <Shield className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>100% Private & Secure</h3>
-              <p className='text-sm text-muted-foreground'>
-                Models run completely offline. No data leaves your device.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <Users className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>Enterprise Control</h3>
-              <p className='text-sm text-muted-foreground'>
-                Monitor and update models across thousands of endpoints.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <CheckCircle className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>Built-in Safety Tools</h3>
-              <p className='text-sm text-muted-foreground'>
-                PII filtering, toxicity monitoring, and hallucination detection.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4'>
-            <div className='p-2 rounded-lg bg-primary/10'>
-              <Download className='h-6 w-6 text-primary' />
-            </div>
-            <div className='space-y-1'>
-              <h3 className='font-semibold'>Seamless Deployment</h3>
-              <p className='text-sm text-muted-foreground'>
-                Push AI workflows to end-user PCs with lightweight client app.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl font-bold'>Performance at a Glance</h2>
-        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4'>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>30s</p>
-            <p className='text-xs text-muted-foreground'>Average download</p>
-          </div>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>&lt;30min</p>
-            <p className='text-xs text-muted-foreground'>24 AI models</p>
-          </div>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>250+</p>
-            <p className='text-xs text-muted-foreground'>Optimized models</p>
-          </div>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>32B</p>
-            <p className='text-xs text-muted-foreground'>Max parameters</p>
-          </div>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>$0</p>
-            <p className='text-xs text-muted-foreground'>Per-token cost</p>
-          </div>
-          <div className='text-center space-y-2'>
-            <p className='text-3xl font-bold text-primary'>up to 30x</p>
-            <p className='text-xs text-muted-foreground'>Faster on AI PCs</p>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl font-bold'>Main Capabilities</h2>
-        <div className='space-y-3'>
-          <div className='flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors'>
-            <MessageSquare className='h-5 w-5 text-primary mt-1 flex-shrink-0' />
-            <div className='flex-1 space-y-1'>
-              <h3 className='font-semibold'>Chat Interface</h3>
-              <p className='text-sm text-muted-foreground'>
-                Interactive conversations with AI models for Q&A, brainstorming, and general assistance.
-              </p>
-              <a href='/v0/chat' className='text-sm text-primary hover:underline inline-flex items-center gap-1'>
-                Learn more <ArrowRight className='h-3 w-3' />
-              </a>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors'>
-            <Search className='h-5 w-5 text-primary mt-1 flex-shrink-0' />
-            <div className='flex-1 space-y-1'>
-              <h3 className='font-semibold'>RAG (Retrieval-Augmented Generation)</h3>
-              <p className='text-sm text-muted-foreground'>
-                Upload documents and chat with your data. Perfect for document analysis and research.
-              </p>
-              <a href='/v0/rag' className='text-sm text-primary hover:underline inline-flex items-center gap-1'>
-                Learn more <ArrowRight className='h-3 w-3' />
-              </a>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors'>
-            <Bot className='h-5 w-5 text-primary mt-1 flex-shrink-0' />
-            <div className='flex-1 space-y-1'>
-              <h3 className='font-semibold'>AI Agents</h3>
-              <p className='text-sm text-muted-foreground'>
-                Create custom AI agents for automated document processing workflows.
-              </p>
-              <a href='/v0/agent' className='text-sm text-primary hover:underline inline-flex items-center gap-1'>
-                Learn more <ArrowRight className='h-3 w-3' />
-              </a>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors'>
-            <MessageSquare className='h-5 w-5 text-primary mt-1 flex-shrink-0' />
-            <div className='flex-1 space-y-1'>
-              <h3 className='font-semibold'>Custom Bots</h3>
-              <p className='text-sm text-muted-foreground'>
-                Design personalized chatbots with custom personalities and RAG sources.
-              </p>
-              <a href='/v0/bots' className='text-sm text-primary hover:underline inline-flex items-center gap-1'>
-                Learn more <ArrowRight className='h-3 w-3' />
-              </a>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors'>
-            <FileText className='h-5 w-5 text-primary mt-1 flex-shrink-0' />
-            <div className='flex-1 space-y-1'>
-              <h3 className='font-semibold'>Model Testing & Evaluation</h3>
-              <p className='text-sm text-muted-foreground'>
-                Test model performance before deployment with comprehensive testing options.
-              </p>
-              <a href='/v0/testing-models' className='text-sm text-primary hover:underline inline-flex items-center gap-1'>
-                Learn more <ArrowRight className='h-3 w-3' />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl font-bold'>Why Choose Model HQ?</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Privacy First</h3>
-              <p className='text-sm text-muted-foreground'>
-                Your data never leaves your device. Complete control over sensitive information.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Easy to Use</h3>
-              <p className='text-sm text-muted-foreground'>
-                Intuitive no-code interface. Create AI workflows in minutes, not days.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Cost-Effective</h3>
-              <p className='text-sm text-muted-foreground'>
-                Run AI models locally without API costs. Pay once, use unlimited.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Hardware Optimized</h3>
-              <p className='text-sm text-muted-foreground'>
-                Up to 30x faster inference on Intel and Qualcomm AI PCs.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Developer-Friendly</h3>
-              <p className='text-sm text-muted-foreground'>
-                SDK available for programmatic access and custom applications.
-              </p>
-            </div>
-          </div>
-
-          <div className='flex items-start gap-3'>
-            <CheckCircle className='h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0' />
-            <div>
-              <h3 className='font-semibold mb-1'>Enterprise Ready</h3>
-              <p className='text-sm text-muted-foreground'>
-                Deploy across thousands of endpoints with centralized management.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl font-bold'>Use Cases</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Document Analysis</h3>
-            <p className='text-sm text-muted-foreground'>
-              Extract information from PDFs, contracts, and research papers with AI-powered analysis.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Customer Support</h3>
-            <p className='text-sm text-muted-foreground'>
-              Build AI assistants for helpdesks with domain-specific knowledge.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Research & Education</h3>
-            <p className='text-sm text-muted-foreground'>
-              Analyze papers, generate summaries, and create study materials.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Content Creation</h3>
-            <p className='text-sm text-muted-foreground'>
-              Draft emails, articles, marketing copy, and documentation with AI.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Data Privacy & Compliance</h3>
-            <p className='text-sm text-muted-foreground'>
-              Process sensitive documents without cloud exposure—perfect for regulated industries.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border hover:border-primary/50 transition-colors'>
-            <h3 className='font-semibold mb-2'>Enterprise Workflows</h3>
-            <p className='text-sm text-muted-foreground'>
-              Automate document processing, data extraction, and report generation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <div>
-          <h2 className='text-2xl md:text-3xl font-bold mb-2'>Getting Started</h2>
-          <p className='text-muted-foreground'>Model HQ offers three setup options</p>
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-          <div className='p-4 rounded-lg border space-y-2'>
-            <Badge variant='secondary'>Option 1</Badge>
-            <h3 className='font-semibold'>Full Setup</h3>
-            <p className='text-sm text-muted-foreground'>
-              Complete installation with all features and development tools.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border space-y-2'>
-            <Badge variant='secondary'>Option 2</Badge>
-            <h3 className='font-semibold'>Fast Setup</h3>
-            <p className='text-sm text-muted-foreground'>
-              Quick start with essential components—get running in minutes.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border space-y-2'>
-            <Badge variant='secondary'>Option 3</Badge>
-            <h3 className='font-semibold'>No Setup (Portable)</h3>
-            <p className='text-sm text-muted-foreground'>
-              Run directly without installation—perfect for testing.
-            </p>
-          </div>
-        </div>
-        <a 
-          href='/start-here/getting-started' 
-          className='inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium'
-        >
-          Learn more about setup options <ArrowRight className='h-4 w-4' />
-        </a>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Supported Devices & Hardware</h2>
-        
-        <div className='space-y-4'>
-          <div>
-            <h3 className='font-semibold mb-3 flex items-center gap-2'>
-              <Cpu className='h-5 w-5 text-primary' />
-              AMD AI PCs
-            </h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• AMD model support coming soon</li>
-            </ul>
-            <a
-              href='/supported-models/amd'
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View AMD supported models <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-
-          <div className='my-4'>
-            <Separator />
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-3 flex items-center gap-2'>
-              <Cpu className='h-5 w-5 text-primary' />
-              Apple Silicon Devices
-            </h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• Apple M1, M2, M3, and M4 series processors</li>
-              <li>• Apple Neural Engine (ANE) acceleration</li>
-              <li>• Metal Performance Shaders integration</li>
-            </ul>
-            <a
-              href='/supported-models/apple'
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View Apple supported models <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-
-          <div className='my-4'>
-            <Separator />
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-3 flex items-center gap-2'>
-              <Cpu className='h-5 w-5 text-primary' />
-              Intel AI PCs (Recommended)
-            </h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• Arrow Lake, Meteor Lake, Lunar Lake processors</li>
-              <li>• Most Intel laptops/PCs less than 5 years old</li>
-              <li>• Intel Xeon processors for enterprise servers</li>
-              <li>• OpenVINO runtime optimization</li>
-            </ul>
-            <a 
-              href='/supported-models/intel' 
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View Intel supported models <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-
-          <div className='my-4'>
-            <Separator />
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-3 flex items-center gap-2'>
-              <Cpu className='h-5 w-5 text-primary' />
-              NVIDIA GPUs
-            </h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• NVIDIA GPU support coming soon</li>
-            </ul>
-            <a
-              href='/supported-models/nvidia'
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View NVIDIA supported models <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-
-          <div className='my-4'>
-            <Separator />
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-3 flex items-center gap-2'>
-              <Cpu className='h-5 w-5 text-primary' />
-              Qualcomm Snapdragon AI PCs
-            </h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• Snapdragon X series with NPU acceleration</li>
-              <li>• QNN (Qualcomm Neural Network) runtime</li>
-              <li>• CPU + NPU hybrid execution</li>
-            </ul>
-            <a 
-              href='/supported-models/qualcomm' 
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View Qualcomm supported models <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-
-          <div className='my-4'>
-            <Separator />
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-3'>System Requirements</h3>
-            <ul className='space-y-2 ml-7 text-sm text-muted-foreground'>
-              <li>• <strong>Minimum:</strong> 16 GB RAM</li>
-              <li>• <strong>Recommended:</strong> 32 GB RAM for larger models</li>
-              <li>• <strong>Storage:</strong> SSD recommended for faster loading</li>
-            </ul>
-            <a 
-              href='/start-here/system-configuration' 
-              className='inline-flex items-center gap-1 text-sm text-primary hover:underline mt-3 ml-7'
-            >
-              View full requirements <ArrowRight className='h-3 w-3' />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Technology Stack</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          <div>
-            <h3 className='font-semibold mb-2'>Backend</h3>
-            <p className='text-sm text-muted-foreground'>Python-based inference server with FastAPI</p>
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-2'>Model Support</h3>
-            <ul className='text-sm text-muted-foreground space-y-1'>
-              <li>• GGUF format (primary)</li>
-              <li>• HuggingFace models</li>
-              <li>• OpenAI/Anthropic API integration</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-2'>Hardware Acceleration</h3>
-            <ul className='text-sm text-muted-foreground space-y-1'>
-              <li>• Intel OpenVINO runtime</li>
-              <li>• Qualcomm QNN runtime</li>
-              <li>• CPU/GPU/NPU support</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className='font-semibold mb-2'>RAG Pipeline</h3>
-            <ul className='text-sm text-muted-foreground space-y-1'>
-              <li>• Built-in document parsing</li>
-              <li>• Vector search with embeddings</li>
-              <li>• Context-aware retrieval</li>
-            </ul>
-          </div>
-        </div>
-
-        <a 
-          href='/v0/getting-started-with-model-hq-sdk' 
-          className='inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium'
-        >
-          Explore Model HQ SDK <ArrowRight className='h-4 w-4' />
-        </a>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Components</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <div className='p-4 rounded-lg border space-y-2'>
-            <Badge>Developer Kit</Badge>
-            <p className='text-sm text-muted-foreground'>
-              No-code environment to create AI apps, agents, and RAG chatbots.
-            </p>
-          </div>
-
-          <div className='p-4 rounded-lg border space-y-2'>
-            <Badge>User Client App</Badge>
-            <p className='text-sm text-muted-foreground'>
-              Lightweight app (less than 100 MB) to run models locally.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl md:text-3xl font-bold'>License & Availability</h2>
-        <p className='text-muted-foreground'>Model HQ is available for:</p>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-          <div className='flex items-center gap-2'>
-            <CheckCircle className='h-4 w-4 text-green-600 dark:text-green-400' />
-            <span className='text-sm'>Individual developers</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <CheckCircle className='h-4 w-4 text-green-600 dark:text-green-400' />
-            <span className='text-sm'>Small teams</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <CheckCircle className='h-4 w-4 text-green-600 dark:text-green-400' />
-            <span className='text-sm'>Enterprise organizations</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <CheckCircle className='h-4 w-4 text-green-600 dark:text-green-400' />
-            <span className='text-sm'>Educational institutions</span>
-          </div>
-        </div>
-
-        <div className='bg-primary/10 dark:bg-primary/20 p-6 rounded-lg border border-primary/30'>
-          <h3 className='font-semibold mb-2'>Try Model HQ Free</h3>
-          <p className='text-sm text-muted-foreground mb-4'>
-            90-day free trial
+          <span className="mt-8 block font-mono text-xs uppercase tracking-widest text-brand">Start here</span>
+          <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">Model HQ Overview</h1>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            <strong className="text-foreground">Model HQ</strong> is a production-ready platform for
+            deploying large language models locally on personal computers and edge devices — private,
+            offline, and optimized for Intel and Qualcomm AI PCs with up to 30x faster inference.
           </p>
-          <a 
-            href='https://llmware-modelhq.checkoutpage.com/model-hq-app-90-days-free-trial'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium'
-          >
-            Get the Trial <ExternalLink className='h-4 w-4' />
+
+          <div className="mt-10 aspect-video w-full overflow-hidden border border-border bg-black">
+            <iframe
+              src="https://www.youtube.com/embed/vLwCyqcXlpI?rel=0&autoplay=1&mute=1&playsinline=1"
+              title="Model HQ Overview"
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Features</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Key features</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, index) => (
+            <div key={feature.title} className="bg-background p-8">
+              <span className="font-mono text-sm text-brand">{String(index + 1).padStart(2, '0')}</span>
+              <div className="mt-4 h-px w-8 bg-brand/40" />
+              <h3 className="mt-4 text-lg font-semibold">{feature.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">By the numbers</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Performance at a glance</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-2 gap-px border-t border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
+          {stats.map((stat) => (
+            <div key={stat.label} className="bg-background px-6 py-10 text-center">
+              <div className="text-3xl font-semibold tracking-tight">{stat.value}</div>
+              <div className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Capabilities</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Main capabilities</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((cap) => (
+            <a key={cap.title} href={cap.href} className="group flex flex-col bg-background p-8 transition-colors hover:bg-muted/30">
+              <h3 className="text-lg font-semibold tracking-tight">{cap.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{cap.description}</p>
+              <span className="mt-auto inline-flex items-center pt-6 text-sm font-medium text-brand">
+                Learn more
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Why Model HQ</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Why choose Model HQ?</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          {whyChoose.map((item, index) => (
+            <div key={item.title} className="bg-background p-8">
+              <span className="font-mono text-sm text-brand">{String(index + 1).padStart(2, '0')}</span>
+              <div className="mt-4 h-px w-8 bg-brand/40" />
+              <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Use cases</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">What you can build</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+          {useCases.map((item) => (
+            <div key={item.title} className="bg-background p-8">
+              <h3 className="text-lg font-semibold tracking-tight">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Get started</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Three setup options</h2>
+        </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-3">
+          {setupOptions.map((opt) => (
+            <div key={opt.title} className="bg-background p-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-brand">{opt.label}</span>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">{opt.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{opt.description}</p>
+            </div>
+          ))}
+        </div>
+        <div className="px-6 py-8">
+          <a href="/start-here/getting-started" className="group inline-flex items-center text-sm font-medium text-brand">
+            Learn more about setup options
+            <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
-          <p className='text-xs text-muted-foreground mt-3'>
-            <a href='/support' className='hover:underline'>Request Free Trial Promo Code</a> • 
-            Terms and conditions apply • 
-            <a href='/license' className='hover:underline'>View License</a>
+        </div>
+      </FrameSection>
+
+      <FrameSection>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Hardware</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Supported devices &amp; hardware</h2>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            Minimum 16 GB RAM, 32 GB recommended for larger models. SSD recommended for faster loading.
           </p>
         </div>
-      </section>
-
-      <Separator />
-
-      <section className='space-y-6'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Important Links</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-          <a 
-            href='https://llmware.ai' 
-            target='_blank'
-            rel='noopener noreferrer'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <ExternalLink className='h-5 w-5 text-primary' />
-            <span className='font-medium'>Official Website</span>
-          </a>
-          <a 
-            href='https://github.com/llmware-ai/llmware' 
-            target='_blank'
-            rel='noopener noreferrer'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <ExternalLink className='h-5 w-5 text-primary' />
-            <span className='font-medium'>GitHub Repository</span>
-          </a>
-          <a 
-            href='https://www.youtube.com/@llmware/playlists' 
-            target='_blank'
-            rel='noopener noreferrer'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <ExternalLink className='h-5 w-5 text-primary' />
-            <span className='font-medium'>YouTube Channel</span>
-          </a>
-          <a 
-            href='https://discord.gg/quUZHRCV8n' 
-            target='_blank'
-            rel='noopener noreferrer'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <ExternalLink className='h-5 w-5 text-primary' />
-            <span className='font-medium'>Discord Community</span>
-          </a>
+        <div className="mt-12 grid grid-cols-1 gap-px border-t border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+          {hardware.map((hw) => (
+            <a key={hw.name} href={hw.href} className="group flex flex-col bg-background p-8 transition-colors hover:bg-muted/30">
+              <h3 className="text-lg font-semibold tracking-tight">{hw.name}</h3>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {hw.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-brand" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-auto inline-flex items-center pt-6 text-sm font-medium text-brand">
+                View supported models
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          ))}
         </div>
-      </section>
+      </FrameSection>
 
-      <Separator />
-
-      <section className='space-y-6'>
-        <div>
-          <h2 className='text-2xl md:text-3xl font-bold mb-2'>Support & Contact</h2>
-          <p className='text-muted-foreground'>Need help? Our team is here to guide you</p>
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
-          <a 
-            href='mailto:support@aibloks.com'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <Mail className='h-5 w-5 text-primary' />
-            <div>
-              <p className='text-sm font-medium'>General Support</p>
-              <p className='text-xs text-muted-foreground'>support@aibloks.com</p>
+      <FrameSection>
+        <div className="px-6 py-16 md:py-20">
+          <div className="border border-border bg-muted/30 p-8 md:p-12">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand">Free trial</span>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Try Model HQ free</h2>
+            <p className="mt-2 text-muted-foreground">90-day free trial. Terms and conditions apply.</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="https://llmware-modelhq.checkoutpage.com/model-hq-app-90-days-free-trial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex h-11 items-center justify-center bg-brand px-6 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand/90"
+              >
+                Get the trial
+                <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a href="/support" className="inline-flex h-11 items-center justify-center border border-border px-6 text-sm font-medium transition-colors hover:bg-muted">
+                Request promo code
+              </a>
             </div>
-          </a>
-          <a 
-            href='mailto:rsharma@aibloks.com'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <Mail className='h-5 w-5 text-primary' />
-            <div>
-              <p className='text-sm font-medium'>Developer Relations</p>
-              <p className='text-xs text-muted-foreground'>rsharma@aibloks.com</p>
-            </div>
-          </a>
-          <a 
-            href='/support'
-            className='flex items-center gap-3 p-4 rounded-lg border hover:bg-muted/50 transition-colors'
-          >
-            <ExternalLink className='h-5 w-5 text-primary' />
-            <div>
-              <p className='text-sm font-medium'>Documentation Support</p>
-              <p className='text-xs text-muted-foreground'>Visit Support Page</p>
-            </div>
-          </a>
+          </div>
         </div>
-      </section>
+      </FrameSection>
 
-      <Separator />
-
-      <section className='space-y-4'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Company Information</h2>
-        <p className='text-muted-foreground leading-relaxed'>
-          Model HQ is built on <a 
-            href='https://llmware.ai' 
-            target='_blank' 
-            rel='noopener noreferrer'
-            className='text-primary hover:underline font-medium'
-          >
-            LLMware
-          </a>, an open-source framework for enterprise LLM applications. The platform democratizes 
-          AI access while maintaining enterprise-grade security and performance standards.
-        </p>
-      </section>
-
-      <Separator />
-
-      <section className='bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 rounded-lg text-center space-y-6'>
-        <h2 className='text-3xl font-bold'>Ready to get started?</h2>
-        <div className='flex flex-wrap justify-center gap-4'>
-          <a 
-            href='https://llmware.ai/enterprise#developers-waitlist'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium'
-          >
-            Download Model HQ <ExternalLink className='h-4 w-4' />
-          </a>
-          <a 
-            href='/start-here/getting-started'
-            className='inline-flex items-center gap-2 px-6 py-3 border rounded-lg hover:bg-muted/50 transition-colors font-medium'
-          >
-            Read Documentation
-          </a>
-          <a 
-            href='/resources/video-tutorials'
-            className='inline-flex items-center gap-2 px-6 py-3 border rounded-lg hover:bg-muted/50 transition-colors font-medium'
-          >
-            Watch Tutorials
-          </a>
+      <FrameSection last>
+        <div className="px-6 pt-16 md:pt-20">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Resources</span>
+          <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Important links</h2>
         </div>
-      </section>
-    </div>
+        <div className="mt-12 grid grid-cols-1 gap-px border-y border-border bg-border sm:grid-cols-2">
+          {importantLinks.map((link) => (
+            <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between bg-background p-8 transition-colors hover:bg-muted/30">
+              <span className="font-medium">{link.label}</span>
+              <ArrowUpRight className="h-4 w-4 text-brand transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          ))}
+        </div>
+
+        <div className="px-6 py-12 md:py-16">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a href="https://llmware.ai/enterprise#developers-waitlist" target="_blank" rel="noopener noreferrer" className="group inline-flex h-11 items-center justify-center bg-brand px-6 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand/90">
+              Download Model HQ
+              <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a href="/start-here/getting-started" className="inline-flex h-11 items-center justify-center border border-border px-6 text-sm font-medium transition-colors hover:bg-muted">
+              Read documentation
+            </a>
+            <a href="/resources/video-tutorials" className="inline-flex h-11 items-center justify-center border border-border px-6 text-sm font-medium transition-colors hover:bg-muted">
+              Watch tutorials
+            </a>
+          </div>
+        </div>
+      </FrameSection>
+    </PageFrame>
   )
 }

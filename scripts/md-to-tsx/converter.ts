@@ -956,17 +956,8 @@ ${referencesJson},
 // Sections that should use the prominent CheckCircle bullet style for unordered lists.
 // All sections share a single classy accent (slate-blue) for visual consistency.
 const FANCY_LIST_ACCENT = 'text-blue-600 dark:text-blue-400';
-const FANCY_LIST_SECTIONS: Record<string, string> = {
-  'use case': FANCY_LIST_ACCENT,
-  'who this is for': FANCY_LIST_ACCENT,
-  'what you ll learn': FANCY_LIST_ACCENT,
-  'what youll learn': FANCY_LIST_ACCENT,
-  'ingredients prerequisites': FANCY_LIST_ACCENT,
-  'prerequisites': FANCY_LIST_ACCENT,
-  'ingredients': FANCY_LIST_ACCENT,
-  'why this pattern works': FANCY_LIST_ACCENT,
-  'why model hq builds agents differently': FANCY_LIST_ACCENT,
-};
+// Cleaner theme uses plain disc bullets everywhere (no icon-heavy fancy lists).
+const FANCY_LIST_SECTIONS: Record<string, string> = {};
 
 function normalizeSectionKey(title: string): string {
   return title
@@ -1014,7 +1005,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { CheckCircle } from "lucide-react"`;
+import { CheckCircle } from "lucide-react"
+import { PageFrame, FrameSection } from "@/components/page-frame"`;
 
     if (this.content.hasCodeBlocks) {
       imports += `
@@ -1079,20 +1071,21 @@ function CodeBlock({ children, title, language = "text" }: { children: string; t
 
     return `export default function ${componentName}Page() {
   return (
-    <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10 text-[17px] leading-relaxed">
+    <PageFrame>
+      <FrameSection last>
+        <div className="text-[17px] leading-relaxed">
+      <header className="space-y-4 px-6 py-12 md:px-12 md:py-16">
       ${breadcrumbsJsx}
-
-      <header className="space-y-3 sm:space-y-4 border-b border-gray-200 dark:border-gray-800 pb-6 sm:pb-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 leading-[1.2] break-words">${this.escapeJsx(meta.title)}</h1>
-        ${meta.description ? `<p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">${this.escapeJsx(meta.description)}</p>` : ''}
+        <h1 className="max-w-5xl text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.1] break-words">${this.escapeJsx(meta.title)}</h1>
+        ${meta.description ? `<p className="max-w-3xl text-lg text-muted-foreground leading-relaxed">${this.escapeJsx(meta.description)}</p>` : ''}
       </header>
 ${heroEmbed ? `\n${heroEmbed}\n` : ''}
-      <div className="space-y-10 sm:space-y-12">
 ${contentJsx}
 
 ${ctaJsx}
-      </div>
-    </div>
+        </div>
+      </FrameSection>
+    </PageFrame>
   )
 }`;
   }
@@ -1116,8 +1109,8 @@ ${ctaJsx}
     const id = this.extractYouTubeId(url);
     if (!id) return '';
     const safeTitle = (title || 'Tutorial Video').replace(/"/g, '&quot;');
-    return `      <div className="space-y-3">
-        <div className="aspect-video w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm bg-black">
+    return `      <div className="space-y-3 border-t border-border px-6 py-10 md:px-12 md:py-12">
+        <div className="aspect-video w-full overflow-hidden border border-border bg-black">
           <iframe
             src="https://www.youtube.com/embed/${id}?rel=0"
             title="${safeTitle}"
@@ -1125,7 +1118,7 @@ ${ctaJsx}
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        </div>${title ? `\n        <p className="text-sm text-gray-600 dark:text-gray-400 text-center">${this.escapeJsx(title)}</p>` : ''}
+        </div>${title ? `\n        <p className="text-center font-mono text-xs uppercase tracking-wider text-muted-foreground">${this.escapeJsx(title)}</p>` : ''}
       </div>`;
   }
 
@@ -1219,7 +1212,7 @@ ${ctaJsx}
   private generateInlineYouTubeEmbed(url: string): string {
     const id = this.extractYouTubeId(url);
     if (!id) return '';
-    return `        <div className="aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm bg-black my-4">
+    return `        <div className="aspect-video w-full overflow-hidden border border-border bg-black my-4">
           <iframe
             src="https://www.youtube.com/embed/${id}?rel=0"
             title="YouTube video"
@@ -1234,17 +1227,16 @@ ${ctaJsx}
     const indent = '      ';
     const contentJsx = content.map(s => this.sectionToJsx(s, 10)).join('\n');
     const stepId = `step-${stepNumber}`;
-    
+    const num = String(stepNumber).padStart(2, '0');
+
     return `${indent}{/* Step ${stepNumber} */}
-      <section id="${stepId}" className="scroll-mt-24">
-        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-          <div className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 dark:bg-blue-500 text-white flex items-center justify-center font-semibold text-sm sm:text-base shadow-sm">
-            ${stepNumber}
-          </div>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50">${this.processInlineMarkdown(title)}</h2>
-        </div>
-        <div className="pl-0 sm:pl-[3.25rem] space-y-4">
+      <section id="${stepId}" className="scroll-mt-24 border-t border-border px-6 py-10 md:px-12 md:py-12">
+        <div className="max-w-5xl">
+        <span className="font-mono text-sm text-brand">${num}</span>
+        <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">${this.processInlineMarkdown(title)}</h2>
+        <div className="mt-5 space-y-4">
 ${contentJsx}
+        </div>
         </div>
       </section>`;
   }
@@ -1265,9 +1257,11 @@ ${contentJsx}
     const contentJsx = content.map(s => this.sectionToJsx(s, 8)).join('\n');
     this.currentSectionAccent = previousAccent;
     
-    return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
+    return `${indent}<section id="${sectionId}" className="scroll-mt-24 border-t border-border px-6 py-10 md:px-12 md:py-12">
+        <div className="max-w-5xl space-y-4">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">${this.processInlineMarkdown(title)}</h2>
 ${contentJsx}
+        </div>
       </section>`;
   }
 
@@ -1289,25 +1283,29 @@ ${contentJsx}
     if (links.length === 0) {
       // Fallback: render the original content
       const contentJsx = content.map(s => this.sectionToJsx(s, 8)).join('\n');
-      return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
+      return `${indent}<section id="${sectionId}" className="scroll-mt-24 border-t border-border px-6 py-10 md:px-12 md:py-12">
+        <div className="max-w-4xl space-y-4">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">${this.processInlineMarkdown(title)}</h2>
 ${contentJsx}
+        </div>
       </section>`;
     }
 
     const cards = links.map(link => {
-      return `        <a
-          href="${link.href}"
-          className="group flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-blue-950/30 transition-colors"
-        >
-          <span className="text-gray-800 dark:text-gray-200 font-medium">${this.escapeJsx(link.label)}</span>
-          <span className="text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" aria-hidden="true">→</span>
-        </a>`;
+      return `          <a
+            href="${link.href}"
+            className="group flex items-center justify-between gap-3 bg-background p-6 transition-colors hover:bg-muted/30"
+          >
+            <span className="font-medium">${this.escapeJsx(link.label)}</span>
+            <span className="text-brand transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+          </a>`;
     }).join('\n');
 
-    return `${indent}<section id="${sectionId}" className="scroll-mt-24 space-y-4">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 border-b border-gray-200 dark:border-gray-800 pb-2">${this.processInlineMarkdown(title)}</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
+    return `${indent}<section id="${sectionId}" className="scroll-mt-24 border-t border-border">
+        <div className="px-6 pt-10 md:px-12 md:pt-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">${this.processInlineMarkdown(title)}</h2>
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-px border-t border-border bg-border sm:grid-cols-2">
 ${cards}
         </div>
       </section>`;
@@ -1315,7 +1313,7 @@ ${cards}
 
   private generateIntroSection(content: string): string {
     const indent = '      ';
-    return `${indent}<p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+    return `${indent}<p className="text-lg text-muted-foreground leading-relaxed">
         ${this.processInlineMarkdown(content)}
       </p>`;
   }
@@ -1332,7 +1330,7 @@ ${cards}
         if (/^https?:\/\/(www\.)?(youtu\.be|youtube\.com)\/[^\s]+$/.test(trimmed)) {
           const id = this.extractYouTubeId(trimmed);
           if (id) {
-            return `${indent}<div className="aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm bg-black my-4">
+            return `${indent}<div className="aspect-video w-full overflow-hidden border border-border bg-black my-4">
 ${indent}  <iframe
 ${indent}    src="https://www.youtube.com/embed/${id}?rel=0"
 ${indent}    title="YouTube video"
@@ -1343,15 +1341,15 @@ ${indent}  />
 ${indent}</div>`;
           }
         }
-        return `${indent}<p className="text-gray-800 dark:text-gray-200 leading-relaxed">${this.processInlineMarkdown(section.content)}</p>`;
+        return `${indent}<p className="text-foreground/90 leading-relaxed">${this.processInlineMarkdown(section.content)}</p>`;
       }
       case 'image':
         return `${indent}<figure className="my-6">
 ${indent}  <img
 ${indent}    src="${section.content}"
 ${indent}    alt="${section.title || ''}"
-${indent}    className="rounded-lg border border-gray-200 dark:border-gray-800 w-full shadow-sm"
-${indent}  />${section.title ? `\n${indent}  <figcaption className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2">${this.escapeJsx(section.title)}</figcaption>` : ''}
+${indent}    className="w-full border border-border"
+${indent}  />${section.title ? `\n${indent}  <figcaption className="mt-2 text-center font-mono text-xs uppercase tracking-wider text-muted-foreground">${this.escapeJsx(section.title)}</figcaption>` : ''}
 ${indent}</figure>`;
       case 'raw':
         // Emit raw HTML/JSX blocks like <details> directly
@@ -1365,7 +1363,7 @@ ${indent}</figure>`;
       case 'table':
         return this.tableToJsx(section, indent);
       default:
-        return `${indent}<p className="text-gray-800 dark:text-gray-200">${this.escapeJsx(section.content)}</p>`;
+        return `${indent}<p className="text-foreground/90">${this.escapeJsx(section.content)}</p>`;
     }
   }
 
@@ -1375,20 +1373,20 @@ ${indent}</figure>`;
     const id = section.id ? ` id="${section.id}"` : '';
     
     if (level === 3) {
-      return `${indent}<h3${id} className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-50 pt-2 scroll-mt-24">${content}</h3>`;
+      return `${indent}<h3${id} className="text-xl sm:text-2xl font-semibold tracking-tight pt-2 scroll-mt-24">${content}</h3>`;
     }
     if (level === 4) {
-      return `${indent}<h4${id} className="text-lg font-semibold text-gray-900 dark:text-gray-100 pt-1 scroll-mt-24">${content}</h4>`;
+      return `${indent}<h4${id} className="text-lg font-semibold pt-1 scroll-mt-24">${content}</h4>`;
     }
     if (level === 5) {
-      return `${indent}<h5${id} className="text-base font-semibold text-gray-800 dark:text-gray-200 scroll-mt-24">${content}</h5>`;
+      return `${indent}<h5${id} className="text-base font-semibold scroll-mt-24">${content}</h5>`;
     }
     if (level === 6) {
-      return `${indent}<h6${id} className="text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300 scroll-mt-24">${content}</h6>`;
+      return `${indent}<h6${id} className="font-mono text-sm font-semibold uppercase tracking-widest text-brand scroll-mt-24">${content}</h6>`;
     }
     
     const tag = `h${level}`;
-    return `${indent}<${tag}${id} className="font-semibold text-gray-900 dark:text-gray-100">${content}</${tag}>`;
+    return `${indent}<${tag}${id} className="font-semibold">${content}</${tag}>`;
   }
 
   private codeToJsx(section: Section, indent: string): string {
@@ -1447,14 +1445,14 @@ ${indent}</aside>`;
         const text = typeof item === 'string' ? item : item.content;
         const processed = this.processInlineMarkdown(text);
         let result = `
-${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed pl-1">${processed}`;
+${indent}  <li className="text-foreground/90 leading-relaxed pl-1">${processed}`;
         if (typeof item !== 'string' && item.subItems && item.subItems.length > 0) {
           result += `
-${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-gray-400 dark:marker:text-gray-500">`;
+${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-muted-foreground">`;
           for (const subItem of item.subItems) {
             const processedSub = this.processInlineMarkdown(subItem);
             result += `
-${indent}      <li className="text-gray-700 dark:text-gray-300 text-[0.95em]">${processedSub}</li>`;
+${indent}      <li className="text-muted-foreground text-[0.95em]">${processedSub}</li>`;
           }
           result += `
 ${indent}    </ul>`;
@@ -1462,7 +1460,7 @@ ${indent}    </ul>`;
         result += `</li>`;
         return result;
       }).join('') || '';
-      return `${indent}<ol className="list-decimal list-outside pl-6 space-y-2 marker:text-gray-500 dark:marker:text-gray-400 marker:font-semibold">${items}
+      return `${indent}<ol className="list-decimal list-outside pl-6 space-y-2 marker:text-brand marker:font-semibold">${items}
 ${indent}</ol>`;
     }
 
@@ -1475,18 +1473,18 @@ ${indent}</ol>`;
         if (typeof item === 'string') {
           const processed = this.processInlineMarkdown(item);
           return `
-${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed">${processed}</li>`;
+${indent}  <li className="text-foreground/90 leading-relaxed">${processed}</li>`;
         } else {
           const processed = this.processInlineMarkdown(item.content);
           let result = `
-${indent}  <li className="text-gray-800 dark:text-gray-200 leading-relaxed">${processed}`;
+${indent}  <li className="text-foreground/90 leading-relaxed">${processed}`;
           if (item.subItems && item.subItems.length > 0) {
             result += `
-${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-gray-400 dark:marker:text-gray-500">`;
+${indent}    <ul className="list-[circle] list-outside pl-6 mt-2 space-y-1 marker:text-muted-foreground">`;
             for (const subItem of item.subItems) {
               const processedSub = this.processInlineMarkdown(subItem);
               result += `
-${indent}      <li className="text-gray-700 dark:text-gray-300 text-[0.95em]">${processedSub}</li>`;
+${indent}      <li className="text-muted-foreground text-[0.95em]">${processedSub}</li>`;
             }
             result += `
 ${indent}    </ul>`;
@@ -1495,7 +1493,7 @@ ${indent}    </ul>`;
           return result;
         }
       }).join('') || '';
-      return `${indent}<ul className="list-disc list-outside pl-6 space-y-2 marker:text-gray-400 dark:marker:text-gray-500">${items}
+      return `${indent}<ul className="list-disc list-outside pl-6 space-y-2 marker:text-brand">${items}
 ${indent}</ul>`;
     }
 
@@ -1542,27 +1540,27 @@ ${indent}</ul>`;
     
     const { headers, rows } = section.tableData;
     
-    let jsx = `${indent}<div className="my-5 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
+    let jsx = `${indent}<div className="my-5 overflow-x-auto border border-border">
 ${indent}  <table className="min-w-full text-sm sm:text-base">
 ${indent}    <thead>
-${indent}      <tr className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">`;
+${indent}      <tr className="border-b border-border bg-muted/40">`;
     
     for (const header of headers) {
       jsx += `
-${indent}        <th className="px-4 py-3 text-left text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-700 dark:text-gray-300 whitespace-nowrap">${this.escapeJsx(header)}</th>`;
+${indent}        <th className="px-4 py-3 text-left font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">${this.escapeJsx(header)}</th>`;
     }
     
     jsx += `
 ${indent}      </tr>
 ${indent}    </thead>
-${indent}    <tbody className="divide-y divide-gray-200 dark:divide-gray-800">`;
+${indent}    <tbody className="divide-y divide-border">`;
     
     for (const row of rows) {
       jsx += `
-${indent}      <tr className="hover:bg-gray-50/60 dark:hover:bg-gray-900/40">`;
+${indent}      <tr className="hover:bg-muted/30">`;
       for (const cell of row) {
         jsx += `
-${indent}        <td className="px-4 py-3 text-gray-800 dark:text-gray-200 align-top leading-relaxed">${this.processInlineMarkdown(cell)}</td>`;
+${indent}        <td className="px-4 py-3 align-top leading-relaxed text-foreground/90">${this.processInlineMarkdown(cell)}</td>`;
       }
       jsx += `
 ${indent}      </tr>`;
@@ -1654,10 +1652,11 @@ ${indent}</div>`;
 
   private generateCTA(): string {
     const indent = '      ';
-    return `${indent}<div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Need help with this cookbook? Reach out to us at{' '}
-          <a href="mailto:support@aibloks.com" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+    return `${indent}<div className="border-t border-border px-6 py-10 md:px-12 md:py-12">
+        <span className="font-mono text-xs uppercase tracking-widest text-brand">Need help?</span>
+        <p className="mt-3 text-muted-foreground">
+          Reach out to our team at{' '}
+          <a href="mailto:support@aibloks.com" className="font-medium text-brand hover:underline">
             support@aibloks.com
           </a>
         </p>

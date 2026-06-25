@@ -1,307 +1,314 @@
-"use client"
+'use client'
 
-import type React from "react"
-
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Upload, CheckCircle, AlertCircle } from "lucide-react"
+import { ArrowUpRight, Loader2, Paperclip, X, CheckCircle2 } from "lucide-react"
+import { PageFrame, FrameSection } from "@/components/page-frame"
+
+const issueTypes = [
+  { value: "general", label: "General Inquiry" },
+  { value: "trial", label: "Free Trial Access Code Request" },
+  { value: "technical", label: "Technical Issue" },
+  { value: "bug", label: "Bug Report" },
+  { value: "feature", label: "Feature Request" },
+  { value: "documentation", label: "Documentation Feedback" },
+  { value: "other", label: "Other" },
+]
 
 export default function SupportPage() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        issueType: "",
-        subject: "",
-        body: "",
-        files: [] as File[],
-    })
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [issueType, setIssueType] = useState("general")
+  const [subject, setSubject] = useState("")
+  const [body, setBody] = useState("")
+  const [files, setFiles] = useState<File[]>([])
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMsg, setErrorMsg] = useState("")
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-    const issueTypes = [
-        { value: "general", label: "General Inquiry" },
-        { value: "trial", label: "Free Trial Access Code Request" },
-        { value: "technical", label: "Technical Issue" },
-        { value: "bug", label: "Bug Report" },
-        { value: "feature", label: "Feature Request" },
-        { value: "documentation", label: "Documentation Feedback" },
-        { value: "other", label: "Other" },
-    ]
-
-    const handleInputChange = (field: string, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }))
+  const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFiles((prev) => [...prev, ...Array.from(e.target.files!)])
     }
+  }
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(e.target.files || [])
-        setFormData((prev) => ({ ...prev, files }))
+  const removeFile = (index: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("submitting")
+    setErrorMsg("")
+
+    try {
+      const formData = new FormData()
+      formData.append("name", name)
+      formData.append("email", email)
+      formData.append("issueType", issueType)
+      formData.append("subject", subject)
+      formData.append("body", body)
+      files.forEach((file, i) => formData.append(`file_${i}`, file))
+
+      const res = await fetch("/api/support", { method: "POST", body: formData })
+
+      if (res.ok) {
+        setStatus("success")
+        setName("")
+        setEmail("")
+        setIssueType("general")
+        setSubject("")
+        setBody("")
+        setFiles([])
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setErrorMsg(data?.error || "Something went wrong. Please try again.")
+        setStatus("error")
+      }
+    } catch {
+      setErrorMsg("Network error. Please try again.")
+      setStatus("error")
     }
+  }
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsSubmitting(true)
-        setSubmitStatus("idle")
+  const inputClass =
+    "w-full rounded-none border border-border bg-background px-3 py-2.5 text-sm outline-none transition-colors focus:border-brand focus:ring-1 focus:ring-brand/40 placeholder:text-muted-foreground"
 
-        try {
-            // Create FormData for file uploads
-            const formDataToSend = new FormData()
-            formDataToSend.append("name", formData.name)
-            formDataToSend.append("email", formData.email)
-            formDataToSend.append("issueType", formData.issueType)
-            formDataToSend.append("subject", formData.subject)
-            formDataToSend.append("body", formData.body)
-
-            // Add files
-            formData.files.forEach((file, index) => {
-                formDataToSend.append(`file_${index}`, file)
-            })
-
-            // Send to server action
-            const response = await fetch("/api/support", {
-                method: "POST",
-                body: formDataToSend,
-            })
-
-            if (response.ok) {
-                setSubmitStatus("success")
-                // Reset form
-                setFormData({
-                    name: "",
-                    email: "",
-                    issueType: "",
-                    subject: "",
-                    body: "",
-                    files: [],
-                })
-                // Reset file input
-                const fileInput = document.getElementById("file-upload") as HTMLInputElement
-                if (fileInput) fileInput.value = ""
-            } else {
-                throw new Error("Failed to send email")
-            }
-        } catch (error) {
-            console.error("Error submitting form:", error)
-            setSubmitStatus("error")
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
-
-    return (
-        <div className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
-            <div className="space-y-8">
-                <div>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Support</h1>
-                    <p className="text-lg text-gray-600 dark:text-gray-400">Get help with Model HQ and find answers to common questions.</p>
-                </div>
-
-                {/* Support Form */}
-                <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-slate-900 border-blue-200 dark:border-gray-700">
-                    <CardHeader>
-                        <CardTitle>Contact Support</CardTitle>
-                        <CardDescription>Fill out the form below and we'll get back to you as soon as possible.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="name">Name *</Label>
-                                    <Input
-                                        id="name"
-                                        type="text"
-                                        value={formData.name}
-                                        onChange={(e) => handleInputChange("name", e.target.value)}
-                                        required
-                                        placeholder="Your full name"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="email">Email *</Label>
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        value={formData.email}
-                                        onChange={(e) => handleInputChange("email", e.target.value)}
-                                        required
-                                        placeholder="your.email@example.com"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="issue-type">Issue/Feedback Type *</Label>
-                                <Select
-                                    value={formData.issueType}
-                                    onValueChange={(value) => handleInputChange("issueType", value)}
-                                    required
-                                >
-                                    <SelectTrigger id="issue-type">
-                                        <SelectValue placeholder="Select the type of issue or feedback" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {issueTypes.map((type) => (
-                                            <SelectItem key={type.value} value={type.value}>
-                                                {type.label}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="subject">Subject *</Label>
-                                <Input
-                                    id="subject"
-                                    type="text"
-                                    value={formData.subject}
-                                    onChange={(e) => handleInputChange("subject", e.target.value)}
-                                    required
-                                    placeholder="Brief description of your issue or feedback"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="body">Message *</Label>
-                                <Textarea
-                                    id="body"
-                                    value={formData.body}
-                                    onChange={(e) => handleInputChange("body", e.target.value)}
-                                    required
-                                    placeholder="Please provide detailed information about your issue or feedback..."
-                                    className="min-h-[120px]"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="file-upload">Attachments</Label>
-                                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                                    <input
-                                        id="file-upload"
-                                        type="file"
-                                        multiple
-                                        onChange={handleFileChange}
-                                        className="block w-full text-sm text-muted-foreground
-                 file:mr-4 file:rounded-md file:border-0
-                 file:bg-primary file:px-4 file:py-2
-                 file:text-sm file:font-medium
-                 file:text-primary-foreground
-                 hover:file:bg-primary/90"
-                                    />
-                                    <Upload className="h-4 w-4 text-muted-foreground sm:flex-shrink-0" />
-                                </div>
-
-                                {formData.files.length > 0 && (
-                                    <div className="text-sm text-muted-foreground">
-                                        Selected files: {formData.files.map((f) => f.name).join(", ")}
-                                    </div>
-                                )}
-
-                                <p className="text-xs text-muted-foreground">
-                                    You can attach screenshots, logs, or other relevant files (max 10MB per file)
-                                </p>
-                            </div>
-
-                            {submitStatus === "success" && (
-                                <Alert className="border-green-200 bg-green-50">
-                                    <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <AlertDescription className="text-green-800">
-                                        Your support request has been sent successfully! We'll get back to you as soon as possible.
-                                    </AlertDescription>
-                                </Alert>
-                            )}
-
-                            {submitStatus === "error" && (
-                                <Alert className="border-red-200 bg-red-50">
-                                    <AlertCircle className="h-4 w-4 text-red-600" />
-                                    <AlertDescription className="text-red-800">
-                                        There was an error processing your request. Please try again or contact support@aibloks.com
-                                        directly.
-                                    </AlertDescription>
-                                </Alert>
-                            )}
-
-                            <Button
-                                type="submit"
-                                disabled={
-                                    isSubmitting ||
-                                    !formData.name ||
-                                    !formData.email ||
-                                    !formData.issueType ||
-                                    !formData.subject ||
-                                    !formData.body
-                                }
-                                className="w-full sm:w-auto"
-                            >
-                                {isSubmitting ? "Submitting..." : "Submit Support Request"}
-                            </Button>
-                        </form>
-                    </CardContent>
-                </Card>
-
-                {/* Support Options */}
-                <div className="grid md:grid-cols-2 gap-8">
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">📧 Email Support</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            For technical issues and general inquiries, reach out to our support team.
-                        </p>
-                        <a href="mailto:support@aibloks.com" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium">
-                            support@aibloks.com
-                        </a>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-950 dark:to-blue-950 border border-cyan-200 dark:border-cyan-800 rounded-lg p-6">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">📚 Documentation</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            Browse our comprehensive documentation for detailed guides and tutorials.
-                        </p>
-                        <a href="/" className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 dark:hover:text-cyan-300 underline font-medium">
-                            View Documentation
-                        </a>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border border-green-200 dark:border-green-800 rounded-lg p-6">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">💬 Discord Community</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">Join our community discussions and connect with other users.</p>
-                        <a
-                            href="https://discord.gg/bphreFK4NJ"
-                            className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 underline font-medium"
-                        >
-                            Join Community
-                        </a>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950 border border-orange-200 dark:border-orange-800 rounded-lg p-6">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">🐛 Bug Reports</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">Found a bug? Report it on our GitHub repository.</p>
-                        <a
-                            href="https://github.com/llmware-ai/llmware/issues"
-                            className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 underline font-medium"
-                        >
-                            Report Bug
-                        </a>
-                    </div>
-                </div>
-
-                <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-                    <h2 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-4">🚀 Quick Start</h2>
-                    <p className="text-blue-800 dark:text-blue-200 mb-4">
-                        New to Model HQ? Check out our getting started guide to begin your journey.
-                    </p>
-                    <a
-                        href="/getting-started"
-                        className="inline-flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
-                    >
-                        Get Started
-                    </a>
-                </div>
-            </div>
+  return (
+    <PageFrame>
+      {/* Hero */}
+      <FrameSection>
+        <div className="px-6 py-16 md:py-24">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">
+            Support
+          </span>
+          <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">
+            How can we help?
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            Have a question, found a bug, or need a trial access code? Send us a
+            message and our team will get back to you.
+          </p>
         </div>
-    )
+      </FrameSection>
+
+      {/* Contact channels */}
+      <FrameSection>
+        <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-2">
+          <a
+            href="mailto:support@llmware.ai"
+            className="group flex flex-col items-start bg-background p-8 transition-colors hover:bg-muted/30 md:p-12"
+          >
+            <span className="font-mono text-xs uppercase tracking-widest text-brand">Email</span>
+            <h3 className="mt-3 text-xl font-semibold tracking-tight">support@llmware.ai</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Reach the team directly for any support questions.
+            </p>
+            <span className="mt-auto inline-flex items-center pt-8 text-sm font-medium text-brand">
+              Send an email
+              <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </a>
+
+          <a
+            href="https://llmware.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col items-start bg-background p-8 transition-colors hover:bg-muted/30 md:p-12"
+          >
+            <span className="font-mono text-xs uppercase tracking-widest text-brand">Website</span>
+            <h3 className="mt-3 text-xl font-semibold tracking-tight">LLMWare.ai</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Explore products, resources, and the latest from the team.
+            </p>
+            <span className="mt-auto inline-flex items-center pt-8 text-sm font-medium text-brand">
+              Visit website
+              <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </a>
+        </div>
+      </FrameSection>
+
+      {/* Form */}
+      <FrameSection last>
+        {/* Centered column with two vertical guide lines framing the form */}
+        <div className="mx-auto max-w-3xl border-x border-border px-6 py-16 md:px-12 md:py-20">
+          <div className="text-center">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand">
+              Contact form
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              Send us a message
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Fill out the form below and we&apos;ll respond as soon as possible.
+            </p>
+          </div>
+
+          {status === "success" ? (
+            <div className="mt-10 flex items-start gap-3 border border-border bg-muted/30 p-6">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand" />
+              <div>
+                <p className="font-semibold">Message sent</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Thanks for reaching out. We&apos;ll get back to you shortly. You can
+                  send another message anytime.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-4 rounded-none"
+                  onClick={() => setStatus("idle")}
+                >
+                  Send another message
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-10 space-y-6 text-left">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className={inputClass}
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={inputClass}
+                    placeholder="you@example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="issueType" className="mb-2 block text-sm font-medium">
+                  Issue type
+                </label>
+                <select
+                  id="issueType"
+                  value={issueType}
+                  onChange={(e) => setIssueType(e.target.value)}
+                  className={inputClass}
+                >
+                  {issueTypes.map((t) => (
+                    <option key={t.value} value={t.value}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="mb-2 block text-sm font-medium">
+                  Subject
+                </label>
+                <input
+                  id="subject"
+                  type="text"
+                  required
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  className={inputClass}
+                  placeholder="Brief summary of your request"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="body" className="mb-2 block text-sm font-medium">
+                  Message
+                </label>
+                <textarea
+                  id="body"
+                  required
+                  rows={6}
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
+                  className={`${inputClass} resize-y`}
+                  placeholder="Describe your issue or question in detail..."
+                />
+              </div>
+
+              {/* Attachments */}
+              <div>
+                <label className="mb-2 block text-sm font-medium">Attachments</label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  onChange={handleFiles}
+                  className="hidden"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="rounded-none"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Paperclip className="mr-2 h-4 w-4" />
+                  Add files
+                </Button>
+
+                {files.length > 0 && (
+                  <ul className="mt-3 space-y-2">
+                    {files.map((file, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center justify-between border border-border bg-muted/20 px-3 py-2 text-sm"
+                      >
+                        <span className="truncate">{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(i)}
+                          className="ml-3 text-muted-foreground transition-colors hover:text-foreground"
+                          aria-label="Remove file"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {status === "error" && (
+                <p className="text-sm text-destructive">{errorMsg}</p>
+              )}
+
+              <Button
+                type="submit"
+                size="lg"
+                disabled={status === "submitting"}
+                className="h-12 w-full rounded-none bg-brand px-6 text-base text-brand-foreground hover:bg-brand/90"
+              >
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send message"
+                )}
+              </Button>
+            </form>
+          )}
+        </div>
+      </FrameSection>
+    </PageFrame>
+  )
 }

@@ -11,10 +11,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Laptop, Database, Info } from "lucide-react"
+import { PageFrame, FrameSection } from "@/components/page-frame"
 
 export default function SystemConfigurationPage() {
   return (
-    <div className="max-w-5xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
+    <PageFrame>
+      <FrameSection last>
+        <div className="mx-auto max-w-5xl space-y-6 px-6 py-12 md:py-16">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -28,9 +31,10 @@ export default function SystemConfigurationPage() {
       </Breadcrumb>
 
       <div className="space-y-4 sm:space-y-6">
-        <div className="text-center space-y-3 sm:space-y-4">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">System Configuration</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+        <div className="space-y-3">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand">Start here</span>
+          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">System Configuration</h1>
+          <p className="max-w-3xl text-lg text-muted-foreground">
             Ensure your system meets the requirements for optimal Model HQ performance
           </p>
         </div>
@@ -251,6 +255,8 @@ export default function SystemConfigurationPage() {
           Get Started
         </a>
       </div>
-    </div>
+        </div>
+      </FrameSection>
+    </PageFrame>
   )
 }

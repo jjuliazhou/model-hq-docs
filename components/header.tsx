@@ -7,7 +7,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Search, FileText, Hash, BookOpen, Sparkles } from "lucide-react"
+import { Search, FileText, Hash, BookOpen, WandSparkles } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { v0SearchData } from "./v0-search-data"
 import { v1SearchData } from "./v1-search-data"
@@ -289,15 +289,15 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-2 sm:px-4 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+        className={`sticky top-0 z-40 flex h-16 shrink-0 items-center gap-2 border-b border-border bg-background/80 px-2 backdrop-blur sm:px-4 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
       >
-        <SidebarTrigger className="-ml-1 flex-shrink-0" suppressHydrationWarning />
+        <SidebarTrigger className="-ml-1 flex-shrink-0 rounded-none" suppressHydrationWarning />
         <Separator orientation="vertical" className="mr-2 h-4 flex-shrink-0" />
         <div className="flex flex-1 items-center justify-between gap-2 min-w-0">
           <div className="flex items-center gap-2 min-w-0 flex-shrink">
             <h1 className="text-base sm:text-lg font-semibold truncate">Model HQ</h1>
-            <span className="hidden md:inline text-sm text-muted-foreground whitespace-nowrap">Documentation</span>
+            <span className="hidden md:inline font-mono text-xs uppercase tracking-widest text-muted-foreground whitespace-nowrap">Documentation</span>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             {/* Theme Toggle - hidden on mobile, will be in sidebar instead */}
@@ -339,7 +339,7 @@ export function Header() {
                   ref={inputRef}
                   type="text"
                   placeholder="Search... (⌘ + K for AI)"
-                  className={`w-full pl-8 pr-3 text-sm h-9 rounded-md outline-none transition-colors duration-200 ease-in-out ${
+                  className={`w-full pl-8 pr-3 text-sm h-9 rounded-none outline-none transition-colors duration-200 ease-in-out ${
                     isSearchFocused 
                       ? 'bg-accent/50 dark:bg-accent/30' 
                       : 'bg-background'
@@ -375,7 +375,7 @@ export function Header() {
 
                 {/* Search Results Dropdown */}
                 {showResults && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-background border rounded-md shadow-lg z-[60] max-h-96 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-none shadow-lg z-[60] max-h-96 overflow-y-auto">
                     <SearchResult 
                       results={searchResults} 
                       onResultClick={handleResultClick}
@@ -392,12 +392,12 @@ export function Header() {
                 setShowAiModal(true)
                 setAiQuery("")
               }}
-              className="h-9 px-3 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors flex items-center gap-2"
+              className="group h-9 px-3 rounded-none border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors flex items-center gap-2"
               title="AI Search (⌘K or Ctrl+K)"
               suppressHydrationWarning
             >
-              <Sparkles className="h-4 w-4" />
-              <span className="hidden sm:inline text-sm">AI</span>
+              <WandSparkles className="h-4 w-4 text-brand transition-transform group-hover:scale-110 group-hover:rotate-12" />
+              <span className="hidden sm:inline font-mono text-xs uppercase tracking-wider">AI</span>
             </button>
           </div>
         </div>

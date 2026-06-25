@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { X, Send, Loader2, Sparkles } from "lucide-react"
+import { X, Send, Loader2, WandSparkles } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import ReactMarkdown from "react-markdown"
@@ -136,16 +136,16 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
         <div
-          className="bg-background border rounded-lg shadow-2xl w-full max-w-3xl max-h-[70vh] flex flex-col"
+          className="bg-background border border-border rounded-none shadow-2xl w-full max-w-3xl max-h-[70vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="p-4 border-b">
+          <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
+                <WandSparkles className="h-5 w-5 text-brand" />
                 <h2 className="text-lg font-semibold">AI Search</h2>
-                <span className="text-xs text-muted-foreground">
+                <span className="hidden sm:inline font-mono text-xs uppercase tracking-wider text-muted-foreground">
                   Ask anything about Model HQ
                 </span>
               </div>
@@ -155,7 +155,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                   variant="ghost"
                   size="icon"
                   onClick={handleClose}
-                  className="h-8 w-8"
+                  className="h-8 w-8 rounded-none"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -186,13 +186,13 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto scrollbar-thin p-4 space-y-4">
             {messages.length === 0 && (
-              <div className="text-center text-muted-foreground py-8">
-                <Sparkles className="h-12 w-12 mx-auto mb-4 text-primary/50" />
-                <p className="text-lg font-medium">Ask me anything about Model HQ</p>
+              <div className="text-center text-muted-foreground py-12">
+                <WandSparkles className="h-10 w-10 mx-auto mb-4 text-brand" />
+                <p className="text-lg font-medium text-foreground">Ask me anything about Model HQ</p>
                 <p className="text-sm mt-2">
-                  I'll search through the documentation to help you find answers
+                  I&apos;ll search through the documentation to help you find answers
                 </p>
               </div>
             )}
@@ -205,10 +205,10 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-lg p-3 ${
+                  className={`max-w-[80%] rounded-none p-3 ${
                     message.role === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted"
+                      ? "bg-brand text-brand-foreground"
+                      : "border border-border bg-muted/40"
                   }`}
                 >
                   {message.role === "user" ? (
@@ -286,8 +286,8 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
 
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-muted rounded-lg p-3">
-                  <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                <div className="border border-border bg-muted/40 rounded-none p-3">
+                  <Loader2 className="h-4 w-4 animate-spin text-brand" />
                 </div>
               </div>
             )}
@@ -296,7 +296,7 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t border-border">
             <div className="flex gap-2">
                 <Input
                   ref={inputRef}
@@ -305,12 +305,13 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
                   disabled={isLoading}
-                  className="flex-1 !border-blue-200 focus-visible:!ring-blue-200 focus-visible:!border-blue-200"
+                  className="flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               <Button
                 onClick={() => handleSearch()}
                 disabled={isLoading || !query.trim()}
                 size="icon"
+                className="rounded-none bg-brand text-brand-foreground hover:bg-brand/90"
               >
                 {isLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -319,8 +320,8 @@ export function AiSearchModal({ isOpen, onClose, initialQuery = "" }: AiSearchMo
                 )}
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              Press Enter to send, Escape to close
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+              Press Enter to send · Escape to close
             </p>
           </div>
         </div>
