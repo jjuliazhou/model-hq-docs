@@ -4,7 +4,6 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowUpRight, AlertTriangle } from "lucide-react"
-import { Analytics } from "@vercel/analytics/react"
 
 const features = [
   {
@@ -823,7 +822,6 @@ export default function HomePage() {
           </section>
         </div>
       </div>
-      <Analytics />
     </>
   )
 }
