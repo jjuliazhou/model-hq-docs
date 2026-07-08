@@ -58,58 +58,61 @@ export function Footer() {
         <span aria-hidden className="pointer-events-none absolute -right-[6.5px] -top-[6.5px] z-10 hidden md:block">
           <PlusMark />
         </span>
-        {/* Top: brand + link columns */}
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-            <div className="flex items-center gap-3">
-              <img src="/images/llmware-logo.png" alt="Model HQ" className="h-8 w-8" />
-              <span className="font-semibold tracking-tight">Model HQ</span>
-            </div>
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Run cutting-edge AI models directly on your PC. Private, secure, and
-              completely offline.
-            </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Model HQ.
-              <br />
-              All rights reserved.
+        {/* Wrapper: wordmark bg + columns on top */}
+        <div className="relative pb-14">
+          {/* Giant wordmark — as background layer */}
+          <div className="pointer-events-none absolute inset-0 flex select-none overflow-hidden">
+            <p
+              aria-hidden
+              className="m-auto bg-gradient-to-b from-foreground/[0.07] to-transparent bg-clip-text text-center text-[18vw] font-bold leading-none tracking-tighter text-transparent lg:text-[180px]"
+            >
+              MODEL HQ
             </p>
           </div>
 
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                {section.title}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      className="group inline-flex items-center gap-1 text-sm text-foreground/80 transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                      {link.external && (
-                        <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Top: brand + link columns */}
+          <div className="relative z-10 grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+              <div className="flex items-center gap-3">
+                <img src="/images/llmware-logo.png" alt="Model HQ" className="h-8 w-8" />
+                <span className="font-semibold tracking-tight">Model HQ</span>
+              </div>
+              <p className="mt-4 max-w-xs text-sm text-muted-foreground">
+                Run cutting-edge AI models directly on your PC. Private, secure, and
+                completely offline.
+              </p>
+              <p className="mt-4 text-xs text-muted-foreground">
+                &copy; {new Date().getFullYear()} Model HQ.
+                <br />
+                All rights reserved.
+              </p>
             </div>
-          ))}
-        </div>
 
-        {/* Giant wordmark, Zed-style */}
-        <div className="relative mt-14 select-none overflow-hidden border-t border-border pt-8">
-          <p
-            aria-hidden
-            className="bg-gradient-to-b from-foreground/10 to-transparent bg-clip-text text-center text-[18vw] font-bold leading-none tracking-tighter text-transparent lg:text-[180px]"
-          >
-            MODEL HQ
-          </p>
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  {section.title}
+                </h3>
+                <ul className="mt-4 space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="group inline-flex items-center gap-1 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                        {link.external && (
+                          <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
