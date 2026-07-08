@@ -175,6 +175,11 @@ const navigationData = {
       url: "/cookbooks/v1/building-contract-analyzer",
       icon: FileSearch,
     },
+    {
+      title: "Sources for RAG",
+      url: "/cookbooks/v1/sources-for-rag",
+      icon: Library,
+    },
   ] as NavItem[],
 }
 
@@ -315,21 +320,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="icon" {...props} className="[&_[data-sidebar=content]]:scrollbar-thin [&_[data-sidebar=content]]:scrollbar-thumb-border [&_[data-sidebar=content]]:scrollbar-track-transparent">
-      <SidebarHeader>
+      <SidebarHeader className="h-16 justify-center border-b border-border p-0 px-2">
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="flex items-center justify-between w-full gap-2">
-              <SidebarMenuButton size="lg" asChild className={`h-16 flex-1 ${isCollapsed ? "px-0 justify-center" : "px-3"}`}>
+              <SidebarMenuButton size="lg" asChild className={`h-14 flex-1 rounded-none ${isCollapsed ? "px-0 justify-center" : "px-3"}`}>
                 <a href="/">
                   <div
-                    className={`flex aspect-square ${isCollapsed ? "size-10" : "size-12"} items-center justify-center rounded-lg bg-white p-2 shadow-sm mx-auto`}
+                    className={`flex aspect-square ${isCollapsed ? "size-9" : "size-10"} items-center justify-center rounded-md border border-border bg-white p-1.5 shadow-sm mx-auto`}
                   >
                     <img src="/images/llmware-logo.png" alt="Model HQ" className="size-full object-contain" />
                   </div>
                   {!isCollapsed && (
                     <div className="grid flex-1 text-left leading-tight ml-3">
                       <span className="truncate text-lg font-bold">Model HQ</span>
-                      <span className="truncate text-sm text-muted-foreground">Documentation</span>
+                      <span className="truncate font-mono text-xs uppercase tracking-widest text-muted-foreground">Documentation</span>
                     </div>
                   )}
                 </a>
@@ -624,12 +629,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarGroup>
         <SidebarGroupLabel asChild>
           <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
-            <span className="font-semibold text-sm">Model HQ Core Docs</span>
-            <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/v1-collapsible:rotate-90" />
+            <span className="font-mono text-[11px] font-medium uppercase tracking-widest text-sidebar-foreground/60">Model HQ Core Docs</span>
+            <ChevronRight className="ml-auto size-4 text-muted-foreground transition-transform duration-200 group-data-[state=open]/v1-collapsible:rotate-90" />
           </CollapsibleTrigger>
         </SidebarGroupLabel>
         <CollapsibleContent>
-          <SidebarGroupContent className="relative ml-3 overflow-visible">
+          <SidebarGroupContent className="relative ml-3 mr-1 overflow-visible">
             {/* Vertical line for tree structure */}
             <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
             <SidebarMenu className="space-y-1 overflow-visible">
@@ -818,8 +823,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       suppressHydrationWarning
                       className="font-medium"
                     >
+                      <BookCopy className="size-4" />
                       <span className="text-sm">Cookbooks (new)</span>
-                      <ChevronRight className="ml-auto size-4 transition-transform duration-200 group-data-[state=open]/cookbooks-v1:rotate-90" />
+                      <ChevronRight className="ml-auto size-4 text-muted-foreground transition-transform duration-200 group-data-[state=open]/cookbooks-v1:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
@@ -856,20 +862,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </>
         )}
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Contact Support" suppressHydrationWarning>
-              <a
-                href="/support"
-                className={`w-full flex gap-2 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md transition-colors ${isCollapsed ? 'py-2 justify-center' : 'py-6'}`}
-              >
-                <Mail className={isCollapsed ? "size-4" : "size-6"} />
-                {!isCollapsed && <span>Contact Support</span>}
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+      <SidebarFooter className="border-t border-border p-0">
+        <a
+          href="/support"
+          title="Contact Support"
+          className={`group flex w-full items-center gap-2 transition-colors hover:bg-muted ${isCollapsed ? 'justify-center py-4' : 'px-4 py-5'}`}
+        >
+          <Mail className={`text-brand ${isCollapsed ? "size-4" : "size-5"}`} />
+          {!isCollapsed && <span className="font-medium">Contact Support</span>}
+        </a>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

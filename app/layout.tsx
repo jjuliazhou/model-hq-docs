@@ -10,6 +10,7 @@ import { NavigationLoading } from "@/components/navigation-loading"
 import { ThemeProvider } from "@/components/theme-provider"
 import { HeaderVisibilityProvider } from "@/contexts/header-visibility-context"
 import { DeprecationBanner } from "@/components/deprecation-banner"
+import { Analytics } from "@vercel/analytics/next"
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -78,13 +79,14 @@ export default function RootLayout({
               <AppSidebar />
               <SidebarInset>
                 <Header />
-                <DeprecationBanner />
+                {/* <DeprecationBanner /> */}
                 <main className="flex-1 p-6">{children}</main>
                 <Footer />
               </SidebarInset>
             </SidebarProvider>
           </HeaderVisibilityProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
