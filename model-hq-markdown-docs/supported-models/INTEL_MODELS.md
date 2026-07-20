@@ -4,8 +4,6 @@
 
 # CPU  Models 
 
-<div style="margin-left: 40px;">
-
 ## Agentic Models
 
 | Model Name |
@@ -116,12 +114,7 @@
 
 ---
 
-</div>
-
 # GPU/CPU/NPU Models 
-
-<div style="margin-left: 40px;">
-
 
 ## Agentic Models
 
@@ -324,11 +317,7 @@
 
 ---
 
-</div>
-
 # NPU Models 
-
-<div style="margin-left: 40px;">
 
 | Model Name |
 |------------|
@@ -355,5 +344,3 @@
 | phi-3.5-onnx-qnn |
 
 ---
-
-</div>

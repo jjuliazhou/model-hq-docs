@@ -4,8 +4,6 @@
 
 # CPU Models
 
-<div style="margin-left: 40px;">
-
 ## Agentic Models
 
 | Model Name |
@@ -198,11 +196,7 @@
 
 ---
 
-</div>
-
 # GPU/CPU/NPU Models
-
-<div style="margin-left: 40px;">
 
 ## Agentic Models - ONNX
 
@@ -512,11 +506,7 @@
 
 ---
 
-</div>
-
 # NPU Models
-
-<div style="margin-left: 40px;">
 
 ## Agentic Models
 
@@ -572,11 +562,7 @@
 
 ---
 
-</div>
-
 # Cloud Models
-
-<div style="margin-left: 40px;">
 
 | Model Name |
 |------------|
@@ -597,5 +583,3 @@
 | gemini-2.5-flash-lite |
 
 ---
-
-</div>

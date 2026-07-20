@@ -4,8 +4,6 @@
 
 # CPU Models 
 
-<div style="margin-left: 40px;">
-
 ## Agentic Models
 
 | Model Name |
@@ -98,11 +96,7 @@
 
 ---
 
-</div>
-
 # GPU/CPU/NPU Models 
-
-<div style="margin-left: 40px;">
 
 ## Agentic Models
 
@@ -191,11 +185,7 @@
 
 ---
 
-</div>
-
 # NPU Models 
-
-<div style="margin-left: 40px;">
 
 ## General Chat Models
 
@@ -204,5 +194,3 @@
 | llama-3.2-3b-onnx-qnn |
 
 ---
-
-</div>
