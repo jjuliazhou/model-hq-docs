@@ -83,26 +83,13 @@
 
 ---
 
-## Instruct Models
+## General Chat Models
 
 | Model Name |
 |------------|
-| gemma-2-9b-instruct-gguf |
-| gemma-2-27b-instruct-gguf |
-| llama-3.1-instruct-gguf |
-| llama-3-8b-instruct-gguf |
-| llama-3.2-1b-instruct-gguf |
-| llama-3.2-3b-instruct-gguf |
 | llama-2-7b-chat-gguf |
 | dragon-llama-3.1-gguf |
 | tiny-llama-chat-gguf |
-| mistral-7b-instruct-v0.3-gguf |
-| qwen2.5-vl-3b-instruct-gguf |
-| qwen2-7B-instruct-gguf |
-| qwen3-4b-instruct-gguf |
-| qwen2-1.5b-instruct-gguf |
-| qwen2-0.5b-instruct-gguf |
-| qwen-2.5-14b-instruct-gguf |
 | qwen3-1.7b-gguf |
 | qwen3-8b-gguf |
 | qwen3-14b-gguf |
@@ -134,6 +121,26 @@
 | granite-4-micro-gguf |
 | liquidai-lfm2-2.6b-gguf |
 | minicpm-2.6-gguf |
+
+---
+
+## Instruct Models
+
+| Model Name |
+|------------|
+| gemma-2-9b-instruct-gguf |
+| gemma-2-27b-instruct-gguf |
+| llama-3.1-instruct-gguf |
+| llama-3-8b-instruct-gguf |
+| llama-3.2-1b-instruct-gguf |
+| llama-3.2-3b-instruct-gguf |
+| mistral-7b-instruct-v0.3-gguf |
+| qwen2.5-vl-3b-instruct-gguf |
+| qwen2-7B-instruct-gguf |
+| qwen3-4b-instruct-gguf |
+| qwen2-1.5b-instruct-gguf |
+| qwen2-0.5b-instruct-gguf |
+| qwen-2.5-14b-instruct-gguf |
 
 ---
 
@@ -184,3 +191,5 @@
 | qwen3-vl-8b-gguf |
 | qwen3-vl-4b-gguf |
 | qwen3-vl-30b-gguf |
+
+---

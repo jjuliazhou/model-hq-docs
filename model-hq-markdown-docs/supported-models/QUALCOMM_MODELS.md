@@ -2,103 +2,14 @@
 
 ---
 
-## Qwen Models
+# CPU Models 
+
+<div style="margin-left: 40px;">
+
+## Agentic Models
 
 | Model Name |
 |------------|
-| qwen-2.5-14b-instruct |
-| qwen2.5-32b |
-| qwen2-7B-instruct |
-| qwen2.5-7b-coder |
-| qwen-2-0.5b-instruct |
-| qwen2-1.5-instruct |
-| bling-qwen-0.5b |
-| bling-qwen-1.5b |
-
----
-
-## Llama-Based Models
-
-| Model Name |
-|------------|
-| llama-3.2-3b-onnx-qnn |
-| llama-3.2-3b-instruct-onnx |
-| llama-2-chat |
-| llama-3.1-instruct |
-| llama-3.2-ib-instruct |
-| tiny-llama-chat |
-| bling-tiny-llama |
-| llama-2-7b-chat |
-| llama-3.2-1b-instruct |
-| llama-3-8b-instruct |
-
----
-
-## Phi Models
-
-| Model Name |
-|------------|
-| phi-3.5 |
-| phi-3-vision |
-| phi-3 |
-| bling-phi-3 |
-| bling-phi-3.5 |
-
----
-
-## Mistral Models
-
-| Model Name |
-|------------|
-| mistral-7b-instruct-v0.3 |
-| openhermes-2.5-mistral |
-
----
-
-## Gemma Models
-
-| Model Name |
-|------------|
-| gemma-2b-it |
-| gemma-2-9b-instruct |
-| gemma-2-27b-instruct |
-
----
-
-## Dragon Models
-
-| Model Name |
-|------------|
-| dragon-mistral-0.3 |
-| dragon-llama-3.1 |
-| dragon-yi-answer-tool |
-| dragon-llama-answer-tool |
-| dragon-mistral-answer-tool |
-| dragon-yi-9b |
-| dragon-qwen-7b |
-
----
-
-## Slim Models
-
-| Model Name |
-|------------|
-| slim-extract-phi-3 |
-| slim-boolean-phi-3 |
-| slim-summary-phi-3 |
-| slim-emotions |
-| slim-topics |
-| slim-sql |
-| slim-summary-tiny |
-| slim-sentiment |
-| slim-extract-tiny |
-| slim-intent |
-| slim-tags |
-| slim-ratings |
-| slim-ner |
-| slim-extract-qwen-nano |
-| slim-sa-ner-phi-3 |
-| slim-xsum-phi-3 |
 | slim-sentiment-tool |
 | slim-extract-tool |
 | slim-summary-tool |
@@ -121,18 +32,149 @@
 | slim-summary-tiny-tool |
 | slim-qa-gen-phi-3-tool |
 | slim-qa-gen-tiny-tool |
+| slim-summary-tiny |
 
 ---
 
-## StableLM Models
+## Coder Models
 
 | Model Name |
 |------------|
+| qwen2.5-7b-coder |
+
+---
+
+## General Chat Models
+
+| Model Name |
+|------------|
+| tiny-llama-chat |
+| llama-2-7b-chat |
+| qwen2.5-32b |
+| bling-qwen-0.5b |
+| bling-qwen-1.5b |
+| openhermes-2.5-mistral |
+| dragon-llama-3.1 |
+| zephyr-7b-beta |
+| starling-lm-7b-alpha |
+| miniCPM-V-2_6 |
+
+---
+
+## Instruct Models
+
+| Model Name |
+|------------|
+| qwen-2.5-14b-instruct |
+| qwen2-7B-instruct |
+| qwen-2-0.5b-instruct |
+| qwen2-1.5-instruct |
+| llama-3.1-instruct |
+| llama-3.2-ib-instruct |
+| llama-3.2-1b-instruct |
+| llama-3-8b-instruct |
+| mistral-7b-instruct-v0.3 |
+| gemma-2-9b-instruct |
+| gemma-2-27b-instruct |
+| gemma-2b-it |
+
+---
+
+## Question-answer Models
+
+| Model Name |
+|------------|
+| dragon-yi-answer-tool |
+| dragon-llama-answer-tool |
+| dragon-mistral-answer-tool |
+| bling-answer-tool |
+| bling-tiny-llama |
+| bling-phi-3 |
+| bling-phi-3.5 |
+| dragon-mistral-0.3 |
+| dragon-yi-9b |
+| dragon-qwen-7b |
 | bling-stablelm-3b |
 
 ---
 
-## Jina Models
+</div>
+
+# GPU/CPU/NPU Models 
+
+<div style="margin-left: 40px;">
+
+## Agentic Models
+
+| Model Name |
+|------------|
+| slim-extract-phi-3 |
+| slim-boolean-phi-3 |
+| slim-summary-phi-3 |
+| slim-emotions |
+| slim-topics |
+| slim-sql |
+| slim-sentiment |
+| slim-extract-tiny |
+| slim-intent |
+| slim-tags |
+| slim-ratings |
+| slim-ner |
+| slim-extract-qwen-nano |
+| slim-sa-ner-phi-3 |
+| slim-xsum-phi-3 |
+
+---
+
+## General Chat Models
+
+| Model Name |
+|------------|
+| llama-2-chat |
+| phi-3 |
+| phi-3.5 |
+
+---
+
+## Instruct Models
+
+| Model Name |
+|------------|
+| qwen-2.5-14b-instruct |
+| qwen2-7B-instruct |
+| qwen-2-0.5b-instruct |
+| qwen2-1.5-instruct |
+| llama-3.2-3b-instruct-onnx |
+| llama-3.1-instruct |
+| llama-3.2-ib-instruct |
+| llama-3.2-1b-instruct |
+| llama-3-8b-instruct |
+| mistral-7b-instruct-v0.3 |
+| gemma-2b-it |
+
+---
+
+## Prompt Safety Models
+
+| Model Name |
+|------------|
+| protectai-prompt-injection |
+| unitary-unbiased-toxic-roberta |
+| valurank-distilroberta-bias |
+
+---
+
+## Question-answer Models
+
+| Model Name |
+|------------|
+| dragon-mistral-0.3 |
+| dragon-yi-9b |
+| dragon-qwen-7b |
+
+---
+
+## Re-ranker Models
 
 | Model Name |
 |------------|
@@ -141,21 +183,26 @@
 
 ---
 
-## Specialized Models
+## Vision Models
 
 | Model Name |
 |------------|
-| unitary-unbiased-toxic-roberta |
-| valurank-distilroberta-bias |
+| phi-3-vision |
 
 ---
 
-## Other Models
+</div>
+
+# NPU Models 
+
+<div style="margin-left: 40px;">
+
+## General Chat Models
 
 | Model Name |
 |------------|
-| protectai-prompt-injection |
-| zephyr-7b-beta |
-| starling-1m-7b-alpha |
-| miniCPM-V-2_6 |
-| bling-answer-tool |
+| llama-3.2-3b-onnx-qnn |
+
+---
+
+</div>
