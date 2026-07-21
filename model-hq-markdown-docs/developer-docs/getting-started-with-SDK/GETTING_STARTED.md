@@ -1,8 +1,6 @@
 # Getting Started with Code on Model HQ
 This guide walks you through the initial steps to launch and configure the backend inference server in **Model HQ**, enabling seamless programmatic access to over 40+ APIs through the Model HQ SDK.
 
-&nbsp;
-
 ## 1. Launching the Tools Interface
 
 To begin, navigate to the main menu at the top-right corner of the interface and click on the **Tools** button (🔧).
@@ -11,8 +9,6 @@ To begin, navigate to the main menu at the top-right corner of the interface and
 
 The tools page should look like this:
 ![Tools Interface](getting-started/tools.png)
-
-&nbsp;
 
 ## 2. Launching the Backend Server
 
@@ -29,8 +25,6 @@ The backend interface includes two main options:
 * **Launch**: Starts the backend server immediately.
 * **Configure**: Opens the configuration settings before starting the server.
 
-&nbsp;
-
 ## Launch Backend Inference Server Guide
 
 ![Launch](getting-started/launch.png)
@@ -42,8 +36,6 @@ To start the backend inference server, simply click **Launch** or use the CLI to
 ```
 Server URL: http://192.168.29.93:8088
 ```
-
-&nbsp;
 
 ### Stopping the Server
 
@@ -64,21 +56,17 @@ You can stop the backend server using any of the following methods:
    * Use the SDK’s `get_server_details()` to retrieve the process ID.
    * Open Task Manager and manually stop the corresponding process.
 
-&nbsp;
-
 ### Sample Code: Hello World
 
 Below is a basic example demonstrating how to make an inference call to the backend server using the SDK:
 
 ```python
-# simple 'hello world' example using the development kit.
-from llmware_client_sdk import LLMWareClient
-client = LLMWareClient(api_endpoint='http://192.168.29.93:8088')
-response = client.inference(prompt='Who was the U.S. President in 1996?', model_name='phi-3-ov')
-print('llm response: ', response)
-```
+from modelhq.client import LLMWareClient
 
-&nbsp;
+client = LLMWareClient(api_endpoint="http://192.168.29.93:8088", api_key="")
+response = client.inference(prompt="Who was the U.S. President in 1996?", model_name="phi-3-ov")
+print("llm response:", response)
+```
 
 ## Configure or Configure Backend API Sever for 'Headless' Mode
 
@@ -111,36 +99,49 @@ Before launching the backend in headless mode, you may choose to configure the s
 * **Enable Key Requirement**: All API calls must include a trusted key.
 * **No Key Required**: Skip key-based authentication.
 
-
 Save your changes by clicking on `>` button.
-
-&nbsp;
 
 ## Downloading the Model HQ SDK
 
 ![SDK](getting-started/download.png)
 
-Clicking on the **Download Model HQ Development Kit** button will download a `.zip` file. Once extracted, it will contain the following files:
+Clicking on the **Download Model HQ Development Kit** button will download a `.zip` file. Once extracted, the SDK is organized as a Python package:
 
 ![SDK Files](getting-started/files.png)
 
 ```
-├── __init__.py
-├── agent_examples.py
-├── api_service_catalog.py
-├── examples.py
-├── hello_world.py
-├── llmware_client_sdk.py
-├── README.txt
-├── requirements.txt
-├── test_file_admin.py
-├── test_file_models.py
-├── test_file_rag.py
+modelhq/
+├── modelhq/
+│   ├── client/
+│   │   ├── __init__.py
+│   │   ├── sdk.py              # LLMWareClient class
+│   │   ├── api_service_catalog.py
+│   │   └── requirements.txt
+│   ├── examples/
+│   ├── sample_files/
+│   ├── tests/
+│   └── README.txt
 ```
 
-Each script serves a different purpose—from demonstrating API usage to running test cases. Refer to `README.txt` for detailed usage instructions.
+Refer to `README.txt` for detailed usage instructions.
 
-&nbsp;
+## Making the SDK importable
+
+The SDK is a local Python package rather than an installed library. After extracting the download, one of the following approaches should be used so Python can find the `modelhq` module:
+
+| Option | Command |
+|---|---|
+| Run from the parent directory | `cd path\to\modelhq` then run Python |
+| Set `PYTHONPATH` (per session) | `$env:PYTHONPATH = "path\to\modelhq"` (PowerShell) |
+| Install as an editable package (once) | `pip install -e path\to\modelhq` |
+
+Once this is done you can import the client in any Python script:
+
+```python
+from modelhq.client import LLMWareClient
+
+client = LLMWareClient(api_endpoint="http://127.0.0.1:8088", api_key="")
+```
 
 ## Closing Backend Server
 - Close the Model HQ UI.
@@ -148,11 +149,20 @@ Each script serves a different purpose—from demonstrating API usage to running
 - Go to tools > backend.
 - You will be asked to "Would you like to stop current server?". Click on `Yes`.
 
+## Next steps
+
+| Topic | Document |
+|---|---|
+| First inference and streaming | [Hello World](../hello-world/HELLO_WORLD.md) |
+| Chat with app sessions | [Chat](../hello-world/CHAT.md) |
+| Run pre-built agents | [Agents](../hello-world/AGENTS.md) |
+| Build knowledge bases and ask questions | [RAG](../hello-world/RAG.md) |
+| Image analysis, generation, and speech | [Vision & Media](../hello-world/VISION.md) |
+| SDK method reference | [SDK Reference](../hello-world/SDK_REFERENCE.md) |
+| Full endpoint specifications | [API Reference](../api-reference/API.md) |
+| Linux server deployment | [Server Deployment](../server-deployment/SERVER_DEPLOYMENT.md) |
+
 ![SDK Files](getting-started/close.png)
 
-&nbsp;
-
 ## Conclusion
-You’re now ready to begin building applications using the Model HQ backend inference server. For more advanced topics, refer to the [API Reference Guide](https://model-hq-docs.vercel.app/api-reference) and the [Inside Model HQ SDK](#).
-
-If you have any questions or feedback, please contact us at `support@aibloks.com`.
+You’re now ready to begin building applications using the Model HQ backend inference server. For more advanced topics, refer to the [API Reference Guide](https://model-hq-docs.vercel.app/api-reference)

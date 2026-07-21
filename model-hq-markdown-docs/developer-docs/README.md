@@ -300,3 +300,17 @@ print(json.loads(resp.text))
 All endpoints and parameters are documented in `modelhq/client/api_service_catalog.py`.
 
 ---
+
+## Documentation
+
+| Topic | Document |
+|---|---|
+| Hello world — first inference and streaming | [`hello-world/HELLO_WORLD.md`](hello-world/HELLO_WORLD.md) |
+| Chat with app sessions | [`hello-world/CHAT.md`](hello-world/CHAT.md) |
+| Run pre-built agents | [`hello-world/AGENTS.md`](hello-world/AGENTS.md) |
+| Build knowledge bases and ask questions | [`hello-world/RAG.md`](hello-world/RAG.md) |
+| Image analysis, generation, and speech | [`hello-world/VISION.md`](hello-world/VISION.md) |
+| SDK method reference | [`hello-world/SDK_REFERENCE.md`](hello-world/SDK_REFERENCE.md) |
+| Getting started with the SDK | [`getting-started-with-SDK/GETTING_STARTED.md`](getting-started-with-SDK/GETTING_STARTED.md) |
+| Server deployment on Linux | [`server-deployment/SERVER_DEPLOYMENT.md`](server-deployment/SERVER_DEPLOYMENT.md) |
+| Full API endpoint reference | [`api-reference/API.md`](api-reference/API.md) |
