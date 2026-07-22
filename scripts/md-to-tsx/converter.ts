@@ -26,10 +26,10 @@ import { fileURLToPath } from 'url';
 
 const CONFIG = {
   // Source folder for markdown files (relative to project root)
-  SOURCE_FOLDER: './model-hq-markdown-docs/v1',
+  SOURCE_FOLDER: './model-hq-markdown-docs/developer-docs/',
   
   // Destination folder for generated TSX files (relative to project root)
-  DEST_FOLDER: './app/',
+  DEST_FOLDER: './app/server-docs/',
   
   // Default output filename
   OUTPUT_FILENAME: 'page.tsx',

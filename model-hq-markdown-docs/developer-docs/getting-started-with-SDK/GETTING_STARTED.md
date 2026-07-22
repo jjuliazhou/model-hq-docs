@@ -162,7 +162,5 @@ client = LLMWareClient(api_endpoint="http://127.0.0.1:8088", api_key="")
 | Full endpoint specifications | [API Reference](../api-reference/API.md) |
 | Linux server deployment | [Server Deployment](../server-deployment/SERVER_DEPLOYMENT.md) |
 
-![SDK Files](getting-started/close.png)
-
 ## Conclusion
 You’re now ready to begin building applications using the Model HQ backend inference server. For more advanced topics, refer to the [API Reference Guide](https://model-hq-docs.vercel.app/api-reference)

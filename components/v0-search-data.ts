@@ -93,25 +93,25 @@ export const v0SearchData: SearchResult[] = [
     description:
       "Close the app safely as best practices and highly recommended",
   },
-  {
-    title: "Getting Started With Model HQ SDK",
-    url: "/getting-started-with-model-hq-sdk",
-    type: "page",
-    description: "Learn how to get started with the SDK of Model HQ",
-  },
-  {
-    title: "Hello World with LLMWare's Model HQ SDK",
-    url: "/hello-world",
-    type: "page",
-    description: "Start with the Quick Hello World Example",
-  },
-  {
-    title: "API References",
-    url: "/api-references",
-    type: "page",
-    description:
-      "Detailed list of all the endpoints and the availble parameters",
-  },
+  // {
+  //   title: "Getting Started With Model HQ SDK",
+  //   url: "/getting-started-with-model-hq-sdk",
+  //   type: "page",
+  //   description: "Learn how to get started with the SDK of Model HQ",
+  // },
+  // {
+  //   title: "Hello World with LLMWare's Model HQ SDK",
+  //   url: "/hello-world",
+  //   type: "page",
+  //   description: "Start with the Quick Hello World Example",
+  // },
+  // {
+  //   title: "API References",
+  //   url: "/api-references",
+  //   type: "page",
+  //   description:
+  //     "Detailed list of all the endpoints and the availble parameters",
+  // },
 
   // Supported Models pages
   {

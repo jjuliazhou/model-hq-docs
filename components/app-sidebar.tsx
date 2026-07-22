@@ -23,6 +23,13 @@ import {
   Rocket,
   BookMarked,
   BookCopy,
+  Code2,
+  Zap,
+  Monitor,
+  Hexagon,
+  MessageSquare,
+  Workflow,
+  Image,
 } from "lucide-react"
 
 import {
@@ -75,6 +82,37 @@ type NavItem = {
   }[]
 }
 
+const developerDocs: NavItem[] = [
+  {
+    title: "Getting Started",
+    url: "/server-docs/getting-started-with-sdk",
+    icon: Play,
+  },
+  {
+    title: "Hello World",
+    url: "/server-docs/hello-world/hello-world",
+    icon: Code2,
+    items: [
+      { title: "Hello World", url: "/server-docs/hello-world/hello-world", icon: Code2 },
+      { title: "Chat Example", url: "/server-docs/hello-world/chat", icon: MessageSquare },
+      { title: "Agents Example", url: "/server-docs/hello-world/agents", icon: Workflow },
+      { title: "RAG Example", url: "/server-docs/hello-world/rag", icon: Library },
+      { title: "Vision Example", url: "/server-docs/hello-world/vision", icon: Image },
+      { title: "SDK Reference", url: "/server-docs/hello-world/sdk-reference", icon: BookOpen },
+    ],
+  },
+  {
+    title: "API Reference",
+    url: "/server-docs/api-reference",
+    icon: Code2,
+  },
+  {
+    title: "Server Deployment",
+    url: "/server-docs/server-deployment",
+    icon: Server,
+  },
+]
+
 const navigationData = {
   startHere: [
     {
@@ -101,12 +139,12 @@ const navigationData = {
     {
       title: "AMD Supported Models",
       url: "/supported-models/amd",
-      icon: Cpu,
+      icon: Zap,
     },
     {
       title: "Apple Supported Models",
       url: "/supported-models/apple",
-      icon: Cpu,
+      icon: Monitor,
     },
     {
       title: "Intel Supported Models",
@@ -116,7 +154,7 @@ const navigationData = {
     {
       title: "NVIDIA Supported Models",
       url: "/supported-models/nvidia",
-      icon: Cpu,
+      icon: Hexagon,
     },
     {
       title: "Qualcomm Supported Models",
@@ -403,6 +441,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     icon={V1Icon}
                     title="Model HQ Core Docs"
                     items={navigationData.v1}
+                    pathname={pathname}
+                  />
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            {/* Developer Docs - Single icon with hover menu */}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <CollapsedSectionWithHover
+                    icon={Code2}
+                    title="Developer Docs"
+                    items={developerDocs}
                     pathname={pathname}
                   />
                 </SidebarMenu>
@@ -717,6 +769,89 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   )
                 })
               )}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
+
+    {/* Developer Docs Section */}
+    <Collapsible defaultOpen={pathname.startsWith('/server-docs')} className="group/devdocs-collapsible">
+      <SidebarGroup>
+        <SidebarGroupLabel asChild>
+          <CollapsibleTrigger className="w-full flex items-center justify-between hover:bg-sidebar-accent/80 rounded-md px-3 py-2 cursor-pointer transition-colors" suppressHydrationWarning>
+            <span className="font-mono text-[11px] font-medium uppercase tracking-widest text-sidebar-foreground/60">Developer Docs</span>
+            <ChevronRight className="ml-auto size-4 text-muted-foreground transition-transform duration-200 group-data-[state=open]/devdocs-collapsible:rotate-90" />
+          </CollapsibleTrigger>
+        </SidebarGroupLabel>
+        <CollapsibleContent>
+          <SidebarGroupContent className="relative ml-3 mr-1 overflow-visible">
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+            <SidebarMenu className="space-y-1 overflow-visible">
+              {developerDocs.map((item) => {
+                if (item.items) {
+                  return (
+                    <Collapsible
+                      key={item.title}
+                      asChild
+                      defaultOpen={pathname.startsWith(item.url)}
+                      className="group/collapsible"
+                    >
+                      <SidebarMenuItem className="relative overflow-visible">
+                        <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                        <CollapsibleTrigger asChild>
+                          <SidebarMenuButton
+                            tooltip={item.title}
+                            isActive={pathname === item.url}
+                            suppressHydrationWarning
+                            className="pl-4 overflow-visible"
+                          >
+                            {item.icon && <item.icon className="size-4 shrink-0" />}
+                            <span className="truncate text-sm">{item.title}</span>
+                            <ChevronRight className="ml-auto size-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                          </SidebarMenuButton>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="overflow-visible">
+                          <SidebarMenuSub className="relative ml-3 border-l border-border pl-3 overflow-visible">
+                            {item.items.map((subItem) => (
+                              <SidebarMenuSubItem key={subItem.title} className="relative overflow-visible">
+                                <div className="absolute left-0 top-1/2 w-3 h-px bg-border -translate-y-1/2 -ml-3" />
+                                <SidebarMenuSubButton
+                                  asChild
+                                  isActive={pathname === subItem.url}
+                                  suppressHydrationWarning
+                                  className="overflow-visible"
+                                >
+                                  <a href={subItem.url} className="truncate">
+                                    <span className="truncate text-sm">{subItem.title}</span>
+                                  </a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </SidebarMenuSub>
+                        </CollapsibleContent>
+                      </SidebarMenuItem>
+                    </Collapsible>
+                  )
+                }
+                return (
+                  <SidebarMenuItem key={item.title} className="relative overflow-visible">
+                    <div className="absolute left-0 top-[18px] w-3 h-px bg-border" />
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.title}
+                      isActive={pathname === item.url}
+                      suppressHydrationWarning
+                      className="pl-4 overflow-visible"
+                    >
+                      <a href={item.url} className="truncate flex items-center gap-2">
+                        {item.icon && <item.icon className="size-4 shrink-0" />}
+                        <span className="truncate text-sm">{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </CollapsibleContent>

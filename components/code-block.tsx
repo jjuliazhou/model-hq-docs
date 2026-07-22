@@ -30,7 +30,7 @@ export function CodeBlock({ children, language = "python", title }: CodeBlockPro
           {title}
         </div>
       )}
-      <div className="relative bg-slate-950 rounded-lg overflow-hidden">
+      <div className="relative bg-slate-950 rounded-lg overflow-hidden border border-slate-800">
         <Button
           onClick={copyToClipboard}
           size="sm"
@@ -39,8 +39,8 @@ export function CodeBlock({ children, language = "python", title }: CodeBlockPro
         >
           {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         </Button>
-        <pre className={`p-4 overflow-x-auto text-sm ${title ? "rounded-t-none" : "rounded-lg"}`}>
-          <code className="text-slate-200 font-mono">{children}</code>
+        <pre className={`p-4 overflow-x-auto text-sm !bg-slate-950 !text-slate-200 !m-0 font-mono ${title ? "rounded-t-none" : "rounded-lg"}`}>
+          <code className="!bg-transparent !p-0 !m-0 !rounded-none !text-slate-200 font-mono">{children}</code>
         </pre>
       </div>
     </div>

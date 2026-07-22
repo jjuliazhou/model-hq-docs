@@ -11,6 +11,7 @@ import { Search, FileText, Hash, BookOpen, WandSparkles } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { v0SearchData } from "./v0-search-data"
 import { v1SearchData } from "./v1-search-data"
+import { serverSearchData } from "./server-search-data"
 import { ThemeToggle } from "./theme-toggle"
 import { AiSearchModal } from "./ai-search-modal"
 import { Button } from "./ui/button"
@@ -34,8 +35,8 @@ export function Header() {
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Determine which search data to use based on current page
-  const currentSearchData = searchVersion === 'v0' ? v0SearchData : v1SearchData;
+  // Search across all documentation versions
+  const currentSearchData = [...v0SearchData, ...v1SearchData, ...serverSearchData];
 
   // Keyboard shortcut for AI search (Cmd+K or Ctrl+K)
   useEffect(() => {
