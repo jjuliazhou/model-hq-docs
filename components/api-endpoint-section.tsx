@@ -29,7 +29,7 @@ interface ApiEndpointSectionProps {
 
 export function ApiEndpointSection({ endpoint, isLast }: ApiEndpointSectionProps) {
   // Generate curl example
-  const curlExample = `curl -X POST http://localhost:8088/${endpoint.id} \\
+  const curlExample = `curl -X POST http://localhost:8088${endpoint.endpoint} \
   -H "Content-Type: application/json" \\
   -d '${JSON.stringify(endpoint.exampleRequest, null, 2)
     .split('\n')
@@ -73,15 +73,44 @@ for chunk in stream:
 print("\\n${endpoint.name || endpoint.id} response: ", response)`}
 `;
 
+  // Generate JavaScript example
+  const jsBody = JSON.stringify(endpoint.exampleRequest, null, 2)
+  const jsExample = endpoint.isStreaming
+    ? `const response = await fetch("http://localhost:8088${endpoint.endpoint}", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: ${jsBody.includes("\n") ? `\n  ${jsBody},\n` : jsBody + ","},
+});
+
+const reader = response.body.getReader();
+const decoder = new TextDecoder();
+
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) break;
+  const text = decoder.decode(value);
+  console.log(text);
+}`
+    : `const response = await fetch("http://localhost:8088${endpoint.endpoint}", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: ${jsBody.includes("\n") ? `\n  ${jsBody},\n` : jsBody + ","},
+});
+
+const data = await response.json();
+console.log(data);`;
+
   const requestCode = {
     curl: curlExample,
     python: pythonExample,
+    javascript: jsExample,
   }
 
   // Format response as proper JSON
   const formatResponse = () => {
   if (endpoint.isStreaming) {
-    const responseText = endpoint.exampleResponse?.llm_response || ""
+    const raw = endpoint.exampleResponse?.llm_response
+    const responseText = typeof raw === "string" ? raw : JSON.stringify(raw ?? "")
     const chunks = responseText.match(/.{1,60}/g) || [] // split into ~60 char chunks
     const streamLines = chunks.map((chunk: any) => `data: {"llm_response": "${chunk}"}`).join("\n\n")
     return `// Streaming response format\n${streamLines}`

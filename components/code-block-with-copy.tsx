@@ -13,25 +13,23 @@ import {
 interface CodeExample {
   curl: string
   python: string
+  javascript: string
 }
 
 interface CodeBlockWithCopyProps {
   title: string
   code: CodeExample | string
-  // language?: "curl" | "python"
-  language?: "python"
+  language?: "curl" | "python" | "javascript"
   showLanguageSelector?: boolean
 }
 
 export function CodeBlockWithCopy({
   title,
   code,
-  // language = "curl",
   language = "python",
   showLanguageSelector = false,
 }: CodeBlockWithCopyProps) {
-  // const [selectedLanguage, setSelectedLanguage] = useState<"curl" | "python">(language)
-  const [selectedLanguage, setSelectedLanguage] = useState<"python">(language)
+  const [selectedLanguage, setSelectedLanguage] = useState<"curl" | "python" | "javascript">(language)
   const [copied, setCopied] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -56,12 +54,10 @@ export function CodeBlockWithCopy({
     }
   }
 
-  // const getLanguageLabel = (lang: "curl" | "python") => {
-  //   return lang === "curl" ? "cURL" : "Python"
-  // }
-
-  const getLanguageLabel = (lang: string) => {
-    return lang
+  const getLanguageLabel = (lang: "curl" | "python" | "javascript") => {
+    if (lang === "curl") return "cURL"
+    if (lang === "python") return "Python"
+    return "JavaScript"
   }
 
   if (!mounted) {
@@ -78,7 +74,7 @@ export function CodeBlockWithCopy({
         </div>
         <div className="bg-slate-950 text-slate-50 rounded-lg p-4 overflow-x-auto">
           <pre className="text-sm">
-            <code>{typeof code === "string" ? code : code.python}</code>
+            <code>{typeof code === "string" ? code : code[selectedLanguage]}</code>
           </pre>
         </div>
       </div>
@@ -90,8 +86,7 @@ export function CodeBlockWithCopy({
       <div className="flex items-center justify-between mb-3">
         <h4 className="font-medium">{title}</h4>
         <div className="flex items-center gap-2">
-          {/*
-          showLanguageSelector && typeof code === "object" && (
+          {showLanguageSelector && typeof code === "object" && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="h-8 px-3">
@@ -102,15 +97,10 @@ export function CodeBlockWithCopy({
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setSelectedLanguage("curl")}>cURL</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setSelectedLanguage("python")}>Python</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setSelectedLanguage("javascript")}>JavaScript</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          )
-          */}
-            {showLanguageSelector && typeof code === "object" && (
-              <span className="text-sm text-foreground px-3 py-1 border rounded">
-                {getLanguageLabel(selectedLanguage)}
-              </span>
-            )}
+          )}
             <Button variant="outline" size="sm" className="h-8 w-8 p-0" onClick={copyToClipboard}>
               {copied ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
             </Button>
@@ -122,5 +112,5 @@ export function CodeBlockWithCopy({
           </pre>
         </div>
       </div>
-      )
+    )
 }
