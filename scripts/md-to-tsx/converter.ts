@@ -29,7 +29,7 @@ const CONFIG = {
   SOURCE_FOLDER: './model-hq-markdown-docs/developer-docs/',
   
   // Destination folder for generated TSX files (relative to project root)
-  DEST_FOLDER: './app/server-docs/',
+  DEST_FOLDER: './app/developer-docs/',
   
   // Default output filename
   OUTPUT_FILENAME: 'page.tsx',
