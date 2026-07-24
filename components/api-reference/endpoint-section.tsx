@@ -8,7 +8,7 @@ interface Parameter {
   default?: string
 }
 
-interface ApiEndpointSectionProps {
+interface EndpointSectionProps {
   endpoint: {
     id: string
     name: string
@@ -27,7 +27,7 @@ interface ApiEndpointSectionProps {
   isLast?: boolean
 }
 
-export function ApiEndpointSection({ endpoint, isLast }: ApiEndpointSectionProps) {
+export function EndpointSection({ endpoint, isLast }: EndpointSectionProps) {
   // Generate curl example
   const curlExample = `curl -X POST http://localhost:8088${endpoint.endpoint} \
   -H "Content-Type: application/json" \\

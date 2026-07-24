@@ -748,7 +748,7 @@ export default function HomePage() {
               </div>
 
               {/* Getting Started */}
-              <a href="/server-docs/getting-started-with-sdk" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+              <a href="/developer-docs/getting-started-with-sdk" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                 <span className="font-mono text-sm font-medium text-brand group-hover:underline">
                   $ getting-started
                 </span>
@@ -763,7 +763,7 @@ export default function HomePage() {
 
               {/* Hello World */}
               <div className="border-b border-border">
-                <a href="/server-docs/hello-world/hello-world" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/hello-world" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-sm font-medium text-brand group-hover:underline">
                     $ hello-world/
                   </span>
@@ -777,7 +777,7 @@ export default function HomePage() {
                 </a>
 
                 {/* Chat */}
-                <a href="/server-docs/hello-world/chat" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/chat" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
                     ├─ chat
                   </span>
@@ -785,7 +785,7 @@ export default function HomePage() {
                 </a>
 
                 {/* Agents */}
-                <a href="/server-docs/hello-world/agents" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/agents" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
                     ├─ agents
                   </span>
@@ -793,7 +793,7 @@ export default function HomePage() {
                 </a>
 
                 {/* RAG */}
-                <a href="/server-docs/hello-world/rag" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/rag" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
                     ├─ rag
                   </span>
@@ -801,7 +801,7 @@ export default function HomePage() {
                 </a>
 
                 {/* Vision & Media */}
-                <a href="/server-docs/hello-world/vision" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/vision" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
                     ├─ vision-media
                   </span>
@@ -809,7 +809,7 @@ export default function HomePage() {
                 </a>
 
                 {/* SDK Reference */}
-                <a href="/server-docs/hello-world/sdk-reference" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <a href="/developer-docs/hello-world/sdk-reference" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                   <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
                     └─ sdk-reference
                   </span>
@@ -818,7 +818,7 @@ export default function HomePage() {
               </div>
 
               {/* API Reference */}
-              <a href="/server-docs/api-reference" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+              <a href="/developer-docs/api-reference" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                 <span className="font-mono text-sm font-medium text-brand group-hover:underline">
                   $ api-reference
                 </span>
@@ -834,7 +834,7 @@ export default function HomePage() {
               </a>
 
               {/* Server Deployment */}
-              <a href="/server-docs/server-deployment" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+              <a href="/developer-docs/server-deployment" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
                 <span className="font-mono text-sm font-medium text-brand group-hover:underline">
                   $ server-deployment
                 </span>

@@ -85,30 +85,30 @@ type NavItem = {
 const developerDocs: NavItem[] = [
   {
     title: "Getting Started",
-    url: "/server-docs/getting-started-with-sdk",
+    url: "/developer-docs/getting-started-with-sdk",
     icon: Play,
   },
   {
     title: "Hello World",
-    url: "/server-docs/hello-world/hello-world",
+    url: "/developer-docs/hello-world/hello-world",
     icon: Code2,
     items: [
-      { title: "Hello World", url: "/server-docs/hello-world/hello-world", icon: Code2 },
-      { title: "Chat Example", url: "/server-docs/hello-world/chat", icon: MessageSquare },
-      { title: "Agents Example", url: "/server-docs/hello-world/agents", icon: Workflow },
-      { title: "RAG Example", url: "/server-docs/hello-world/rag", icon: Library },
-      { title: "Vision Example", url: "/server-docs/hello-world/vision", icon: Image },
-      { title: "SDK Reference", url: "/server-docs/hello-world/sdk-reference", icon: BookOpen },
+      { title: "Hello World", url: "/developer-docs/hello-world/hello-world", icon: Code2 },
+      { title: "Chat Example", url: "/developer-docs/hello-world/chat", icon: MessageSquare },
+      { title: "Agents Example", url: "/developer-docs/hello-world/agents", icon: Workflow },
+      { title: "RAG Example", url: "/developer-docs/hello-world/rag", icon: Library },
+      { title: "Vision Example", url: "/developer-docs/hello-world/vision", icon: Image },
+      { title: "SDK Reference", url: "/developer-docs/hello-world/sdk-reference", icon: BookOpen },
     ],
   },
   {
     title: "API Reference",
-    url: "/server-docs/api-reference",
+    url: "/developer-docs/api-reference",
     icon: Code2,
   },
   {
     title: "Server Deployment",
-    url: "/server-docs/server-deployment",
+    url: "/developer-docs/server-deployment",
     icon: Server,
   },
 ]

@@ -153,31 +153,31 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
           <tbody>
             <tr>
               <td className="border border-border px-4 py-2">SDK installation and first call</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/getting-started-with-sdk">Getting Started</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/getting-started-with-sdk">Getting Started</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">Hello world example</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/hello-world/hello-world">Hello World</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/hello-world/hello-world">Hello World</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">Chat with app sessions</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/hello-world/chat">Chat</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/hello-world/chat">Chat</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">Run agents</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/hello-world/agents">Agents</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/hello-world/agents">Agents</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">Build knowledge bases</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/hello-world/rag">RAG</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/hello-world/rag">RAG</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">SDK method reference</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/hello-world/sdk-reference">SDK Reference</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/hello-world/sdk-reference">SDK Reference</a></td>
             </tr>
             <tr>
               <td className="border border-border px-4 py-2">Full endpoint specifications</td>
-              <td className="border border-border px-4 py-2"><a href="/server-docs/api-reference">API Reference</a></td>
+              <td className="border border-border px-4 py-2"><a href="/developer-docs/api-reference">API Reference</a></td>
             </tr>
           </tbody>
         </table>
@@ -192,7 +192,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/getting-started-with-sdk">Getting Started</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/getting-started-with-sdk">Getting Started</a></p>
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/hello-world/hello-world">Hello World</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/hello-world/hello-world">Hello World</a></p>
               </div>
             </div>
           </div>
@@ -216,7 +216,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/hello-world/chat">Chat</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/hello-world/chat">Chat</a></p>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/hello-world/agents">Agents</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/hello-world/agents">Agents</a></p>
               </div>
             </div>
           </div>
@@ -240,7 +240,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/hello-world/rag">RAG</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/hello-world/rag">RAG</a></p>
               </div>
             </div>
           </div>
@@ -252,7 +252,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/hello-world/sdk-reference">SDK Reference</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/hello-world/sdk-reference">SDK Reference</a></p>
               </div>
             </div>
           </div>
@@ -264,7 +264,7 @@ response = client.inference(prompt="Hello", model_name="llama-3.2-1b-instruct-ov
               </div>
               <div>
                 <h5 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Document</h5>
-                <p className="text-sm mt-1 break-words"><a href="/server-docs/api-reference">API Reference</a></p>
+                <p className="text-sm mt-1 break-words"><a href="/developer-docs/api-reference">API Reference</a></p>
               </div>
             </div>
           </div>
