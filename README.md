@@ -123,6 +123,23 @@ Choose models that are fine-tuned for your device:
 
 &nbsp;
 
+### Developer Docs
+
+* [Getting Started](https://model-hq-docs.vercel.app/developer-docs/getting-started-with-sdk) – Quick start guide with prerequisites and your first API call
+
+* Hello World
+  * [Hello World](https://model-hq-docs.vercel.app/developer-docs/hello-world) – End-to-end tutorial building a complete AI application
+  * [Chat](https://model-hq-docs.vercel.app/developer-docs/hello-world/chat) – Build conversational AI with Model HQ SDK
+  * [Agents](https://model-hq-docs.vercel.app/developer-docs/hello-world/agents) – Create autonomous AI agents with tool use and multi-step reasoning
+  * [RAG](https://model-hq-docs.vercel.app/developer-docs/hello-world/rag) – Build retrieval-augmented generation pipelines over your own documents
+  * [Vision & Media](https://model-hq-docs.vercel.app/developer-docs/hello-world/vision) – Process images, video frames, and media with vision models
+  * [SDK Reference](https://model-hq-docs.vercel.app/developer-docs/hello-world/sdk-reference) – Full API reference for the Model HQ Python SDK
+
+* [Server Deployment](https://model-hq-docs.vercel.app/developer-docs/server-deployment) – Deploy Model HQ Server on Linux for multi-user, scalable API access
+* [API Reference](https://model-hq-docs.vercel.app/developer-docs/api-reference) – Full endpoint specifications for all 81 Model HQ server APIs
+
+&nbsp;
+
 <details>
 <summary><strong> V0 Documentation Will be deprecated soon! </summary></strong>
 

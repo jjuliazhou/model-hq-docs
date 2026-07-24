@@ -725,6 +725,131 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* Developer Docs Section */}
+          <section className="relative border-b border-border">
+            <Crosshairs bottom />
+            <div className="px-6 pt-16 md:pt-20">
+              <span className="font-mono text-xs uppercase tracking-widest text-brand">
+                Code
+              </span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">
+                Developer Docs
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+                SDK quickstarts, API reference, and server deployment guides for building on Model HQ.
+              </p>
+            </div>
+
+            <div className="mt-12 border-y border-border bg-background">
+              {/* Column header row */}
+              <div className="hidden border-b border-border bg-muted/30 px-6 py-3 font-mono text-xs uppercase tracking-widest text-muted-foreground md:grid md:grid-cols-[220px_1fr] md:gap-6">
+                <span>Endpoint</span>
+                <span>Description</span>
+              </div>
+
+              {/* Getting Started */}
+              <a href="/server-docs/getting-started-with-sdk" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <span className="font-mono text-sm font-medium text-brand group-hover:underline">
+                  $ getting-started
+                </span>
+                <div>
+                  <p className="text-sm text-muted-foreground">Set up the SDK, launch the backend server, and run your first inference</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">Python</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">SDK</span>
+                  </div>
+                </div>
+              </a>
+
+              {/* Hello World */}
+              <div className="border-b border-border">
+                <a href="/server-docs/hello-world/hello-world" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-sm font-medium text-brand group-hover:underline">
+                    $ hello-world/
+                  </span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Connect to a running server and perform your first streaming inference</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">LLMWareClient</span>
+                      <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">stream</span>
+                    </div>
+                  </div>
+                </a>
+
+                {/* Chat */}
+                <a href="/server-docs/hello-world/chat" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
+                    ├─ chat
+                  </span>
+                  <p className="text-xs text-muted-foreground">Interact with app sessions, send messages, and receive streamed responses</p>
+                </a>
+
+                {/* Agents */}
+                <a href="/server-docs/hello-world/agents" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
+                    ├─ agents
+                  </span>
+                  <p className="text-xs text-muted-foreground">Discover, run, and schedule pre-built multi-step agent processes</p>
+                </a>
+
+                {/* RAG */}
+                <a href="/server-docs/hello-world/rag" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
+                    ├─ rag
+                  </span>
+                  <p className="text-xs text-muted-foreground">Build knowledge bases with document, source, and library-based retrieval</p>
+                </a>
+
+                {/* Vision & Media */}
+                <a href="/server-docs/hello-world/vision" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
+                    ├─ vision-media
+                  </span>
+                  <p className="text-xs text-muted-foreground">Image analysis, generation, text-to-speech, and web search</p>
+                </a>
+
+                {/* SDK Reference */}
+                <a href="/server-docs/hello-world/sdk-reference" className="group flex flex-col border-t border-border/50 px-6 py-3 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                  <span className="font-mono text-xs text-brand group-hover:underline md:pl-4">
+                    └─ sdk-reference
+                  </span>
+                  <p className="text-xs text-muted-foreground">Quick-reference for all SDK methods grouped by category</p>
+                </a>
+              </div>
+
+              {/* API Reference */}
+              <a href="/server-docs/api-reference" className="group flex flex-col border-b border-border px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <span className="font-mono text-sm font-medium text-brand group-hover:underline">
+                  $ api-reference
+                </span>
+                <div>
+                  <p className="text-sm text-muted-foreground">Full endpoint specifications for all 81 Model HQ server APIs</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">81 endpoints</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">curl</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">Python</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">JavaScript</span>
+                  </div>
+                </div>
+              </a>
+
+              {/* Server Deployment */}
+              <a href="/server-docs/server-deployment" className="group flex flex-col px-6 py-5 transition-colors hover:bg-muted/20 md:grid md:grid-cols-[220px_1fr] md:gap-6 md:items-center">
+                <span className="font-mono text-sm font-medium text-brand group-hover:underline">
+                  $ server-deployment
+                </span>
+                <div>
+                  <p className="text-sm text-muted-foreground">Deploy Model HQ Server on Linux for multi-user, scalable API access</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">Linux</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">SSH tunnel</span>
+                    <span className="inline-block rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">multi-user</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+
           {/* Quick Start CTA — centered with logo */}
           <section className="relative border-b border-border">
             <Crosshairs bottom />
