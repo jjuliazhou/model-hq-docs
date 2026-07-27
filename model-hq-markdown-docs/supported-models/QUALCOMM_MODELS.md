@@ -140,7 +140,7 @@
 | qwen2-1.5-instruct |
 | llama-3.2-3b-instruct-onnx |
 | llama-3.1-instruct |
-| llama-3.2-ib-instruct |
+| llama-3.2-1b-instruct |
 | llama-3.2-1b-instruct |
 | llama-3-8b-instruct |
 | mistral-7b-instruct-v0.3 |
