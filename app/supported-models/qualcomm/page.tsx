@@ -172,7 +172,7 @@ export default function QualcommSupportedModelsPage() {
           <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-3">
             {[
               { value: `${TOTAL_MODELS}`, label: "Optimized models" },
-              { value: "QNN SDK", label: "Runtime" },
+              { value: "QNN", label: "Runtime" },
               { value: "CPU · GPU · NPU", label: "Hardware targets" },
             ].map((stat) => (
               <div key={stat.label} className="bg-background px-6 py-10 text-center">
